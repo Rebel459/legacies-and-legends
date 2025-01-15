@@ -13,7 +13,7 @@ public final class LaLDataGenerator implements DataGeneratorEntrypoint {
 		FrozenFeatureFlags.rebuild();
 		final FabricDataGenerator.Pack pack = dataGenerator.createPack();
 
-		pack.addProvider(LaLModelProvider::new);
-
-	}
+        pack.addProvider(LaLModelProvider::new);
+        pack.addProvider(LaLItemTagProvider::new);
+    }
 }

@@ -20,6 +20,9 @@
 		],
 		"fabric-datagen": [
           "net.legacy.legacies_and_legends.datagen.LaLDataGenerator"
+		],
+		"frozenlib:decorated_pot_patterns": [
+			"net.legacy.legacies_and_legends.LaLDecoratedPotPatterns"
 		]
 	},
 	"mixins": [
