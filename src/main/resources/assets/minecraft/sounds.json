@@ -75,6 +75,7 @@
       {
         "name": "legacy:music/end/only_the_beginning",
         "stream": true,
+        "volume": 0.8
         "weight": 2
       },
       {
