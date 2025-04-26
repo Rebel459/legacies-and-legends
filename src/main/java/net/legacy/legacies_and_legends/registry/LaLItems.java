@@ -316,6 +316,7 @@ public final class LaLItems {
                     .durability(731)
                     .repairable(LaLItemTags.REPAIRS_REINFORCED_ARMOR)
                     .component(DataComponents.EQUIPPABLE, Equippable.builder(ArmorType.CHESTPLATE.getSlot()).setEquipSound(SoundEvents.ARMOR_EQUIP_DIAMOND).setAsset(LaLEquipmentAssets.REINFORCED).build())
+                    .enchantable(9)
                     .attributes(createReinforcedChestplateAttributes)
                     .rarity(Rarity.RARE)
     );
@@ -326,6 +327,7 @@ public final class LaLItems {
                     .durability(165)
                     .repairable(LaLItemTags.REPAIRS_TRAVELLING_ARMOR)
                     .component(DataComponents.EQUIPPABLE, Equippable.builder(ArmorType.LEGGINGS.getSlot()).setEquipSound(SoundEvents.ARMOR_EQUIP_LEATHER).setAsset(LaLEquipmentAssets.TRAVELLING).build())
+                    .enchantable(15)
                     .attributes(createTravellingStridesAttributes)
     );
     public static final Item WANDERER_BOOTS = register("wanderer_boots",
@@ -335,6 +337,7 @@ public final class LaLItems {
                     .durability(386)
                     .repairable(LaLItemTags.REPAIRS_WANDERER_ARMOR)
                     .component(DataComponents.EQUIPPABLE, Equippable.builder(ArmorType.BOOTS.getSlot()).setEquipSound(SoundEvents.ARMOR_EQUIP_IRON).setAsset(LaLEquipmentAssets.WANDERER).build())
+                    .enchantable(12)
                     .attributes(createWandererBootsAttributes)
                     .rarity(Rarity.UNCOMMON)
     );
