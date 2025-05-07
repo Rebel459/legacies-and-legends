@@ -71,6 +71,10 @@ public class LaLLootTables {
 
 	public static final ResourceKey<LootTable> END_REMAINS = registerEndReborn("chests/end_remains");
 
+	public static final ResourceKey<LootTable> END_CITY_CHEST = registerEnderscape("end_city/chest");
+	public static final ResourceKey<LootTable> END_CITY_VAULT = registerEnderscape("end_city/vault");
+	public static final ResourceKey<LootTable> END_CITY_ELYTRA_VAULT = registerEnderscape("end_city/elytra_vault");
+
 	public static void init() {
 		LootTableEvents.MODIFY.register((id, tableBuilder, source, registries) -> {
 			LootPool.Builder pool;
@@ -181,6 +185,20 @@ public class LaLLootTables {
 						.add(EmptyLootItem.emptyItem().setWeight(20))
 						.add(LootItem.lootTableItem(LaLItems.TOTEM_OF_TELEPORTATION).setWeight(1));
 				tableBuilder.withPool(pool);
+			}
+			if (LaLConfig.get.integrations.enderscape) {
+				if (LaLLootTables.END_CITY_VAULT.equals(id) && LaLConfig.get.artifacts.totem_of_teleportation) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(20))
+							.add(LootItem.lootTableItem(LaLItems.TOTEM_OF_TELEPORTATION).setWeight(1));
+					tableBuilder.withPool(pool);
+				}
+				if (LaLLootTables.END_CITY_ELYTRA_VAULT.equals(id) && LaLConfig.get.artifacts.totem_of_teleportation) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(20))
+							.add(LootItem.lootTableItem(LaLItems.TOTEM_OF_TELEPORTATION).setWeight(1));
+					tableBuilder.withPool(pool);
+				}
 			}
 
 			// ARTIFACTS - Amulets
@@ -338,6 +356,20 @@ public class LaLLootTables {
 						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
+			if (LaLConfig.get.integrations.enderscape) {
+				if (LaLLootTables.END_CITY_VAULT.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(29))
+							.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
+					tableBuilder.withPool(pool);
+				}
+				if (LaLLootTables.END_CITY_ELYTRA_VAULT.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(29))
+							.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
+					tableBuilder.withPool(pool);
+				}
+			}
 			if (BuiltInLootTables.SIMPLE_DUNGEON.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(5))
@@ -350,6 +382,20 @@ public class LaLLootTables {
 						.add(EmptyLootItem.emptyItem().setWeight(14))
 						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_LEVITATION).setWeight(1));
 				tableBuilder.withPool(pool);
+			}
+			if (LaLConfig.get.integrations.enderscape) {
+				if (LaLLootTables.END_CITY_VAULT.equals(id) && LaLConfig.get.artifacts.tablet_of_levitation) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(14))
+							.add(LootItem.lootTableItem(LaLItems.TABLET_OF_LEVITATION).setWeight(1));
+					tableBuilder.withPool(pool);
+				}
+				if (LaLLootTables.END_CITY_ELYTRA_VAULT.equals(id) && LaLConfig.get.artifacts.tablet_of_levitation) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(14))
+							.add(LootItem.lootTableItem(LaLItems.TABLET_OF_LEVITATION).setWeight(1));
+					tableBuilder.withPool(pool);
+				}
 			}
 
 			// LOOT - General
@@ -369,6 +415,14 @@ public class LaLLootTables {
 								(lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 1, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
 						)
 				);
+				if (LaLConfig.get.integrations.enderscape) {
+					if (LaLLootTables.END_CITY_CHEST.equals(id) && LaLConfig.get.loot.enchanted_beetroot) {
+						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+								.add(EmptyLootItem.emptyItem().setWeight(20))
+								.add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
+						tableBuilder.withPool(pool);
+					}
+				}
 				LootTableModificationApi.editTable(
 						BuiltInLootTables.STRONGHOLD_CORRIDOR, false,
 						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
@@ -477,6 +531,14 @@ public class LaLLootTables {
 						.add(EmptyLootItem.emptyItem().setWeight(20))
 						.add(LootItem.lootTableItem(LaLItems.MUSIC_DISC_SHULKER).setWeight(1));
 				tableBuilder.withPool(pool);
+			}
+			if (LaLConfig.get.integrations.enderscape) {
+				if (LaLLootTables.END_CITY_CHEST.equals(id) && LaLConfig.get.loot.new_music_discs) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(20))
+							.add(LootItem.lootTableItem(LaLItems.MUSIC_DISC_SHULKER).setWeight(1));
+					tableBuilder.withPool(pool);
+				}
 			}
 
 			if (LaLLootTables.PALE_CABIN_SECRET.equals(id) && LaLConfig.get.loot.new_music_discs) {
@@ -761,5 +823,9 @@ public class LaLLootTables {
 
 	private static @NotNull ResourceKey<LootTable> registerEndReborn(String path) {
 		return ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath("end_reborn", path));
+	}
+
+	private static @NotNull ResourceKey<LootTable> registerEnderscape(String path) {
+		return ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath("enderscape", path));
 	}
 }

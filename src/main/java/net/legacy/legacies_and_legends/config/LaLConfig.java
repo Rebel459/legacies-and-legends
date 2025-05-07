@@ -198,8 +198,12 @@ public class LaLConfig implements ConfigData {
 	public static class IntegrationsConfig {
 		@ConfigEntry.Category("config")
 		public boolean wilder_wild = true;
+		@ConfigEntry.Category("config")
 		public boolean trailier_tales = true;
+		@ConfigEntry.Category("config")
 		public boolean variants_and_ventures = true;
+		@ConfigEntry.Category("config")
+		public boolean enderscape = true;
 	}
 
 }

@@ -24,6 +24,7 @@ public class LegaciesAndLegends implements ModInitializer {
 	public static boolean isVariantsAndVenturesLoaded = false;
 	public static boolean isTrailierTalesLoaded = false;
 	public static boolean isEnchantsAndExpeditionsLoaded = false;
+	public static boolean isEnderscapeLoaded = false;
 
 	@Override
 	public void onInitialize() {
@@ -181,6 +182,14 @@ public class LegaciesAndLegends implements ModInitializer {
 			ResourceManagerHelper.registerBuiltinResourcePack(
 					LaLConstants.id("variants_and_ventures_integration"), modContainer.get(),
 					Component.translatable("pack.legacies_and_legends.variants_and_ventures_integration"),
+					ResourcePackActivationType.ALWAYS_ENABLED
+			);
+		}
+		if (FabricLoader.getInstance().isModLoaded("enderscape") && LaLConfig.get.integrations.enderscape) {
+			isEnderscapeLoaded = true;
+			ResourceManagerHelper.registerBuiltinResourcePack(
+					LaLConstants.id("enderscape_integration"), modContainer.get(),
+					Component.translatable("pack.legacies_and_legends.enderscape_integration"),
 					ResourcePackActivationType.ALWAYS_ENABLED
 			);
 		}
