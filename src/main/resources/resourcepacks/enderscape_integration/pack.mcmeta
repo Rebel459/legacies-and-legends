@@ -1,6 +1,10 @@
 {
   "pack": {
     "pack_format": 61,
+    "supported_formats": [
+      46,
+      61
+    ],
     "description": "Legacies and Legends Enderscape Integration"
   }
 }
