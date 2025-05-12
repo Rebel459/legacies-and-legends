@@ -25,6 +25,16 @@
               "predicate": {
                 "type": "#legacies_and_legends:projectiles"
               }
+            },
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type": "#minecraft:ignores_poison_and_regen"
+                }
+              }
             }
           ]
         }

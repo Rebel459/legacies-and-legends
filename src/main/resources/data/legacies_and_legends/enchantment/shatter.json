@@ -21,45 +21,44 @@
   "effects": {
     "minecraft:post_attack": [
       {
-        "requirements": [
-          {
-            "condition": "minecraft:damage_source_properties",
-            "predicate": {
-              "is_direct": true
-            }
-          },
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "effects": {
-                "legacies_and_legends:freezing": {}
-              }
-            }
-          }
-        ],
         "effect": {
           "type": "minecraft:all_of",
           "effects": [
-              {
-              "type": "minecraft:damage_entity",
-              "damage_type": "minecraft:freeze",
-              "min_damage": {
-                "type": "minecraft:linear",
-                "base": 3,
-                "per_level_above_first": 3
-              },
-              "max_damage": {
-                "type": "minecraft:linear",
-                "base": 3,
-                "per_level_above_first": 3
-              }
-            },
             {
               "type": "minecraft:play_sound",
               "pitch": 1.0,
               "sound": "legacies_and_legends:enchantment.shatter",
               "volume": 1.0
+            }
+          ]
+        },
+        "requirements": {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "condition": "minecraft:damage_source_properties",
+              "predicate": {
+                "is_direct": true
+              }
+            },
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "effects": {
+                  "legacies_and_legends:freezing": {}
+                }
+              }
+            },
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type": "#minecraft:freeze_immune_entity_types"
+                }
+              }
             }
           ]
         },
@@ -105,10 +104,124 @@
         },
         "enchanted": "attacker",
         "requirements": {
-          "condition": "minecraft:damage_source_properties",
-          "predicate": {
-            "is_direct": true
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "condition": "minecraft:damage_source_properties",
+              "predicate": {
+                "is_direct": true
+              }
+            },
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type": "#minecraft:freeze_immune_entity_types"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "minecraft:damage": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 2.0,
+            "per_level_above_first": 2.0
           }
+        },
+        "requirements": {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "condition": "minecraft:damage_source_properties",
+              "predicate": {
+                "is_direct": true
+              }
+            },
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "effects": {
+                  "legacies_and_legends:freezing": {}
+                }
+              }
+            },
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type": "#minecraft:freeze_immune_entity_types"
+                }
+              }
+            },
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type": "#minecraft:freeze_hurts_extra_types"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 4.0,
+            "per_level_above_first": 4.0
+          }
+        },
+        "requirements": {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "condition": "minecraft:damage_source_properties",
+              "predicate": {
+                "is_direct": true
+              }
+            },
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "effects": {
+                  "legacies_and_legends:freezing": {}
+                }
+              }
+            },
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type": "#minecraft:freeze_immune_entity_types"
+                }
+              }
+            },
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "type": "#minecraft:freeze_hurts_extra_types"
+              }
+            }
+          ]
         }
       }
     ]
