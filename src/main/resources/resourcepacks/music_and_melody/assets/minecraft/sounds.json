@@ -523,19 +523,18 @@
     "replace": true,
     "sounds": [
       {
-        "name": "legacy:music/overworld/castles",
-        "stream": true,
-        "weight": 2
+        "name": "legacy:music/overworld/burning_konkrete",
+        "stream": true
+      },
+      {
+        "name": "music/game/creative/aria_math",
+        "stream": true
       },
       {
         "name": "music/game/bromeliad",
         "stream": true,
         "volume": 0.4,
         "weight": 1
-      },
-      {
-        "name": "music/game/creative/aria_math",
-        "stream": true
       },
       {
         "name": "music/game/subwoofer_lullaby",
@@ -1126,11 +1125,6 @@
         "stream": true
       },
       {
-        "name": "legacy:music/overworld/castles",
-        "stream": true,
-        "weight": 2
-      },
-      {
         "name": "music/game/creative/aria_math",
         "stream": true
       },
@@ -1474,9 +1468,8 @@
         "stream": true
       },
       {
-        "name": "legacy:music/overworld/castles",
-        "stream": true,
-        "weight": 2
+        "name": "music/game/creative/aria_math",
+        "stream": true
       },
       {
         "name": "music/game/bromeliad",
