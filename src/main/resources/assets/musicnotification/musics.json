@@ -4,19 +4,14 @@
         "author": "AFRH Music",
         "title": "Echoes"
     },
-    "legacy:sounds/music/caves/excuse": {
-        "album": "Legacies",
-        "author": "C418",
-        "title": "Excuses"
-    },
     "legacy:sounds/music/creative/miscible": {
         "album": "Legacies",
-        "author": "Sigma_",
+        "author": "Soul_",
         "title": "Miscible"
     },
     "legacy:sounds/music/creative/stolen_grid": {
         "album": "Legacies",
-        "author": "Sigma_",
+        "author": "Soul_",
         "title": "Stolen Grid"
     },
     "legacy:sounds/music/end/minecraft_end_remix": {
@@ -36,22 +31,12 @@
     },
     "legacy:sounds/music/end/vacuum_decay": {
         "album": "Legacies",
-        "author": "Sigma_",
+        "author": "Soul_",
         "title": "Vacuum Decay"
-    },
-    "legacy:sounds/music/menu/beginning": {
-        "album": "Legacies",
-        "author": "C418",
-        "title": "Beginning"
-    },
-    "legacy:sounds/music/menu/moog_city": {
-        "album": "Legacies",
-        "author": "C418",
-        "title": "Moog City"
     },
     "legacy:sounds/music/nether/bubbles": {
         "album": "Legacies",
-        "author": "Sigma_",
+        "author": "Soul_",
         "title": "Bubbles"
     },
     "legacy:sounds/music/nether/jellyfish": {
@@ -64,14 +49,19 @@
         "author": "Firch",
         "title": "Prophet"
     },
-    "legacy:sounds/music/other/placeholder_silence": {
+    "legacy:sounds/music/nether/psilopsychotic": {
         "album": "Legacies",
-        "author": "Silent",
+        "author": "Soul_",
+        "title": "Psilopsychotic"
+    },
+    "legacy:sounds/music/misc/placeholder_silence": {
+        "album": "Legacies",
+        "author": "####",
         "title": "####"
     },
-    "legacy:sounds/music/other/threshold_end_portal": {
+    "legacy:sounds/music/misc/threshold_end_portal": {
         "album": "Legacies",
-        "author": "Sigma_",
+        "author": "Soul_",
         "title": "Threshold"
     },
     "legacy:sounds/music/overworld/814": {
@@ -96,7 +86,7 @@
     },
     "legacy:sounds/music/overworld/castles": {
         "album": "Legacies",
-        "author": "Sigma_",
+        "author": "Soul_",
         "title": "Castles"
     },
     "legacy:sounds/music/overworld/cliff_hanger": {
@@ -114,20 +104,20 @@
         "author": "Naps the Block Music",
         "title": "Kall"
     },
-    "legacy:sounds/music/overworld/kyoto": {
-        "album": "Legacies",
-        "author": "C418",
-        "title": "Kyoto"
-    },
     "legacy:sounds/music/overworld/mosaic": {
         "album": "Legacies",
-        "author": "Sigma_",
+        "author": "Soul_",
         "title": "Mosaic"
     },
     "legacy:sounds/music/overworld/ravine": {
         "album": "Legacies",
         "author": "Oh Eight",
         "title": "Ravine"
+    },
+    "legacy:sounds/music/overworld/black_desert_of_endless_stars": {
+        "album": "Legacies",
+        "author": "Louie Zong",
+        "title": "Black Desert of Endless Stars"
     },
     "legacy:sounds/music/overworld/sunrise_on_the_mesa_2": {
         "album": "Legacies",
@@ -137,31 +127,6 @@
     "legacy:sounds/music/overworld/tundra": {
         "album": "Legacies",
         "author": "Talon Trueblood",
-        "title": "Tundra"
-    },
-    "legacies_and_legends:sounds/far_lands_music_disc": {
-        "album": "Legacies",
-        "author": "Steelman",
-        "title": "Far Lands"
-    },
-    "legacies_and_legends:sounds/shulker_music_disc": {
-        "album": "Legacies",
-        "author": "T_en_M",
-        "title": "Shulker"
-    },
-    "legacies_and_legends:sounds/svall_music_disc": {
-        "album": "Legacies",
-        "author": "Sigma_",
-        "title": "Svall"
-    },
-    "legacies_and_legends:sounds/taswell_music_disc": {
-        "album": "Legacies",
-        "author": "bouncytorch",
-        "title": "Taswell"
-    },
-    "legacies_and_legends:sounds/tundra_music_disc": {
-        "album": "Legacies",
-        "author": "T_en_M",
         "title": "Tundra"
     }
 }
