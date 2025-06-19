@@ -4,11 +4,6 @@
         "author": "AFRH Music",
         "title": "Echoes"
     },
-    "legacy:sounds/music/caves/excuse": {
-        "album": "Minecraft - Volume Alpha",
-        "author": "C418",
-        "title": "Excuse"
-    },
     "legacy:sounds/music/creative/miscible": {
         "album": "Legacies",
         "author": "Soul_",
@@ -109,11 +104,6 @@
         "author": "Naps the Block Music",
         "title": "Kall"
     },
-    "legacy:sounds/music/overworld/kyoto": {
-        "album": "Minecraft - Volume Beta",
-        "author": "C418",
-        "title": "Kyoto"
-    },
     "legacy:sounds/music/overworld/mosaic": {
         "album": "Legacies",
         "author": "Soul_",
@@ -138,11 +128,6 @@
         "album": "Legacies",
         "author": "Talon Trueblood",
         "title": "Tundra"
-    },
-    "legacies_and_legends:sounds/music/overworld/flake": {
-        "album": "Minecraft - Volume Beta",
-        "author": "C418",
-        "title": "Flake"
     },
     "legacies_and_legends:sounds/music/disc/far_lands": {
         "album": "Legacies",
