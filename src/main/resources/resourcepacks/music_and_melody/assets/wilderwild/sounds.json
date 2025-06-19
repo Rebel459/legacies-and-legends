@@ -150,11 +150,6 @@
     "replace": true,
     "sounds": [
       {
-        "name": "wilderwild:music/c418/flake",
-        "stream": true,
-        "weight": 2
-      },
-      {
         "name": "wilderwild:music/ludocrypt/serene_sonder",
         "stream": true,
         "volume": 0.8
@@ -380,11 +375,6 @@
         "stream": true
       },
       {
-        "name": "wilderwild:music/c418/flake",
-        "stream": true,
-        "weight": 2
-      },
-      {
         "name": "wilderwild:music/pictochats/molt",
         "stream": true,
         "weight": 3
@@ -485,10 +475,6 @@
         "pitch": 0.967,
         "volume": 0.2,
         "weight": 3
-      },
-      {
-        "name": "wilderwild:music/c418/excuse",
-        "stream": true
       }
     ]
   },
@@ -508,10 +494,6 @@
         "pitch": 0.967,
         "volume": 0.2,
         "weight": 3
-      },
-      {
-        "name": "wilderwild:music/c418/excuse",
-        "stream": true
       }
     ]
   }

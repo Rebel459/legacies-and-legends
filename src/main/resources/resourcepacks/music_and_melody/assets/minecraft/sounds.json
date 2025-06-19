@@ -587,11 +587,6 @@
         "stream": true
       },
       {
-        "name": "legacy:music/overworld/kyoto",
-        "stream": true,
-        "weight": 2
-      },
-      {
         "name": "music/game/bromeliad",
         "stream": true,
         "volume": 0.4,
@@ -690,11 +685,6 @@
     "replace": true,
     "sounds": [
       {
-        "name": "legacy:music/caves/excuse",
-        "stream": true,
-        "weight": 2
-      },
-      {
         "name": "music/game/an_ordinary_day",
         "stream": true
       },
@@ -759,10 +749,6 @@
       },
       {
         "name": "legacy:music/overworld/cliff_hanger",
-        "stream": true
-      },
-      {
-        "name": "legacy:music/overworld/kyoto",
         "stream": true
       },
       {
@@ -1260,10 +1246,6 @@
       },
       {
         "name": "legacy:music/overworld/burning_konkrete",
-        "stream": true
-      },
-      {
-        "name": "legacy:music/overworld/kyoto",
         "stream": true
       },
       {

@@ -290,11 +290,6 @@
   "music.overworld.snowy": {
     "sounds": [
       {
-        "name": "legacies_and_legends:music/overworld/flake",
-        "stream": true,
-        "weight": 2
-      },
-      {
         "name": "legacy:music/overworld/814",
         "stream": true
       },
