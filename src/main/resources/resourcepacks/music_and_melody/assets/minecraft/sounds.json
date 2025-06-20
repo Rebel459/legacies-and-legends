@@ -1564,5 +1564,24 @@
         "stream": true
       }
     ]
+  },
+    "music.under_water": {
+    "sounds": [
+      {
+        "name": "music/game/water/axolotl",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/water/dragon_fish",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/water/shuniji",
+        "stream": true,
+        "volume": 0.4
+      }
+    ]
   }
 }
