@@ -128,5 +128,30 @@
         "album": "Legacies",
         "author": "Talon Trueblood",
         "title": "Tundra"
+    },
+    "legacies_and_legends:sounds/far_lands_music_disc": {
+        "album": "Legacies",
+        "author": "Steelman",
+        "title": "Far Lands"
+    },
+    "legacies_and_legends:sounds/shulker_music_disc": {
+        "album": "Legacies",
+        "author": "T_en_M",
+        "title": "Shulker"
+    },
+    "legacies_and_legends:sounds/svall_music_disc": {
+        "album": "Legacies",
+        "author": "Soul_",
+        "title": "Svall"
+    },
+    "legacies_and_legends:sounds/taswell_music_disc": {
+        "album": "Legacies",
+        "author": "bouncytorch",
+        "title": "Taswell"
+    },
+    "legacies_and_legends:sounds/tundra_music_disc": {
+        "album": "Legacies",
+        "author": "T_en_M",
+        "title": "Tundra"
     }
 }
