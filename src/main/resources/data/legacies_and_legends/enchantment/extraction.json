@@ -15,13 +15,13 @@
   },
   "exclusive_set": "#legacies_and_legends:exclusive_set/helmet",
   "max_cost": {
-    "base": 75,
-    "per_level_above_first": 25
+    "base": 40,
+    "per_level_above_first": 10
   },
   "max_level": 3,
   "min_cost": {
-    "base": 25,
-    "per_level_above_first": 25
+    "base": 10,
+    "per_level_above_first": 10
   },
   "slots": [
     "head"
