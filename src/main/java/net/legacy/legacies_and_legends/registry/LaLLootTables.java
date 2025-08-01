@@ -268,7 +268,7 @@ public class LaLLootTables {
 
 			if (LaLLootTables.SPIRE.equals(id)) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(EmptyLootItem.emptyItem().setWeight(7))
+						.add(EmptyLootItem.emptyItem().setWeight(10))
 						.add(NestedLootTable.lootTableReference(LaLLootTables.NETHER_GENERAL_ACCESSORIES).setWeight(1))
 						.add(NestedLootTable.lootTableReference(LaLLootTables.NETHER_FORTRESS_ACCESSORIES).setWeight(1));
 				tableBuilder.withPool(pool);
@@ -407,7 +407,7 @@ public class LaLLootTables {
 			}
 			if (LaLLootTables.SPIRE.equals(id) && LaLConfig.get.artifacts.molten_pickaxe) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(EmptyLootItem.emptyItem().setWeight(8))
+						.add(EmptyLootItem.emptyItem().setWeight(11))
 						.add(LootItem.lootTableItem(LaLItems.MOLTEN_PICKAXE).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
