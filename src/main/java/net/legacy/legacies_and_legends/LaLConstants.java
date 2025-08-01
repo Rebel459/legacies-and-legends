@@ -8,6 +8,7 @@ import net.legacy.legacies_and_legends.registry.LaLItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,30 @@ public class LaLConstants {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static final ModContainer MOD_CONTAINER = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow();
 
-	public static boolean isNecklace(Player player) {
+	public static boolean hasAccessory(Player player) {
+		return (TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.NECKLACE_OF_BARTERING) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.NECKLACE_OF_ISOLATION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.NECKLACE_OF_LEAPING) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.NECKLACE_OF_PROTECTION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.NECKLACE_OF_PURITY) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.NECKLACE_OF_REGENERATION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.NECKLACE_OF_RESILIENCE) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_RESTORATION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_EXCAVATION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_CONSTRUCTION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_EVASION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_HUNTING) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_STRIKING) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_ARCHERY) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.AMULET_OF_DEFLECTION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.AMULET_OF_OBSIDIAN) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.AMULET_OF_ABSORPTION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.TOTEM_OF_RESURRECTION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.TOTEM_OF_TELEPORTATION) ||
+				TrinketsApi.getTrinketComponent(player).get().isEquipped(Items.TOTEM_OF_UNDYING)
+		);
+	}
+	public static boolean hasNecklace(Player player) {
 		return (TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.NECKLACE_OF_BARTERING) ||
 				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.NECKLACE_OF_ISOLATION) ||
 				TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.NECKLACE_OF_LEAPING) ||

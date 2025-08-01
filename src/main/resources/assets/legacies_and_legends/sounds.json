@@ -267,40 +267,32 @@
   "block.sapphire_block.break": {
     "sounds": [
       {
-        "name": "legacies_and_legends:block/sapphire_block/break1",
-        "volume": 0.8
+        "name": "legacies_and_legends:block/sapphire_block/break1"
       },
       {
         "name": "legacies_and_legends:block/sapphire_block/break1",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/break2"
       },
       {
         "name": "legacies_and_legends:block/sapphire_block/break2",
-        "volume": 0.8
+        "pitch": 0.9
       },
       {
-        "name": "legacies_and_legends:block/sapphire_block/break2",
-        "pitch": 0.9,
-        "volume": 0.8
-      },
-      {
-        "name": "legacies_and_legends:block/sapphire_block/break3",
-        "volume": 0.8
+        "name": "legacies_and_legends:block/sapphire_block/break3"
       },
       {
         "name": "legacies_and_legends:block/sapphire_block/break3",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/break4"
       },
       {
         "name": "legacies_and_legends:block/sapphire_block/break4",
-        "volume": 0.8
-      },
-      {
-        "name": "legacies_and_legends:block/sapphire_block/break4",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
       }
     ],
     "subtitle": "subtitles.block.generic.break"
@@ -330,40 +322,32 @@
   "block.sapphire_block.place": {
     "sounds": [
       {
-        "name": "legacies_and_legends:block/sapphire_block/place1",
-        "volume": 0.8
+        "name": "legacies_and_legends:block/sapphire_block/place1"
       },
       {
         "name": "legacies_and_legends:block/sapphire_block/place1",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/place2"
       },
       {
         "name": "legacies_and_legends:block/sapphire_block/place2",
-        "volume": 0.8
+        "pitch": 0.9
       },
       {
-        "name": "legacies_and_legends:block/sapphire_block/place2",
-        "pitch": 0.9,
-        "volume": 0.8
-      },
-      {
-        "name": "legacies_and_legends:block/sapphire_block/place3",
-        "volume": 0.8
+        "name": "legacies_and_legends:block/sapphire_block/place3"
       },
       {
         "name": "legacies_and_legends:block/sapphire_block/place3",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/place4"
       },
       {
         "name": "legacies_and_legends:block/sapphire_block/place4",
-        "volume": 0.8
-      },
-      {
-        "name": "legacies_and_legends:block/sapphire_block/place4",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
       }
     ],
     "subtitle": "subtitles.block.generic.place"
@@ -380,40 +364,32 @@
   "block.wand_platform.break": {
     "sounds": [
       {
-        "name": "legacies_and_legends:block/wand_platform/break1",
-        "volume": 0.8
+        "name": "legacies_and_legends:block/wand_platform/break1"
       },
       {
         "name": "legacies_and_legends:block/wand_platform/break1",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break2"
       },
       {
         "name": "legacies_and_legends:block/wand_platform/break2",
-        "volume": 0.8
+        "pitch": 0.9
       },
       {
-        "name": "legacies_and_legends:block/wand_platform/break2",
-        "pitch": 0.9,
-        "volume": 0.8
-      },
-      {
-        "name": "legacies_and_legends:block/wand_platform/break3",
-        "volume": 0.8
+        "name": "legacies_and_legends:block/wand_platform/break3"
       },
       {
         "name": "legacies_and_legends:block/wand_platform/break3",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break4"
       },
       {
         "name": "legacies_and_legends:block/wand_platform/break4",
-        "volume": 0.8
-      },
-      {
-        "name": "legacies_and_legends:block/wand_platform/break4",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
       }
     ],
     "subtitle": "subtitles.block.generic.break"
@@ -439,40 +415,32 @@
   "block.wand_platform.place": {
     "sounds": [
       {
-        "name": "legacies_and_legends:block/wand_platform/break1",
-        "volume": 0.8
+        "name": "legacies_and_legends:block/wand_platform/break1"
       },
       {
         "name": "legacies_and_legends:block/wand_platform/break1",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break2"
       },
       {
         "name": "legacies_and_legends:block/wand_platform/break2",
-        "volume": 0.8
+        "pitch": 0.9
       },
       {
-        "name": "legacies_and_legends:block/wand_platform/break2",
-        "pitch": 0.9,
-        "volume": 0.8
-      },
-      {
-        "name": "legacies_and_legends:block/wand_platform/break3",
-        "volume": 0.8
+        "name": "legacies_and_legends:block/wand_platform/break3"
       },
       {
         "name": "legacies_and_legends:block/wand_platform/break3",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break4"
       },
       {
         "name": "legacies_and_legends:block/wand_platform/break4",
-        "volume": 0.8
-      },
-      {
-        "name": "legacies_and_legends:block/wand_platform/break4",
-        "pitch": 0.9,
-        "volume": 0.8
+        "pitch": 0.9
       }
     ],
     "subtitle": "subtitles.block.generic.place"

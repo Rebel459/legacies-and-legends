@@ -1,6 +1,7 @@
 {
 	"parent": "minecraft:block/block",
 	"textures": {
+		"particle": "legacies_and_legends:block/wand_platform_double_side",
 		"north": "legacies_and_legends:block/wand_platform_double_side",
 		"up": "legacies_and_legends:block/wand_platform_top",
 		"down": "legacies_and_legends:block/wand_platform_bottom"

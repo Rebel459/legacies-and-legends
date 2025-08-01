@@ -2,7 +2,7 @@
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"particle": "legacies_and_legends:block/wand_platform_top_side",
+		"particle": "legacies_and_legends:block/wand_platform_double_side",
 		"side": "legacies_and_legends:block/wand_platform_top_side",
 		"top": "legacies_and_legends:block/wand_platform_top",
 		"bottom": "legacies_and_legends:block/wand_platform_bottom"

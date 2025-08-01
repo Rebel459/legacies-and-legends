@@ -62,6 +62,16 @@ public abstract class PlayerMixin implements LaLPlayerPlatformInterface, LaLPlay
     @Unique
     private int damageTaken = 0;
 
+    @Inject(method = "tick", at = @At(value = "TAIL"))
+    private void hasAccessory(CallbackInfo ci) {
+        Player player = Player.class.cast(this);
+        if (LaLConstants.hasAccessory(player) && player.getTags().contains("played_equip_sound")) player.addTag("has_accessory");
+        else if (player.getTags().contains("has_accessory") || player.getTags().contains("played_equip_sound")) {
+            player.removeTag("has_accessory");
+            player.removeTag("played_equip_sound");
+        }
+    }
+
     @Inject(method = "actuallyHurt", at = @At(value = "TAIL"))
     private void cancelTabletUse(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo info) {
         Player player = Player.class.cast(this);
@@ -71,7 +81,7 @@ public abstract class PlayerMixin implements LaLPlayerPlatformInterface, LaLPlay
     @Inject(method = "actuallyHurt", at = @At(value = "HEAD"))
     private void damageNecklace(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo info) {
         Player player = Player.class.cast(this);
-        if (TrinketsApi.getTrinketComponent(player).isPresent() && LaLConstants.isNecklace(player) && !damageSource.is(DamageTypeTags.BYPASSES_ARMOR)) player.addTag("damaged_accessory");
+        if (TrinketsApi.getTrinketComponent(player).isPresent() && LaLConstants.hasNecklace(player) && !damageSource.is(DamageTypeTags.BYPASSES_ARMOR)) player.addTag("damaged_accessory");
     }
 
     @Inject(method = "actuallyHurt", at = @At(value = "HEAD"))

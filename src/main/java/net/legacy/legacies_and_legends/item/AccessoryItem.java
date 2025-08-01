@@ -4,8 +4,12 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.frozenblock.lib.advancement.api.AdvancementEvents;
 import net.legacy.legacies_and_legends.sound.LaLSounds;
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
+import net.minecraft.advancements.AdvancementProgress;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -50,7 +54,9 @@ public class AccessoryItem extends TrinketItem implements Trinket {
         stack.setDamageValue(stack.getDamageValue() + amount);
         if (stack.getDamageValue() >= stack.getMaxDamage()) {
             resetData(player);
+            CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger((ServerPlayer) player, stack, amount);
             slot.inventory().removeItem(slot.index(), amount);
+            player.playSound(LaLSounds.ACCESSORY_BREAK);
         }
     }
 

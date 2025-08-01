@@ -1,5 +1,6 @@
 package net.legacy.legacies_and_legends.registry;
 
+import dev.emi.trinkets.api.SlotReference;
 import net.frozenblock.lib.item.api.sherd.SherdRegistry;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.item.*;

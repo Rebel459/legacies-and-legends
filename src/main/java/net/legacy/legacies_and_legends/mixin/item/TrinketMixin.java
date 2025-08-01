@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
 
@@ -33,13 +34,19 @@ public interface TrinketMixin {
         }
     }
 
-    @Inject(at = @At("HEAD"), method = "onEquip")
-    private void equipSound(ItemStack stack, SlotReference slot, LivingEntity livingEntity, CallbackInfo ci) {
-        if (livingEntity instanceof Player player) {
+    @Inject(at = @At("TAIL"), method = "onEquip")
+    private void equipSound(ItemStack stack, SlotReference slot, LivingEntity entity, CallbackInfo ci) {
+        if (entity instanceof Player player && !player.getTags().contains("has_accessory")) {
             if (stack.is(LaLItemTags.TOTEMS)) player.playSound(LaLSounds.TOTEM_EQUIP);
             else if (stack.is(LaLItemTags.AMULETS)) player.playSound(LaLSounds.AMULET_EQUIP);
             else if (stack.is(LaLItemTags.NECKLACES)) player.playSound(LaLSounds.NECKLACE_EQUIP);
             else if (stack.is(LaLItemTags.RINGS)) player.playSound(LaLSounds.RING_EQUIP);
+            player.addTag("played_equip_sound");
         }
+    }
+
+    @Inject(at = @At("TAIL"), method = "canEquipFromUse", cancellable = true)
+    private void equipTotemFromUse(ItemStack stack, LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
+        if (stack.is(LaLItemTags.TOTEMS)) cir.setReturnValue(true);
     }
 }
