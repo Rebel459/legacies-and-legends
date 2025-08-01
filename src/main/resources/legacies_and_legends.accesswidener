@@ -16,4 +16,3 @@ accessible method net/minecraft/world/item/ProjectileWeaponItem createProjectile
 accessible method net/minecraft/world/item/BowItem shootProjectile (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/projectile/Projectile;IFFFLnet/minecraft/world/entity/LivingEntity;)V
 accessible method net/minecraft/world/item/ProjectileWeaponItem getDurabilityUse (Lnet/minecraft/world/item/ItemStack;)I
 accessible method net/minecraft/world/item/CrossbowItem shootProjectile (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/projectile/Projectile;IFFFLnet/minecraft/world/entity/LivingEntity;)V
-accessible method net/minecraft/world/entity/LivingEntity entityEventForEquipmentBreak (Lnet/minecraft/world/entity/EquipmentSlot;)B

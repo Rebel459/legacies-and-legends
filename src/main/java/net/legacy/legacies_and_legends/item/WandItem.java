@@ -4,6 +4,7 @@ import net.legacy.legacies_and_legends.block.WandPlatformBlock;
 import net.legacy.legacies_and_legends.entity.impl.LaLPlayerPlatformInterface;
 import net.legacy.legacies_and_legends.registry.LaLBlocks;
 import net.legacy.legacies_and_legends.registry.LaLEnchantments;
+import net.legacy.legacies_and_legends.sound.LaLSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.component.DataComponentPatch;
@@ -64,7 +65,7 @@ public class WandItem extends Item {
             );
 
             player.addTag("wand_platform_summoned");
-            player.playSound(SoundEvents.AMETHYST_BLOCK_BREAK);
+            player.playSound(LaLSounds.WAND_SUMMON);
 
             stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
 
@@ -82,6 +83,7 @@ public class WandItem extends Item {
                     BlockPos lastPlatformBlockPos = lastPlatformPos.pos();
                     if (!player.onGround() || player.getOnPos() != lastPlatformBlockPos) {
                         player.removeTag("wand_platform_summoned");
+                        player.playSound(LaLSounds.WAND_RECALL);
 
                         level.scheduleTick(lastPlatformBlockPos, LaLBlocks.WAND_PLATFORM, 5);
 

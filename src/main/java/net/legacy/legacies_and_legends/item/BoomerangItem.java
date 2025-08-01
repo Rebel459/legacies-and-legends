@@ -58,14 +58,6 @@ public class BoomerangItem extends Item implements ProjectileItem {
         return 72000;
     }
 
-/*    @Override
-    public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, @Nullable EquipmentSlot slot) {
-        if (entity instanceof Player player && player.getTags().contains("boomerang_cooldown")) {
-            player.getCooldowns().addCooldown(stack, 20);
-            player.removeTag("boomerang_cooldown");
-        }
-    }*/
-
     @Override
     public boolean releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeLeft) {
         if (!(entity instanceof Player player)) return false;

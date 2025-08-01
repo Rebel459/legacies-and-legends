@@ -4,6 +4,128 @@
       "legacy:music/misc/threshold_end_portal"
     ]
   },
+  "accessory.break": {
+    "sounds": [
+      "random/break"
+    ],
+    "subtitle": "subtitles.entity.item.break"
+  },
+  "accessory.totem_equip": {
+    "sounds": [
+      {
+        "name": "legacies_and_legends:item/totem/equip1",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/totem/equip2",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/totem/equip3",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/totem/equip4",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/totem/equip5",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/totem/equip6",
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.totem.equip"
+  },
+  "accessory.amulet_equip": {
+    "sounds": [
+      {
+        "name": "legacies_and_legends:item/amulet/equip1",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/amulet/equip2",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/amulet/equip3",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/amulet/equip4",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/amulet/equip5",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/amulet/equip6",
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.amulet.equip"
+  },
+  "accessory.necklace_equip": {
+    "sounds": [
+      {
+        "name": "legacies_and_legends:item/necklace/equip1",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/necklace/equip2",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/necklace/equip3",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/necklace/equip4",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/necklace/equip5",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/necklace/equip6",
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.necklace.equip"
+  },
+  "accessory.ring_equip": {
+    "sounds": [
+      {
+        "name": "legacies_and_legends:item/ring/equip1",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/ring/equip2",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/ring/equip3",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/ring/equip4",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/ring/equip5",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/ring/equip6",
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.ring.equip"
+  },
   "boomerang.hit": {
     "sounds": [
       {
@@ -47,6 +169,40 @@
       }
     ],
     "subtitle": "subtitles.item.boomerang.whoosh"
+  },
+  "wand.summon": {
+    "sounds": [
+      {
+        "name": "legacies_and_legends:item/wand/summon1",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/wand/summon2",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/wand/summon3",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/wand/summon4",
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.wand.summon"
+  },
+  "wand.recall": {
+    "sounds": [
+      {
+        "name": "legacies_and_legends:item/wand/recall1",
+        "volume": 1.0
+      },
+      {
+        "name": "legacies_and_legends:item/wand/recall2",
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "subtitles.item.wand.recall"
   },
   "tablet.use": {
     "sounds": [
@@ -107,6 +263,230 @@
       }
     ],
     "subtitle": "subtitles.enchantment.shatter"
+  },
+  "block.sapphire_block.break": {
+    "sounds": [
+      {
+        "name": "legacies_and_legends:block/sapphire_block/break1",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/break1",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/break2",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/break2",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/break3",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/break3",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/break4",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/break4",
+        "pitch": 0.9,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.sapphire_block.fall": {
+    "sounds": [
+      "legacies_and_legends:block/sapphire_block/step1",
+      "legacies_and_legends:block/sapphire_block/step2",
+      "legacies_and_legends:block/sapphire_block/step3",
+      "legacies_and_legends:block/sapphire_block/step4",
+      "legacies_and_legends:block/sapphire_block/step5",
+      "legacies_and_legends:block/sapphire_block/step6"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.sapphire_block.hit": {
+    "sounds": [
+      "legacies_and_legends:block/sapphire_block/step1",
+      "legacies_and_legends:block/sapphire_block/step2",
+      "legacies_and_legends:block/sapphire_block/step3",
+      "legacies_and_legends:block/sapphire_block/step4",
+      "legacies_and_legends:block/sapphire_block/step5",
+      "legacies_and_legends:block/sapphire_block/step6"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.sapphire_block.place": {
+    "sounds": [
+      {
+        "name": "legacies_and_legends:block/sapphire_block/place1",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/place1",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/place2",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/place2",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/place3",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/place3",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/place4",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/sapphire_block/place4",
+        "pitch": 0.9,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.sapphire_block.step": {
+    "sounds": [
+      "legacies_and_legends:block/sapphire_block/step1",
+      "legacies_and_legends:block/sapphire_block/step2",
+      "legacies_and_legends:block/sapphire_block/step3",
+      "legacies_and_legends:block/sapphire_block/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.wand_platform.break": {
+    "sounds": [
+      {
+        "name": "legacies_and_legends:block/wand_platform/break1",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break1",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break2",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break2",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break3",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break3",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break4",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break4",
+        "pitch": 0.9,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.wand_platform.fall": {
+    "sounds": [
+      "legacies_and_legends:block/wand_platform/step1",
+      "legacies_and_legends:block/wand_platform/step2",
+      "legacies_and_legends:block/wand_platform/step3",
+      "legacies_and_legends:block/wand_platform/step4"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.wand_platform.hit": {
+    "sounds": [
+      "legacies_and_legends:block/wand_platform/step1",
+      "legacies_and_legends:block/wand_platform/step2",
+      "legacies_and_legends:block/wand_platform/step3",
+      "legacies_and_legends:block/wand_platform/step4"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.wand_platform.place": {
+    "sounds": [
+      {
+        "name": "legacies_and_legends:block/wand_platform/break1",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break1",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break2",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break2",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break3",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break3",
+        "pitch": 0.9,
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break4",
+        "volume": 0.8
+      },
+      {
+        "name": "legacies_and_legends:block/wand_platform/break4",
+        "pitch": 0.9,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.wand_platform.step": {
+    "sounds": [
+      "legacies_and_legends:block/wand_platform/step1",
+      "legacies_and_legends:block/wand_platform/step2",
+      "legacies_and_legends:block/wand_platform/step3",
+      "legacies_and_legends:block/wand_platform/step4",
+      "legacies_and_legends:block/wand_platform/step5",
+      "legacies_and_legends:block/wand_platform/step6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
   },
   "music_disc.svall": {
     "sounds": [

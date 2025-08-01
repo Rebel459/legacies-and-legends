@@ -3,6 +3,7 @@ import java.util.function.Function;
 
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.block.WandPlatformBlock;
+import net.legacy.legacies_and_legends.sound.LaLBlockSounds;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -37,7 +38,7 @@ public class LaLBlocks {
                     .mapColor(MapColor.COLOR_BLUE)
                     .forceSolidOn()
                     .strength(5F, 6F)
-                    .sound(SoundType.METAL)
+                    .sound(LaLBlockSounds.SAPPHIRE_BLOCK)
                     .requiresCorrectToolForDrops()
     );
     public static final DropExperienceBlock SAPPHIRE_ORE = register("sapphire_ore", (properties) -> new DropExperienceBlock(UniformInt.of(2, 5), properties),
@@ -65,8 +66,8 @@ public class LaLBlocks {
                     .isViewBlocking(Blocks::never)
                     .noLootTable()
                     .isValidSpawn(Blocks::never)
-                    .strength(5F, 6F)
-                    .sound(SoundType.AMETHYST)
+                    .strength(3F, 6F)
+                    .sound(LaLBlockSounds.WAND_PLATFORM)
                     .pushReaction(PushReaction.DESTROY)
     );
 

@@ -34,9 +34,7 @@ public class LaLSounds {
 	public static final SoundEvent RING_EQUIP = register("accessory.ring_equip");
 	public static final SoundEvent NECKLACE_EQUIP = register("accessory.necklace_equip");
 
-	public static final SoundEvent AMULET_BREAK = register("accessory.amulet_break");
-	public static final SoundEvent RING_BREAK = register("accessory.ring_break");
-	public static final SoundEvent NECKLACE_BREAK = register("accessory.necklace_break");
+	public static final SoundEvent ACCESSORY_BREAK = register("accessory.break");
 
 	public static final SoundEvent SAPPHIRE_BLOCK_BREAK = register("block.sapphire_block.break");
 	public static final SoundEvent SAPPHIRE_BLOCK_STEP = register("block.sapphire_block.step");

@@ -5,6 +5,7 @@ import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.legacies_and_legends.config.LaLConfig;
 import net.legacy.legacies_and_legends.registry.LaLItems;
+import net.legacy.legacies_and_legends.sound.LaLSounds;
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -29,6 +30,16 @@ public interface TrinketMixin {
                 player.removeTag("used_totem");
                 slot.inventory().removeItem(slot.index(), 1);
             }
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "onEquip")
+    private void equipSound(ItemStack stack, SlotReference slot, LivingEntity livingEntity, CallbackInfo ci) {
+        if (livingEntity instanceof Player player) {
+            if (stack.is(LaLItemTags.TOTEMS)) player.playSound(LaLSounds.TOTEM_EQUIP);
+            else if (stack.is(LaLItemTags.AMULETS)) player.playSound(LaLSounds.AMULET_EQUIP);
+            else if (stack.is(LaLItemTags.NECKLACES)) player.playSound(LaLSounds.NECKLACE_EQUIP);
+            else if (stack.is(LaLItemTags.RINGS)) player.playSound(LaLSounds.RING_EQUIP);
         }
     }
 }
