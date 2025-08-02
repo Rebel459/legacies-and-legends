@@ -237,9 +237,21 @@ public class LaLLootTables {
 						.add(NestedLootTable.lootTableReference(LaLLootTables.OVERWORLD_GENERAL_ACCESSORIES).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
-			if (LaLLootTables.RUINED_LIBRARY.equals(id)) {
+			if (LaLLootTables.RUINED_LIBRARY.equals(id) || BuiltInLootTables.IGLOO_CHEST.equals(id) || BuiltInLootTables.JUNGLE_TEMPLE.equals(id) || BuiltInLootTables.PILLAGER_OUTPOST.equals(id)) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(5))
+						.add(NestedLootTable.lootTableReference(LaLLootTables.OVERWORLD_GENERAL_ACCESSORIES).setWeight(1));
+				tableBuilder.withPool(pool);
+			}
+			if (BuiltInLootTables.DESERT_PYRAMID.equals(id) || BuiltInLootTables.WOODLAND_MANSION.equals(id) || BuiltInLootTables.SHIPWRECK_TREASURE.equals(id)) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(8))
+						.add(NestedLootTable.lootTableReference(LaLLootTables.OVERWORLD_GENERAL_ACCESSORIES).setWeight(1));
+				tableBuilder.withPool(pool);
+			}
+			if (BuiltInLootTables.UNDERWATER_RUIN_BIG.equals(id) || BuiltInLootTables.UNDERWATER_RUIN_SMALL.equals(id)) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(17))
 						.add(NestedLootTable.lootTableReference(LaLLootTables.OVERWORLD_GENERAL_ACCESSORIES).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
@@ -307,19 +319,6 @@ public class LaLLootTables {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(29))
 						.add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
-				tableBuilder.withPool(pool);
-			}
-
-			if (BuiltInLootTables.DESERT_PYRAMID.equals(id) || BuiltInLootTables.WOODLAND_MANSION.equals(id) || BuiltInLootTables.SHIPWRECK_TREASURE.equals(id)) {
-				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(EmptyLootItem.emptyItem().setWeight(8))
-						.add(NestedLootTable.lootTableReference(LaLLootTables.OVERWORLD_GENERAL_ACCESSORIES).setWeight(1));
-				tableBuilder.withPool(pool);
-			}
-			if (BuiltInLootTables.IGLOO_CHEST.equals(id) || BuiltInLootTables.JUNGLE_TEMPLE.equals(id) || BuiltInLootTables.PILLAGER_OUTPOST.equals(id)) {
-				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(EmptyLootItem.emptyItem().setWeight(5))
-						.add(NestedLootTable.lootTableReference(LaLLootTables.OVERWORLD_GENERAL_ACCESSORIES).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
 

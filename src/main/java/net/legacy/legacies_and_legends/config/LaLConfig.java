@@ -237,6 +237,9 @@ public class LaLConfig implements ConfigData {
 		public boolean accessory_of_undying = true;
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
+		public boolean totem_use_equip = true;
+		@ConfigEntry.Category("config")
+		@ConfigEntry.Gui.Tooltip
 		public boolean new_trim_materials = true;
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip

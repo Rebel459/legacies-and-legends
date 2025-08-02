@@ -47,6 +47,6 @@ public interface TrinketMixin {
 
     @Inject(at = @At("TAIL"), method = "canEquipFromUse", cancellable = true)
     private void equipTotemFromUse(ItemStack stack, LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.is(LaLItemTags.TOTEMS)) cir.setReturnValue(true);
+        if (stack.is(LaLItemTags.TOTEMS) && LaLConfig.get.misc.totem_use_equip) cir.setReturnValue(true);
     }
 }

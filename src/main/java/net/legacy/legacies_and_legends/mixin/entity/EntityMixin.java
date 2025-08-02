@@ -1,20 +1,14 @@
 package net.legacy.legacies_and_legends.mixin.entity;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.legacies_and_legends.entity.impl.LaLPlayerPlatformInterface;
 import net.legacy.legacies_and_legends.registry.LaLBlocks;
-import net.legacy.legacies_and_legends.registry.LaLItems;
 import net.legacy.legacies_and_legends.registry.LaLMobEffects;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.EntityTypeTags;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.portal.TeleportTransition;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,18 +22,33 @@ import java.util.Optional;
 @Mixin(Entity.class)
 public abstract class EntityMixin {
 
-	@Inject(method = "canBeHitByProjectile", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "canBeHitByProjectile", at = @At("TAIL"), cancellable = true)
 	public void instabilityProjectile(CallbackInfoReturnable<Boolean> cir) {
 		if (!(Entity.class.cast(this) instanceof Player player)) return;
 
 		if (player.hasEffect(LaLMobEffects.INSTABILITY)) cir.setReturnValue(false);
 	}
 
-	@Inject(method = "canBeCollidedWith", at = @At("HEAD"), cancellable = true)
-	public void instabilityCollision(CallbackInfoReturnable<Boolean> cir) {
+	@Inject(method = "canBeCollidedWith", at = @At("TAIL"), cancellable = true)
+	public void instabilityCollidedWith(CallbackInfoReturnable<Boolean> cir) {
 		if (!(Entity.class.cast(this) instanceof Player player)) return;
 
 		if (player.hasEffect(LaLMobEffects.INSTABILITY)) cir.setReturnValue(false);
+	}
+
+	@Inject(method = "canCollideWith", at = @At("TAIL"), cancellable = true)
+	public void instabilityCollideWith(CallbackInfoReturnable<Boolean> cir) {
+		if (!(Entity.class.cast(this) instanceof Player player)) return;
+
+		if (player.hasEffect(LaLMobEffects.INSTABILITY)) cir.setReturnValue(false);
+	}
+
+	@Inject(method = "push(Lnet/minecraft/world/entity/Entity;)V", at = @At("HEAD"), cancellable = true)
+	public void instabilityPush(Entity entity, CallbackInfo ci) {
+		Entity entity2 = Entity.class.cast(this);
+		if (entity instanceof LivingEntity livingEntity && entity2 instanceof LivingEntity livingEntity2) {
+			if (livingEntity.hasEffect(LaLMobEffects.INSTABILITY) || livingEntity2.hasEffect(LaLMobEffects.INSTABILITY)) ci.cancel();
+		}
 	}
 
 	@Inject(
@@ -84,5 +93,4 @@ public abstract class EntityMixin {
 			player.removeTag("wand_platform_summoned");
 		}
 	}
-
 }
