@@ -297,7 +297,7 @@ public class LaLLootTables {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(15))
 						.add(NestedLootTable.lootTableReference(LaLLootTables.NETHER_GENERAL_ACCESSORIES).setWeight(1))
-						.add(NestedLootTable.lootTableReference(LaLLootTables.NETHER_FORTRESS_ACCESSORIES).setWeight(2));
+						.add(NestedLootTable.lootTableReference(LaLLootTables.NETHER_PIGLIN_ACCESSORIES).setWeight(2));
 				tableBuilder.withPool(pool);
 			}
 
