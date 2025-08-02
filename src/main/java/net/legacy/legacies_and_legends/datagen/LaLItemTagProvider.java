@@ -93,13 +93,10 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .addTag(LaLItemTags.AMULETS)
                 .addTag(LaLItemTags.TOTEMS);
 
-        this.getOrCreateTagBuilder(LaLItemTags.HAS_DESCRIPTION)
+        this.getOrCreateTagBuilder(ITItemTags.HAS_DESCRIPTION)
                 .add(LaLItems.WAND)
                 .addTag(LaLItemTags.ARTIFACTS)
                 .addTag(LaLItemTags.ACCESSORIES);
-
-        this.getOrCreateTagBuilder(ITItemTags.HAS_DESCRIPTION)
-                .addTag(LaLItemTags.HAS_DESCRIPTION);
 
         this.getOrCreateTagBuilder(LaLItemTags.HAS_USE_EFFECT)
                 .add(LaLItems.TABLET_OF_CHANNELING)

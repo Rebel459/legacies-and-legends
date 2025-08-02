@@ -1,5 +1,7 @@
 {
   "values": [
-    "#legacies_and_legends:has_description"
+    "legacies_and_legends:wand",
+    "#legacies_and_legends:artifacts",
+    "#legacies_and_legends:accessories"
   ]
 }

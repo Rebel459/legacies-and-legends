@@ -1,6 +1,6 @@
 // 1.21.5	-999999999-01-01T00:00:00	Legacies and Legends/Tags for minecraft:item
-1009d4a0187ab3f01abb314ab89d806ff3d943a5 data/frozenlib/tags/item/always_save_cooldowns.json
-d599033da435ed46e6aedde6ef2e3951c36be699 data/item_tooltips/tags/item/has_description.json
+27a1a8c6b174a7ec80bdb6b8c021880b1fe89631 data/frozenlib/tags/item/always_save_cooldowns.json
+6ea39a0616b738c25f59dfa4b9a54966a56443ca data/item_tooltips/tags/item/has_description.json
 6888f88a847d8f97db9592671947c7aa3b2cd4cf data/legacies_and_legends/tags/item/accessories.json
 0cc4317dfb9c58faca6737f018a8dc66bf2690e6 data/legacies_and_legends/tags/item/amulets.json
 fdab8ddd5529ae14b26bc1853b004131135318a4 data/legacies_and_legends/tags/item/archery_ring_materials.json
@@ -11,7 +11,6 @@ f2aa87f54e7951ea0cf81ac252c2abe279b0c936 data/legacies_and_legends/tags/item/bar
 736f4ef35696340b932cdb679c5a32e7b28db783 data/legacies_and_legends/tags/item/construction_ring_materials.json
 06e1a802d349eabc62ca4139ae7356f069c2af1b data/legacies_and_legends/tags/item/evasion_ring_materials.json
 8c4f379d97e2cd8c7f9297bf4fab7e60083ecb0d data/legacies_and_legends/tags/item/excavation_ring_materials.json
-6ea39a0616b738c25f59dfa4b9a54966a56443ca data/legacies_and_legends/tags/item/has_description.json
 e9c06034333adf428947a3fcbc822efb2d5162d3 data/legacies_and_legends/tags/item/has_use_effect.json
 4132ae09e40a14c7f2a6aa10b89e84926e8388bc data/legacies_and_legends/tags/item/hook_repair_materials.json
 42605e6989bb70ecdd5f2ded50fbb315b1c185ec data/legacies_and_legends/tags/item/hunting_ring_materials.json
