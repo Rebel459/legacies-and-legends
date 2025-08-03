@@ -52,11 +52,11 @@ public class LaLItemTags {
     public static final TagKey<Item> ACCESSORIES = bind("accessories");
     public static final TagKey<Item> ARTIFACTS = bind("artifacts");
 
-    public static final TagKey<Item> HAS_DESCRIPTION = bind("has_description");
-
     public static final TagKey<Item> HAS_USE_EFFECT = bind("has_use_effect");
 
     public static final TagKey<Item> PROSPECTING = bind("prospecting");
+
+    public static final TagKey<Item> VARIABLE_REPAIR_COST = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("enchants_and_expeditions", "variable_repair_cost"));
 
     @NotNull
     private static TagKey<Item> bind(@NotNull String path) {

@@ -65,7 +65,7 @@ public class LaLCreativeInventorySorting {
 		addAfterInIngredients(Items.HEARTBREAK_POTTERY_SHERD, LaLItems.HARVEST_POTTERY_SHERD);
 		addAfterInIngredients(Items.SNORT_POTTERY_SHERD, LaLItems.VERDANT_POTTERY_SHERD);
 
-		addAfterInToolsAndUtilities(Items.LAPIS_LAZULI, LaLItems.SAPPHIRE);
+		addAfterInIngredients(Items.LAPIS_LAZULI, LaLItems.SAPPHIRE);
 
 		addAfterInFoodAndDrinks(Items.BEETROOT, LaLItems.ENCHANTED_BEETROOT);
 		addAfterInFoodAndDrinks(Items.BEETROOT_SOUP, LaLItems.ENCHANTED_BEETROOT_SOUP);
