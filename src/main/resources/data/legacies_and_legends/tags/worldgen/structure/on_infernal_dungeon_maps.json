@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     {
-      "id": "#legacies_and_legends:dungeons",
+      "id": "legacies_and_legends:infernal_dungeon",
       "required": false
     }
   ]

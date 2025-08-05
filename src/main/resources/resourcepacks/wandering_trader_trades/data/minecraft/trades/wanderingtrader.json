@@ -24,7 +24,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_simple_dungeon_maps",
-                    "decoration": "legacies_and_legends:simple_dungeon"
+                    "decoration": "legacies_and_legends:simple_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -35,7 +36,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             },
             {
               "cost_a": {
@@ -55,7 +57,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_simple_dungeon_maps",
-                    "decoration": "legacies_and_legends:simple_dungeon"
+                    "decoration": "legacies_and_legends:simple_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -66,7 +69,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             },
             {
               "cost_a": {
@@ -86,7 +90,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_simple_dungeon_maps",
-                    "decoration": "legacies_and_legends:simple_dungeon"
+                    "decoration": "legacies_and_legends:simple_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -97,7 +102,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             },
             {
               "cost_a": {
@@ -117,7 +123,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_deep_dungeon_maps",
-                    "decoration": "legacies_and_legends:deep_dungeon"
+                    "decoration": "legacies_and_legends:deep_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -128,7 +135,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             },
             {
               "cost_a": {
@@ -148,7 +156,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_deep_dungeon_maps",
-                    "decoration": "legacies_and_legends:deep_dungeon"
+                    "decoration": "legacies_and_legends:deep_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -159,7 +168,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             },
             {
               "cost_a": {
@@ -179,7 +189,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_deep_dungeon_maps",
-                    "decoration": "legacies_and_legends:deep_dungeon"
+                    "decoration": "legacies_and_legends:deep_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -190,7 +201,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             },
             {
               "cost_a": {
@@ -210,7 +222,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_arid_dungeon_maps",
-                    "decoration": "legacies_and_legends:arid_dungeon"
+                    "decoration": "legacies_and_legends:arid_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -221,7 +234,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             },
             {
               "cost_a": {
@@ -241,7 +255,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_arid_dungeon_maps",
-                    "decoration": "legacies_and_legends:arid_dungeon"
+                    "decoration": "legacies_and_legends:arid_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -252,7 +267,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             },
             {
               "cost_a": {
@@ -272,7 +288,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_frozen_dungeon_maps",
-                    "decoration": "legacies_and_legends:frozen_dungeon"
+                    "decoration": "legacies_and_legends:frozen_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -283,7 +300,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             },
             {
               "cost_a": {
@@ -303,7 +321,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_frozen_dungeon_maps",
-                    "decoration": "legacies_and_legends:frozen_dungeon"
+                    "decoration": "legacies_and_legends:frozen_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -314,7 +333,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             },
             {
               "cost_a": {
@@ -334,7 +354,8 @@
                   {
                     "function": "minecraft:exploration_map",
                     "destination": "legacies_and_legends:on_verdant_dungeon_maps",
-                    "decoration": "legacies_and_legends:verdant_dungeon"
+                    "decoration": "legacies_and_legends:verdant_dungeon",
+                    "search_radius": 100
                   },
                   {
                     "function": "minecraft:set_name",
@@ -345,7 +366,8 @@
                   }
                 ]
               },
-              "trader_experience": 0
+              "trader_experience": 1,
+              "max_uses": 1
             }
           ]
         },
