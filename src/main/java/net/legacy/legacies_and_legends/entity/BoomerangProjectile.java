@@ -23,6 +23,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.BlockHitResult;
@@ -147,18 +148,22 @@ public class BoomerangProjectile extends AbstractArrow {
         if (this.inGroundTime <= 0 && !this.isInWater() && !this.isInPowderSnow && !this.isInLava()) {
             this.spinTick = this.spinTick + 1;
             this.loopTick = this.loopTick + 1;
-            if (this.loopTick >= 4) {
-                this.playSound(LaLSounds.BOOMERANG_WHOOSH);
+            if (this.loopTick >= 4){
+                if (!this.isInWater() && !this.isInPowderSnow) {
+                    this.playSound(LaLSounds.BOOMERANG_WHOOSH);
+                }
                 this.loopTick = 0;
             }
         }
 
-        if (this.inGroundTime > 4) this.dealtDamage = true;
+        if (this.inGroundTime > 4) {
+            this.dealtDamage = true;
+        }
 
         Entity entity = this.getOwner();
         int rebound = this.entityData.get(ID_REBOUND);
         int shadowstep = this.entityData.get(ID_SHADOWSTEP);
-        if (entity instanceof Player player && rebound > 0 && (this.dealtDamage || this.isNoPhysics())) {
+        if (rebound > 0 && (this.dealtDamage || this.isNoPhysics()) && entity instanceof Player player) {
             if (!this.isAcceptibleReturnOwner()) {
                 if (this.level() instanceof ServerLevel serverLevel && this.pickup == AbstractArrow.Pickup.ALLOWED) {
                     this.spawnAtLocation(serverLevel, this.getPickupItem(), 0.1F);
@@ -166,30 +171,26 @@ public class BoomerangProjectile extends AbstractArrow {
 
                 this.discard();
             } else {
-                if (!(this.position().distanceTo(entity.getEyePosition()) < (double)entity.getBbWidth() + 1D)) {
-                    this.discard();
-                    return;
-                }
-
-                if (!this.hitEntity) player.getCooldowns().addCooldown(this.getPickupItemStackOrigin(), 600);
+                if (!this.hitEntity && player.gameMode() != GameType.CREATIVE) player.getCooldowns().addCooldown(this.getPickupItemStackOrigin(), 600);
 
                 this.setNoPhysics(true);
                 Vec3 vec3 = entity.getEyePosition().subtract(this.position());
                 this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015 * (double)rebound, this.getZ());
-                double movementScale = 0.05D * (double)rebound;
-                this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(movementScale)));
-
-                if (this.clientSideReturnBoomerangTickCount == 0) this.playSound(LaLSounds.BOOMERANG_RETURN, 10F, 1F);
+                double d = 0.05 * (double)rebound;
+                this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d)));
+                if (this.clientSideReturnBoomerangTickCount == 0) {
+                    this.playSound(LaLSounds.BOOMERANG_RETURN, 10.0F, 1.0F);
+                }
 
                 this.clientSideReturnBoomerangTickCount++;
             }
         }
         else if (entity instanceof ServerPlayer player && shadowstep > 0 && (this.dealtDamage || this.isNoPhysics())) {
             if (!this.hasTeleported) {
-            player.teleport(new TeleportTransition((ServerLevel) this.level(), this.position(), Vec3.ZERO, 0.0F, 0.0F, Relative.union(Relative.ROTATION, Relative.DELTA), TeleportTransition.DO_NOTHING));
+                player.teleport(new TeleportTransition((ServerLevel) this.level(), this.position(), Vec3.ZERO, 0.0F, 0.0F, Relative.union(Relative.ROTATION, Relative.DELTA), TeleportTransition.DO_NOTHING));
                 player.level().playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
                 this.hasTeleported = true;
-                player.getCooldowns().addCooldown(this.getPickupItemStackOrigin(), 1200);;
+                if (player.gameMode() != GameType.CREATIVE) player.getCooldowns().addCooldown(this.getPickupItemStackOrigin(), 1200);;
             }
             this.setNoPhysics(true);
         }
