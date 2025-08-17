@@ -263,13 +263,12 @@ public class BoomerangProjectile extends AbstractArrow {
         if (type == HitResult.Type.ENTITY) {
             EntityHitResult entityHitResult = (EntityHitResult)result;
             Entity entity = entityHitResult.getEntity();
-            if (entity.getType().is(EntityTypeTags.REDIRECTABLE_PROJECTILE) && entity instanceof Projectile) {
-                Projectile projectile = (Projectile)entity;
+            if (entity.getType().is(EntityTypeTags.REDIRECTABLE_PROJECTILE) && entity instanceof Projectile projectile) {
                 projectile.deflect(ProjectileDeflection.AIM_DEFLECT, this.getOwner(), this.getOwner(), true);
             }
 
             this.onHitEntity(entityHitResult);
-            this.level().gameEvent(GameEvent.PROJECTILE_LAND, result.getLocation(), GameEvent.Context.of(this, (BlockState)null));
+            this.level().gameEvent(GameEvent.PROJECTILE_LAND, result.getLocation(), GameEvent.Context.of(this, null));
         } else if (type == HitResult.Type.BLOCK) {
             if (this.getOwner() instanceof Player player && this.entityData.get(ID_REBOUND) > 0 && player.gameMode() != GameType.CREATIVE) player.getCooldowns().addCooldown(this.getPickupItemStackOrigin(), 600);
             BlockHitResult blockHitResult = (BlockHitResult)result;
