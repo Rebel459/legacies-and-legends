@@ -4,6 +4,7 @@ import net.legacy.legacies_and_legends.item.BoomerangItem;
 import net.legacy.legacies_and_legends.registry.LaLEntityTypes;
 import net.legacy.legacies_and_legends.registry.LaLItems;
 import net.legacy.legacies_and_legends.sound.LaLSounds;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -12,6 +13,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -20,14 +22,18 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Relative;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -43,7 +49,6 @@ public class BoomerangProjectile extends AbstractArrow {
     public int clientSideReturnBoomerangTickCount;
 
     private boolean dealtDamage;
-    private boolean hitEntity;
     public int loopTick = 3;
     public float spinTick = 0F;
     public boolean hasTeleported = false;
@@ -171,8 +176,6 @@ public class BoomerangProjectile extends AbstractArrow {
 
                 this.discard();
             } else {
-                if (!this.hitEntity && player.gameMode() != GameType.CREATIVE) player.getCooldowns().addCooldown(this.getPickupItemStackOrigin(), 600);
-
                 this.setNoPhysics(true);
                 Vec3 vec3 = entity.getEyePosition().subtract(this.position());
                 this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015 * (double)rebound, this.getZ());
@@ -253,6 +256,29 @@ public class BoomerangProjectile extends AbstractArrow {
         return this.dealtDamage ? null : super.findHitEntity(startVec, endVec);
     }
 
+    // Copy of Projectile onHit with added Rebound cooldown
+    @Override
+    protected void onHit(HitResult result) {
+        HitResult.Type type = result.getType();
+        if (type == HitResult.Type.ENTITY) {
+            EntityHitResult entityHitResult = (EntityHitResult)result;
+            Entity entity = entityHitResult.getEntity();
+            if (entity.getType().is(EntityTypeTags.REDIRECTABLE_PROJECTILE) && entity instanceof Projectile) {
+                Projectile projectile = (Projectile)entity;
+                projectile.deflect(ProjectileDeflection.AIM_DEFLECT, this.getOwner(), this.getOwner(), true);
+            }
+
+            this.onHitEntity(entityHitResult);
+            this.level().gameEvent(GameEvent.PROJECTILE_LAND, result.getLocation(), GameEvent.Context.of(this, (BlockState)null));
+        } else if (type == HitResult.Type.BLOCK) {
+            if (this.getOwner() instanceof Player player && this.entityData.get(ID_REBOUND) > 0 && player.gameMode() != GameType.CREATIVE) player.getCooldowns().addCooldown(this.getPickupItemStackOrigin(), 600);
+            BlockHitResult blockHitResult = (BlockHitResult)result;
+            this.onHitBlock(blockHitResult);
+            BlockPos blockPos = blockHitResult.getBlockPos();
+            this.level().gameEvent(GameEvent.PROJECTILE_LAND, blockPos, GameEvent.Context.of(this, this.level().getBlockState(blockPos)));
+        }
+    }
+
     @Override
     protected void onHitEntity(@NotNull EntityHitResult result) {
         Entity entity = result.getEntity();
@@ -284,7 +310,6 @@ public class BoomerangProjectile extends AbstractArrow {
             if (entity instanceof LivingEntity livingEntity) {
                 this.doKnockback(livingEntity, damageSource);
                 this.doPostHurtEffects(livingEntity);
-                this.hitEntity = true;
                 this.dealtDamage = true;
             }
         }
