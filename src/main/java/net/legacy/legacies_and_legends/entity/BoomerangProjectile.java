@@ -258,7 +258,7 @@ public class BoomerangProjectile extends AbstractArrow {
 
     // Copy of Projectile onHit with added Rebound cooldown
     @Override
-    protected void onHit(HitResult result) {
+    public void onHit(HitResult result) {
         HitResult.Type type = result.getType();
         if (type == HitResult.Type.ENTITY) {
             EntityHitResult entityHitResult = (EntityHitResult)result;
