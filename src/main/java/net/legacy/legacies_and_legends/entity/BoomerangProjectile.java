@@ -266,7 +266,6 @@ public class BoomerangProjectile extends AbstractArrow {
             if (entity.getType().is(EntityTypeTags.REDIRECTABLE_PROJECTILE) && entity instanceof Projectile projectile) {
                 projectile.deflect(ProjectileDeflection.AIM_DEFLECT, this.getOwner(), this.getOwner(), true);
             }
-
             this.onHitEntity(entityHitResult);
             this.level().gameEvent(GameEvent.PROJECTILE_LAND, result.getLocation(), GameEvent.Context.of(this, null));
         } else if (type == HitResult.Type.BLOCK) {
