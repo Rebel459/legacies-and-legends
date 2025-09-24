@@ -755,6 +755,19 @@ public class LaLLootTables {
 						.add(LootItem.lootTableItem(LaLItems.MUSIC_DISC_SVALL).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
+			if (BuiltInLootTables.ABANDONED_MINESHAFT.equals(id) && LaLConfig.get.loot.new_music_discs) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(5))
+						.add(LootItem.lootTableItem(LaLItems.MUSIC_DISC_SVALL).setWeight(1));
+				tableBuilder.withPool(pool);
+			}
+
+			if ((LaLLootTables.UNDERGROUND_CABIN.equals(id) || LaLLootTables.DEEP_CABIN.equals(id)) && LaLConfig.get.loot.new_music_discs) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(2))
+						.add(LootItem.lootTableItem(LaLItems.MUSIC_DISC_GRAVEL).setWeight(1));
+				tableBuilder.withPool(pool);
+			}
 
 			if (LaLLootTables.DEEP_RUINS.equals(id) && LaLConfig.get.loot.new_music_discs) {
 				pool = LootPool.lootPool().setRolls(UniformGenerator.between(0.0F, 1.0F))

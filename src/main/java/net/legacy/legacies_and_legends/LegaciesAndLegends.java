@@ -128,13 +128,6 @@ public class LegaciesAndLegends implements ModInitializer {
 					ResourcePackActivationType.ALWAYS_ENABLED
 			);
 		}
-		if (!LaLConfig.get.loot.trident_shard) {
-			ResourceManagerHelper.registerBuiltinResourcePack(
-					LaLConstants.id("no_trident_shard"), modContainer.get(),
-					Component.translatable("pack.legacies_and_legends.no_trident_shard"),
-					ResourcePackActivationType.ALWAYS_ENABLED
-			);
-		}
 		if (!LaLConfig.get.worldgen.sapphire) {
 			ResourceManagerHelper.registerBuiltinResourcePack(
 					LaLConstants.id("no_sapphire"), modContainer.get(),
@@ -154,13 +147,6 @@ public class LegaciesAndLegends implements ModInitializer {
 		}
 		if (FabricLoader.getInstance().isModLoaded("progression_reborn")) {
 			isProgressionRebornLoaded = true;
-		}
-		if (isEnchantsAndExpeditionsLoaded || !LaLConfig.get.enchantments.extraction) {
-			ResourceManagerHelper.registerBuiltinResourcePack(
-					LaLConstants.id("no_extraction_enchant"), modContainer.get(),
-					Component.translatable("pack.legacies_and_legends.no_extraction_enchant"),
-					ResourcePackActivationType.ALWAYS_ENABLED
-			);
 		}
 		if (FabricLoader.getInstance().isModLoaded("farmersdelight") && LaLConfig.get.integrations.farmers_delight) {
 			isFarmersDelightLoaded = true;

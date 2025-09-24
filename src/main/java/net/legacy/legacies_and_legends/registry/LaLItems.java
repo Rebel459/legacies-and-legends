@@ -169,7 +169,13 @@ public final class LaLItems {
             Item::new,
             new Properties()
                     .rarity(Rarity.UNCOMMON)
-                    .jukeboxPlayable(LaLJukeboxSongs.INFINITE_SPOOKY_AMETHYST)
+                    .jukeboxPlayable(LaLJukeboxSongs.MUSIC_DISC_113)
+    );
+    public static final Item MUSIC_DISC_GRAVEL = register("music_disc_gravel",
+            Item::new,
+            new Properties()
+                    .rarity(Rarity.UNCOMMON)
+                    .jukeboxPlayable(LaLJukeboxSongs.GRAVEL)
     );
 
     // Sherds
@@ -245,11 +251,13 @@ public final class LaLItems {
     public static final Item TOTEM_OF_RESURRECTION = register("totem_of_resurrection",
             Item::new,
             new Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.EPIC)
     );
     public static final Item TOTEM_OF_TELEPORTATION = register("totem_of_teleportation",
             Item::new,
             new Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.RARE)
                     .component(DataComponents.DEATH_PROTECTION, new DeathProtection(
                             List.of(

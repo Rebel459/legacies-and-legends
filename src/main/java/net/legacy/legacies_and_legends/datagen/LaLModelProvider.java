@@ -100,6 +100,7 @@ public final class LaLModelProvider extends FabricModelProvider {
 		generator.generateFlatItem(LaLItems.MUSIC_DISC_SHULKER, ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(LaLItems.MUSIC_DISC_INFINITE_SPOOKY_AMETHYST, ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(LaLItems.MUSIC_DISC_113, ModelTemplates.FLAT_ITEM);
+		generator.generateFlatItem(LaLItems.MUSIC_DISC_GRAVEL, ModelTemplates.FLAT_ITEM);
 
 		generator.generateFlatItem(LaLItems.DUSK_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(LaLItems.HARVEST_POTTERY_SHERD, ModelTemplates.FLAT_ITEM);

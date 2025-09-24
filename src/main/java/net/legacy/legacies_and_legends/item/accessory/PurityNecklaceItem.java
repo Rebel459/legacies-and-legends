@@ -18,7 +18,6 @@ public class PurityNecklaceItem extends AccessoryItem {
         if (entity instanceof Player player && TrinketsApi.getTrinketComponent(player).isPresent()) {
             if (!player.getActiveEffects().isEmpty()) {
                 player.removeAllEffects();
-                damageAccessory(stack, slot, player, 1);
             }
         }
     }

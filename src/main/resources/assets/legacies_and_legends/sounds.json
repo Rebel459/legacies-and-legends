@@ -174,19 +174,19 @@
     "sounds": [
       {
         "name": "legacies_and_legends:item/wand/summon1",
-        "volume": 1.0
+        "volume": 1.2
       },
       {
         "name": "legacies_and_legends:item/wand/summon2",
-        "volume": 1.0
+        "volume": 1.2
       },
       {
         "name": "legacies_and_legends:item/wand/summon3",
-        "volume": 1.0
+        "volume": 1.2
       },
       {
         "name": "legacies_and_legends:item/wand/summon4",
-        "volume": 1.0
+        "volume": 1.2
       }
     ],
     "subtitle": "subtitles.item.wand.summon"
@@ -195,11 +195,11 @@
     "sounds": [
       {
         "name": "legacies_and_legends:item/wand/recall1",
-        "volume": 1.0
+        "volume": 1.2
       },
       {
         "name": "legacies_and_legends:item/wand/recall2",
-        "volume": 1.0
+        "volume": 1.2
       }
     ],
     "subtitle": "subtitles.item.wand.recall"

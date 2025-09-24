@@ -11,6 +11,7 @@
     "entity.EntityMixin",
     "entity.ExperienceOrbMixin",
     "entity.ItemEntityMixin",
+    "entity.LivingEntityMixin",
     "entity.PiglinAiMixin",
     "entity.PlayerMixin",
     "entity.ProjectileMixin",

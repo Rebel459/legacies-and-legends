@@ -8,12 +8,12 @@ import net.legacy.legacies_and_legends.LegaciesAndLegends;
 import net.legacy.legacies_and_legends.config.LaLConfig;
 import net.legacy.legacies_and_legends.tag.LaLBiomeTags;
 import net.minecraft.sounds.Musics;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 
 public final class LaLMusic {
 
 	public static void insertMusic() {
-
 		BiomeModifications.create(LaLConstants.id("snowy_music")).add(
 				ModificationPhase.REPLACEMENTS,
 				BiomeSelectors.tag(LaLBiomeTags.MUSIC_SNOWY),

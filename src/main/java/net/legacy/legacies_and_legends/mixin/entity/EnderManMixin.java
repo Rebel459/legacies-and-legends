@@ -3,6 +3,7 @@ package net.legacy.legacies_and_legends.mixin.entity;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.legacies_and_legends.entity.impl.LaLPlayerPlatformInterface;
 import net.legacy.legacies_and_legends.registry.LaLItems;
+import net.minecraft.world.entity.monster.ElderGuardian;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
