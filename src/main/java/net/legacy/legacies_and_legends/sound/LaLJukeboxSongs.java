@@ -22,8 +22,7 @@ public class LaLJukeboxSongs {
 	public static final ResourceKey<JukeboxSong> MUSIC_DISC_113 = create("113");
 	public static final ResourceKey<JukeboxSong> GRAVEL = create("gravel");
 
-	public static void init() {
-	}
+	public static void init() {}
 
 	private static @NotNull ResourceKey<JukeboxSong> create(String path) {
 		return ResourceKey.create(Registries.JUKEBOX_SONG, LaLConstants.id(path));
@@ -48,7 +47,7 @@ public class LaLJukeboxSongs {
 		register(context, TASWELL, LaLSounds.MUSIC_DISC_TASWELL, 600, 7);
 		register(context, SHULKER, LaLSounds.MUSIC_DISC_SHULKER, 128, 13);
 		register(context, TUNDRA, LaLSounds.MUSIC_DISC_TUNDRA, 118, 5);
-		register(context, FAR_LANDS, LaLSounds.MUSIC_DISC_FAR_LANDS, 266, 15);
+		register(context, FAR_LANDS, LaLSounds.MUSIC_DISC_FAR_LANDS, 260, 15);
 		register(context, INFINITE_SPOOKY_AMETHYST, LaLSounds.MUSIC_DISC_INFINITE_SPOOKY_AMETHYST, 292, 11);
 		register(context, MUSIC_DISC_113, LaLSounds.MUSIC_DISC_113, 197, 8);
 		register(context, GRAVEL, LaLSounds.MUSIC_DISC_GRAVEL, 152, 4);

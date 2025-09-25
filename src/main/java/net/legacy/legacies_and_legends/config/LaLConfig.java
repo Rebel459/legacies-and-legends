@@ -216,6 +216,13 @@ public class LaLConfig implements ConfigData {
 
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
+		public boolean stronghold_music = true;
+		@ConfigEntry.Category("config")
+		@ConfigEntry.Gui.Tooltip
+		public boolean ancient_city_music = true;
+
+		@ConfigEntry.Category("config")
+		@ConfigEntry.Gui.Tooltip
 		public boolean main_end_island_music = true;
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip

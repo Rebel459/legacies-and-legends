@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Blocks;
 public class LaLCreativeInventorySorting {
 
 	public static void init() {
+		addAfterInToolsAndUtilities(Items.MUSIC_DISC_CHIRP, LaLItems.MUSIC_DISC_GRAVEL);
 		addAfterInToolsAndUtilities(Items.MUSIC_DISC_MALL, LaLItems.MUSIC_DISC_SVALL);
 		addAfterInToolsAndUtilities(Items.MUSIC_DISC_STRAD, LaLItems.MUSIC_DISC_CASTLES);
 		addAfterInToolsAndUtilities(Items.MUSIC_DISC_MELLOHI, LaLItems.MUSIC_DISC_TASWELL);

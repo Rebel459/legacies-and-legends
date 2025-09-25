@@ -5,7 +5,7 @@
       {
         "name": "music.overworld.forest",
         "type": "event",
-        "weight": 26
+        "weight": 28
       },
       {
         "name": "wilderwild:music/ludocrypt/serene_sonder",
@@ -27,7 +27,7 @@
       {
         "name": "music.overworld.flower_forest",
         "type": "event",
-        "weight": 13
+        "weight": 14
       },
       {
         "name": "wilderwild:music/ludocrypt/horizon_afoot",
@@ -43,7 +43,7 @@
       {
         "name": "music.overworld.lush_caves",
         "type": "event",
-        "weight": 15
+        "weight": 18
       },
       {
         "name": "wilderwild:music/pictochats/amber",
@@ -58,7 +58,7 @@
       {
         "name": "music.overworld.dripstone_caves",
         "type": "event",
-        "weight": 12
+        "weight": 15
       },
       {
         "name": "wilderwild:music/pictochats/molt",
@@ -73,7 +73,7 @@
       {
         "name": "music.overworld.cherry_grove",
         "type": "event",
-        "weight": 10
+        "weight": 12
       },
       {
         "name": "wilderwild:music/pictochats/amber",
@@ -88,7 +88,7 @@
       {
         "name": "music.overworld.grove",
         "type": "event",
-        "weight": 16
+        "weight": 17
       },
       {
         "name": "wilderwild:music/pictochats/amber",
@@ -159,119 +159,9 @@
         "volume": 0.5
       },
       {
-        "name": "legacy:music/overworld/814",
-        "stream": true
-      },
-      {
-        "name": "legacy:music/overworld/albeit",
-        "stream": true
-      },
-      {
-        "name": "legacy:music/overworld/cliff_hanger",
-        "stream": true
-      },
-      {
-        "name": "legacy:music/overworld/fall",
-        "stream": true,
-        "weight" : 2
-      },
-      {
-        "name": "music/game/lilypad",
-        "stream": true,
-        "volume": 0.4
-      },
-      {
-        "name": "music/game/stand_tall",
-        "stream": true,
-        "volume": 0.4
-      },
-      {
-        "name": "music/game/left_to_bloom",
-        "stream": true,
-        "volume": 0.4
-      },
-      {
-        "name": "music/game/wending",
-        "stream": true,
-        "volume": 0.4
-      },
-      {
-        "name": "music/game/infinite_amethyst",
-        "stream": true,
-        "volume": 0.4
-      },
-      {
-        "name": "music/game/an_ordinary_day",
-        "stream": true,
-        "volume": 0.4
-      },
-      {
-        "name": "music/game/watcher",
-        "stream": true,
-        "volume": 0.4
-      },
-      {
-        "name": "music/game/puzzlebox",
-        "stream": true,
-        "volume": 0.4
-      },
-      {
-        "name": "music/game/komorebi",
-        "stream": true,
-        "volume": 0.8
-      },
-      {
-        "name": "music/game/yakusoku",
-        "stream": true,
-        "volume": 0.8
-      },
-      {
-        "name": "music/game/minecraft",
-        "stream": true
-      },
-      {
-        "name": "music/game/clark",
-        "stream": true
-      },
-      {
-        "name": "music/game/sweden",
-        "stream": true
-      },
-      {
-        "name": "music/game/subwoofer_lullaby",
-        "stream": true
-      },
-      {
-        "name": "music/game/living_mice",
-        "stream": true
-      },
-      {
-        "name": "music/game/haggstrom",
-        "stream": true
-      },
-      {
-        "name": "music/game/danny",
-        "stream": true
-      },
-      {
-        "name": "music/game/key",
-        "stream": true
-      },
-      {
-        "name": "music/game/oxygene",
-        "stream": true
-      },
-      {
-        "name": "music/game/dry_hands",
-        "stream": true
-      },
-      {
-        "name": "music/game/wet_hands",
-        "stream": true
-      },
-      {
-        "name": "music/game/mice_on_venus",
-        "stream": true
+        "name": "music.overworld.snowy",
+        "type": "event",
+        "weight": 28
       }
     ]
   },
@@ -280,7 +170,7 @@
       {
         "name": "music.game",
         "type": "event",
-        "weight": 30
+        "weight": 32
       },
       {
         "name": "wilderwild:music/pictochats/anemone",
@@ -300,7 +190,7 @@
       {
         "name": "music.game",
         "type": "event",
-        "weight": 30
+        "weight": 32
       },
       {
         "name": "wilderwild:music/pictochats/anemone",

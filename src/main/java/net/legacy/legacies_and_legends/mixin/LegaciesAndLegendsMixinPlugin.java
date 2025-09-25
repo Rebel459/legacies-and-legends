@@ -15,6 +15,7 @@ public final class LegaciesAndLegendsMixinPlugin implements IMixinConfigPlugin {
 
     private boolean hasEnchantsAndExpeditions;
     private boolean hasFriendsAndFoes;
+    private boolean hasWilderWild;
 
     @Override
     public void onLoad(String mixinPackage) {

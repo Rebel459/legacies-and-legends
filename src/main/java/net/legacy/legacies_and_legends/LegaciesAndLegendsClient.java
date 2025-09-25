@@ -10,6 +10,7 @@ import net.fabricmc.loader.api.ModContainer;
 import net.legacy.legacies_and_legends.client.LaLBlockRenderLayers;
 import net.legacy.legacies_and_legends.client.LaLEntityRenderers;
 import net.legacy.legacies_and_legends.client.LaLModelLayers;
+import net.legacy.legacies_and_legends.client.LaLStructureMusic;
 import net.legacy.legacies_and_legends.config.LaLConfig;
 import net.minecraft.network.chat.Component;
 
@@ -25,6 +26,7 @@ public final class LegaciesAndLegendsClient implements ClientModInitializer {
         LaLEntityRenderers.init();
         LaLModelLayers.init();
         LaLBlockRenderLayers.init();
+        LaLStructureMusic.init();
 
         ResourceManagerHelper.registerBuiltinResourcePack(
                 LaLConstants.id("asset_overrides"), modContainer.get(),

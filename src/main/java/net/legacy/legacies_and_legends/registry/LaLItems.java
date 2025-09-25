@@ -1,6 +1,5 @@
 package net.legacy.legacies_and_legends.registry;
 
-import dev.emi.trinkets.api.SlotReference;
 import net.frozenblock.lib.item.api.sherd.SherdRegistry;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.item.*;
@@ -34,6 +33,8 @@ import java.util.List;
 import java.util.function.Function;
 
 public final class LaLItems {
+
+    public static int AMULET_DURABILITY = 100;
 
     public static final ResourceLocation ARMOR_CHESTPLATE_ID = LaLConstants.id("armor_chestplate");
     public static final ResourceLocation ARMOR_LEGGINGS_ID = LaLConstants.id("armor_leggings");
@@ -126,54 +127,63 @@ public final class LaLItems {
     public static final Item MUSIC_DISC_SVALL = register("music_disc_svall",
             Item::new,
             new Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)
                     .jukeboxPlayable(LaLJukeboxSongs.SVALL)
     );
     public static final Item MUSIC_DISC_CASTLES = register("music_disc_castles",
             Item::new,
             new Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)
                     .jukeboxPlayable(LaLJukeboxSongs.CASTLES)
     );
     public static final Item MUSIC_DISC_TASWELL = register("music_disc_taswell",
             Item::new,
             new Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)
                     .jukeboxPlayable(LaLJukeboxSongs.TASWELL)
     );
     public static final Item MUSIC_DISC_SHULKER = register("music_disc_shulker",
             Item::new,
             new Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)
                     .jukeboxPlayable(LaLJukeboxSongs.SHULKER)
     );
     public static final Item MUSIC_DISC_TUNDRA = register("music_disc_tundra",
             Item::new,
             new Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)
                     .jukeboxPlayable(LaLJukeboxSongs.TUNDRA)
     );
     public static final Item MUSIC_DISC_FAR_LANDS = register("music_disc_far_lands",
             Item::new,
             new Properties()
-                    .rarity(Rarity.RARE)
+                    .stacksTo(1)
+                    .rarity(Rarity.UNCOMMON)
                     .jukeboxPlayable(LaLJukeboxSongs.FAR_LANDS)
     );
     public static final Item MUSIC_DISC_INFINITE_SPOOKY_AMETHYST = register("music_disc_infinite_spooky_amethyst",
             Item::new,
             new Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.RARE)
                     .jukeboxPlayable(LaLJukeboxSongs.INFINITE_SPOOKY_AMETHYST)
     );
     public static final Item MUSIC_DISC_113 = register("music_disc_113",
             Item::new,
             new Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)
                     .jukeboxPlayable(LaLJukeboxSongs.MUSIC_DISC_113)
     );
     public static final Item MUSIC_DISC_GRAVEL = register("music_disc_gravel",
             Item::new,
             new Properties()
+                    .stacksTo(1)
                     .rarity(Rarity.UNCOMMON)
                     .jukeboxPlayable(LaLJukeboxSongs.GRAVEL)
     );
@@ -498,19 +508,19 @@ public final class LaLItems {
     public static final ObsidianAmuletItem AMULET_OF_OBSIDIAN = register("amulet_of_obsidian",
             ObsidianAmuletItem::new,
             new Properties()
-                    .durability(100)
+                    .durability(AMULET_DURABILITY)
                     .rarity(Rarity.EPIC)
     );
     public static final AbsorptionAmuletItem AMULET_OF_ABSORPTION = register("amulet_of_absorption",
             AbsorptionAmuletItem::new,
             new Properties()
-                    .durability(100)
+                    .durability(AMULET_DURABILITY)
                     .rarity(Rarity.RARE)
     );
     public static final DeflectionAmuletItem AMULET_OF_DEFLECTION = register("amulet_of_deflection",
             DeflectionAmuletItem::new,
             new Properties()
-                    .durability(100)
+                    .durability(AMULET_DURABILITY)
                     .rarity(Rarity.RARE)
     );
 

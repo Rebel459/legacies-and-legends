@@ -23,9 +23,12 @@
         "volume": 0.5
       },
       {
+        "name": "legacy:music/overworld/decay",
+        "stream": true
+      },
+      {
         "name": "music.game",
-        "type": "event",
-        "weight": 2
+        "type": "event"
       },
       {
         "name": "music/game/creative/biome_fest",
@@ -105,6 +108,14 @@
       },
       {
         "name": "legacy:music/overworld/cliff_hanger",
+        "stream": true
+      },
+      {
+        "name": "legacy:music/overworld/shrub",
+        "stream": true
+      },
+      {
+        "name": "legacy:music/overworld/hunger",
         "stream": true
       },
       {
@@ -374,6 +385,12 @@
         "stream": true
       },
       {
+        "name": "legacy:music/nether/beneath",
+        "stream": true,
+        "volume": 0.8,
+        "weight": 2
+      },
+      {
         "name": "music/game/nether/concrete_halls",
         "stream": true
       },
@@ -407,6 +424,11 @@
       {
         "name": "legacy:music/nether/jellyfish",
         "stream": true
+      },
+      {
+        "name": "legacy:music/nether/wasteland",
+        "stream": true,
+        "weight": 2
       },
       {
         "name": "music/game/nether/concrete_halls",
@@ -589,6 +611,11 @@
         "stream": true
       },
       {
+        "name": "legacy:music/overworld/mt_reed",
+        "stream": true,
+        "weight": 2
+      },
+      {
         "name": "music/game/below_and_above",
         "stream": true,
         "volume": 0.4,
@@ -632,7 +659,7 @@
     "replace": true,
     "sounds": [
       {
-        "name": "legacy:music/caves/echoes",
+        "name": "legacy:music/caves/abyss",
         "stream": true
       },
       {
@@ -654,6 +681,10 @@
         "stream": true,
         "volume": 0.5,
         "weight": 2
+      },
+      {
+        "name": "legacy:music/overworld/hunger",
+        "stream": true
       },
       {
         "name": "music/game/crescent_dunes",
@@ -700,6 +731,15 @@
   "music.overworld.dripstone_caves": {
     "replace": true,
     "sounds": [
+      {
+        "name": "legacy:music/caves/shelter",
+        "stream": true,
+        "weight": 2
+      },
+      {
+        "name": "legacy:music/overworld/hunger",
+        "stream": true
+      },
       {
         "name": "music/game/an_ordinary_day",
         "stream": true
@@ -753,6 +793,88 @@
       }
     ]
   },
+  "music.overworld.lush_caves": {
+    "replace": true,
+    "sounds": [
+      {
+        "name": "legacy:music/caves/extract_one",
+        "stream": true,
+        "volume": 0.8,
+        "weight": 2
+      },
+      {
+        "name": "legacy:music/overworld/hunger",
+        "stream": true
+      },
+      {
+        "name": "music/game/an_ordinary_day",
+        "stream": true,
+        "volume": 0.8
+      },
+      {
+        "name": "music/game/clark",
+        "stream": true
+      },
+      {
+        "name": "music/game/echo_in_the_wind",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/featherfall",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/floating_dream",
+        "stream": true,
+        "volume": 0.5
+      },
+      {
+        "name": "music/game/left_to_bloom",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/mice_on_venus",
+        "stream": true
+      },
+      {
+        "name": "music/game/minecraft",
+        "stream": true
+      },
+      {
+        "name": "music/game/one_more_day",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/os_piano",
+        "stream": true,
+        "volume": 0.4,
+        "weight": 2
+      },
+      {
+        "name": "music/game/swamp/aerie",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/swamp/firebugs",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/swamp/labyrinthine",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/sweden",
+        "stream": true
+      }
+    ]
+  },
   "music.overworld.flower_forest": {
     "replace": true,
     "sounds": [
@@ -762,6 +884,10 @@
       },
       {
         "name": "legacy:music/overworld/cliff_hanger",
+        "stream": true
+      },
+      {
+        "name": "legacy:music/overworld/mt_reed",
         "stream": true
       },
       {
@@ -830,6 +956,14 @@
         "name": "legacy:music/overworld/ravine",
         "stream": true,
         "volume": 0.5
+      },
+      {
+        "name": "legacy:music/overworld/shrub",
+        "stream": true
+      },
+      {
+        "name": "legacy:music/overworld/decay",
+        "stream": true
       },
       {
         "name": "music/game/broken_clocks",
@@ -993,6 +1127,10 @@
         "stream": true,
         "volume": 0.8,
         "weight" : 2
+      },
+      {
+        "name": "legacy:music/overworld/decay",
+        "stream": true
       },
       {
         "name": "music/game/clark",
@@ -1204,6 +1342,10 @@
         "stream": true
       },
       {
+        "name": "legacy:music/overworld/decay",
+        "stream": true
+      },
+      {
         "name": "music/game/danny",
         "stream": true
       },
@@ -1239,6 +1381,11 @@
         "name": "legacy:music/overworld/mosaic",
         "stream": true,
         "weight": 9
+      },
+      {
+        "name": "legacy:music/overworld/shrub",
+        "stream": true,
+        "weight": 3
       },
       {
         "name": "music/game/clark",
@@ -1510,6 +1657,17 @@
       },
       {
         "name": "music/game/wet_hands",
+        "stream": true
+      }
+    ]
+  },
+  "music.overworld.swamp": {
+    "sounds": []
+  },
+  "music.under_water": {
+    "sounds": [
+      {
+        "name": "legacy:music/under_water/strand_atoll",
         "stream": true
       }
     ]

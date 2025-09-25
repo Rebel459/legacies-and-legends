@@ -56,6 +56,9 @@ public class LaLSounds {
 	public static final Holder.Reference<SoundEvent> DARK_FOREST_MUSIC = registerForHolder("music.overworld.dark_forest");
 	public static final Holder.Reference<SoundEvent> MAIN_END_ISLAND_MUSIC = registerForHolder("music.the_end.main_island");
 
+	public static final Holder.Reference<SoundEvent> STRONGHOLD_MUSIC = registerForHolder("music.structure.stronghold");
+	public static final Holder.Reference<SoundEvent> ANCIENT_CITY_MUSIC = registerForHolder("music.structure.ancient_city");
+
 	@NotNull
 	private static SoundEvent register(@NotNull String string) {
 		ResourceLocation resourceLocation = LaLConstants.id(string);

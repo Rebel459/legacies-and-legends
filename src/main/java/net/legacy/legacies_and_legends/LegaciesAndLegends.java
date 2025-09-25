@@ -11,7 +11,7 @@ import net.legacy.legacies_and_legends.registry.LaLEnchantments;
 import net.legacy.legacies_and_legends.registry.LaLMobEffects;
 import net.legacy.legacies_and_legends.registry.*;
 import net.legacy.legacies_and_legends.sound.LaLJukeboxSongs;
-import net.legacy.legacies_and_legends.sound.LaLMusic;
+import net.legacy.legacies_and_legends.sound.LaLBiomeMusic;
 import net.legacy.legacies_and_legends.sound.LaLSounds;
 import net.legacy.legacies_and_legends.worldgen.LaLFeatures;
 import net.minecraft.network.chat.Component;
@@ -46,7 +46,7 @@ public class LegaciesAndLegends implements ModInitializer {
 		LaLMobEffects.init();
 		LaLLootTables.init();
 		LaLEnchantments.init();
-		LaLMusic.insertMusic();
+		LaLBiomeMusic.init();
 		LaLMapDecorationTypes.init();
 		LaLDataComponents.init();
 		LaLFeatures.init();
