@@ -486,7 +486,7 @@ public final class LaLItems {
     public static final AccessoryItem NECKLACE_OF_RESILIENCE = register("necklace_of_resilience",
             AccessoryItem::new,
             new Properties()
-                    .durability(255)
+                    .durability(155)
                     .repairable(LaLItemTags.RESILIENCE_NECKLACE_MATERIALS)
                     .rarity(Rarity.EPIC)
     );
