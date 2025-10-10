@@ -214,6 +214,12 @@ public class LaLConfig implements ConfigData {
 		@ConfigEntry.Gui.Tooltip
 		public boolean dark_forest_music = true;
 
+        @ConfigEntry.Category("config")
+        @ConfigEntry.Gui.Tooltip
+        public int structure_music_min = 300;
+        @ConfigEntry.Category("config")
+        @ConfigEntry.Gui.Tooltip
+        public int structure_music_max = 600;
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean stronghold_music = true;
