@@ -24,7 +24,6 @@ public class LaLBlocks {
             LanternBlock::new,
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_BLUE)
-                    .requiresCorrectToolForDrops()
                     .forceSolidOn()
                     .strength(3.5F)
                     .lightLevel(blockStatex -> 14)

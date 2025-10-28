@@ -1,5 +1,5 @@
 // 1.21.5	-999999999-01-01T00:00:00	Legacies and Legends/Tags for minecraft:block
 e7ff062a3359b3420f36cdb42887f854d6ecbbb6 data/minecraft/tags/block/beacon_base_blocks.json
-37256e8ce173fdfc706745664ebe8d464ee049e1 data/minecraft/tags/block/mineable/pickaxe.json
+f6e137f0ef6ac0f4dc3affae251c2b855b2546fc data/minecraft/tags/block/mineable/pickaxe.json
 37256e8ce173fdfc706745664ebe8d464ee049e1 data/minecraft/tags/block/needs_iron_tool.json
 b34aec933682beed0ff275bb10c7322bd2a9bebf data/minecraft/tags/block/slabs.json

@@ -30,6 +30,9 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider wrapperLookup) {
+        this.getOrCreateTagBuilder(ItemTags.BEACON_PAYMENT_ITEMS)
+                .add(LaLItems.SAPPHIRE);
+
         this.getOrCreateTagBuilder(ItemTags.DECORATED_POT_SHERDS)
                 .add(LaLItems.VERDANT_POTTERY_SHERD)
                 .add(LaLItems.FORAGER_POTTERY_SHERD)

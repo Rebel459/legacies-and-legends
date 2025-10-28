@@ -26,6 +26,6 @@
     "mainhand"
   ],
   "primary_items": "#minecraft:enchantable/bow",
-  "supported_items": "#legacies_and_legends:enchantable/boomerang",
+  "supported_items": "#legacies_and_legends:enchantable/ranged",
   "weight": 2
 }

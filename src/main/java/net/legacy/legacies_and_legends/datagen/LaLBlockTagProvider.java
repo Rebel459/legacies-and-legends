@@ -18,6 +18,7 @@ public final class LaLBlockTagProvider extends FabricTagProvider.BlockTagProvide
     protected void addTags(@NotNull HolderLookup.Provider arg) {
         this.getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(LaLBlocks.SAPPHIRE_BLOCK)
+                .add(LaLBlocks.SAPPHIRE_LANTERN)
                 .add(LaLBlocks.SAPPHIRE_ORE)
                 .add(LaLBlocks.DEEPSLATE_SAPPHIRE_ORE);
 
