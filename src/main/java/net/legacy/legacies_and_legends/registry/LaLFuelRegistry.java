@@ -5,8 +5,8 @@ public final class LaLFuelRegistry {
     public static void registerFuels() {
         FuelRegistryEvents.BUILD.register((builder, context) -> {
             builder.add(LaLItems.WOODEN_BUCKET, 300);
-            builder.add(LaLItems.COAL_BUCKET, 19200);
-            builder.add(LaLItems.CHARCOAL_BUCKET, 19200);
+            builder.add(LaLItems.COAL_BUCKET, 20000);
+            builder.add(LaLItems.CHARCOAL_BUCKET, 20000);
         });
     }
 }
