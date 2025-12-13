@@ -11,7 +11,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.Nullable;
 
 public class AmuletItem extends AccessoryItem implements Trinket {
@@ -26,7 +25,7 @@ public class AmuletItem extends AccessoryItem implements Trinket {
         return 100;
     }
 
-    public AmuletItem(Properties settings) {
+    public AmuletItem(Item.Properties settings) {
         super(settings);
     }
 

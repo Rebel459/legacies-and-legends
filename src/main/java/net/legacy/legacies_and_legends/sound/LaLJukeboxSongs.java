@@ -1,13 +1,13 @@
 package net.legacy.legacies_and_legends.sound;
 
 import net.legacy.legacies_and_legends.LaLConstants;
-import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Util;
 import net.minecraft.world.item.JukeboxSong;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,7 +37,7 @@ public class LaLJukeboxSongs {
 	) {
 		context.register(
 			registryKey,
-			new JukeboxSong(soundEvent, Component.translatable(Util.makeDescriptionId("jukebox_song", registryKey.location())), (float)lengthInSeconds, comparatorOutput)
+			new JukeboxSong(soundEvent, Component.translatable(Util.makeDescriptionId("jukebox_song", registryKey.identifier())), (float)lengthInSeconds, comparatorOutput)
 		);
 	}
 

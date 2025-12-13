@@ -2,7 +2,7 @@ package net.legacy.legacies_and_legends.tag;
 
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.NotNull;
@@ -56,7 +56,7 @@ public class LaLItemTags {
 
     public static final TagKey<Item> PROSPECTING = bind("prospecting");
 
-    public static final TagKey<Item> VARIABLE_REPAIR_COST = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("enchants_and_expeditions", "variable_repair_cost"));
+    public static final TagKey<Item> VARIABLE_REPAIR_COST = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("enchants_and_expeditions", "variable_repair_cost"));
 
     @NotNull
     private static TagKey<Item> bind(@NotNull String path) {

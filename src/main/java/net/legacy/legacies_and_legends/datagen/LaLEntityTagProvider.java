@@ -17,7 +17,7 @@ public class LaLEntityTagProvider extends FabricTagProvider.EntityTypeTagProvide
 
     @Override
     protected void addTags(@NotNull HolderLookup.Provider arg) {
-        this.getOrCreateTagBuilder(LaLEntityTags.DAMAGELESS_PROJECTILES)
+        this.valueLookupBuilder(LaLEntityTags.DAMAGELESS_PROJECTILES)
                 .add(EntityType.WIND_CHARGE)
                 .add(EntityType.BREEZE_WIND_CHARGE)
                 .add(EntityType.SNOWBALL)

@@ -10,8 +10,8 @@ import net.legacy.legacies_and_legends.tag.LaLItemTags;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -36,13 +36,13 @@ public final class LaLItems {
 
     public static int AMULET_DURABILITY = 100;
 
-    public static final ResourceLocation ARMOR_CHESTPLATE_ID = LaLConstants.id("armor_chestplate");
-    public static final ResourceLocation ARMOR_LEGGINGS_ID = LaLConstants.id("armor_leggings");
-    public static final ResourceLocation ARMOR_BOOTS_ID = LaLConstants.id("armor_boots");
+    public static final Identifier ARMOR_CHESTPLATE_ID = LaLConstants.id("armor_chestplate");
+    public static final Identifier ARMOR_LEGGINGS_ID = LaLConstants.id("armor_leggings");
+    public static final Identifier ARMOR_BOOTS_ID = LaLConstants.id("armor_boots");
 
-    public static final ResourceLocation KNOCKBACK_RESISTANCE_CHESTPLATE_ID = LaLConstants.id("knockback_resistance_chestplate");
-    public static final ResourceLocation MOVEMENT_SPEED_LEGGINGS_ID = LaLConstants.id("movement_speed_leggings");
-    public static final ResourceLocation STEP_HEIGHT_BOOTS_ID = LaLConstants.id("step_height_boots");
+    public static final Identifier KNOCKBACK_RESISTANCE_CHESTPLATE_ID = LaLConstants.id("knockback_resistance_chestplate");
+    public static final Identifier MOVEMENT_SPEED_LEGGINGS_ID = LaLConstants.id("movement_speed_leggings");
+    public static final Identifier STEP_HEIGHT_BOOTS_ID = LaLConstants.id("step_height_boots");
 
     private static final ItemAttributeModifiers createReinforcedChestplateAttributes = ItemAttributeModifiers.builder()
             .add(Attributes.ARMOR, new AttributeModifier(ARMOR_CHESTPLATE_ID, 7, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.CHEST)

@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -14,7 +15,7 @@ import net.minecraft.world.phys.Vec3;
 
 public record LaLFreezeEffect(LevelBasedValue duration) implements EnchantmentEntityEffect {
 
-    public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(LaLConstants.MOD_ID, "freeze");
+    public static final Identifier IDENTIFIER = LaLConstants.id("freeze");
 
     public static final MapCodec<LaLFreezeEffect> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance

@@ -7,7 +7,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
-public class BoomerangModel<T extends Entity> extends EntityModel<BoomerangRenderState> {
+public class BoomerangModel<T extends Entity> extends EntityModel<@NotNull BoomerangRenderState> {
     private final ModelPart body;
 
     public BoomerangModel(ModelPart root) {

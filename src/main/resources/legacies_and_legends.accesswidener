@@ -17,3 +17,5 @@ accessible method net/minecraft/world/item/BowItem shootProjectile (Lnet/minecra
 accessible method net/minecraft/world/item/ProjectileWeaponItem getDurabilityUse (Lnet/minecraft/world/item/ItemStack;)I
 accessible method net/minecraft/world/item/CrossbowItem shootProjectile (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/projectile/Projectile;IFFFLnet/minecraft/world/entity/LivingEntity;)V
 accessible method net/minecraft/world/item/ItemStack applyDamage (ILnet/minecraft/server/level/ServerPlayer;Ljava/util/function/Consumer;)V
+accessible field net/minecraft/client/renderer/item/BlockModelWrapper ITEM_RENDER_TYPE_GETTER Ljava/util/function/Function;
+accessible field net/minecraft/client/renderer/item/BlockModelWrapper BLOCK_RENDER_TYPE_GETTER Ljava/util/function/Function;

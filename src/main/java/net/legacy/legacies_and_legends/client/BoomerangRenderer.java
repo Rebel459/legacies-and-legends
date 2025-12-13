@@ -12,12 +12,12 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
 public class BoomerangRenderer extends EntityRenderer<BoomerangProjectile, BoomerangRenderState> {
-    public static final ResourceLocation TEXTURE = LaLConstants.id("textures/entity/boomerang.png");
+    public static final Identifier TEXTURE = LaLConstants.id("textures/entity/boomerang.png");
     private final BoomerangModel<BoomerangProjectile> model;
 
     public BoomerangRenderer(EntityRendererProvider.Context context) {

@@ -12,7 +12,7 @@ import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.equipment.EquipmentAsset;
@@ -45,9 +45,9 @@ public final class LaLModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateItemModels(@NotNull ItemModelGenerators generator) {
-		generator.generateTrimmableItem(LaLItems.REINFORCED_CHESTPLATE, LaLEquipmentAssets.REINFORCED, ResourceLocation.withDefaultNamespace("trims/items/chestplate_trim"), false);
-		generator.generateTrimmableItem(LaLItems.TRAVELLING_STRIDES, LaLEquipmentAssets.TRAVELLING, ResourceLocation.withDefaultNamespace("trims/items/leggings_trim"), false);
-		generator.generateTrimmableItem(LaLItems.WANDERER_BOOTS, LaLEquipmentAssets.WANDERER, ResourceLocation.withDefaultNamespace("trims/items/boots_trim"), false);
+		generator.generateTrimmableItem(LaLItems.REINFORCED_CHESTPLATE, LaLEquipmentAssets.REINFORCED, Identifier.withDefaultNamespace("trims/items/chestplate_trim"), false);
+		generator.generateTrimmableItem(LaLItems.TRAVELLING_STRIDES, LaLEquipmentAssets.TRAVELLING, Identifier.withDefaultNamespace("trims/items/leggings_trim"), false);
+		generator.generateTrimmableItem(LaLItems.WANDERER_BOOTS, LaLEquipmentAssets.WANDERER, Identifier.withDefaultNamespace("trims/items/boots_trim"), false);
 
 		generator.generateFlatItem(LaLItems.BOOMERANG, ModelTemplates.FLAT_HANDHELD_ITEM);
 		generator.generateFlatItem(LaLItems.KNIFE, ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -139,22 +139,22 @@ public final class LaLModelProvider extends FabricModelProvider {
 
 	}
 
-	private void uploadArmor2(ItemModelGenerators generator, ResourceLocation id, ResourceLocation layer0, ResourceLocation layer1) {
+	private void uploadArmor2(ItemModelGenerators generator, Identifier id, Identifier layer0, Identifier layer1) {
 		ModelTemplates.TWO_LAYERED_ITEM.create(id, TextureMapping.layered(layer0, layer1), generator.modelOutput);
 	}
 
-	private void uploadArmor3(ItemModelGenerators generator, ResourceLocation id, ResourceLocation layer0, ResourceLocation layer1, ResourceLocation layer2) {
+	private void uploadArmor3(ItemModelGenerators generator, Identifier id, Identifier layer0, Identifier layer1, Identifier layer2) {
 		ModelTemplates.THREE_LAYERED_ITEM.create(id, TextureMapping.layered(layer0, layer1, layer2), generator.modelOutput);
 	}
 
 	private void registerArmorTrims(ItemModelGenerators generator, Item armor, ResourceKey<EquipmentAsset> equipmentKey, String armorType, boolean dyeable) {
-		ResourceLocation armorModelId = TextureMapping.getItemTexture(armor);
-		ResourceLocation armorTextures = TextureMapping.getItemTexture(armor);
-		ResourceLocation armorOverlayTextures = TextureMapping.getItemTexture(armor, "_overlay");
+		Identifier armorModelId = TextureMapping.getItemTexture(armor);
+		Identifier armorTextures = TextureMapping.getItemTexture(armor);
+		Identifier armorOverlayTextures = TextureMapping.getItemTexture(armor, "_overlay");
 		for (ItemModelGenerators.TrimMaterialData trimMaterial : TRIM_MATERIALS) {
-			ResourceLocation trimmedModelId = ResourceLocation.fromNamespaceAndPath(LaLConstants.MOD_ID,
+			Identifier trimmedModelId = Identifier.fromNamespaceAndPath(LaLConstants.MOD_ID,
 					armorModelId.getPath()).withSuffix("_" + trimMaterial.assets().base().suffix() + "_trim");
-			ResourceLocation trimTextureId = ResourceLocation.withDefaultNamespace(
+			Identifier trimTextureId = Identifier.withDefaultNamespace(
 					"trims/items/" + armorType + "_trim_" + trimMaterial.assets().assetId(equipmentKey).suffix());
 			if (dyeable) {
 				this.uploadArmor3(generator, trimmedModelId, armorTextures, armorOverlayTextures, trimTextureId);

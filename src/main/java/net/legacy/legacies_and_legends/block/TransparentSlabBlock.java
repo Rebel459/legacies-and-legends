@@ -16,7 +16,7 @@ public class TransparentSlabBlock extends SlabBlock {
     }
 
     @Override
-    protected VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return Shapes.empty();
     }
 

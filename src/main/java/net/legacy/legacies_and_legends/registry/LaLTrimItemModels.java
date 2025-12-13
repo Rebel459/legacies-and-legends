@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.legacy.legacies_and_legends.LaLConstants;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceLocation;
 import net.ramixin.mixson.inline.EventContext;
 import net.ramixin.mixson.inline.Mixson;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public final class LaLTrimItemModels {
     private static final List<String> ARMORS = List.of("helmet", "chestplate", "leggings", "boots");
-    private static final List<String> ARMOR_MATERIALS = List.of("leather", "chainmail", "iron", "golden", "diamond", "netherite");
+    private static final List<String> ARMOR_MATERIALS = List.of("leather", "copper", "chainmail", "iron", "golden", "diamond", "netherite");
 
     @SuppressWarnings("UnnecessaryReturnStatement")
     private LaLTrimItemModels() {
@@ -106,15 +107,15 @@ public final class LaLTrimItemModels {
         );
     }
 
-    private static ResourceLocation trimMaterialId(String trim) {
-        return ResourceLocation.fromNamespaceAndPath(LaLConstants.MOD_ID, trim);
+    private static Identifier trimMaterialId(String trim) {
+        return Identifier.fromNamespaceAndPath(LaLConstants.MOD_ID, trim);
     }
 
-    private static ResourceLocation itemModelId(String armor, String armorMaterial, String trim) {
-        return ResourceLocation.fromNamespaceAndPath(LaLConstants.MOD_ID, "item/" + armorMaterial + "_" + armor + "_" + trim + "_trim");
+    private static Identifier itemModelId(String armor, String armorMaterial, String trim) {
+        return Identifier.fromNamespaceAndPath(LaLConstants.MOD_ID, "item/" + armorMaterial + "_" + armor + "_" + trim + "_trim");
     }
 
-    private static ResourceLocation paletteId(String trim) {
-        return ResourceLocation.fromNamespaceAndPath(LaLConstants.MOD_ID, "trims/color_palettes/" + trim);
+    private static Identifier paletteId(String trim) {
+        return Identifier.fromNamespaceAndPath(LaLConstants.MOD_ID, "trims/color_palettes/" + trim);
     }
 }

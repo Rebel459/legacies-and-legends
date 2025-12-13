@@ -33,7 +33,7 @@ public class LaLRegistryProvider extends FabricDynamicRegistryProvider {
     @SuppressWarnings("UnusedReturnValue")
     public <T> List<Holder<T>> addAll(Entries entries, HolderLookup.RegistryLookup<T> registry, String modId) {
         return registry.listElementIds()
-                .filter(registryKey -> registryKey.location().getNamespace().equals(LaLConstants.MOD_ID))
+                .filter(registryKey -> registryKey.identifier().getNamespace().equals(LaLConstants.MOD_ID))
                 .map(key -> entries.add(registry, key))
                 .toList();
     }

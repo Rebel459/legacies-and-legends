@@ -4,7 +4,7 @@ import net.legacy.legacies_and_legends.LaLConstants;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -61,19 +61,19 @@ public class LaLSounds {
 
 	@NotNull
 	private static SoundEvent register(@NotNull String string) {
-		ResourceLocation resourceLocation = LaLConstants.id(string);
-		return Registry.register(BuiltInRegistries.SOUND_EVENT, resourceLocation, SoundEvent.createVariableRangeEvent(resourceLocation));
+		Identifier identifier = LaLConstants.id(string);
+		return Registry.register(BuiltInRegistries.SOUND_EVENT, identifier, SoundEvent.createVariableRangeEvent(identifier));
 	}
 
 	private static Holder.@NotNull Reference<SoundEvent> registerForHolder(String id) {
 		return registerForHolder(LaLConstants.id(id));
 	}
 
-	private static Holder.@NotNull Reference<SoundEvent> registerForHolder(ResourceLocation id) {
+	private static Holder.@NotNull Reference<SoundEvent> registerForHolder(Identifier id) {
 		return registerForHolder(id, id);
 	}
 
-	private static Holder.@NotNull Reference<SoundEvent> registerForHolder(ResourceLocation id, ResourceLocation soundId) {
+	private static Holder.@NotNull Reference<SoundEvent> registerForHolder(Identifier id, Identifier soundId) {
 		return Registry.registerForHolder(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(soundId));
 	}
 

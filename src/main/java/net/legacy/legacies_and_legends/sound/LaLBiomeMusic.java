@@ -8,6 +8,8 @@ import net.legacy.legacies_and_legends.LegaciesAndLegends;
 import net.legacy.legacies_and_legends.config.LaLConfig;
 import net.legacy.legacies_and_legends.tag.LaLBiomeTags;
 import net.minecraft.sounds.Musics;
+import net.minecraft.world.attribute.BackgroundMusic;
+import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.level.biome.Biomes;
 
 public final class LaLBiomeMusic {
@@ -18,7 +20,7 @@ public final class LaLBiomeMusic {
 				BiomeSelectors.tag(LaLBiomeTags.MUSIC_SNOWY),
 				(selectionContext, modificationContext) -> {
 					if (LaLConfig.get.music.snowy_music && (!LegaciesAndLegends.isWilderWildLoaded || !LaLConfig.get.integrations.wilder_wild)) {
-						modificationContext.getEffects().setMusic(Musics.createGameMusic(LaLSounds.SNOWY_MUSIC));
+						modificationContext.getAttributes().set(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(Musics.createGameMusic(LaLSounds.SNOWY_MUSIC)));
 					}
 				});
 
@@ -27,7 +29,7 @@ public final class LaLBiomeMusic {
 				BiomeSelectors.tag(LaLBiomeTags.MUSIC_SAVANNA),
 				(selectionContext, modificationContext) -> {
 					if (LaLConfig.get.music.savanna_music) {
-						modificationContext.getEffects().setMusic(Musics.createGameMusic(LaLSounds.SAVANNA_MUSIC));
+                        modificationContext.getAttributes().set(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(Musics.createGameMusic(LaLSounds.SAVANNA_MUSIC)));
 					}
 				});
 
@@ -36,7 +38,7 @@ public final class LaLBiomeMusic {
 				BiomeSelectors.tag(LaLBiomeTags.MUSIC_DARK_FOREST),
 				(selectionContext, modificationContext) -> {
 					if (LaLConfig.get.music.dark_forest_music) {
-						modificationContext.getEffects().setMusic(Musics.createGameMusic(LaLSounds.DARK_FOREST_MUSIC));
+                        modificationContext.getAttributes().set(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(Musics.createGameMusic(LaLSounds.DARK_FOREST_MUSIC)));
 					}
 				});
 
@@ -45,7 +47,7 @@ public final class LaLBiomeMusic {
 				BiomeSelectors.includeByKey(Biomes.THE_END),
 				(selectionContext, modificationContext) -> {
 					if (LaLConfig.get.music.main_end_island_music) {
-						modificationContext.getEffects().setMusic(Musics.createGameMusic(LaLSounds.MAIN_END_ISLAND_MUSIC));
+                        modificationContext.getAttributes().set(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(Musics.createGameMusic(LaLSounds.MAIN_END_ISLAND_MUSIC)));
 					}
 				});
 	}

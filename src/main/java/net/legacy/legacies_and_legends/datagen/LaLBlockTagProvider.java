@@ -16,21 +16,21 @@ public final class LaLBlockTagProvider extends FabricTagProvider.BlockTagProvide
 
     @Override
     protected void addTags(@NotNull HolderLookup.Provider arg) {
-        this.getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
+        this.valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(LaLBlocks.SAPPHIRE_BLOCK)
                 .add(LaLBlocks.SAPPHIRE_LANTERN)
                 .add(LaLBlocks.SAPPHIRE_ORE)
                 .add(LaLBlocks.DEEPSLATE_SAPPHIRE_ORE);
 
-        this.getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
+        this.valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(LaLBlocks.SAPPHIRE_BLOCK)
                 .add(LaLBlocks.SAPPHIRE_ORE)
                 .add(LaLBlocks.DEEPSLATE_SAPPHIRE_ORE);
 
-        this.getOrCreateTagBuilder(BlockTags.SLABS)
+        this.valueLookupBuilder(BlockTags.SLABS)
                 .add(LaLBlocks.WAND_PLATFORM);
 
-        this.getOrCreateTagBuilder(BlockTags.BEACON_BASE_BLOCKS)
+        this.valueLookupBuilder(BlockTags.BEACON_BASE_BLOCKS)
                 .add(LaLBlocks.SAPPHIRE_BLOCK);
     }
 }
