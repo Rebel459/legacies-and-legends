@@ -1,7 +1,6 @@
 package net.legacy.legacies_and_legends.mixin;
 
 import net.fabricmc.loader.api.FabricLoader;
-import net.legacy.legacies_and_legends.config.LaLConfig;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.tree.ClassNode;
@@ -15,7 +14,6 @@ public final class LegaciesAndLegendsMixinPlugin implements IMixinConfigPlugin {
 
     private boolean hasEnchantsAndExpeditions;
     private boolean hasFriendsAndFoes;
-    private boolean hasWilderWild;
 
     @Override
     public void onLoad(String mixinPackage) {

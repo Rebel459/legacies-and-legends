@@ -252,7 +252,7 @@ public class LaLConfig implements ConfigData {
 		public boolean totem_use_equip = true;
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
-		public boolean new_trim_materials = true;
+		public boolean echo_shard_trim = true;
         @ConfigEntry.Category("config")
         @ConfigEntry.Gui.Tooltip
         public boolean wandering_trader_trades = true;

@@ -5,7 +5,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceLocation;
 import net.ramixin.mixson.inline.EventContext;
 import net.ramixin.mixson.inline.Mixson;
 import net.ramixin.mixson.inline.MixsonEvent;
@@ -34,7 +33,7 @@ public final class LaLTrimItemModels {
          * Add trim materials to vanilla atlases.
          */
         registerAddTrimsToAtlas("armor_trims");
-        registerAddTrimsToAtlas("blocks");
+        registerAddTrimsToAtlas("items");
     }
 
     private static void registerAddTrimsToArmor(String armor, String armorMaterial) {

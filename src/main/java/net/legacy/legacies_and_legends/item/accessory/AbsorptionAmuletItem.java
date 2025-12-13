@@ -4,8 +4,10 @@ import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotReference;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.entity.impl.LaLPlayerDamageInterface;
+import net.legacy.legacies_and_legends.item.AmuletItem;
 import net.legacy.legacies_and_legends.registry.LaLItems;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -59,8 +61,8 @@ public class AbsorptionAmuletItem extends AmuletItem {
     }
 
     @Override
-    public Multimap<Holder<Attribute>, AttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, ResourceLocation resourceLocation) {
-        var modifiers = super.getModifiers(stack, slot, entity, resourceLocation);
+    public Multimap<Holder<Attribute>, AttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, Identifier identifier) {
+        var modifiers = super.getModifiers(stack, slot, entity, identifier);
 
         int armor = (int) (entity.getMaxHealth() - entity.getHealth()) / 2;
         int toughness = (int) (entity.getMaxHealth() - entity.getHealth()) / 4;

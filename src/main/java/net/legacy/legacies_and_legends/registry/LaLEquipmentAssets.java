@@ -4,7 +4,6 @@ import net.legacy.legacies_and_legends.LaLConstants;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 
 public interface LaLEquipmentAssets {

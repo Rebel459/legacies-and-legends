@@ -45,12 +45,12 @@ dependencies {
 	}
 
 	modImplementation("maven.modrinth:modmenu:$modmenu_version")
-	//modImplementation("maven.modrinth:rei:$rei_version")
-	//modImplementation("maven.modrinth:architectury-api:$architectury_version")
-	//modImplementation("maven.modrinth:friends-and-foes:$friendsandfoes_version")
-	//modImplementation("com.teamresourceful.resourcefullib:resourcefullib-fabric-1.21.5:$resourceful_version")
-	//modImplementation("dev.isxander:yet-another-config-lib:$yacl_version")
-	//modImplementation("net.fabricmc:fabric-language-kotlin:$kotlin_version")
+	modCompileOnly("maven.modrinth:rei:$rei_version")
+    modCompileOnly("maven.modrinth:architectury-api:$architectury_version")
+    modCompileOnly("maven.modrinth:friends-and-foes:$friendsandfoes_version")
+    modCompileOnly("com.teamresourceful.resourcefullib:resourcefullib-fabric-1.21.11:$resourceful_version")
+    modCompileOnly("dev.isxander:yet-another-config-lib:$yacl_version")
+    modCompileOnly("net.fabricmc:fabric-language-kotlin:$kotlin_version")
 
 }
 

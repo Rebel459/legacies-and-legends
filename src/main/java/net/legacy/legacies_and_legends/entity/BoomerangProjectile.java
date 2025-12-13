@@ -5,7 +5,6 @@ import net.legacy.legacies_and_legends.registry.LaLEntityTypes;
 import net.legacy.legacies_and_legends.registry.LaLItems;
 import net.legacy.legacies_and_legends.sound.LaLSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -30,6 +29,8 @@ import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.portal.TeleportTransition;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -42,7 +43,7 @@ public class BoomerangProjectile extends AbstractArrow {
     private static final EntityDataAccessor<Byte> ID_FEATHERWEIGHT = SynchedEntityData.defineId(BoomerangProjectile.class, EntityDataSerializers.BYTE);
     private static final EntityDataAccessor<Byte> ID_SHADOWSTEP = SynchedEntityData.defineId(BoomerangProjectile.class, EntityDataSerializers.BYTE);
     private static final EntityDataAccessor<Boolean> ID_FOIL = SynchedEntityData.defineId(BoomerangProjectile.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> WOBBLING = SynchedEntityData.defineId(BoomerangProjectile.class, EntityDataSerializers.BOOLEAN); Boomerang
+    private static final EntityDataAccessor<Boolean> WOBBLING = SynchedEntityData.defineId(BoomerangProjectile.class, EntityDataSerializers.BOOLEAN);
     private static final float WATER_INERTIA = 0.1F;
     private static final float ROTATION_AMOUNT = 55F;
     public int clientSideReturnBoomerangTickCount;
@@ -263,7 +264,7 @@ public class BoomerangProjectile extends AbstractArrow {
             EntityHitResult entityHitResult = (EntityHitResult)result;
             Entity entity = entityHitResult.getEntity();
             if (entity.getType().is(EntityTypeTags.REDIRECTABLE_PROJECTILE) && entity instanceof Projectile projectile) {
-                projectile.deflect(ProjectileDeflection.AIM_DEFLECT, this.getOwner(), this.getOwner(), true);
+                projectile.deflect(ProjectileDeflection.AIM_DEFLECT, this.getOwner(), this.owner, true);
             }
             this.onHitEntity(entityHitResult);
             this.level().gameEvent(GameEvent.PROJECTILE_LAND, result.getLocation(), GameEvent.Context.of(this, null));
@@ -311,7 +312,7 @@ public class BoomerangProjectile extends AbstractArrow {
             }
         }
 
-        this.deflect(ProjectileDeflection.REVERSE, entity, this.getOwner(), false);
+        this.deflect(ProjectileDeflection.REVERSE, entity, this.owner, false);
         this.setDeltaMovement(this.getDeltaMovement().multiply(0.02D, 0.2D, 0.02D));
         this.playSound(LaLSounds.BOOMERANG_HIT, 1F, 1F);
 
@@ -361,18 +362,18 @@ public class BoomerangProjectile extends AbstractArrow {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
+    protected void readAdditionalSaveData(ValueInput input) {
+        super.readAdditionalSaveData(input);
         //this.dealtDamage = tag.getBoolean("DealtDamage");
         //this.setWobbling(tag.getBoolean("Wobbling"));
         this.entityData.set(ID_REBOUND, this.getReboundFromItem(this.getPickupItemStackOrigin()));
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-        tag.putBoolean("DealtDamage", this.dealtDamage);
-        tag.putBoolean("Wobbling", this.isWobbling());
+    protected void addAdditionalSaveData(ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        output.putBoolean("DealtDamage", this.dealtDamage);
+        output.putBoolean("Wobbling", this.isWobbling());
     }
 
     @Override

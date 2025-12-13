@@ -8,7 +8,7 @@ import net.legacy.legacies_and_legends.registry.LaLItems;
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -24,9 +24,12 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
         super(output, registries);
     }
 
-    @NotNull
-    private TagKey<Item> getTag(String id) {
-        return TagKey.create(this.registryKey, Identifier.parse(id));
+    private TagKey<Item> getTag(String namespace, String path) {
+        return TagKey.create(this.registryKey, Identifier.fromNamespaceAndPath(namespace, path));
+    }
+
+    private ResourceKey<Item> getKey(String namespace, String path) {
+        return ResourceKey.create(this.registryKey, Identifier.fromNamespaceAndPath(namespace, path));
     }
 
     @Override
@@ -76,7 +79,7 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.TOTEM_OF_UNDYING)
                 .add(LaLItems.TOTEM_OF_TELEPORTATION)
                 .add(LaLItems.TOTEM_OF_RESURRECTION)
-                .addOptionalTag(Identifier.fromNamespaceAndPath("friendsandfoes","totems"));
+                .addOptionalTag(getTag("friendsandfoes","totems"));
 
         this.valueLookupBuilder(LaLItemTags.ARTIFACTS)
                 .add(Items.TURTLE_HELMET)
@@ -165,8 +168,8 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.IRON_INGOT);
         this.valueLookupBuilder(LaLItemTags.RESILIENCE_NECKLACE_MATERIALS)
                 .add(Items.IRON_INGOT);
-        this.valueLookupBuilder(LaLItemTags.REGENERATION_NECKLACE_MATERIALS)
-                .addOptional(Identifier.fromNamespaceAndPath("progression_reborn", "rose_ingot"));
+        this.builder(LaLItemTags.REGENERATION_NECKLACE_MATERIALS)
+                .addOptional(getKey("progression_reborn", "rose_ingot"));
         this.valueLookupBuilder(LaLItemTags.REGENERATION_NECKLACE_MATERIALS_FALLBACK)
                 .addTag(LaLItemTags.REGENERATION_NECKLACE_MATERIALS)
                 .add(Items.COPPER_INGOT);

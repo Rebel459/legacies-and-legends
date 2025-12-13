@@ -2,21 +2,14 @@ package net.legacy.legacies_and_legends.registry;
 
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.datagen.LaLModelProvider;
-import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.item.equipment.trim.TrimMaterials;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class LaLTrimMaterials {
     public static final List<String> TRIM_MATERIALS = List.of("echo_shard", "sapphire");
