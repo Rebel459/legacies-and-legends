@@ -47,7 +47,7 @@ public class BoomerangItem extends Item implements ProjectileItem {
 
     @Override
     public @NotNull ItemUseAnimation getUseAnimation(ItemStack stack) {
-        return ItemUseAnimation.SPEAR;
+        return ItemUseAnimation.TRIDENT;
     }
 
     @Override

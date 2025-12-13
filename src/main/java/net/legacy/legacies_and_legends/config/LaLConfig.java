@@ -129,8 +129,10 @@ public class LaLConfig implements ConfigData {
 		public boolean molten_pickaxe = true;
 		@ConfigEntry.Category("config")
 		public boolean prospector_shovel = true;
-		@ConfigEntry.Category("config")
-		public boolean withered_hoe = true;
+        @ConfigEntry.Category("config")
+        public boolean withered_hoe = true;
+        @ConfigEntry.Category("config")
+        public boolean frosted_spear = true;
 
 		@ConfigEntry.Category("config")
 		public boolean tablet_of_recall = true;
@@ -250,6 +252,9 @@ public class LaLConfig implements ConfigData {
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean totem_use_equip = true;
+        @ConfigEntry.Category("config")
+        @ConfigEntry.Gui.Tooltip
+        public boolean stackable_saddles = true;
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean echo_shard_trim = true;

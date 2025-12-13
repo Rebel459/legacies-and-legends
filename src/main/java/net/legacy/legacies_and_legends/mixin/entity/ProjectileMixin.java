@@ -5,6 +5,7 @@ import net.legacy.legacies_and_legends.registry.LaLItems;
 import net.legacy.legacies_and_legends.sound.LaLSounds;
 import net.legacy.legacies_and_legends.tag.LaLEntityTags;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileDeflection;
@@ -24,7 +25,12 @@ public abstract class ProjectileMixin {
 
     @Shadow public abstract @Nullable Entity getOwner();
 
-    @Shadow public abstract boolean deflect(ProjectileDeflection deflection, @Nullable Entity entity, @Nullable Entity owner, boolean deflectedByPlayer);
+    @Shadow
+    public abstract boolean deflect(ProjectileDeflection projectileDeflection, @org.jspecify.annotations.Nullable Entity entity, @org.jspecify.annotations.Nullable EntityReference<Entity> entityReference, boolean bl);
+
+    @Shadow
+    @org.jspecify.annotations.Nullable
+    protected EntityReference<Entity> owner;
 
     @Inject(method = "hitTargetOrDeflectSelf", at = @At(value = "HEAD"), cancellable = true)
     public void amuletOfDeflection(HitResult hitResult, CallbackInfoReturnable<ProjectileDeflection> cir) {
@@ -34,7 +40,7 @@ public abstract class ProjectileMixin {
             Entity entity = entityHitResult.getEntity();
             if (entity instanceof Player player && TrinketsApi.getTrinketComponent(player).isPresent() && TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.AMULET_OF_DEFLECTION)) {
                 ProjectileDeflection projectileDeflection = ProjectileDeflection.MOMENTUM_DEFLECT;
-                if (entity != this.lastDeflectedBy && this.deflect(projectileDeflection, entity, this.getOwner(), false)) {
+                if (entity != this.lastDeflectedBy && this.deflect(projectileDeflection, entity, this.owner, false)) {
                     this.lastDeflectedBy = entity;
                 }
                 if (!projectile.getType().is(LaLEntityTags.DAMAGELESS_PROJECTILES)) {

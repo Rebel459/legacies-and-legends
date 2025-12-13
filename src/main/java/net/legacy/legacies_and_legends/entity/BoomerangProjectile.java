@@ -23,6 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.GameType;
@@ -214,7 +215,8 @@ public class BoomerangProjectile extends AbstractArrow {
         this.setYRot(yRot + ((this.lookRot - yRot) * 0.25F));
 
         this.prevYaw = this.yaw;
-        this.yaw -= (float) (deltaPos.length() * 2F * ROTATION_AMOUNT);
+        float speed = (float) deltaPos.length();
+        this.yaw -= Math.min(speed, 1.0F) * 0.01F;
 
         if (this.yaw > 360F) {
             this.yaw -= 360F;

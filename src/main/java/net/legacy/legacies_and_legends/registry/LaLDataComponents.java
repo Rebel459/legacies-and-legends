@@ -34,9 +34,14 @@ public class LaLDataComponents {
                     builder.set(DataComponents.REPAIRABLE, new Repairable(holderGetter.getOrThrow(LaLItemTags.REGENERATION_NECKLACE_MATERIALS_FALLBACK)));
                 });
             }
-            if (LaLConfig.get.misc.new_trim_materials) {
+            if (LaLConfig.get.misc.echo_shard_trim) {
                 context.modify(Items.ECHO_SHARD, builder -> {
                     builder.set(DataComponents.PROVIDES_TRIM_MATERIAL, new ProvidesTrimMaterial(LaLTrimMaterials.ECHO));
+                });
+            }
+            if (LaLConfig.get.misc.stackable_saddles) {
+                context.modify(Items.SADDLE, builder -> {
+                    builder.set(DataComponents.MAX_STACK_SIZE, 16);
                 });
             }
         });

@@ -3,6 +3,7 @@ package net.legacy.legacies_and_legends.client;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
+import net.legacy.legacies_and_legends.registry.LaLBlocks;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 
 @Environment(EnvType.CLIENT)

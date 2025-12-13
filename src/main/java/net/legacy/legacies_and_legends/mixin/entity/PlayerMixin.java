@@ -37,6 +37,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.portal.TeleportTransition;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
@@ -183,11 +185,11 @@ public abstract class PlayerMixin implements LaLPlayerPlatformInterface, LaLPlay
     }
 
     @Inject(method = "killedEntity", at = @At(value = "TAIL"))
-    private void ringOfHunting(ServerLevel level, LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
+    private void ringOfHunting(ServerLevel serverLevel, LivingEntity livingEntity, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
         Player player = Player.class.cast(this);
         if (TrinketsApi.getTrinketComponent(player).isPresent() && TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_HUNTING)) {
             player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + 2);
-            level.playSound(player, player.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.PLAYERS, 1F, 1F);
+            serverLevel.playSound(player, player.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.PLAYERS, 1F, 1F);
             player.addTag("damaged_accessory");
         }
     }
@@ -304,12 +306,12 @@ public abstract class PlayerMixin implements LaLPlayerPlatformInterface, LaLPlay
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
-    public void readPlatformSaveData(CompoundTag tag, CallbackInfo info) {
-        this.lastPlatformPos = tag.read("LalLastPlatformPos", GlobalPos.CODEC);
+    public void readPlatformSaveData(ValueInput input, CallbackInfo ci) {
+        this.lastPlatformPos = input.read("LalLastPlatformPos", GlobalPos.CODEC);
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
-    public void addAdditionalSaveData(CompoundTag tag, CallbackInfo info) {
-        this.lastPlatformPos.ifPresent(pos -> tag.store("LalLastPlatformPos", GlobalPos.CODEC, pos));
+    public void addAdditionalSaveData(ValueOutput output, CallbackInfo ci) {
+        this.lastPlatformPos.ifPresent(pos -> output.store("LalLastPlatformPos", GlobalPos.CODEC, pos));
     }
 }

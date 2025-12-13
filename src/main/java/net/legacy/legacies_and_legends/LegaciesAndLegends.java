@@ -100,13 +100,6 @@ public class LegaciesAndLegends implements ModInitializer {
 					ResourcePackActivationType.ALWAYS_ENABLED
 			);
 		}
-		if (LaLConfig.get.misc.new_trim_materials) {
-			ResourceManagerHelper.registerBuiltinResourcePack(
-					LaLConstants.id("new_trim_materials"), modContainer.get(),
-					Component.translatable("pack.legacies_and_legends.new_trim_materials"),
-					ResourcePackActivationType.ALWAYS_ENABLED
-			);
-		}
 		if (!LaLConfig.get.structures.new_structures) {
 			ResourceManagerHelper.registerBuiltinResourcePack(
 					LaLConstants.id("no_new_structures"), modContainer.get(),

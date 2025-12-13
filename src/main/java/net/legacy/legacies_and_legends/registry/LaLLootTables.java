@@ -6,6 +6,7 @@ import net.frozenblock.lib.loot.impl.MutableLootTable;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.config.LaLConfig;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -1048,10 +1049,10 @@ public class LaLLootTables {
 	}
 
 	private static @NotNull ResourceKey<LootTable> registerEndReborn(String path) {
-		return ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath("end_reborn", path));
+		return ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("end_reborn", path));
 	}
 
 	private static @NotNull ResourceKey<LootTable> registerEnderscape(String path) {
-		return ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath("enderscape", path));
+		return ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("enderscape", path));
 	}
 }

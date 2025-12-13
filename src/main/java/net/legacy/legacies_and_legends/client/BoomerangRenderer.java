@@ -8,12 +8,18 @@ import net.fabricmc.api.Environment;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.entity.BoomerangProjectile;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.state.ThrownTridentRenderState;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.Unit;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class BoomerangRenderer extends EntityRenderer<BoomerangProjectile, BoomerangRenderState> {
@@ -26,13 +32,24 @@ public class BoomerangRenderer extends EntityRenderer<BoomerangProjectile, Boome
     }
 
     @Override
-    public void render(@NotNull BoomerangRenderState boomerangRenderState, @NotNull PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
+    public void submit(BoomerangRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
         poseStack.pushPose();
-        poseStack.mulPose(Axis.YP.rotationDegrees(boomerangRenderState.yRot - 45 + boomerangRenderState.spinTick * 20));
-        VertexConsumer vertexConsumer = ItemRenderer.getFoilBuffer(multiBufferSource, this.model.renderType(TEXTURE), false, boomerangRenderState.isFoil);
-        this.model.renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
+        poseStack.mulPose(Axis.YP.rotationDegrees(state.yRot - 45 + state.spinTick * 20));
+        List<RenderType> list = ItemRenderer.getFoilRenderTypes(this.model.renderType(TEXTURE), false, state.isFoil);
+        for (RenderType renderType : list) {
+            submitNodeCollector.submitModel(
+                    this.model,
+                    state,
+                    poseStack,
+                    renderType,
+                    state.lightCoords,
+                    OverlayTexture.NO_OVERLAY,
+                    state.outlineColor,
+                    null
+            );
+        }
         poseStack.popPose();
-        super.render(boomerangRenderState, poseStack, multiBufferSource, i);
+        super.submit(state, poseStack, submitNodeCollector, cameraRenderState);
     }
 
     @Override

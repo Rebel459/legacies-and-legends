@@ -91,6 +91,7 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(LaLItems.MOLTEN_PICKAXE)
                 .add(LaLItems.PROSPECTOR_SHOVEL)
                 .add(LaLItems.WITHERED_HOE)
+                .add(LaLItems.FROSTED_SPEAR)
                 .addTag(LaLItemTags.TABLETS)
                 .addTag(LaLItemTags.TOTEMS);
 
@@ -110,6 +111,8 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(LaLItems.TABLET_OF_DEAFENING)
                 .add(LaLItems.TABLET_OF_REVEALING);
 
+        this.valueLookupBuilder(LaLItemTags.CHILLING)
+                .add(LaLItems.FROSTED_SPEAR);
         this.valueLookupBuilder(LaLItemTags.PROSPECTING)
                 .add(LaLItems.PROSPECTOR_SHOVEL);
 
@@ -142,6 +145,8 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.EMERALD);
         this.valueLookupBuilder(LaLItemTags.WITHERED_TOOL_MATERIALS)
                 .add(Blocks.BLACKSTONE.asItem());
+        this.builder(LaLItemTags.FROSTED_TOOL_MATERIALS)
+                .addOptional(getKey("enchants_and_expeditions", "ice_shard"));
 
         this.valueLookupBuilder(LaLItemTags.HUNTING_RING_MATERIALS)
                 .add(Items.QUARTZ);
@@ -193,6 +198,8 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(LaLItems.PROSPECTOR_SHOVEL);
         this.valueLookupBuilder(ItemTags.HOES)
                 .add(LaLItems.WITHERED_HOE);
+        this.valueLookupBuilder(ItemTags.SPEARS)
+                .add(LaLItems.FROSTED_SPEAR);
 
         this.valueLookupBuilder(ItemTags.WEAPON_ENCHANTABLE)
                 .add(LaLItems.HOOK)

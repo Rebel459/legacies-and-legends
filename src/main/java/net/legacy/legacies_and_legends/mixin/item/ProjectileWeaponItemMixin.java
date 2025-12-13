@@ -39,7 +39,7 @@ public abstract class ProjectileWeaponItemMixin {
                         if (item instanceof BowItem bowItem) bowItem.shootProjectile(shooter, projectile, l, velocity, inaccuracy / 4, k, target);
                         else if (item instanceof CrossbowItem crossbowItem) crossbowItem.shootProjectile(shooter, projectile, l, velocity, inaccuracy / 4, k, target);
                     });
-                    weapon.hurtAndBreak(item.getDurabilityUse(itemStack), shooter, LivingEntity.getSlotForHand(hand));
+                    weapon.hurtAndBreak(item.getDurabilityUse(itemStack), shooter, hand);
                     if (weapon.isEmpty()) {
                         break;
                     }

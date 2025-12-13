@@ -57,9 +57,9 @@ public class WitheredHoeItem extends Item {
         if (predicate.test(context)) {
             Player player = context.getPlayer();
             level.playSound(player, blockPos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1F, 1F);
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 consumer.accept(context);
-                if (player != null) context.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
+                if (player != null) context.getItemInHand().hurtAndBreak(1, player, context.getHand());
             }
 
             return InteractionResult.SUCCESS;

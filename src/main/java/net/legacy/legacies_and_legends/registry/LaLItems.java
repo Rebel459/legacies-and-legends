@@ -397,12 +397,20 @@ public final class LaLItems {
             (properties) -> new ShovelItem(LaLToolMaterial.PROSPECTOR, 1.5F, -3F, properties), (
                     new Properties()
                             .rarity(Rarity.UNCOMMON)
-            ));
+            )
+    );
     public static final WitheredHoeItem WITHERED_HOE = register("withered_hoe",
             (properties) -> new WitheredHoeItem(LaLToolMaterial.WITHERED, -2F, -1F, properties), (
                     new Properties()
                             .rarity(Rarity.UNCOMMON)
-            ));
+            )
+    );
+    public static final Item FROSTED_SPEAR = register("frosted_spear",
+            Item::new,
+            new Properties()
+                    .rarity(Rarity.RARE)
+                    .spear(LaLToolMaterial.FROSTED, 0.75F, 0.82F, 0.7F, 4.5F, 10.0F, 9.0F, 5.1F, 13.75F, 4.6F)
+    );
 
     // Accessories
     public static final AccessoryItem RING_OF_HUNTING = register("ring_of_hunting",

@@ -67,7 +67,7 @@ public class WandItem extends Item {
             player.addTag("wand_platform_summoned");
             player.playSound(LaLSounds.WAND_SUMMON);
 
-            stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+            stack.hurtAndBreak(1, player, hand);
 
             stack.applyComponents(DataComponentPatch.builder()
                     .set(DataComponents.USE_COOLDOWN, new UseCooldown(1F))

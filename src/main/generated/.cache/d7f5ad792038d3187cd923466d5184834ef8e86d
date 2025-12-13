@@ -1,16 +1,18 @@
-// 1.21.5	-999999999-01-01T00:00:00	Legacies and Legends/Tags for minecraft:item
+// 1.21.11	-999999999-01-01T00:00:00	Legacies and Legends/Tags for minecraft:item
 27a1a8c6b174a7ec80bdb6b8c021880b1fe89631 data/frozenlib/tags/item/always_save_cooldowns.json
 6ea39a0616b738c25f59dfa4b9a54966a56443ca data/item_tooltips/tags/item/has_description.json
 6888f88a847d8f97db9592671947c7aa3b2cd4cf data/legacies_and_legends/tags/item/accessories.json
 0cc4317dfb9c58faca6737f018a8dc66bf2690e6 data/legacies_and_legends/tags/item/amulets.json
 fdab8ddd5529ae14b26bc1853b004131135318a4 data/legacies_and_legends/tags/item/archery_ring_materials.json
-896ae9d3505bbcd87b44dfb6bd025e0bda136e4d data/legacies_and_legends/tags/item/artifacts.json
+371356c943bc9dc6ef7c18b4250e9b7198483512 data/legacies_and_legends/tags/item/artifacts.json
 f2aa87f54e7951ea0cf81ac252c2abe279b0c936 data/legacies_and_legends/tags/item/bartering_necklace_materials.json
 4132ae09e40a14c7f2a6aa10b89e84926e8388bc data/legacies_and_legends/tags/item/boomerang_repair_materials.json
+2d35539a696ad466cd34a5e0848e23ddb21cff72 data/legacies_and_legends/tags/item/chilling.json
 4132ae09e40a14c7f2a6aa10b89e84926e8388bc data/legacies_and_legends/tags/item/cleaving_tool_materials.json
 736f4ef35696340b932cdb679c5a32e7b28db783 data/legacies_and_legends/tags/item/construction_ring_materials.json
 06e1a802d349eabc62ca4139ae7356f069c2af1b data/legacies_and_legends/tags/item/evasion_ring_materials.json
 8c4f379d97e2cd8c7f9297bf4fab7e60083ecb0d data/legacies_and_legends/tags/item/excavation_ring_materials.json
+bca38b0a0dc31549e7dd0e83c156ef71b58339e7 data/legacies_and_legends/tags/item/frosted_tool_materials.json
 e9c06034333adf428947a3fcbc822efb2d5162d3 data/legacies_and_legends/tags/item/has_use_effect.json
 4132ae09e40a14c7f2a6aa10b89e84926e8388bc data/legacies_and_legends/tags/item/hook_repair_materials.json
 42605e6989bb70ecdd5f2ded50fbb315b1c185ec data/legacies_and_legends/tags/item/hunting_ring_materials.json
@@ -49,5 +51,6 @@ d02225eec6f386a27631ce78fdc899aea4e8019e data/minecraft/tags/item/hoes.json
 abe224953b116621f5f6d35fa39030b29f6b1fdb data/minecraft/tags/item/leg_armor.json
 8b15c4208812c436a4d858e28422f6ca206ae011 data/minecraft/tags/item/pickaxes.json
 23eb54c19b3c435e3d5c53ed874c9c3281a21949 data/minecraft/tags/item/shovels.json
+2d35539a696ad466cd34a5e0848e23ddb21cff72 data/minecraft/tags/item/spears.json
 b66a61d0f76c2ba5e40a9924f99a0201d1225071 data/minecraft/tags/item/swords.json
 3a79418f92408fbc528af533dbbbdf074ff09dce data/minecraft/tags/item/trim_materials.json

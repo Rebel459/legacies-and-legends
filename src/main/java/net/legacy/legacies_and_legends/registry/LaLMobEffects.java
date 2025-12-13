@@ -6,6 +6,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
@@ -27,6 +28,11 @@ public class LaLMobEffects {
             "warping",
                     new MobEffect(MobEffectCategory.NEUTRAL, 9337599)
     );
+
+    public static void applyFreezing(LivingEntity entity, int duration) {
+        entity.addEffect(new MobEffectInstance(LaLMobEffects.FREEZING, duration));
+        if (entity.getTicksFrozen() < duration) entity.setTicksFrozen(duration);
+    }
 
     public static void init() {
     }

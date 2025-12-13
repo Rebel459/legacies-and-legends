@@ -20,6 +20,7 @@ public class LaLItemTags {
     public static final TagKey<Item> MOLTEN_TOOL_MATERIALS = bind("molten_tool_materials");
     public static final TagKey<Item> PROSPECTOR_TOOL_MATERIALS = bind("prospector_tool_materials");
     public static final TagKey<Item> WITHERED_TOOL_MATERIALS = bind("withered_tool_materials");
+    public static final TagKey<Item> FROSTED_TOOL_MATERIALS = bind("frosted_tool_materials");
 
     public static final TagKey<Item> HUNTING_RING_MATERIALS = bind("hunting_ring_materials");
     public static final TagKey<Item> EVASION_RING_MATERIALS = bind("evasion_ring_materials");
@@ -54,6 +55,7 @@ public class LaLItemTags {
 
     public static final TagKey<Item> HAS_USE_EFFECT = bind("has_use_effect");
 
+    public static final TagKey<Item> CHILLING = bind("chilling");
     public static final TagKey<Item> PROSPECTING = bind("prospecting");
 
     public static final TagKey<Item> VARIABLE_REPAIR_COST = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("enchants_and_expeditions", "variable_repair_cost"));
