@@ -1,10 +1,14 @@
 package net.legacy.legacies_and_legends.registry;
 
 import net.legacy.legacies_and_legends.LaLConstants;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -29,9 +33,11 @@ public class LaLMobEffects {
                     new MobEffect(MobEffectCategory.NEUTRAL, 9337599)
     );
 
-    public static void applyFreezing(LivingEntity entity, int duration) {
-        entity.addEffect(new MobEffectInstance(LaLMobEffects.FREEZING, duration));
-        if (entity.getTicksFrozen() < duration) entity.setTicksFrozen(duration);
+    public static void applyFreezing(ServerLevel level, LivingEntity attacked, LivingEntity attacker, int duration) {
+        attacked.addEffect(new MobEffectInstance(LaLMobEffects.FREEZING, duration));
+        level.sendParticles(ParticleTypes.SNOWFLAKE, attacked.getX(), attacked.getRandomY(), attacked.getZ(), 10, 0, -1, 0, 0.5);
+        level.playSound(attacked, attacked.blockPosition(), SoundEvents.SNOW_HIT, attacker.getSoundSource());
+        if (attacked.getTicksFrozen() < duration) attacked.setTicksFrozen(duration);
     }
 
     public static void init() {

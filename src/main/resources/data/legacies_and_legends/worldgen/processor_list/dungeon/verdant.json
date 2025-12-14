@@ -15,32 +15,6 @@
           "output_state":{
             "Name":"minecraft:stone_bricks"
           }
-        },
-        {
-          "location_predicate":{
-            "predicate_type":"minecraft:always_true"
-          },
-          "input_predicate":{
-            "predicate_type":"minecraft:random_block_match",
-            "block":"minecraft:iron_chain",
-            "probability":1.00
-          },
-          "output_state":{
-            "Name":"minecraft:oxidized_copper_chain"
-          }
-        },
-        {
-          "location_predicate":{
-            "predicate_type":"minecraft:always_true"
-          },
-          "input_predicate":{
-            "predicate_type":"minecraft:random_block_match",
-            "block":"minecraft:iron_lantern",
-            "probability":1.00
-          },
-          "output_state":{
-            "Name":"minecraft:oxidized_copper_lantern"
-          }
         }
       ]
     },
@@ -56,7 +30,7 @@
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
           },
-          "output_block": "minecraft:stone_slab"
+          "output_block": "minecraft:polished_andesite_slab"
         },
         {
           "input_predicate": {
@@ -115,6 +89,28 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_block": "minecraft:mossy_stone_brick_stairs"
+        },
+        {
+          "input_predicate": {
+            "block": "minecraft:iron_chain",
+            "predicate_type": "minecraft:random_block_match",
+            "probability": 1.0
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "output_block": "minecraft:oxidized_copper_chain"
+        },
+        {
+          "input_predicate": {
+            "block": "minecraft:lantern",
+            "predicate_type": "minecraft:random_block_match",
+            "probability": 1.0
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "output_block": "minecraft:oxidized_copper_lantern"
         }
       ]
     },

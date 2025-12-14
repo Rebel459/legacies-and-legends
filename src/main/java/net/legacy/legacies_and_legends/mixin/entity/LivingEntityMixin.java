@@ -36,9 +36,9 @@ public abstract class LivingEntityMixin {
             if (stack.isEnchanted()) {
                 ignoredDamage = EnchantmentHelper.modifyDamage(serverLevel, stack, attacked, damageSource, 0F);
             }
-            int duration = (int) (Math.min(f - ignoredDamage, 1) - 1);
+            int duration = (int) Math.min(f - ignoredDamage, 0);
             duration = Math.min(duration, 15) * 20;
-            LaLMobEffects.applyFreezing(attacked, duration);
+            LaLMobEffects.applyFreezing(serverLevel, attacked, attacker, duration);
         }
     }
 }

@@ -83,9 +83,56 @@
             }
           ]
        },
-       {
-          "processor_type": "minecraft:protected_blocks",
-          "value": "#legacies_and_legends:dungeon_protected"
-       }
+      {
+        "processor_type":"minecraft:rule",
+        "rules":[
+          {
+            "location_predicate":{
+              "predicate_type":"minecraft:always_true"
+            },
+            "input_predicate":{
+              "predicate_type":"minecraft:random_block_match",
+              "block":"minecraft:cobblestone",
+              "probability":0.40
+            },
+            "output_state":{
+              "Name":"minecraft:mossy_cobblestone"
+            }
+          },
+          {
+            "location_predicate":{
+              "predicate_type":"minecraft:always_true"
+            },
+            "input_predicate":{
+              "predicate_type":"minecraft:random_block_match",
+              "block":"minecraft:chest",
+              "probability":0.40
+            },
+            "output_state":{
+              "Name":"minecraft:air"
+            }
+          }
+        ]
+      },
+      {
+        "processor_type": "frozenlib:block_state_respecting_rule",
+        "rules": [
+          {
+            "input_predicate": {
+              "block": "minecraft:cobblestone_stairs",
+              "predicate_type": "minecraft:random_block_match",
+              "probability": 0.4
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            },
+            "output_block": "minecraft:mossy_cobblestone_stairs"
+          }
+        ]
+      },
+      {
+        "processor_type": "minecraft:protected_blocks",
+        "value": "#legacies_and_legends:dungeon_protected"
+      }
     ]
  }
