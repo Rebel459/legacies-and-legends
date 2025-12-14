@@ -140,60 +140,6 @@ public abstract class PlayerMixin implements LaLPlayerPlatformInterface, LaLPlay
         }
     }
 
-    @Inject(method = "hurtServer", at = @At(value = "HEAD"), cancellable = true)
-    private void warpBeforeProjectile(ServerLevel level, DamageSource damageSource, float amount, CallbackInfoReturnable<Boolean> cir) {
-        Player player = Player.class.cast(this);
-        if (player.hasEffect(LaLMobEffects.WARPING) && damageSource.is(DamageTypeTags.IS_PROJECTILE)) {
-            double d = player.getX() + (player.getRandom().nextDouble() - 0.5) * (double) 32;
-            double e = Mth.clamp(player.getY() + (player.getRandom().nextDouble() - 0.5) * (double) 32, player.level.getMinY(), (player.level.getMinY() + player.level.getHeight() - 1));
-            double f = player.getZ() + (player.getRandom().nextDouble() - 0.5) * (double) 32;
-            if (player.isPassenger()) {
-                player.stopRiding();
-            }
-
-            Vec3 vec3 = player.position();
-            boolean teleported = false;
-            for (int i = 0; i < 64; i++) {
-                if (player.randomTeleport(d, e, f, true)) {
-                    teleported = true;
-                }
-                if (teleported) break;
-            }
-            if (teleported) {
-                player.level.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(player));
-                level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
-            }
-
-            cir.setReturnValue(false);
-        }
-    }
-
-    @Inject(method = "actuallyHurt", at = @At(value = "HEAD"))
-    private void warpWhenHurt(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo ci) {
-        Player player = Player.class.cast(this);
-        if (player.hasEffect(LaLMobEffects.WARPING) && damageSource.isDirect()) {
-            double d = player.getX() + (player.getRandom().nextDouble() - 0.5) * (double) 16;
-            double e = Mth.clamp(player.getY() + (player.getRandom().nextDouble() - 0.5) * (double) 16, player.level.getMinY(), (player.level.getMinY() + player.level.getHeight() - 1));
-            double f = player.getZ() + (player.getRandom().nextDouble() - 0.5) * (double) 16;
-            if (player.isPassenger()) {
-                player.stopRiding();
-            }
-
-            Vec3 vec3 = player.position();
-            boolean teleported = false;
-            for (int i = 0; i < 64; i++) {
-                if (player.randomTeleport(d, e, f, true)) {
-                    teleported = true;
-                }
-                if (teleported) break;
-            }
-            if (teleported) {
-                player.level.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(player));
-                level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
-            }
-        }
-    }
-
     @Inject(method = "killedEntity", at = @At(value = "TAIL"))
     private void ringOfHunting(ServerLevel serverLevel, LivingEntity livingEntity, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
         Player player = Player.class.cast(this);

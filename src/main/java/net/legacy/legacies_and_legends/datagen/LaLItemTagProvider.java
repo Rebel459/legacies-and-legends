@@ -147,6 +147,8 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Blocks.BLACKSTONE.asItem());
         this.builder(LaLItemTags.FROSTED_TOOL_MATERIALS)
                 .addOptional(getKey("enchants_and_expeditions", "ice_shard"));
+        this.valueLookupBuilder(LaLItemTags.FROSTED_TOOL_MATERIALS_FALLBACK)
+                .add(Blocks.PACKED_ICE.asItem());
 
         this.valueLookupBuilder(LaLItemTags.HUNTING_RING_MATERIALS)
                 .add(Items.QUARTZ);

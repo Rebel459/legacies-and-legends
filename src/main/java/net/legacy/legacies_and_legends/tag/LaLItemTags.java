@@ -21,6 +21,7 @@ public class LaLItemTags {
     public static final TagKey<Item> PROSPECTOR_TOOL_MATERIALS = bind("prospector_tool_materials");
     public static final TagKey<Item> WITHERED_TOOL_MATERIALS = bind("withered_tool_materials");
     public static final TagKey<Item> FROSTED_TOOL_MATERIALS = bind("frosted_tool_materials");
+    public static final TagKey<Item> FROSTED_TOOL_MATERIALS_FALLBACK = bind("frosted_tool_materials_fallback");
 
     public static final TagKey<Item> HUNTING_RING_MATERIALS = bind("hunting_ring_materials");
     public static final TagKey<Item> EVASION_RING_MATERIALS = bind("evasion_ring_materials");
