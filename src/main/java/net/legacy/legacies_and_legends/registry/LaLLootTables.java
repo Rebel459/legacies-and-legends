@@ -418,6 +418,31 @@ public class LaLLootTables {
 
 			// Withered Hoe Loot Table
 
+            if (BuiltInLootTables.IGLOO_CHEST.equals(id) && LaLConfig.get.artifacts.frosted_spear && LaLConfig.get.structures.dungeon_overhaul) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(8))
+                        .add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
+            else if (BuiltInLootTables.IGLOO_CHEST.equals(id) && LaLConfig.get.artifacts.frosted_spear && !LaLConfig.get.structures.dungeon_overhaul) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(2))
+                        .add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
+            if (LaLLootTables.DUNGEON_CHEST_FROZEN.equals(id) && LaLConfig.get.artifacts.frosted_spear) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(11))
+                        .add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
+            if (LaLLootTables.DUNGEON_CHEST_SIMPLE.equals(id) && LaLConfig.get.artifacts.frosted_spear) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(17))
+                        .add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
+
 			// ARTIFACTS - Totems
 
 			if (LaLLootTables.DUNGEON_CHEST_DEEP.equals(id) && LaLConfig.get.accessories.totem_of_resurrection) {

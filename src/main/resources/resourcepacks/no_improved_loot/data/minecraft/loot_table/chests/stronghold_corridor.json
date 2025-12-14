@@ -141,7 +141,22 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:saddle"
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 5.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:leather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:copper_horse_armor"
         },
         {
           "type": "minecraft:item",
@@ -187,21 +202,6 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:eye_armor_trim_smithing_template"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:empty",
-          "weight": 90
-        },
-        {
-          "type": "minecraft:loot_table",
-          "value": "legacies_and_legends:books/the_end",
-          "weight": 10
         }
       ],
       "rolls": 1.0

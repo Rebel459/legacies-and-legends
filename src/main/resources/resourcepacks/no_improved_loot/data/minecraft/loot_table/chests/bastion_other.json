@@ -389,7 +389,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:chain"
+          "name": "minecraft:iron_chain"
         },
         {
           "type": "minecraft:item",
@@ -540,21 +540,6 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:netherite_upgrade_smithing_template"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:empty",
-          "weight": 95
-        },
-        {
-          "type": "minecraft:loot_table",
-          "value": "legacies_and_legends:books/remains",
-          "weight": 5
         }
       ],
       "rolls": 1.0

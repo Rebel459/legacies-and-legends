@@ -118,8 +118,24 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:saddle",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 5.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:leather",
           "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:copper_horse_armor",
+          "weight": 15
         },
         {
           "type": "minecraft:item",

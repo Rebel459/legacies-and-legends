@@ -1,6 +1,7 @@
 package net.legacy.legacies_and_legends.registry;
 
 import net.frozenblock.lib.item.api.FrozenCreativeTabs;
+import net.legacy.legacies_and_legends.LegaciesAndLegends;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
@@ -23,10 +24,11 @@ public class LaLCreativeInventorySorting {
 		addAfterInToolsAndUtilities(LaLItems.WOODEN_BUCKET, LaLItems.COAL_BUCKET);
 		addAfterInToolsAndUtilities(LaLItems.COAL_BUCKET, LaLItems.CHARCOAL_BUCKET);
 
-		addAfterInToolsAndUtilities(Items.NETHERITE_HOE, LaLItems.PROSPECTOR_SHOVEL);
+        if (LegaciesAndLegends.isEndRebornLoaded) addAfterInToolsAndUtilities(Items.DIAMOND_HOE, LaLItems.PROSPECTOR_SHOVEL);
+        else addAfterInToolsAndUtilities(Items.NETHERITE_HOE, LaLItems.PROSPECTOR_SHOVEL);
 		addAfterInToolsAndUtilities(LaLItems.PROSPECTOR_SHOVEL, LaLItems.MOLTEN_PICKAXE);
 		addAfterInToolsAndUtilities(LaLItems.MOLTEN_PICKAXE, LaLItems.CLEAVING_BATTLEAXE);
-		addAfterInToolsAndUtilities(LaLItems.CLEAVING_BATTLEAXE, LaLItems.WITHERED_HOE);
+        addAfterInToolsAndUtilities(LaLItems.CLEAVING_BATTLEAXE, LaLItems.WITHERED_HOE);
 
 		addAfterInToolsAndUtilities(LaLItems.WITHERED_HOE, LaLItems.TABLET_OF_RECALL);
 		addAfterInToolsAndUtilities(LaLItems.TABLET_OF_RECALL, LaLItems.TABLET_OF_HASTE);
@@ -72,8 +74,16 @@ public class LaLCreativeInventorySorting {
 		addAfterInFoodAndDrinks(Items.BEETROOT, LaLItems.ENCHANTED_BEETROOT);
 		addAfterInFoodAndDrinks(Items.BEETROOT_SOUP, LaLItems.ENCHANTED_BEETROOT_SOUP);
 
-		addAfterInCombat(Items.NETHERITE_SWORD, LaLItems.VERDANT_SWORD);
-		addAfterInCombat(Items.NETHERITE_AXE, LaLItems.CLEAVING_BATTLEAXE);
+        if (LegaciesAndLegends.isEndRebornLoaded) {
+            addAfterInCombat(Items.DIAMOND_SWORD, LaLItems.VERDANT_SWORD);
+            addAfterInCombat(Items.DIAMOND_AXE, LaLItems.CLEAVING_BATTLEAXE);
+            addAfterInCombat(Items.DIAMOND_SPEAR, LaLItems.FROSTED_SPEAR);
+        }
+        else {
+            addAfterInCombat(Items.NETHERITE_SWORD, LaLItems.VERDANT_SWORD);
+            addAfterInCombat(Items.NETHERITE_AXE, LaLItems.CLEAVING_BATTLEAXE);
+            addAfterInCombat(Items.NETHERITE_SPEAR, LaLItems.FROSTED_SPEAR);
+        }
 
 		addBeforeInCombat(Items.MACE, LaLItems.KNIFE);
 		addBeforeInCombat(Items.TRIDENT, LaLItems.HOOK);

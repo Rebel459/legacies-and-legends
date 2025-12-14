@@ -115,11 +115,15 @@
           "functions": [
             {
               "add": false,
-              "count": 1.0,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 5.0,
+                "min": 1.0
+              },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:saddle",
+          "name": "minecraft:leather",
           "weight": 2
         },
         {
@@ -420,26 +424,6 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:silence_armor_trim_smithing_template"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:empty",
-          "weight": 140
-        },
-        {
-          "type": "minecraft:loot_table",
-          "value": "legacies_and_legends:books/the_warden",
-          "weight": 6
-        },
-        {
-          "type": "minecraft:loot_table",
-          "value": "legacies_and_legends:books/ward",
-          "weight": 4
         }
       ],
       "rolls": 1.0

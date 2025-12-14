@@ -26,7 +26,8 @@ public class LegaciesAndLegends implements ModInitializer {
 	public static boolean isWilderWildLoaded = false;
 	public static boolean isVariantsAndVenturesLoaded = false;
 	public static boolean isTrailierTalesLoaded = false;
-	public static boolean isEnchantsAndExpeditionsLoaded = false;
+    public static boolean isEnchantsAndExpeditionsLoaded = false;
+    public static boolean isEndRebornLoaded = false;
 	public static boolean isEnderscapeLoaded = false;
 
 	@Override
@@ -135,9 +136,12 @@ public class LegaciesAndLegends implements ModInitializer {
 					ResourcePackActivationType.ALWAYS_ENABLED
 			);
 		}
-		if (FabricLoader.getInstance().isModLoaded("enchants_and_expeditions")) {
-			isEnchantsAndExpeditionsLoaded = true;
-		}
+        if (FabricLoader.getInstance().isModLoaded("enchants_and_expeditions")) {
+            isEnchantsAndExpeditionsLoaded = true;
+        }
+        if (FabricLoader.getInstance().isModLoaded("end_reborn")) {
+            isEndRebornLoaded = true;
+        }
 		if (FabricLoader.getInstance().isModLoaded("progression_reborn")) {
 			isProgressionRebornLoaded = true;
 		}
