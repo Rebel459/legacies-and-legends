@@ -184,8 +184,40 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "wilderwild:maple_sapling",
-          "weight": 3
+          "name": "wilderwild:red_maple_sapling",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "wilderwild:orange_maple_sapling",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "wilderwild:yellow_maple_sapling",
+          "weight": 1
         },
         {
           "type": "minecraft:item",
