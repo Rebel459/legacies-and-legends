@@ -30,7 +30,7 @@ public class LaLCreativeInventorySorting {
 		addAfterInToolsAndUtilities(LaLItems.MOLTEN_PICKAXE, LaLItems.CLEAVING_BATTLEAXE);
         addAfterInToolsAndUtilities(LaLItems.CLEAVING_BATTLEAXE, LaLItems.WITHERED_HOE);
 
-		addAfterInToolsAndUtilities(LaLItems.WITHERED_HOE, LaLItems.TABLET_OF_RECALL);
+		addBeforeInToolsAndUtilities(Items.BUCKET, LaLItems.TABLET_OF_RECALL);
 		addAfterInToolsAndUtilities(LaLItems.TABLET_OF_RECALL, LaLItems.TABLET_OF_HASTE);
 		addAfterInToolsAndUtilities(LaLItems.TABLET_OF_HASTE, LaLItems.TABLET_OF_REVEALING);
 		addAfterInToolsAndUtilities(LaLItems.TABLET_OF_REVEALING, LaLItems.TABLET_OF_CHANNELING);
@@ -134,6 +134,10 @@ public class LaLCreativeInventorySorting {
 	private static void addAfterInToolsAndUtilities(ItemLike comparedItem, ItemLike item) {
 		FrozenCreativeTabs.addAfter(comparedItem, item, CreativeModeTabs.TOOLS_AND_UTILITIES);
 	}
+
+    private static void addBeforeInToolsAndUtilities(ItemLike comparedItem, ItemLike item) {
+        FrozenCreativeTabs.addBefore(comparedItem, item, CreativeModeTabs.TOOLS_AND_UTILITIES);
+    }
 
 	private static void addBeforeInIngredients(ItemLike comparedItem, ItemLike item) {
 		FrozenCreativeTabs.addBefore(comparedItem, item, CreativeModeTabs.INGREDIENTS);
