@@ -436,7 +436,7 @@ public class LaLLootTables {
                         .add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
                 tableBuilder.withPool(pool);
             }
-            if (LaLLootTables.DUNGEON_CHEST_SIMPLE.equals(id) && LaLConfig.get.artifacts.frosted_spear) {
+            if (BuiltInLootTables.SIMPLE_DUNGEON.equals(id) && LaLConfig.get.artifacts.frosted_spear) {
                 pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                         .add(EmptyLootItem.emptyItem().setWeight(17))
                         .add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));

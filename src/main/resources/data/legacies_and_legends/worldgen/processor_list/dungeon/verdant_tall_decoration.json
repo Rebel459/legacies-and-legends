@@ -13,7 +13,10 @@
                 "probability":0.25
               },
               "output_state":{
-                "Name":"minecraft:skeleton_skull"
+                "Name":"minecraft:skeleton_skull",
+                "Properties": {
+                  "rotation": "4"
+                }
               }
             },
             {
