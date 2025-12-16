@@ -23,8 +23,6 @@ public abstract class ProjectileMixin {
 
     @Shadow private @Nullable Entity lastDeflectedBy;
 
-    @Shadow public abstract @Nullable Entity getOwner();
-
     @Shadow
     public abstract boolean deflect(ProjectileDeflection projectileDeflection, @org.jspecify.annotations.Nullable Entity entity, @org.jspecify.annotations.Nullable EntityReference<Entity> entityReference, boolean bl);
 
