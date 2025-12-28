@@ -32,7 +32,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	include modApi("maven.modrinth:frozenlib:${project.frozenlib_version}")
-    include modApi ("net.legacy.legacies_and_legends:TrimPatcher-1.0-pre1-mc1.21.11")
+    include modApi ("net.legacy.legacies_and_legends:TrimPatcher-1.0-pre2-mc1.21.11")
     //include modApi("maven.modrinth:trim-patcher:${project.patcher_version}")
 	include modImplementation("maven.modrinth:item-tooltips:${project.tooltips_version}")
     include modImplementation ("net.legacy.legacies_and_legends:trinkets-3.11.0.1")

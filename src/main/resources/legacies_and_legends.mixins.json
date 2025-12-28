@@ -31,7 +31,6 @@
     "defaultRequire": 1
   },
   "client": [
-    "client.BlockModelWrapperMixin",
     "client.MinecraftMixin"
   ]
 }

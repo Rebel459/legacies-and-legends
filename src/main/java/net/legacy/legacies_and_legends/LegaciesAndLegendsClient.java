@@ -13,6 +13,7 @@ import net.legacy.legacies_and_legends.client.LaLEntityRenderers;
 import net.legacy.legacies_and_legends.client.LaLModelLayers;
 import net.legacy.legacies_and_legends.client.LaLStructureMusic;
 import net.legacy.legacies_and_legends.config.LaLConfig;
+import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.network.chat.Component;
 
 import java.util.Optional;
@@ -29,7 +30,7 @@ public final class LegaciesAndLegendsClient implements ClientModInitializer {
         LaLBlockRenderLayers.init();
         LaLStructureMusic.init();
 
-        TrimPaths.addLeggingsPath("strides");
+        TrimPaths.addPath("travelling_strides", ItemModelGenerators.TRIM_PREFIX_LEGGINGS);
 
         if (LaLConfig.get.music.music_and_melody) {
             ResourceManagerHelper.registerBuiltinResourcePack(
