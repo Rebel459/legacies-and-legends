@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
+import net.frozenblock.trimpatcher.client.util.TrimPaths;
 import net.legacy.legacies_and_legends.client.LaLBlockRenderLayers;
 import net.legacy.legacies_and_legends.client.LaLEntityRenderers;
 import net.legacy.legacies_and_legends.client.LaLModelLayers;
@@ -28,11 +29,8 @@ public final class LegaciesAndLegendsClient implements ClientModInitializer {
         LaLBlockRenderLayers.init();
         LaLStructureMusic.init();
 
-        ResourceManagerHelper.registerBuiltinResourcePack(
-                LaLConstants.id("asset_overrides"), modContainer.get(),
-                Component.translatable("pack.legacies_and_legends.asset_overrides"),
-                ResourcePackActivationType.ALWAYS_ENABLED
-        );
+        TrimPaths.addLeggingsPath("strides");
+
         if (LaLConfig.get.music.music_and_melody) {
             ResourceManagerHelper.registerBuiltinResourcePack(
                     LaLConstants.id("music_and_melody"), modContainer.get(),

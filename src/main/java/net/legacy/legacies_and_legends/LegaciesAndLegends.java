@@ -40,7 +40,6 @@ public class LegaciesAndLegends implements ModInitializer {
 		LaLJukeboxSongs.init();
 		LaLSounds.init();
 		LaLFuelRegistry.registerFuels();
-		LaLTrimItemModels.init();
 		LaLEntityTypes.init();
 		LaLConfig.init();
 		LaLEnchantmentEffects.register();

@@ -128,7 +128,7 @@
   "item.legacies_and_legends.amulet_of_obsidian": "Amulet of Obsidian",
   "item.legacies_and_legends.amulet_of_obsidian.desc": "Provides temporary immunity to fire",
 
-  "trim_material.legacies_and_legends.echo_shard": "Echo Material",
+  "trim_material.legacies_and_legends.echo": "Echo Material",
   "trim_material.legacies_and_legends.sapphire": "Sapphire Material",
 
   "enchantment.legacies_and_legends.shatter": "Shatter",
@@ -183,7 +183,6 @@
 
   "subtitles.enchantment.shatter": "Target is shattered",
 
-  "pack.legacies_and_legends.asset_overrides": "Legacies and Legends Asset Overrides",
   "pack.legacies_and_legends.dungeon_overhaul": "Dungeon Overhaul",
   "pack.legacies_and_legends.swamp_hut_variants": "Swamp Hut Variants",
   "pack.legacies_and_legends.reworked_buried_treasure": "Reworked Buried Treasure",
