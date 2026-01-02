@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.frozenblock.lib.loot.api.LootTableModificationApi;
 import net.frozenblock.lib.loot.impl.MutableLootTable;
 import net.legacy.legacies_and_legends.LaLConstants;
+import net.legacy.legacies_and_legends.LegaciesAndLegends;
 import net.legacy.legacies_and_legends.config.LaLConfig;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -261,7 +262,7 @@ public class LaLLootTables {
 						.add(NestedLootTable.lootTableReference(LaLLootTables.END_RUINS_ACCESSORIES).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
-			if (BuiltInLootTables.END_CITY_TREASURE.equals(id)) {
+			if (BuiltInLootTables.END_CITY_TREASURE.equals(id) && (!LegaciesAndLegends.isEnderscapeLoaded || !LaLConfig.get.integrations.enderscape)) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(28))
 						.add(NestedLootTable.lootTableReference(LaLLootTables.END_GENERAL_ACCESSORIES).setWeight(1))
@@ -452,7 +453,7 @@ public class LaLLootTables {
 				tableBuilder.withPool(pool);
 			}
 
-			if (BuiltInLootTables.END_CITY_TREASURE.equals(id) && LaLConfig.get.accessories.totem_of_teleportation) {
+			if (BuiltInLootTables.END_CITY_TREASURE.equals(id) && (!LegaciesAndLegends.isEnderscapeLoaded || !LaLConfig.get.integrations.enderscape) && LaLConfig.get.accessories.totem_of_teleportation) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(20))
 						.add(LootItem.lootTableItem(LaLItems.TOTEM_OF_TELEPORTATION).setWeight(1));
@@ -579,7 +580,7 @@ public class LaLLootTables {
 						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
-			if (BuiltInLootTables.END_CITY_TREASURE.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
+			if (BuiltInLootTables.END_CITY_TREASURE.equals(id) && (!LegaciesAndLegends.isEnderscapeLoaded || !LaLConfig.get.integrations.enderscape) && LaLConfig.get.artifacts.tablet_of_recall) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(29))
 						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
@@ -625,7 +626,7 @@ public class LaLLootTables {
 				tableBuilder.withPool(pool);
 			}
 
-			if (BuiltInLootTables.END_CITY_TREASURE.equals(id) && LaLConfig.get.artifacts.tablet_of_warping) {
+			if (BuiltInLootTables.END_CITY_TREASURE.equals(id) && (!LegaciesAndLegends.isEnderscapeLoaded || !LaLConfig.get.integrations.enderscape) && LaLConfig.get.artifacts.tablet_of_warping) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(14))
 						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_WARPING).setWeight(1));
@@ -798,7 +799,7 @@ public class LaLLootTables {
 				tableBuilder.withPool(pool);
 			}
 
-			if (BuiltInLootTables.END_CITY_TREASURE.equals(id) && LaLConfig.get.loot.new_music_discs) {
+			if (BuiltInLootTables.END_CITY_TREASURE.equals(id) && (!LegaciesAndLegends.isEnderscapeLoaded || !LaLConfig.get.integrations.enderscape) && LaLConfig.get.loot.new_music_discs) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(20))
 						.add(LootItem.lootTableItem(LaLItems.MUSIC_DISC_SHULKER).setWeight(1));
