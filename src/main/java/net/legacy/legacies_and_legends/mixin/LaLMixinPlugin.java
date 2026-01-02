@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
-public final class LegaciesAndLegendsMixinPlugin implements IMixinConfigPlugin {
+public final class LaLMixinPlugin implements IMixinConfigPlugin {
 
     private boolean hasEnchantsAndExpeditions;
     private boolean hasFriendsAndFoes;

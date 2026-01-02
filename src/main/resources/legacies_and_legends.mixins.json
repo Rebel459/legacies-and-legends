@@ -2,7 +2,7 @@
   "required": true,
   "package": "net.legacy.legacies_and_legends.mixin",
   "compatibilityLevel": "JAVA_21",
-  "plugin": "net.legacy.legacies_and_legends.mixin.LegaciesAndLegendsMixinPlugin",
+  "plugin": "net.legacy.legacies_and_legends.mixin.LaLMixinPlugin",
   "mixins": [
     "block.BlockMixin",
     "block.PowderSnowBlockMixin",

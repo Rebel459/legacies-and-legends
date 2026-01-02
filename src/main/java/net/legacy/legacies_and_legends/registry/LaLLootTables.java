@@ -101,7 +101,19 @@ public class LaLLootTables {
 
 	public static final ResourceKey<LootTable> END_CITY_CHEST = registerEnderscape("end_city/chest");
 	public static final ResourceKey<LootTable> END_CITY_VAULT = registerEnderscape("end_city/vault");
-	public static final ResourceKey<LootTable> END_CITY_ELYTRA_VAULT = registerEnderscape("end_city/elytra_vault");
+    public static final ResourceKey<LootTable> END_CITY_ELYTRA_VAULT = registerEnderscape("end_city/elytra_vault");
+
+    public static final ResourceKey<LootTable> ENDERSCAPE_STRONGHOLD_ALTAR = registerEnderscape("stronghold/chest/altar");
+    public static final ResourceKey<LootTable> ENDERSCAPE_STRONGHOLD_LIBRARY = registerEnderscape("stronghold/chest/library");
+    public static final ResourceKey<LootTable> ENDERSCAPE_STRONGHOLD_SECRET = registerEnderscape("stronghold/chest/secret");
+
+    public static class Books {
+        public static final ResourceKey<LootTable> THE_STRONGHOLD = register("books/the_stronghold");
+        public static final ResourceKey<LootTable> THE_PORTAL = register("books/the_portal");
+        public static final ResourceKey<LootTable> THE_LIBRARY = register("books/the_library");
+        public static final ResourceKey<LootTable> THE_END = register("books/the_end");
+        public static final ResourceKey<LootTable> POEM = register("books/poem");
+    }
 
 	public static int uncommonWeight = 3;
 	public static int rareWeight = 2;
@@ -110,6 +122,33 @@ public class LaLLootTables {
 	public static void init() {
 		LootTableEvents.MODIFY.register((id, tableBuilder, source, registries) -> {
 			LootPool.Builder pool;
+
+            // BOOKS
+
+            if (LaLConfig.get.loot.lore_books) {
+                if (LaLConfig.get.integrations.enderscape) {
+                    if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id)) {
+                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(EmptyLootItem.emptyItem().setWeight(9))
+                                .add(NestedLootTable.lootTableReference(Books.THE_END).setWeight(1));
+                        tableBuilder.withPool(pool);
+                    }
+                    if (ENDERSCAPE_STRONGHOLD_LIBRARY.equals(id)) {
+                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(EmptyLootItem.emptyItem().setWeight(1))
+                                .add(NestedLootTable.lootTableReference(Books.THE_STRONGHOLD).setWeight(1))
+                                .add(NestedLootTable.lootTableReference(Books.THE_PORTAL).setWeight(1))
+                                .add(NestedLootTable.lootTableReference(Books.THE_LIBRARY).setWeight(1));
+                        tableBuilder.withPool(pool);
+                    }
+                    if (END_CITY_CHEST.equals(id)) {
+                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(EmptyLootItem.emptyItem().setWeight(19))
+                                .add(NestedLootTable.lootTableReference(Books.POEM).setWeight(1));
+                        tableBuilder.withPool(pool);
+                    }
+                }
+            }
 
 			// ACCESSORIES - Pools
 
@@ -308,12 +347,18 @@ public class LaLLootTables {
 				tableBuilder.withPool(pool);
 			}
 
-			if (BuiltInLootTables.STRONGHOLD_CORRIDOR.equals(id) || BuiltInLootTables.STRONGHOLD_CROSSING.equals(id)) {
-				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(EmptyLootItem.emptyItem().setWeight(14))
-						.add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
-				tableBuilder.withPool(pool);
-			}
+            if (BuiltInLootTables.STRONGHOLD_CORRIDOR.equals(id) || BuiltInLootTables.STRONGHOLD_CROSSING.equals(id)) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(14))
+                        .add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
+            if ((ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) || ENDERSCAPE_STRONGHOLD_SECRET.equals(id)) && LaLConfig.get.integrations.enderscape) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(14))
+                        .add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
 			if (BuiltInLootTables.TRIAL_CHAMBERS_REWARD.equals(id) || BuiltInLootTables.TRIAL_CHAMBERS_REWARD_OMINOUS.equals(id)) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(29))
@@ -568,12 +613,18 @@ public class LaLLootTables {
 						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
-			if (BuiltInLootTables.STRONGHOLD_CORRIDOR.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
-				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(EmptyLootItem.emptyItem().setWeight(5))
-						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
-				tableBuilder.withPool(pool);
-			}
+            if (BuiltInLootTables.STRONGHOLD_CORRIDOR.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(5))
+                        .add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
+            if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get.artifacts.tablet_of_recall && LaLConfig.get.integrations.enderscape) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(5))
+                        .add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
 			if (BuiltInLootTables.RUINED_PORTAL.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(11))
@@ -665,12 +716,24 @@ public class LaLLootTables {
 						)
 				);
 				if (LaLConfig.get.integrations.enderscape) {
-					if (LaLLootTables.END_CITY_CHEST.equals(id) && LaLConfig.get.loot.enchanted_beetroot) {
-						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-								.add(EmptyLootItem.emptyItem().setWeight(20))
-								.add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
-						tableBuilder.withPool(pool);
-					}
+                    if (LaLLootTables.END_CITY_CHEST.equals(id) && LaLConfig.get.loot.enchanted_beetroot) {
+                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(EmptyLootItem.emptyItem().setWeight(20))
+                                .add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
+                        tableBuilder.withPool(pool);
+                    }
+                    if (LaLLootTables.ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get.loot.enchanted_beetroot) {
+                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(EmptyLootItem.emptyItem().setWeight(11))
+                                .add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
+                        tableBuilder.withPool(pool);
+                    }
+                    if (LaLLootTables.ENDERSCAPE_STRONGHOLD_SECRET.equals(id) && LaLConfig.get.loot.enchanted_beetroot) {
+                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(EmptyLootItem.emptyItem().setWeight(2))
+                                .add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
+                        tableBuilder.withPool(pool);
+                    }
 				}
 				LootTableModificationApi.editTable(
 						BuiltInLootTables.STRONGHOLD_CORRIDOR, false,
@@ -857,12 +920,18 @@ public class LaLLootTables {
 						.add(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
-			if (BuiltInLootTables.STRONGHOLD_CROSSING.equals(id) && LaLConfig.get.loot.new_music_discs) {
-				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(EmptyLootItem.emptyItem().setWeight(8))
-						.add(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).setWeight(1));
-				tableBuilder.withPool(pool);
-			}
+            if (BuiltInLootTables.STRONGHOLD_CROSSING.equals(id) && LaLConfig.get.loot.new_music_discs) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(8))
+                        .add(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
+            if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get.loot.new_music_discs && LaLConfig.get.integrations.enderscape) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(8))
+                        .add(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
 			if (BuiltInLootTables.JUNGLE_TEMPLE.equals(id) && LaLConfig.get.loot.new_music_discs) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(5))
