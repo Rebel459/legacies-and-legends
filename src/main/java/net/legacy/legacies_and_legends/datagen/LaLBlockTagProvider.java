@@ -3,6 +3,8 @@ package net.legacy.legacies_and_legends.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.legacy.legacies_and_legends.registry.LaLBlocks;
+import net.legacy.legacies_and_legends.tag.LaLBlockTags;
+import net.legacy.legacies_and_legends.tag.LaLItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
 import org.jetbrains.annotations.NotNull;
@@ -16,6 +18,10 @@ public final class LaLBlockTagProvider extends FabricTagProvider.BlockTagProvide
 
     @Override
     protected void addTags(@NotNull HolderLookup.Provider arg) {
+        this.valueLookupBuilder(LaLBlockTags.SAPPHIRE_ORES)
+                .add(LaLBlocks.SAPPHIRE_ORE)
+                .add(LaLBlocks.DEEPSLATE_SAPPHIRE_ORE);
+
         this.valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(LaLBlocks.SAPPHIRE_BLOCK)
                 .add(LaLBlocks.SAPPHIRE_LANTERN)

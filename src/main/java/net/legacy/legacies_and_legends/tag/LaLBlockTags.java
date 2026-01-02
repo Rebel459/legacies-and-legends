@@ -9,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class LaLBlockTags {
 
+    public static final TagKey<Block> SAPPHIRE_ORES = bind("sapphire_ores");
+
     public static final TagKey<Block> MINEABLE_WITH_KNIFE = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("farmersdelight", "mineable/knife"));
 
     @NotNull

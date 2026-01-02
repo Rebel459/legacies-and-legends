@@ -4,7 +4,9 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.frozenblock.lib.tag.api.FrozenItemTags;
 import net.legacy.item_tooltips.registry.ITItemTags;
+import net.legacy.legacies_and_legends.registry.LaLBlocks;
 import net.legacy.legacies_and_legends.registry.LaLItems;
+import net.legacy.legacies_and_legends.tag.LaLBlockTags;
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.Identifier;
@@ -182,6 +184,10 @@ public class LaLItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.COPPER_INGOT);
         this.valueLookupBuilder(LaLItemTags.BARTERING_NECKLACE_MATERIALS)
                 .add(Items.GOLD_INGOT);
+
+        this.valueLookupBuilder(LaLItemTags.SAPPHIRE_ORES)
+                .add(LaLBlocks.SAPPHIRE_ORE.asItem())
+                .add(LaLBlocks.DEEPSLATE_SAPPHIRE_ORE.asItem());
 
         this.valueLookupBuilder(ItemTags.CHEST_ARMOR)
                 .add(LaLItems.REINFORCED_CHESTPLATE);

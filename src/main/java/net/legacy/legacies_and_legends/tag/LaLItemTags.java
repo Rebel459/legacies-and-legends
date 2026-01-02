@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 public class LaLItemTags {
@@ -58,6 +59,8 @@ public class LaLItemTags {
 
     public static final TagKey<Item> CHILLING = bind("chilling");
     public static final TagKey<Item> PROSPECTING = bind("prospecting");
+
+    public static final TagKey<Item> SAPPHIRE_ORES = bind("sapphire_ores");
 
     public static final TagKey<Item> VARIABLE_REPAIR_COST = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("enchants_and_expeditions", "variable_repair_cost"));
 

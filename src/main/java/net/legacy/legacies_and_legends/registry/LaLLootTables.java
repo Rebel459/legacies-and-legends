@@ -106,6 +106,16 @@ public class LaLLootTables {
     public static final ResourceKey<LootTable> ENDERSCAPE_STRONGHOLD_ALTAR = registerEnderscape("stronghold/chest/altar");
     public static final ResourceKey<LootTable> ENDERSCAPE_STRONGHOLD_LIBRARY = registerEnderscape("stronghold/chest/library");
     public static final ResourceKey<LootTable> ENDERSCAPE_STRONGHOLD_SECRET = registerEnderscape("stronghold/chest/secret");
+    public static final ResourceKey<LootTable> ENDERSCAPE_STRONGHOLD_GARDEN = registerEnderscape("stronghold/chest/garden");
+    public static final ResourceKey<LootTable> ENDERSCAPE_STRONGHOLD_BEDROOM = registerEnderscape("stronghold/chest/bedroom");
+    public static final ResourceKey<LootTable> ENDERSCAPE_STRONGHOLD_MANSION = registerEnderscape("stronghold/chest/mansion");
+
+    public static boolean enderscapeStrongholdCommon(ResourceKey<LootTable> id) {
+        return id == ENDERSCAPE_STRONGHOLD_BEDROOM || id == ENDERSCAPE_STRONGHOLD_MANSION;
+    }
+    public static boolean enderscapeStrongholdRare(ResourceKey<LootTable> id) {
+        return id == ENDERSCAPE_STRONGHOLD_SECRET || id == ENDERSCAPE_STRONGHOLD_GARDEN;
+    }
 
     public static class Books {
         public static final ResourceKey<LootTable> THE_STRONGHOLD = register("books/the_stronghold");
@@ -123,19 +133,38 @@ public class LaLLootTables {
 		LootTableEvents.MODIFY.register((id, tableBuilder, source, registries) -> {
 			LootPool.Builder pool;
 
+            // LOOT
+
+            if (LaLConfig.get.loot.improved_loot) {
+                if (LaLConfig.get.integrations.enderscape) {
+                    if (enderscapeStrongholdRare(id)) {
+                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(EmptyLootItem.emptyItem().setWeight(2))
+                                .add(LootItem.lootTableItem(Items.MUSIC_DISC_MALL).setWeight(1));
+                        tableBuilder.withPool(pool);
+                    }
+                }
+            }
+
             // BOOKS
 
             if (LaLConfig.get.loot.lore_books) {
                 if (LaLConfig.get.integrations.enderscape) {
                     if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id)) {
                         pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(9))
+                                .add(EmptyLootItem.emptyItem().setWeight(11))
+                                .add(NestedLootTable.lootTableReference(Books.THE_END).setWeight(1));
+                        tableBuilder.withPool(pool);
+                    }
+                    if (ENDERSCAPE_STRONGHOLD_BEDROOM.equals(id)) {
+                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(EmptyLootItem.emptyItem().setWeight(14))
                                 .add(NestedLootTable.lootTableReference(Books.THE_END).setWeight(1));
                         tableBuilder.withPool(pool);
                     }
                     if (ENDERSCAPE_STRONGHOLD_LIBRARY.equals(id)) {
                         pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(1))
+                                .add(EmptyLootItem.emptyItem().setWeight(3))
                                 .add(NestedLootTable.lootTableReference(Books.THE_STRONGHOLD).setWeight(1))
                                 .add(NestedLootTable.lootTableReference(Books.THE_PORTAL).setWeight(1))
                                 .add(NestedLootTable.lootTableReference(Books.THE_LIBRARY).setWeight(1));
@@ -143,7 +172,7 @@ public class LaLLootTables {
                     }
                     if (END_CITY_CHEST.equals(id)) {
                         pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(19))
+                                .add(EmptyLootItem.emptyItem().setWeight(23))
                                 .add(NestedLootTable.lootTableReference(Books.POEM).setWeight(1));
                         tableBuilder.withPool(pool);
                     }
@@ -353,9 +382,15 @@ public class LaLLootTables {
                         .add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
                 tableBuilder.withPool(pool);
             }
-            if ((ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) || ENDERSCAPE_STRONGHOLD_SECRET.equals(id)) && LaLConfig.get.integrations.enderscape) {
+            if (enderscapeStrongholdRare(id) && LaLConfig.get.integrations.enderscape) {
                 pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(14))
+                        .add(EmptyLootItem.emptyItem().setWeight(11))
+                        .add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
+            if (enderscapeStrongholdCommon(id) && LaLConfig.get.integrations.enderscape) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(17))
                         .add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
                 tableBuilder.withPool(pool);
             }
@@ -619,9 +654,21 @@ public class LaLLootTables {
                         .add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
                 tableBuilder.withPool(pool);
             }
-            if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get.artifacts.tablet_of_recall && LaLConfig.get.integrations.enderscape) {
+            if (enderscapeStrongholdRare(id) && LaLConfig.get.artifacts.tablet_of_recall && LaLConfig.get.integrations.enderscape) {
                 pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                         .add(EmptyLootItem.emptyItem().setWeight(5))
+                        .add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
+            if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get.artifacts.tablet_of_recall && LaLConfig.get.integrations.enderscape) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(8))
+                        .add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
+                tableBuilder.withPool(pool);
+            }
+            if (enderscapeStrongholdCommon(id) && LaLConfig.get.artifacts.tablet_of_recall && LaLConfig.get.integrations.enderscape) {
+                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(14))
                         .add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
                 tableBuilder.withPool(pool);
             }
@@ -708,13 +755,15 @@ public class LaLLootTables {
 								(lootPool) -> lootPool.replace(Items.BEETROOT, LaLItems.ENCHANTED_BEETROOT)
 						)
 				);
-				LootTableModificationApi.editTable(
-						BuiltInLootTables.END_CITY_TREASURE, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.BEETROOT_SEEDS),
-								(lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 1, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-						)
-				);
+                if (!LegaciesAndLegends.isEnderscapeLoaded) {
+                    LootTableModificationApi.editTable(
+                            BuiltInLootTables.END_CITY_TREASURE, false,
+                            (itemId, mutableLootTable) -> mutableLootTable.modifyPools(
+                                    MutableLootTable.has(Items.BEETROOT_SEEDS),
+                                    (lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 1, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
+                            )
+                    );
+                }
 				if (LaLConfig.get.integrations.enderscape) {
                     if (LaLLootTables.END_CITY_CHEST.equals(id) && LaLConfig.get.loot.enchanted_beetroot) {
                         pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
@@ -728,27 +777,29 @@ public class LaLLootTables {
                                 .add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
                         tableBuilder.withPool(pool);
                     }
-                    if (LaLLootTables.ENDERSCAPE_STRONGHOLD_SECRET.equals(id) && LaLConfig.get.loot.enchanted_beetroot) {
+                    if (enderscapeStrongholdRare(id) && LaLConfig.get.loot.enchanted_beetroot) {
                         pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                                 .add(EmptyLootItem.emptyItem().setWeight(2))
                                 .add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
                         tableBuilder.withPool(pool);
                     }
 				}
-				LootTableModificationApi.editTable(
-						BuiltInLootTables.STRONGHOLD_CORRIDOR, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.GOLDEN_APPLE),
-								(lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 3, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-						)
-				);
-				LootTableModificationApi.editTable(
-						BuiltInLootTables.STRONGHOLD_CROSSING, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.APPLE),
-								(lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 3, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-						)
-				);
+                if (!LegaciesAndLegends.isEnderscapeLoaded) {
+                    LootTableModificationApi.editTable(
+                            BuiltInLootTables.STRONGHOLD_CORRIDOR, false,
+                            (itemId, mutableLootTable) -> mutableLootTable.modifyPools(
+                                    MutableLootTable.has(Items.GOLDEN_APPLE),
+                                    (lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 3, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
+                            )
+                    );
+                    LootTableModificationApi.editTable(
+                            BuiltInLootTables.STRONGHOLD_CROSSING, false,
+                            (itemId, mutableLootTable) -> mutableLootTable.modifyPools(
+                                    MutableLootTable.has(Items.APPLE),
+                                    (lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 3, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
+                            )
+                    );
+                }
 				LootTableModificationApi.editTable(
 						LaLLootTables.END_REMAINS, false,
 						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
