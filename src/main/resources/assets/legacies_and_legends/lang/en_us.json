@@ -47,7 +47,6 @@
   "block.legacies_and_legends.sapphire_lantern": "Sapphire Lantern",
   "block.legacies_and_legends.wand_platform": "Wand Platform",
 
-  "item.minecraft.turtle_helmet.desc": "Provides extended breathing time underwater",
   "item.legacies_and_legends.reinforced_chestplate": "Reinforced Chestplate",
   "item.legacies_and_legends.reinforced_chestplate.desc": "Grants increased knockback resistance",
   "item.legacies_and_legends.travelling_strides": "Travelling Strides",
@@ -203,6 +202,7 @@
   "pack.legacies_and_legends.wandering_trader_trades": "Wandering Trader Trades",
   "pack.legacies_and_legends.no_end_portal_music": "No End Portal Music",
   "pack.legacies_and_legends.no_creeper_discs": "No Creeper Discs",
+  "pack.legacies_and_legends.improved_turtle_shell": "Improved Turtle Shell",
 
   "text.autoconfig.legacies_and_legends.title": "Legacies and Legends",
 
@@ -320,6 +320,8 @@
   "text.autoconfig.legacies_and_legends.option.misc.totem_use_equip.@Tooltip": "Whether using a held totem should automatically equip it, as with other accessories and armor.",
   "text.autoconfig.legacies_and_legends.option.misc.stackable_saddles": "Stackable Saddles",
   "text.autoconfig.legacies_and_legends.option.misc.stackable_saddles.@Tooltip": "Whether Saddles and Harnesses should stack to 16.",
+  "text.autoconfig.legacies_and_legends.option.misc.improved_turtle_shell": "Improved Turtle Shell",
+  "text.autoconfig.legacies_and_legends.option.misc.improved_turtle_shell.@Tooltip": "Whether Turtle Shells should provide improved underwater vision & mining speed, and have a description added to their tooltip.",
   "text.autoconfig.legacies_and_legends.option.misc.echo_shard_trim": "Echo Shard Trim",
   "text.autoconfig.legacies_and_legends.option.misc.echo_shard_trim.@Tooltip": "Whether Echo Shards should be usable as a trim material.",
   "text.autoconfig.legacies_and_legends.option.misc.wandering_trader_trades": "Wandering Trader Trades",

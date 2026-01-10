@@ -13,11 +13,13 @@ import java.util.Set;
 public final class LaLMixinPlugin implements IMixinConfigPlugin {
 
     private boolean hasEnchantsAndExpeditions;
+    public static boolean hasCombatReborn;
     private boolean hasFriendsAndFoes;
 
     @Override
     public void onLoad(String mixinPackage) {
         this.hasEnchantsAndExpeditions = FabricLoader.getInstance().isModLoaded("enchants_and_expeditions");
+        hasCombatReborn = FabricLoader.getInstance().isModLoaded("combat_reborn");
         this.hasFriendsAndFoes = FabricLoader.getInstance().isModLoaded("friendsandfoes");
     }
 
@@ -31,6 +33,7 @@ public final class LaLMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, @NotNull String mixinClassName) {
 
         if (mixinClassName.contains("integration.enchants_and_expeditions.")) return this.hasEnchantsAndExpeditions;
+        if (mixinClassName.contains("integration.combat_reborn.")) return this.hasCombatReborn;
         if (mixinClassName.contains("integration.friendsandfoes.")) return this.hasFriendsAndFoes;
 
         return true;

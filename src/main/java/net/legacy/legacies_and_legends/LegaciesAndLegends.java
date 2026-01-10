@@ -135,6 +135,13 @@ public class LegaciesAndLegends implements ModInitializer {
 					ResourcePackActivationType.ALWAYS_ENABLED
 			);
 		}
+        if (LaLConfig.get.misc.improved_turtle_shell) {
+            ResourceManagerHelper.registerBuiltinResourcePack(
+                    LaLConstants.id("improved_turtle_shell"), modContainer.get(),
+                    Component.translatable("pack.legacies_and_legends.improved_turtle_shell"),
+                    ResourcePackActivationType.ALWAYS_ENABLED
+            );
+        }
         if (FabricLoader.getInstance().isModLoaded("enchants_and_expeditions")) {
             isEnchantsAndExpeditionsLoaded = true;
         }

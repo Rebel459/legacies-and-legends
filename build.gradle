@@ -43,7 +43,8 @@ dependencies {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 
-	modImplementation("maven.modrinth:modmenu:$modmenu_version")
+    modImplementation("maven.modrinth:modmenu:$modmenu_version")
+    modCompileOnly("maven.modrinth:combat-reborn:$combat_version")
 	modCompileOnly("maven.modrinth:rei:$rei_version")
     modCompileOnly("maven.modrinth:architectury-api:$architectury_version")
     modCompileOnly("maven.modrinth:friends-and-foes:$friendsandfoes_version")

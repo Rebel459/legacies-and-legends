@@ -7,6 +7,7 @@
     "block.BlockMixin",
     "block.PowderSnowBlockMixin",
     "client.MultiPlayerGameModeMixin",
+    "effect.MobEffectUtilMixin",
     "entity.EnderManMixin",
     "entity.EntityMixin",
     "entity.ExperienceOrbMixin",
@@ -15,6 +16,7 @@
     "entity.PiglinAiMixin",
     "entity.PlayerMixin",
     "entity.ProjectileMixin",
+    "integration.combat_reborn.QuiverHelperMixin",
     "integration.enchants_and_expeditions.EaEAccessoryItemMixin",
     "integration.enchants_and_expeditions.EaEItemStackMixin",
     "integration.enchants_and_expeditions.EaELaLToolMaterialMixin",
@@ -31,6 +33,7 @@
     "defaultRequire": 1
   },
   "client": [
+    "client.LightTextureMixin",
     "client.MinecraftMixin"
   ]
 }

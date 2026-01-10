@@ -255,6 +255,9 @@ public class LaLConfig implements ConfigData {
         @ConfigEntry.Category("config")
         @ConfigEntry.Gui.Tooltip
         public boolean stackable_saddles = true;
+        @ConfigEntry.Category("config")
+        @ConfigEntry.Gui.Tooltip
+        public boolean improved_turtle_shell = true;
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean echo_shard_trim = true;

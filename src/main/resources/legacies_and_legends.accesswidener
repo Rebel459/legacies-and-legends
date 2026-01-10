@@ -19,3 +19,5 @@ accessible method net/minecraft/world/item/CrossbowItem shootProjectile (Lnet/mi
 accessible method net/minecraft/world/item/ItemStack applyDamage (ILnet/minecraft/server/level/ServerPlayer;Ljava/util/function/Consumer;)V
 accessible field net/minecraft/client/renderer/item/BlockModelWrapper ITEM_RENDER_TYPE_GETTER Ljava/util/function/Function;
 accessible field net/minecraft/client/renderer/item/BlockModelWrapper BLOCK_RENDER_TYPE_GETTER Ljava/util/function/Function;
+accessible method net/minecraft/world/entity/player/Player isEquipped (Lnet/minecraft/world/item/Item;)Z
+accessible field net/minecraft/client/renderer/LightTexture minecraft Lnet/minecraft/client/Minecraft;
