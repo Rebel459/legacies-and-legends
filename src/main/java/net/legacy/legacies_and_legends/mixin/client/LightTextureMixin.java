@@ -7,17 +7,21 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(LightTexture.class)
 public class LightTextureMixin {
 
-    @ModifyVariable(
-            method = "updateLightTexture(F)V",
-            name = "n",
-            at = @At("STORE")
+    @ModifyArg(
+            method = "updateLightTexture",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lcom/mojang/blaze3d/buffers/Std140Builder;putFloat(F)Lcom/mojang/blaze3d/buffers/Std140Builder;",
+                    ordinal = 3
+            )
     )
-    private float turtleHelmetVision(float original) {
+    private float modifyNightVisionUniform(float original) {
         if (!LaLConfig.get.misc.improved_turtle_shell) return original;
         LightTexture light = LightTexture.class.cast(this);
         LocalPlayer player = light.minecraft.player;

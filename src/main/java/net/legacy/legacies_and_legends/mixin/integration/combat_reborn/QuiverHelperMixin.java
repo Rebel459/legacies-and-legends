@@ -33,6 +33,7 @@ public abstract class QuiverHelperMixin {
 
     @Inject(at = @At("TAIL"), method = "getAccuracy(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)F", cancellable = true)
     private static void ringOfArcheryAccuracy(ItemStack stack, Player player, CallbackInfoReturnable<Float> cir) {
+        if (player == null) return;
         if (TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_ARCHERY)) cir.setReturnValue(cir.getReturnValue() + 4);
     }
 
