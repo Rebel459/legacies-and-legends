@@ -1,5 +1,6 @@
 package net.legacy.legacies_and_legends.mixin.integration.combat_reborn;
 
+import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.combat_reborn.mixin.item.ProjectileWeaponItemMixin;
 import net.legacy.combat_reborn.util.QuiverHelper;
@@ -28,17 +29,20 @@ public abstract class QuiverHelperMixin {
 
     @Inject(at = @At("TAIL"), method = "getStack", cancellable = true)
     private static void ringOfArchery(Player player, CallbackInfoReturnable<ItemStack> cir) {
-        if (cir.getReturnValue() == null) cir.setReturnValue(TrinketsApi.getTrinketComponent(player).get().getEquipped(LaLItems.RING_OF_ARCHERY).getFirst().getB());
+        if (cir.getReturnValue() != null || TrinketsApi.getTrinketComponent(player).isEmpty()) return;
+        TrinketComponent trinkets = TrinketsApi.getTrinketComponent(player).get();
+        if (trinkets.isEquipped(LaLItems.RING_OF_ARCHERY)) cir.setReturnValue(trinkets.getEquipped(LaLItems.RING_OF_ARCHERY).getFirst().getB());
     }
 
     @Inject(at = @At("TAIL"), method = "getAccuracy(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)F", cancellable = true)
     private static void ringOfArcheryAccuracy(ItemStack stack, Player player, CallbackInfoReturnable<Float> cir) {
-        if (player == null) return;
+        if (player == null || TrinketsApi.getTrinketComponent(player).isEmpty()) return;
         if (TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_ARCHERY)) cir.setReturnValue(cir.getReturnValue() + 4);
     }
 
     @Inject(at = @At("TAIL"), method = "postProjectileEvent")
     private static void ringOfArcheryDamage(Player player, CallbackInfo ci) {
+        if (TrinketsApi.getTrinketComponent(player).isEmpty()) return;
         if (TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_ARCHERY)) player.addTag("damaged_accessory");
     }
 }
