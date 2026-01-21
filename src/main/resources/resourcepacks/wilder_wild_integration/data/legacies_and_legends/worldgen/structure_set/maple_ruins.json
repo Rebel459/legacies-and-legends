@@ -1,0 +1,18 @@
+{
+  "structures":[
+    {
+      "structure":"legacies_and_legends:maple_ruins",
+      "weight":1
+    }
+  ],
+  "placement":{
+    "type":"minecraft:random_spread",
+    "salt":483411,
+    "spacing":30,
+    "separation":15,
+    "exclusion_zone": {
+      "chunk_count": 5,
+      "other_set": "bloom:forest_ruins"
+    }
+  }
+}

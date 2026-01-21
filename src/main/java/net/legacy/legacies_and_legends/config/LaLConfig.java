@@ -273,8 +273,10 @@ public class LaLConfig implements ConfigData {
 	}
 
 	public static class IntegrationConfig {
-		@ConfigEntry.Category("config")
-		public boolean wilder_wild = true;
+        @ConfigEntry.Category("config")
+        public boolean bloom = true;
+        @ConfigEntry.Category("config")
+        public boolean wilder_wild = true;
 		@ConfigEntry.Category("config")
 		public boolean trailier_tales = true;
 		@ConfigEntry.Category("config")

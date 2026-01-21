@@ -192,6 +192,7 @@
   "pack.legacies_and_legends.swamp_hut_variants": "Swamp Hut Variants",
   "pack.legacies_and_legends.reworked_buried_treasure": "Reworked Buried Treasure",
   "pack.legacies_and_legends.music_and_melody": "Music and Melody",
+  "pack.legacies_and_legends.bloom_integration": "Bloom Integration",
   "pack.legacies_and_legends.wilder_wild_integration": "Wilder Wild Integration",
   "pack.legacies_and_legends.trailier_tales_integration": "Trailier Tales Integration",
   "pack.legacies_and_legends.farmers_delight_integration": "Farmer's Delight Integration",
@@ -338,6 +339,7 @@
   "text.autoconfig.legacies_and_legends.option.misc.no_creeper_discs.@Tooltip": "Whether Creepers should no longer drop C418 music discs, meaning they can only be found from their respective structures. Disabled by default.",
 
   "text.autoconfig.legacies_and_legends.option.integrations": "Mod Integration",
+  "text.autoconfig.legacies_and_legends.option.integrations.bloom": "Bloom",
   "text.autoconfig.legacies_and_legends.option.integrations.wilder_wild": "Wilder Wild",
   "text.autoconfig.legacies_and_legends.option.integrations.trailier_tales": "Trailier Tales",
   "text.autoconfig.legacies_and_legends.option.integrations.farmers_delight": "Farmer's Delight",

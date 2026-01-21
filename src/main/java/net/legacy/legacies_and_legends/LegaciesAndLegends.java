@@ -23,7 +23,8 @@ public class LegaciesAndLegends implements ModInitializer {
 	public static boolean isVillagerConfigLoaded = false;
 	public static boolean isProgressionRebornLoaded = false;
 	public static boolean isFarmersDelightLoaded = false;
-	public static boolean isWilderWildLoaded = false;
+    public static boolean isBloomLoaded = false;
+    public static boolean isWilderWildLoaded = false;
 	public static boolean isVariantsAndVenturesLoaded = false;
 	public static boolean isTrailierTalesLoaded = false;
     public static boolean isEnchantsAndExpeditionsLoaded = false;
@@ -167,6 +168,14 @@ public class LegaciesAndLegends implements ModInitializer {
 					ResourcePackActivationType.ALWAYS_ENABLED
 			);
 		}
+        if (FabricLoader.getInstance().isModLoaded("bloom") && LaLConfig.get.integrations.bloom) {
+            isBloomLoaded = true;
+            ResourceManagerHelper.registerBuiltinResourcePack(
+                    LaLConstants.id("bloom_integration"), modContainer.get(),
+                    Component.translatable("pack.legacies_and_legends.bloom_integration"),
+                    ResourcePackActivationType.ALWAYS_ENABLED
+            );
+        }
 		if (FabricLoader.getInstance().isModLoaded("wilderwild") && LaLConfig.get.integrations.wilder_wild) {
 			isWilderWildLoaded = true;
 			ResourceManagerHelper.registerBuiltinResourcePack(
