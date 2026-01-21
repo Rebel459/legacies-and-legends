@@ -1,13 +1,17 @@
 {
-    "replace": false,
-    "values": [
-        "minecraft:jungle",
-        "minecraft:taiga",
-        "minecraft:old_growth_pine_taiga",
-        "minecraft:old_growth_spruce_taiga",
-        {
-            "id": "wilderwild:birch_jungle",
-            "required": false
-        }
-    ]
+  "replace": false,
+  "values": [
+    "minecraft:jungle",
+    "minecraft:taiga",
+    "minecraft:old_growth_pine_taiga",
+    "minecraft:old_growth_spruce_taiga",
+    {
+      "id": "bloom:pine_taiga",
+      "required": false
+    },
+    {
+      "id": "wilderwild:birch_jungle",
+      "required": false
+    }
+  ]
 }
