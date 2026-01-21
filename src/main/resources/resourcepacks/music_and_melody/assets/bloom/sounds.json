@@ -1,0 +1,52 @@
+{
+  "music.overworld.taiga": {
+    "replace": false,
+    "sounds": [
+      {
+        "name": "music.game",
+        "type": "event",
+        "weight": 5
+      },
+      {
+        "name": "legacy:music/overworld/mosaic",
+        "stream": true
+      }
+    ]
+  },
+  "music.overworld.old_growth_taiga": {
+    "replace": false,
+    "sounds": [
+      {
+        "name": "music.overworld.old_growth_taiga",
+        "type": "event",
+        "weight": 12
+      }
+    ]
+  },
+  "music.overworld.windswept_jungle": {
+    "replace": false,
+    "sounds": [
+      {
+        "name": "legacy:music/overworld/814",
+        "stream": true
+      },
+      {
+        "name": "legacy:music/overworld/burning_konkrete",
+        "stream": true
+      }
+    ]
+  },
+  "music.overworld.golden_forest": {
+    "replace": false,
+    "sounds": [
+      {
+        "name": "legacy:music/overworld/albeit",
+        "stream": true
+      },
+      {
+        "name": "legacy:music/overworld/mt_reed",
+        "stream": true
+      }
+    ]
+  }
+}

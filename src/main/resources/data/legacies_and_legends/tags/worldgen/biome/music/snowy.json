@@ -6,6 +6,14 @@
     "minecraft:ice_spikes",
     "minecraft:frozen_river",
     {
+      "id": "bloom:snowy_pine_taiga",
+      "required": false
+    },
+    {
+      "id": "bloom:snowy_shore",
+      "required": false
+    },
+    {
       "id": "wilderwild:snowy_old_growth_pine_taiga",
       "required": false
     },
