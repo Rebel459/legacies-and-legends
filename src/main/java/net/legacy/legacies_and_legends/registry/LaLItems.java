@@ -163,7 +163,7 @@ public final class LaLItems {
             Item::new,
             new Properties()
                     .stacksTo(1)
-                    .rarity(Rarity.UNCOMMON)
+                    .rarity(Rarity.RARE)
                     .jukeboxPlayable(LaLJukeboxSongs.FAR_LANDS)
     );
     public static final Item MUSIC_DISC_INFINITE_SPOOKY_AMETHYST = register("music_disc_infinite_spooky_amethyst",
