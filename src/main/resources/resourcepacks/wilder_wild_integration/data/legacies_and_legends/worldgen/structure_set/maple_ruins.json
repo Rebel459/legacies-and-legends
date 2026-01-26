@@ -7,12 +7,8 @@
   ],
   "placement":{
     "type":"minecraft:random_spread",
-    "salt":483411,
+    "salt":385062,
     "spacing":30,
-    "separation":15,
-    "exclusion_zone": {
-      "chunk_count": 5,
-      "other_set": "legacies_and_legends:forest_ruins"
-    }
+    "separation":15
   }
 }

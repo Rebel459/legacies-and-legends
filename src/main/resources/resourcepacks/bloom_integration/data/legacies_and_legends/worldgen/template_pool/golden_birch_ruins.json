@@ -1,5 +1,5 @@
 {
-    "name":"legacies_and_legends:maple_ruins",
+    "name":"legacies_and_legends:golden_birch_ruins",
     "fallback":"minecraft:empty",
     "elements":[
       {
@@ -7,8 +7,8 @@
         "element":{
           "element_type":"minecraft:single_pool_element",
           "projection":"rigid",
-          "location":"legacies_and_legends:maple_ruins",
-          "processors":"legacies_and_legends:maple_ruins"
+          "location":"legacies_and_legends:golden_birch_ruins",
+          "processors":"legacies_and_legends:golden_birch_ruins"
         }
       },
       {
@@ -16,8 +16,8 @@
         "element":{
           "element_type":"minecraft:single_pool_element",
           "projection":"rigid",
-          "location":"legacies_and_legends:maple_ruins_2",
-          "processors":"legacies_and_legends:maple_ruins"
+          "location":"legacies_and_legends:golden_birch_ruins_2",
+          "processors":"legacies_and_legends:golden_birch_ruins"
         }
       }
     ]

@@ -46,8 +46,4 @@ public class LaLDataComponents {
             }
         });
     }
-
-    private static <T> @NotNull DataComponentType<T> register(String id, @NotNull UnaryOperator<DataComponentType.Builder<T>> unaryOperator) {
-        return Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, LaLConstants.id(id), unaryOperator.apply(DataComponentType.builder()).build());
-    }
 }

@@ -1,19 +1,19 @@
 {
-  "music.the_end.biome.celestial_grove": {
+  "music.enderscape.biome.celestial_grove": {
     "replace": true,
     "sounds": [
       {
-        "name": "enderscape:music/celestial_grove/elysium",
+        "name": "enderscape:music/biome/celestial_grove/elysium",
         "stream": true,
         "weight": 5
       },
       {
-        "name": "enderscape:music/celestial_grove/finality",
+        "name": "enderscape:music/biome/celestial_grove/finality",
         "stream": true,
         "weight": 5
       },
       {
-        "name": "enderscape:music/celestial_grove/otherworld",
+        "name": "enderscape:music/biome/celestial_grove/otherworld",
         "stream": true,
         "weight": 5
       },
@@ -30,16 +30,16 @@
       }
     ]
   },
-  "music.the_end.biome.corrupt_barrens": {
+  "music.enderscape.biome.corrupt_barrens": {
     "replace": true,
     "sounds": [
       {
-        "name": "enderscape:music/corrupt_barrens/mutagen",
+        "name": "enderscape:music/biome/corrupt_barrens/mutagen",
         "stream": true,
         "weight": 5
       },
       {
-        "name": "enderscape:music/corrupt_barrens/nebula",
+        "name": "enderscape:music/biome/corrupt_barrens/nebula",
         "stream": true,
         "weight": 5
       },
@@ -61,11 +61,11 @@
       }
     ]
   },
-  "music.the_end.biome.default_end": {
+  "music.enderscape.biome.default_end": {
     "replace": true,
     "sounds": [
       {
-        "name": "enderscape:music/default_end/desolation",
+        "name": "enderscape:music/biome/default_end/desolation",
         "stream": true,
         "weight": 1
       },
@@ -87,16 +87,16 @@
       }
     ]
   },
-  "music.the_end.biome.magnia_crags": {
+  "music.enderscape.biome.magnia_fields": {
     "replace": true,
     "sounds": [
       {
-        "name": "enderscape:music/default_end/desolation",
+        "name": "enderscape:music/biome/default_end/desolation",
         "stream": true,
         "weight": 1
       },
       {
-        "name": "enderscape:music/magnia_crags/flutters",
+        "name": "enderscape:music/biome/magnia_fields/flutters",
         "stream": true,
         "weight": 5
       },
@@ -123,16 +123,16 @@
       }
     ]
   },
-  "music.the_end.biome.veiled_woodlands": {
+  "music.enderscape.biome.veiled_woodlands": {
     "replace": true,
     "sounds": [
       {
-        "name": "enderscape:music/default_end/desolation",
+        "name": "enderscape:music/biome/default_end/desolation",
         "stream": true,
         "weight": 1
       },
       {
-        "name": "enderscape:music/veiled_woodlands/respite",
+        "name": "enderscape:music/biome/veiled_woodlands/respite",
         "stream": true,
         "weight": 5
       },

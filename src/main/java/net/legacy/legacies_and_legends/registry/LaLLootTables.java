@@ -28,7 +28,8 @@ import org.jetbrains.annotations.NotNull;
 public class LaLLootTables {
 	public static final ResourceKey<LootTable> BIRCH_RUINS = register("chests/forest_ruins/birch");
 	public static final ResourceKey<LootTable> CHERRY_RUINS = register("chests/forest_ruins/cherry");
-	public static final ResourceKey<LootTable> MAPLE_RUINS = register("chests/forest_ruins/maple");
+    public static final ResourceKey<LootTable> GOLDEN_BIRCH_RUINS = register("chests/forest_ruins/golden_birch");
+    public static final ResourceKey<LootTable> MAPLE_RUINS = register("chests/forest_ruins/maple");
 
 	public static final ResourceKey<LootTable> DEEP_RUINS = register("chests/deep_ruins/deep");
 	public static final ResourceKey<LootTable> SCULK_RUINS = register("chests/deep_ruins/sculk");
@@ -298,7 +299,7 @@ public class LaLLootTables {
 				tableBuilder.withPool(pool);
 			}
 
-			if (LaLLootTables.BIRCH_RUINS.equals(id) || LaLLootTables.CHERRY_RUINS.equals(id) || LaLLootTables.MAPLE_RUINS.equals(id) || LaLLootTables.RUINS.equals(id)) {
+			if (LaLLootTables.BIRCH_RUINS.equals(id) || LaLLootTables.CHERRY_RUINS.equals(id) || LaLLootTables.GOLDEN_BIRCH_RUINS.equals(id) || LaLLootTables.MAPLE_RUINS.equals(id) || LaLLootTables.RUINS.equals(id)) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(2))
 						.add(NestedLootTable.lootTableReference(LaLLootTables.OVERWORLD_GENERAL_ACCESSORIES).setWeight(1));
@@ -588,19 +589,7 @@ public class LaLLootTables {
 						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
 				tableBuilder.withPool(pool);
 			}
-			if (LaLLootTables.BIRCH_RUINS.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
-				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(EmptyLootItem.emptyItem().setWeight(5))
-						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
-				tableBuilder.withPool(pool);
-			}
-			if (LaLLootTables.CHERRY_RUINS.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
-				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(EmptyLootItem.emptyItem().setWeight(5))
-						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
-				tableBuilder.withPool(pool);
-			}
-			if (LaLLootTables.MAPLE_RUINS.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
+			if (LaLLootTables.BIRCH_RUINS.equals(id) || LaLLootTables.CHERRY_RUINS.equals(id) || LaLLootTables.GOLDEN_BIRCH_RUINS.equals(id) || LaLLootTables.MAPLE_RUINS.equals(id) && LaLConfig.get.artifacts.tablet_of_recall) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(5))
 						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
