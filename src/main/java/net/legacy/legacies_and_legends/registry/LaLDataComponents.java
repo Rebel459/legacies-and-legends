@@ -23,11 +23,13 @@ public class LaLDataComponents {
 
     public static void init(){
         DefaultItemComponentEvents.MODIFY.register(context -> {
-            context.modify(Items.TRIDENT, builder -> {
-                builder.set(DataComponents.ATTRIBUTE_MODIFIERS, TridentItem.createAttributes());
-                HolderGetter<Item> holderGetter = BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.ITEM);
-                builder.set(DataComponents.REPAIRABLE, new Repairable(holderGetter.getOrThrow(LaLItemTags.TRIDENT_REPAIR_MATERIALS)));
-            });
+            if (!LegaciesAndLegends.isCombatRebornLoaded) {
+                context.modify(Items.TRIDENT, builder -> {
+                    builder.set(DataComponents.ATTRIBUTE_MODIFIERS, TridentItem.createAttributes());
+                    HolderGetter<Item> holderGetter = BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.ITEM);
+                    builder.set(DataComponents.REPAIRABLE, new Repairable(holderGetter.getOrThrow(LaLItemTags.TRIDENT_REPAIR_MATERIALS)));
+                });
+            }
             if (!LegaciesAndLegends.isProgressionRebornLoaded) {
                 context.modify(LaLItems.NECKLACE_OF_REGENERATION, builder -> {
                     HolderGetter<Item> holderGetter = BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.ITEM);
