@@ -1,0 +1,125 @@
+{
+  "music.overworld.snowy": {
+    "sounds": [
+      {
+        "name": "legacy:music/overworld/814",
+        "stream": true
+      },
+      {
+        "name": "legacy:music/overworld/albeit",
+        "stream": true
+      },
+      {
+        "name": "legacy:music/overworld/cliff_hanger",
+        "stream": true
+      },
+      {
+        "name": "legacy:music/overworld/fall",
+        "stream": true,
+        "weight" : 2
+      },
+      {
+        "name": "legacy:music/overworld/shrub",
+        "stream": true
+      },
+      {
+        "name": "music/game/lilypad",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/stand_tall",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/left_to_bloom",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/wending",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/infinite_amethyst",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/an_ordinary_day",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/watcher",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/puzzlebox",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/komorebi",
+        "stream": true,
+        "volume": 0.8
+      },
+      {
+        "name": "music/game/yakusoku",
+        "stream": true,
+        "volume": 0.8
+      },
+      {
+        "name": "music/game/minecraft",
+        "stream": true
+      },
+      {
+        "name": "music/game/clark",
+        "stream": true
+      },
+      {
+        "name": "music/game/sweden",
+        "stream": true
+      },
+      {
+        "name": "music/game/subwoofer_lullaby",
+        "stream": true
+      },
+      {
+        "name": "music/game/living_mice",
+        "stream": true
+      },
+      {
+        "name": "music/game/haggstrom",
+        "stream": true
+      },
+      {
+        "name": "music/game/danny",
+        "stream": true
+      },
+      {
+        "name": "music/game/key",
+        "stream": true
+      },
+      {
+        "name": "music/game/oxygene",
+        "stream": true
+      },
+      {
+        "name": "music/game/dry_hands",
+        "stream": true
+      },
+      {
+        "name": "music/game/wet_hands",
+        "stream": true
+      },
+      {
+        "name": "music/game/mice_on_venus",
+        "stream": true
+      }
+    ]
+  }
+}

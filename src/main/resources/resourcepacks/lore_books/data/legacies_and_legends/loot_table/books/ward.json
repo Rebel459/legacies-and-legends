@@ -1,29 +1,30 @@
 {
-    "type": "minecraft:chest",
-    "pools": [
-      {
-        "rolls": 1,
-        "entries": [
-          {
-            "type": "minecraft:item",
-            "name": "minecraft:written_book",
-            "functions": [
-                {
-                    "function": "minecraft:set_components",
-                    "components": {
-                      "minecraft:written_book_content": {
-                        "title": "Ward",
-                        "author": "Minecraft",
-                        "pages": [
-                          "The amour of the Wardens was unimaginably strong, resisting almost any attack. It was made out of a hardened deepstone, forged using methods long forgotten. It served the great defenders well, but it would not be enough to stop their inevitable fall…"
-                        ]
-                      }
-                    }
-                  }
-            ]
-          }
-        ]
-      }
-    ],
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:written_book",
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:written_book_content": {
+                  "title": "Ward",
+                  "author": "Minecraft",
+                  "pages": [
+                    "The amour of the Wardens was unimaginably strong, resisting almost any attack. It was made out of a hardened deepstone, forged using methods long forgotten. It served the great defenders well, but it would not be enough to stop their inevitable fall…"
+                  ]
+                },
+                "legacies_and_legends:lore_book": "ward"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "random_sequence": "legacies_and_legends:books/ward"
-  }
+}

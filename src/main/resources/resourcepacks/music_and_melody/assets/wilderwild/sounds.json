@@ -192,7 +192,7 @@
         "volume": 0.5
       },
       {
-        "name": "music.overworld.snowy",
+        "name": "legacies_and_legends:music.overworld.snowy",
         "type": "event",
         "weight": 28
       }
