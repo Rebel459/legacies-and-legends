@@ -1,14 +1,22 @@
 {
-    "replace": false,
-    "values": [
-        "minecraft:desert",
-        "minecraft:savanna",
-        "minecraft:savanna_plateau",
-        "#minecraft:is_badlands",
-        "#minecraft:has_structure/desert_pyramid",
-        {
-            "id": "#c:is_desert",
-            "required": false
-        }
-    ]
+  "replace": false,
+  "values": [
+    "minecraft:desert",
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "#minecraft:is_badlands",
+    "#minecraft:has_structure/desert_pyramid",
+    {
+      "id": "#c:is_desert",
+      "required": false
+    },
+    {
+      "id": "bloom:warm_river",
+      "required": false
+    },
+    {
+      "id": "bloom:arid_shore",
+      "required": false
+    }
+  ]
 }
