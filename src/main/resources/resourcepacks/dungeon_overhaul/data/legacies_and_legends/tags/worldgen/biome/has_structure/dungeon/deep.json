@@ -91,6 +91,6 @@
         {
             "id": "clifftree:frozen_caves",
             "required": false
-        },
+        }
     ]
 }
