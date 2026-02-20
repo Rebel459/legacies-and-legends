@@ -1,19 +1,26 @@
 package net.legacy.legacies_and_legends.item;
 
+import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.sound.LaLSounds;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
-public class AccessoryItem extends TrinketItem implements Trinket {
+public class AccessoryItem extends Item {
 
     public Item getItem() {
         return Items.AIR;
@@ -23,21 +30,6 @@ public class AccessoryItem extends TrinketItem implements Trinket {
 
     public AccessoryItem(Properties settings) {
         super(settings);
-    }
-
-    @Override
-    public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-        everyTick(stack, slot, entity);
-        secondTicks = secondTicks + 1;
-        if (secondTicks >= 20) {
-            secondTicks = 0;
-            everySecond(stack, slot, entity);
-        }
-
-        if (entity instanceof Player player && player.getTags().contains("damaged_accessory")) {
-            damageAccessory(stack, slot, player, 1);
-            player.removeTag("damaged_accessory");
-        }
     }
 
     public void everyTick(ItemStack stack, SlotReference slot, LivingEntity entity) {}

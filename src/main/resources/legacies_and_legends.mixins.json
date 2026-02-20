@@ -27,12 +27,14 @@
     "item.AxeItemMixin",
     "item.ItemStackMixin",
     "item.ProjectileWeaponItemMixin",
-    "item.TrinketMixin"
+    "item.TrinketMixin",
+    "menu.InventoryMenuMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
+    "client.InventoryScreenMixin",
     "client.LightTextureMixin",
     "client.MinecraftMixin"
   ]

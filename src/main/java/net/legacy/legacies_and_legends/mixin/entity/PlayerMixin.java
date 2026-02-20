@@ -1,5 +1,6 @@
 package net.legacy.legacies_and_legends.mixin.entity;
 
+import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.config.LaLConfig;
@@ -11,9 +12,11 @@ import net.legacy.legacies_and_legends.registry.LaLItems;
 import net.legacy.legacies_and_legends.registry.LaLMobEffects;
 import net.legacy.legacies_and_legends.sound.LaLSounds;
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
+import net.legacy.legacies_and_legends.util.AccessoryHelper;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -30,6 +33,8 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -271,5 +276,27 @@ public abstract class PlayerMixin implements LaLPlayerPlatformInterface, LaLPlay
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
     public void addAdditionalSaveData(ValueOutput output, CallbackInfo ci) {
         this.lastPlatformPos.ifPresent(pos -> output.store("LalLastPlatformPos", GlobalPos.CODEC, pos));
+    }
+
+    @Unique
+    private Multimap<Holder<Attribute>, AttributeModifier> temporaryModifiers;
+
+    @Inject(method = "tick", at = @At("TAIL"))
+    public void addAdditionalSaveData(CallbackInfo ci) {
+        Player player = Player.class.cast(this);
+
+        var helper = new AccessoryHelper();
+
+        ItemStack stack = AccessoryHelper.getAccessory(player);
+        if (stack != ItemStack.EMPTY) {
+            helper.onTick(player, stack);
+        }
+        var modifiers = helper.getModifiers(stack);
+        var attributes = player.getAttributes();
+        if (this.temporaryModifiers != null && (modifiers == null || modifiers != this.temporaryModifiers)) attributes.removeAttributeModifiers(this.temporaryModifiers);
+        if (modifiers != null) {
+            this.temporaryModifiers = modifiers;
+            attributes.addTransientAttributeModifiers(this.temporaryModifiers);
+        }
     }
 }

@@ -21,3 +21,7 @@ accessible field net/minecraft/client/renderer/item/BlockModelWrapper ITEM_RENDE
 accessible field net/minecraft/client/renderer/item/BlockModelWrapper BLOCK_RENDER_TYPE_GETTER Ljava/util/function/Function;
 accessible method net/minecraft/world/entity/player/Player isEquipped (Lnet/minecraft/world/item/Item;)Z
 accessible field net/minecraft/client/renderer/LightTexture minecraft Lnet/minecraft/client/Minecraft;
+accessible method net/minecraft/world/inventory/AbstractContainerMenu addSlot (Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+accessible method net/minecraft/client/gui/screens/inventory/AbstractContainerScreen renderSlot (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/inventory/Slot;II)V
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen leftPos I
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen topPos I
