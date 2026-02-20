@@ -47,9 +47,9 @@ public class AccessoryItem extends TrinketItem implements Trinket {
     public void damageAccessory(ItemStack stack, SlotReference slot, Player player, int amount) {
         if (player.isCreative()) return;
         stack.setDamageValue(stack.getDamageValue() + amount);
+        if (player instanceof ServerPlayer serverPlayer) CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger(serverPlayer, stack, amount);
         if (stack.getDamageValue() >= stack.getMaxDamage()) {
             resetData(player);
-            CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger((ServerPlayer) player, stack, amount);
             slot.inventory().removeItem(slot.index(), amount);
             player.playSound(LaLSounds.ACCESSORY_BREAK);
         }
