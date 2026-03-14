@@ -26,6 +26,7 @@ public class EvasionRingItem {
     @Override
     public void resetData(LivingEntity entity) {
         if (entity instanceof Player player) {
+            player.removeEffect(MobEffects.INVISIBILITY);
             player.removeTag("infinite_invisibility");
         }
     }
@@ -33,7 +34,7 @@ public class EvasionRingItem {
     @Override
     public void everySecond(ItemStack stack, SlotReference slot, LivingEntity entity) {
         if (entity instanceof Player player) {
-            if (player.isShiftKeyDown() && new Random().nextInt(10) >= 9 && (player.getTags().contains("infinite_invisibility"))) {
+            if (player.isShiftKeyDown() && entity.getRandom().nextInt(10) >= 9 && (player.getTags().contains("infinite_invisibility"))) {
                 if (getAccessory(stack, slot, player).is(LaLItems.RING_OF_EVASION)) {
                     damageAccessory(stack, slot, player, 1);
                 }
@@ -44,8 +45,7 @@ public class EvasionRingItem {
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, Identifier identifier) {
         var modifiers = super.getModifiers(stack, slot, entity, identifier);
-
-            modifiers.put(Attributes.SNEAKING_SPEED, new AttributeModifier(LaLConstants.id("sneaking_speed"), 0.3, AttributeModifier.Operation.ADD_VALUE));
+        modifiers.put(Attributes.SNEAKING_SPEED, new AttributeModifier(LaLConstants.id("sneaking_speed"), 0.3, AttributeModifier.Operation.ADD_VALUE));
         return modifiers;
     }*/
 }
