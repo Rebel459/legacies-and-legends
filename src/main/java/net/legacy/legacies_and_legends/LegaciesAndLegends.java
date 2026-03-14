@@ -203,11 +203,13 @@ public class LegaciesAndLegends implements ModInitializer {
         }
         if (FabricLoader.getInstance().isModLoaded("variantsandventures") && LaLConfig.get.integrations.variants_and_ventures) {
             isVariantsAndVenturesLoaded = true;
-            ResourceManagerHelper.registerBuiltinResourcePack(
-                    LaLConstants.id("variants_and_ventures_integration"), modContainer.get(),
-                    Component.translatable("pack.legacies_and_legends.variants_and_ventures_integration"),
-                    ResourcePackActivationType.ALWAYS_ENABLED
-            );
+            if (LaLConfig.get.structures.dungeon_overhaul) {
+                ResourceManagerHelper.registerBuiltinResourcePack(
+                        LaLConstants.id("variants_and_ventures_integration"), modContainer.get(),
+                        Component.translatable("pack.legacies_and_legends.variants_and_ventures_integration"),
+                        ResourcePackActivationType.ALWAYS_ENABLED
+                );
+            }
         }
         if (FabricLoader.getInstance().isModLoaded("enderscape") && LaLConfig.get.integrations.enderscape) {
             isEnderscapeLoaded = true;
