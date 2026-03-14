@@ -42,7 +42,7 @@ public class EvasionRingItem extends AccessoryItem {
 
     @Override
     public void resetData(LivingEntity entity) {
-        if (entity instanceof Player player) {
+        if (entity instanceof Player player && player.getTags().contains("infinite_invisibility")) {
             player.removeEffect(MobEffects.INVISIBILITY);
             player.removeTag("infinite_invisibility");
         }
