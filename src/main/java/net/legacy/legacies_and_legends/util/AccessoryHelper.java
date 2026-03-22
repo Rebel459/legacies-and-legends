@@ -229,7 +229,15 @@ public class AccessoryHelper {
         else player.playSound(SoundEvents.ARMOR_EQUIP_GENERIC.value());
     }
 
-    public static void onUnequip(Player player, ItemStack stack) {}
+    public static void onUnequip(Player player, ItemStack stack) {
+        if (stack.is(LaLItems.RING_OF_EVASION)) {
+            player.removeEffect(MobEffects.INVISIBILITY);
+            AccessoryInterface accessory = (AccessoryInterface) player;
+            AccessoryHelper.Mutable mutable = accessory.getAccessoryData();
+            mutable.hasInfiniteInvisibility = false;
+            accessory.setAccessoryData(mutable);
+        }
+    }
 
     public static void setupRandomComponents(ItemStack stack, RandomSource random) {
         if (LegaciesAndLegends.isEnchantsAndExpeditionsLoaded) {
