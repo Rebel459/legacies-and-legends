@@ -17,17 +17,14 @@
     "entity.PlayerMixin",
     "entity.ProjectileMixin",
     "integration.combat_reborn.QuiverHelperMixin",
-    "integration.enchants_and_expeditions.EaEAccessoryItemMixin",
     "integration.enchants_and_expeditions.EaEItemStackMixin",
     "integration.enchants_and_expeditions.EaELaLToolMaterialMixin",
     "integration.friendsandfoes.FriendsAndFoesLaLConstantsMixin",
     "integration.friendsandfoes.FriendsAndFoesPlayerMixin",
     "integration.friendsandfoes.FriendsAndFoesTotemItemMixin",
-    "integration.friendsandfoes.FriendsAndFoesTrinketMixin",
     "item.AxeItemMixin",
     "item.ItemStackMixin",
     "item.ProjectileWeaponItemMixin",
-    "item.TrinketMixin",
     "menu.InventoryMenuMixin"
   ],
   "injectors": {

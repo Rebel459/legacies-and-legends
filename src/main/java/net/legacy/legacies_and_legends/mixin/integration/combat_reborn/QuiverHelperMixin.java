@@ -1,11 +1,10 @@
 package net.legacy.legacies_and_legends.mixin.integration.combat_reborn;
 
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.combat_reborn.mixin.item.ProjectileWeaponItemMixin;
 import net.legacy.combat_reborn.util.QuiverHelper;
 import net.legacy.legacies_and_legends.mixin.LaLMixinPlugin;
 import net.legacy.legacies_and_legends.registry.LaLItems;
+import net.legacy.legacies_and_legends.util.AccessoryHelper;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,20 +28,21 @@ public abstract class QuiverHelperMixin {
 
     @Inject(at = @At("TAIL"), method = "getStack", cancellable = true)
     private static void ringOfArchery(Player player, CallbackInfoReturnable<ItemStack> cir) {
-        if (cir.getReturnValue() != null || TrinketsApi.getTrinketComponent(player).isEmpty()) return;
-        TrinketComponent trinkets = TrinketsApi.getTrinketComponent(player).get();
-        if (trinkets.isEquipped(LaLItems.RING_OF_ARCHERY)) cir.setReturnValue(trinkets.getEquipped(LaLItems.RING_OF_ARCHERY).getFirst().getB());
+        if (cir.getReturnValue() != null || !AccessoryHelper.hasAccessory(player)) return;
+        ItemStack stack = AccessoryHelper.getAccessory(player);
+        if (stack.is(LaLItems.RING_OF_ARCHERY)) cir.setReturnValue(stack);
     }
 
     @Inject(at = @At("TAIL"), method = "getAccuracy(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)F", cancellable = true)
     private static void ringOfArcheryAccuracy(ItemStack stack, Player player, CallbackInfoReturnable<Float> cir) {
-        if (player == null || TrinketsApi.getTrinketComponent(player).isEmpty()) return;
-        if (TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_ARCHERY)) cir.setReturnValue(cir.getReturnValue() + 4);
+        if (player == null || !AccessoryHelper.hasAccessory(player)) return;
+        if (AccessoryHelper.getAccessory(player).is(LaLItems.RING_OF_ARCHERY)) cir.setReturnValue(cir.getReturnValue() + 4);
     }
 
     @Inject(at = @At("TAIL"), method = "postProjectileEvent")
     private static void ringOfArcheryDamage(Player player, CallbackInfo ci) {
-        if (TrinketsApi.getTrinketComponent(player).isEmpty()) return;
-        if (TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_ARCHERY)) player.addTag("damaged_accessory");
+        if (!AccessoryHelper.hasAccessory(player)) return;
+        ItemStack stack = AccessoryHelper.getAccessory(player);
+        if (stack.is(LaLItems.RING_OF_ARCHERY)) AccessoryHelper.damageAccessory(player, stack);
     }
 }

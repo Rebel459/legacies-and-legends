@@ -1,7 +1,7 @@
 package net.legacy.legacies_and_legends.mixin.entity;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import net.legacy.legacies_and_legends.entity.impl.LaLPlayerPlatformInterface;
+import net.legacy.legacies_and_legends.util.PlatformInterface;
 import net.legacy.legacies_and_legends.registry.LaLBlocks;
 import net.legacy.legacies_and_legends.registry.LaLMobEffects;
 import net.minecraft.core.GlobalPos;
@@ -67,7 +67,7 @@ public abstract class EntityMixin {
 			CallbackInfoReturnable<Entity> info,
 			@Local(ordinal = 0) ServerLevel level
 	) {
-		if (!(Entity.class.cast(this) instanceof LaLPlayerPlatformInterface platformInterface)) return;
+		if (!(Entity.class.cast(this) instanceof PlatformInterface platformInterface)) return;
 
 		Optional<GlobalPos> globalPos = platformInterface.lal$getLastPlatformPos();
 		if (globalPos.isEmpty()) return;
@@ -76,14 +76,14 @@ public abstract class EntityMixin {
 		if (!lastPlatformPos.dimension().equals(level.dimension())) return;
 		level.scheduleTick(lastPlatformPos.pos(), LaLBlocks.WAND_PLATFORM, 5);
 
-		if (Entity.class.cast(this) instanceof Player player) {
-			player.removeTag("wand_platform_summoned");
+		if (Entity.class.cast(this) instanceof Player player && player instanceof PlatformInterface platform) {
+			platform.setPlatformSummoned(false);
 		}
 	}
 
     @Inject(method = "remove", at = @At("HEAD"))
     public void removePlatformOnRemove(Entity.RemovalReason reason, CallbackInfo info) {
-        if (!(Entity.class.cast(this) instanceof LaLPlayerPlatformInterface platformInterface)) return;
+        if (!(Entity.class.cast(this) instanceof PlatformInterface platformInterface)) return;
 
         Optional<GlobalPos> globalPos = platformInterface.lal$getLastPlatformPos();
         if (globalPos.isEmpty()) return;
@@ -93,9 +93,9 @@ public abstract class EntityMixin {
         if (!lastPlatformPos.dimension().equals(level.dimension())) return;
         level.scheduleTick(lastPlatformPos.pos(), LaLBlocks.WAND_PLATFORM, 5);
 
-        if (Entity.class.cast(this) instanceof Player player) {
-            player.removeTag("wand_platform_summoned");
-        }
+		if (Entity.class.cast(this) instanceof Player player && player instanceof PlatformInterface platform) {
+			platform.setPlatformSummoned(false);
+		}
     }
 
     @Inject(method = "setTicksFrozen", at = @At("HEAD"), cancellable = true)

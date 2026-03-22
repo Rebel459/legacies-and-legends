@@ -1,6 +1,6 @@
 package net.legacy.legacies_and_legends.item;
 
-import dev.emi.trinkets.api.SlotReference;
+/*import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketEnums;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -12,11 +12,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Nullable;*/
 
-public class AmuletItem extends AccessoryItem implements Trinket {
+public class AmuletItem  {
 
-    public int repairTicks = 0;
+/*    public int repairTicks = 0;
     public int inventoryRepairTicks = 0;
     public int repairTicksFrequency() {
         return 20;
@@ -78,5 +78,5 @@ public class AmuletItem extends AccessoryItem implements Trinket {
     @Override
     public TrinketEnums.DropRule getDropRule(ItemStack stack, SlotReference slot, LivingEntity entity) {
         return TrinketEnums.DropRule.DESTROY;
-    }
+    }*/
 }

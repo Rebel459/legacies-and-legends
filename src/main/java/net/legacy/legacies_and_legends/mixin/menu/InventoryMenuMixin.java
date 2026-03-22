@@ -1,15 +1,18 @@
 package net.legacy.legacies_and_legends.mixin.menu;
 
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
-import net.legacy.legacies_and_legends.util.AccessoryInterface;
+import net.legacy.legacies_and_legends.util.AccessorySlotInterface;
 import net.legacy.legacies_and_legends.util.AccessorySlot;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import org.jspecify.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -17,8 +20,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(InventoryMenu.class)
-public abstract class InventoryMenuMixin extends AbstractContainerMenu implements AccessoryInterface {
+public abstract class InventoryMenuMixin extends AbstractContainerMenu implements AccessorySlotInterface {
 
+    @Shadow
+    @Final
+    public static int ARMOR_SLOT_END;
     @Unique
     private final SimpleContainer accessoryContainer = new SimpleContainer(1);
 
@@ -46,10 +52,10 @@ public abstract class InventoryMenuMixin extends AbstractContainerMenu implement
     private void addAccessorySlot(Inventory playerInventory, boolean active, Player player, CallbackInfo ci) {
         InventoryMenu menu = InventoryMenu.class.cast(this);
 
-        int x = 77 - 20;
+        int x = 77;
         int y = 44;
 
-        this.accessorySlot = new AccessorySlot(this.accessoryContainer, 0, x, y);
+        this.accessorySlot = new AccessorySlot(this.accessoryContainer, player, 0, x, y);
         menu.addSlot(this.accessorySlot);
     }
 

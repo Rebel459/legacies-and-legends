@@ -1,16 +1,10 @@
 package net.legacy.legacies_and_legends.item.accessory;
 
-import dev.emi.trinkets.api.SlotReference;
 import net.legacy.legacies_and_legends.item.AmuletItem;
-import net.legacy.legacies_and_legends.registry.LaLItems;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 public class DeflectionAmuletItem extends AmuletItem {
 
-    @Override
+/*    @Override
     public Item getItem() {
         return LaLItems.AMULET_OF_DEFLECTION;
     }
@@ -44,5 +38,5 @@ public class DeflectionAmuletItem extends AmuletItem {
             player.removeTag("repaired_amulet");
             repairTicks = 0;
         }
-    }
+    }*/
 }

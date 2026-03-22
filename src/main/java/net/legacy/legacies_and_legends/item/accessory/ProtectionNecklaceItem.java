@@ -1,20 +1,8 @@
 package net.legacy.legacies_and_legends.item.accessory;
 
-import com.google.common.collect.Multimap;
-import dev.emi.trinkets.api.SlotReference;
-import net.legacy.legacies_and_legends.LaLConstants;
-import net.legacy.legacies_and_legends.item.AccessoryItem;
-import net.minecraft.core.Holder;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ItemStack;
+public class ProtectionNecklaceItem {
 
-public class ProtectionNecklaceItem extends AccessoryItem {
-
-    public ProtectionNecklaceItem(Properties settings) {
+/*    public ProtectionNecklaceItem(Properties settings) {
         super(settings);
     }
 
@@ -22,5 +10,5 @@ public class ProtectionNecklaceItem extends AccessoryItem {
         var modifiers = super.getModifiers(stack, slot, entity, identifier);
             modifiers.put(Attributes.ARMOR, new AttributeModifier(LaLConstants.id("armor"), 2, AttributeModifier.Operation.ADD_VALUE));
         return modifiers;
-    }
+    }*/
 }

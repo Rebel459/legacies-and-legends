@@ -3,11 +3,16 @@ package net.legacy.legacies_and_legends.mixin.item;
 import net.legacy.legacies_and_legends.config.LaLConfig;
 import net.legacy.legacies_and_legends.registry.LaLItems;
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
+import net.legacy.legacies_and_legends.util.AccessoryHelper;
+import net.legacy.legacies_and_legends.util.AccessoryInterface;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -15,8 +20,10 @@ import net.minecraft.world.item.component.UseRemainder;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
@@ -45,6 +52,20 @@ public abstract class ItemStackMixin {
         ItemStack stack = ItemStack.class.cast(this);
         if (LaLConfig.get.misc.stackable_saddles && (stack.is(Items.SADDLE) || stack.is(ItemTags.HARNESSES)) && stack.getItem().getDefaultMaxStackSize() == 1 && cir.getReturnValue() == 1) {
             cir.setReturnValue(16);
+        }
+    }
+
+    @Inject(at = @At("TAIL"), method = "inventoryTick")
+    private void inventoryTick(Level level, Entity entity, EquipmentSlot equipmentSlot, CallbackInfo ci) {
+        ItemStack stack = ItemStack.class.cast(this);
+        if (entity instanceof Player player && stack.is(LaLItemTags.ACCESSORIES) && player instanceof AccessoryInterface accessory) {
+            //if (AccessoryHelper.getAccessory(player) != stack) {
+            AccessoryHelper.Mutable mutable = accessory.getAccessoryData();
+            if (stack.is(LaLItemTags.AMULETS)) {
+                mutable.onTickAmulet(player, stack);
+            }
+            accessory.setAccessoryData(mutable);
+            //}
         }
     }
 }

@@ -1,6 +1,8 @@
 package net.legacy.legacies_and_legends;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -13,8 +15,10 @@ import net.legacy.legacies_and_legends.registry.*;
 import net.legacy.legacies_and_legends.sound.LaLJukeboxSongs;
 import net.legacy.legacies_and_legends.sound.LaLBiomeMusic;
 import net.legacy.legacies_and_legends.sound.LaLSounds;
+import net.legacy.legacies_and_legends.util.AccessoryHelper;
 import net.legacy.legacies_and_legends.worldgen.LaLFeatures;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.Optional;
 
@@ -203,11 +207,13 @@ public class LegaciesAndLegends implements ModInitializer {
         }
         if (FabricLoader.getInstance().isModLoaded("variantsandventures") && LaLConfig.get.integrations.variants_and_ventures) {
             isVariantsAndVenturesLoaded = true;
-            ResourceManagerHelper.registerBuiltinResourcePack(
-                    LaLConstants.id("variants_and_ventures_integration"), modContainer.get(),
-                    Component.translatable("pack.legacies_and_legends.variants_and_ventures_integration"),
-                    ResourcePackActivationType.ALWAYS_ENABLED
-            );
+            if (LaLConfig.get.structures.dungeon_overhaul) {
+                ResourceManagerHelper.registerBuiltinResourcePack(
+                        LaLConstants.id("variants_and_ventures_integration"), modContainer.get(),
+                        Component.translatable("pack.legacies_and_legends.variants_and_ventures_integration"),
+                        ResourcePackActivationType.ALWAYS_ENABLED
+                );
+            }
         }
         if (FabricLoader.getInstance().isModLoaded("enderscape") && LaLConfig.get.integrations.enderscape) {
             isEnderscapeLoaded = true;

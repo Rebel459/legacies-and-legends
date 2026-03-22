@@ -1,8 +1,8 @@
 package net.legacy.legacies_and_legends.mixin.item;
 
-import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.legacies_and_legends.mixin.LaLMixinPlugin;
 import net.legacy.legacies_and_legends.registry.LaLItems;
+import net.legacy.legacies_and_legends.util.AccessoryHelper;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,7 +23,7 @@ public abstract class ProjectileWeaponItemMixin {
     @Inject(at = @At("HEAD"), method = "shoot", cancellable = true)
     private void ringOfArchery(ServerLevel level, LivingEntity shooter, InteractionHand hand, ItemStack weapon, List<ItemStack> projectileItems, float velocity, float inaccuracy, boolean isCrit, LivingEntity target, CallbackInfo ci) {
         if (LaLMixinPlugin.hasCombatReborn) return;
-        if (shooter instanceof Player player && TrinketsApi.getTrinketComponent(player).get().isEquipped(LaLItems.RING_OF_ARCHERY)) {
+        if (shooter instanceof Player player && AccessoryHelper.getAccessory(player).is(LaLItems.RING_OF_ARCHERY)) {
             ProjectileWeaponItem item = BowItem.class.cast(this);
 
             float f = EnchantmentHelper.processProjectileSpread(level, weapon, shooter, 0.0F);
@@ -45,7 +45,7 @@ public abstract class ProjectileWeaponItemMixin {
                     if (weapon.isEmpty()) {
                         break;
                     }
-                    player.addTag("damaged_accessory");
+                    AccessoryHelper.damageAccessory(player, AccessoryHelper.getAccessory(player));
                     ci.cancel();
                 }
             }

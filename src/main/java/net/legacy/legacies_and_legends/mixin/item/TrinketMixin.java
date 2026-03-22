@@ -1,6 +1,6 @@
 package net.legacy.legacies_and_legends.mixin.item;
 
-import dev.emi.trinkets.api.SlotReference;
+/*import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.legacies_and_legends.config.LaLConfig;
@@ -21,10 +21,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
 
-@Mixin(Trinket.class)
+@Mixin(Trinket.class)*/
 public interface TrinketMixin {
 
-    @Inject(at = @At("HEAD"), method = "tick")
+/*    @Inject(at = @At("HEAD"), method = "tick")
     private void removeTotem(ItemStack stack, SlotReference slot, LivingEntity livingEntity, CallbackInfo ci) {
         if (LaLConfig.get.misc.accessory_of_undying && livingEntity instanceof Player player && TrinketsApi.getTrinketComponent(livingEntity).isPresent()) {
             if (player.getTags().contains("used_totem") && (TrinketsApi.getTrinketComponent(livingEntity).get().isEquipped(LaLItems.TOTEM_OF_TELEPORTATION) || TrinketsApi.getTrinketComponent(livingEntity).get().isEquipped(LaLItems.TOTEM_OF_RESURRECTION) || TrinketsApi.getTrinketComponent(livingEntity).get().isEquipped(Items.TOTEM_OF_UNDYING))) {
@@ -48,5 +48,5 @@ public interface TrinketMixin {
     @Inject(at = @At("TAIL"), method = "canEquipFromUse", cancellable = true)
     private void equipTotemFromUse(ItemStack stack, LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
         if (stack.is(LaLItemTags.TOTEMS) && LaLConfig.get.misc.totem_use_equip) cir.setReturnValue(true);
-    }
+    }*/
 }

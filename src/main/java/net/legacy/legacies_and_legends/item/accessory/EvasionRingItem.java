@@ -1,27 +1,10 @@
 package net.legacy.legacies_and_legends.item.accessory;
 
-import com.google.common.collect.Multimap;
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketsApi;
-import net.legacy.legacies_and_legends.LaLConstants;
-import net.legacy.legacies_and_legends.item.AccessoryItem;
-import net.legacy.legacies_and_legends.registry.LaLItems;
-import net.minecraft.core.Holder;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-
 import java.util.Random;
 
-public class EvasionRingItem extends AccessoryItem {
+public class EvasionRingItem {
 
-    public EvasionRingItem(Properties settings) {
+/*    public EvasionRingItem(Properties settings) {
         super(settings);
     }
 
@@ -64,5 +47,5 @@ public class EvasionRingItem extends AccessoryItem {
 
             modifiers.put(Attributes.SNEAKING_SPEED, new AttributeModifier(LaLConstants.id("sneaking_speed"), 0.3, AttributeModifier.Operation.ADD_VALUE));
         return modifiers;
-    }
+    }*/
 }

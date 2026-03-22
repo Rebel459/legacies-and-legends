@@ -13,6 +13,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.item.component.ProvidesTrimMaterial;
@@ -52,6 +53,10 @@ public class LaLDataComponents {
 
     public static final DataComponentType<String> LORE_BOOK = register(
             "lore_book", builder -> builder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8)
+    );
+
+    public static final DataComponentType<ItemStack> ACCESSORY = register(
+            "accessory", builder -> builder.persistent(ItemStack.CODEC).networkSynchronized(ItemStack.STREAM_CODEC)
     );
 
     private static <T> DataComponentType<T> register(String string, UnaryOperator<DataComponentType.Builder<T>> unaryOperator) {

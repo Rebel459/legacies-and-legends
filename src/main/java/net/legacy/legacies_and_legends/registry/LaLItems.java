@@ -413,120 +413,120 @@ public final class LaLItems {
     );
 
     // Accessories
-    public static final AccessoryItem RING_OF_HUNTING = register("ring_of_hunting",
-            AccessoryItem::new,
+    public static final Item RING_OF_HUNTING = register("ring_of_hunting",
+            Item::new,
             new Properties()
                     .durability(145)
                     .repairable(LaLItemTags.HUNTING_RING_MATERIALS)
                     .rarity(Rarity.RARE)
     );
-    public static final EvasionRingItem RING_OF_EVASION = register("ring_of_evasion",
-            EvasionRingItem::new,
+    public static final Item RING_OF_EVASION = register("ring_of_evasion",
+            Item::new,
             new Properties()
                     .durability(326)
                     .repairable(LaLItemTags.EVASION_RING_MATERIALS)
                     .rarity(Rarity.RARE)
     );
-    public static final ConstructionRingItem RING_OF_CONSTRUCTION = register("ring_of_construction",
-            ConstructionRingItem::new,
+    public static final Item RING_OF_CONSTRUCTION = register("ring_of_construction",
+            Item::new,
             new Properties()
                     .durability(1024)
                     .repairable(LaLItemTags.CONSTRUCTION_RING_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
-    public static final StrikingRingItem RING_OF_STRIKING = register("ring_of_striking",
-            StrikingRingItem::new,
+    public static final Item RING_OF_STRIKING = register("ring_of_striking",
+            Item::new,
             new Properties()
                     .durability(152)
                     .repairable(LaLItemTags.STRIKING_RING_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
-    public static final AccessoryItem RING_OF_ARCHERY = register("ring_of_archery",
-            AccessoryItem::new,
+    public static final Item RING_OF_ARCHERY = register("ring_of_archery",
+            Item::new,
             new Properties()
                     .durability(249)
                     .repairable(LaLItemTags.ARCHERY_RING_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
-    public static final AccessoryItem RING_OF_EXCAVATION = register("ring_of_excavation",
-            AccessoryItem::new,
+    public static final Item RING_OF_EXCAVATION = register("ring_of_excavation",
+            Item::new,
             new Properties()
                     .durability(512)
                     .repairable(LaLItemTags.EXCAVATION_RING_MATERIALS)
                     .rarity(Rarity.RARE)
     );
-    public static final AccessoryItem RING_OF_RESTORATION = register("ring_of_restoration",
-            AccessoryItem::new,
+    public static final Item RING_OF_RESTORATION = register("ring_of_restoration",
+            Item::new,
             new Properties()
                     .durability(330)
                     .repairable(LaLItemTags.RESTORATION_RING_MATERIALS)
                     .rarity(Rarity.EPIC)
     );
 
-    public static final AccessoryItem NECKLACE_OF_ISOLATION = register("necklace_of_isolation",
-            AccessoryItem::new,
+    public static final Item NECKLACE_OF_ISOLATION = register("necklace_of_isolation",
+            Item::new,
             new Properties()
                     .durability(408)
                     .repairable(LaLItemTags.ISOLATION_NECKLACE_MATERIALS)
                     .rarity(Rarity.RARE)
     );
-    public static final PurityNecklaceItem NECKLACE_OF_PURITY = register("necklace_of_purity",
-            PurityNecklaceItem::new,
+    public static final Item NECKLACE_OF_PURITY = register("necklace_of_purity",
+            Item::new,
             new Properties()
                     .durability(173)
                     .repairable(LaLItemTags.PURITY_NECKLACE_MATERIALS)
                     .rarity(Rarity.RARE)
     );
-    public static final LeapingNecklaceItem NECKLACE_OF_LEAPING = register("necklace_of_leaping",
-            LeapingNecklaceItem::new,
+    public static final Item NECKLACE_OF_LEAPING = register("necklace_of_leaping",
+            Item::new,
             new Properties()
                     .durability(212)
                     .repairable(LaLItemTags.LEAPING_NECKLACE_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
-    public static final ProtectionNecklaceItem NECKLACE_OF_PROTECTION = register("necklace_of_protection",
-            ProtectionNecklaceItem::new,
+    public static final Item NECKLACE_OF_PROTECTION = register("necklace_of_protection",
+            Item::new,
             new Properties()
                     .durability(237)
                     .repairable(LaLItemTags.PROTECTION_NECKLACE_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
-    public static final AccessoryItem NECKLACE_OF_RESILIENCE = register("necklace_of_resilience",
-            AccessoryItem::new,
+    public static final Item NECKLACE_OF_RESILIENCE = register("necklace_of_resilience",
+            Item::new,
             new Properties()
                     .durability(155)
                     .repairable(LaLItemTags.RESILIENCE_NECKLACE_MATERIALS)
                     .rarity(Rarity.EPIC)
     );
-    public static final AccessoryItem NECKLACE_OF_REGENERATION = register("necklace_of_regeneration",
-            AccessoryItem::new,
+    public static final Item NECKLACE_OF_REGENERATION = register("necklace_of_regeneration",
+            Item::new,
             new Properties()
                     .durability(284)
                     .repairable(LaLItemTags.REGENERATION_NECKLACE_MATERIALS)
                     .rarity(Rarity.RARE)
     );
-    public static final AccessoryItem NECKLACE_OF_BARTERING = register("necklace_of_bartering",
-            AccessoryItem::new,
+    public static final Item NECKLACE_OF_BARTERING = register("necklace_of_bartering",
+            Item::new,
             new Properties()
                     .durability(351)
                     .repairable(LaLItemTags.BARTERING_NECKLACE_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
 
-    public static final ObsidianAmuletItem AMULET_OF_OBSIDIAN = register("amulet_of_obsidian",
-            ObsidianAmuletItem::new,
+    public static final Item AMULET_OF_OBSIDIAN = register("amulet_of_obsidian",
+            Item::new,
             new Properties()
                     .durability(AMULET_DURABILITY)
                     .rarity(Rarity.EPIC)
     );
-    public static final AbsorptionAmuletItem AMULET_OF_ABSORPTION = register("amulet_of_absorption",
-            AbsorptionAmuletItem::new,
+    public static final Item AMULET_OF_ABSORPTION = register("amulet_of_absorption",
+            Item::new,
             new Properties()
                     .durability(AMULET_DURABILITY)
                     .rarity(Rarity.RARE)
     );
-    public static final DeflectionAmuletItem AMULET_OF_DEFLECTION = register("amulet_of_deflection",
-            DeflectionAmuletItem::new,
+    public static final Item AMULET_OF_DEFLECTION = register("amulet_of_deflection",
+            Item::new,
             new Properties()
                     .durability(AMULET_DURABILITY)
                     .rarity(Rarity.RARE)

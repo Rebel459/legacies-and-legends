@@ -1,7 +1,7 @@
 package net.legacy.legacies_and_legends.mixin.client;
 
-import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.legacies_and_legends.registry.LaLItems;
+import net.legacy.legacies_and_legends.util.AccessoryHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import org.jetbrains.annotations.Nullable;
@@ -19,6 +19,6 @@ public class MinecraftMixin {
 
     @Inject(method = "startUseItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/InteractionHand;values()[Lnet/minecraft/world/InteractionHand;"))
     private void ringOfConstruction(CallbackInfo ci) {
-        if (TrinketsApi.getTrinketComponent(this.player).get().isEquipped(LaLItems.RING_OF_CONSTRUCTION)) this.rightClickDelay = 3;
+        if (AccessoryHelper.getAccessory(this.player).is(LaLItems.RING_OF_CONSTRUCTION)) this.rightClickDelay = 3;
     }
 }

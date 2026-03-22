@@ -1,7 +1,7 @@
 package net.legacy.legacies_and_legends.mixin.client;
 
-import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.legacies_and_legends.registry.LaLItems;
+import net.legacy.legacies_and_legends.util.AccessoryHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import org.spongepowered.asm.mixin.Final;
@@ -16,7 +16,7 @@ public class MultiPlayerGameModeMixin {
 
     @ModifyConstant(method = "continueDestroyBlock", constant = @Constant(intValue = 5))
     private int ringOfExcavation(int value) {
-        if (TrinketsApi.getTrinketComponent(this.minecraft.player).get().isEquipped(LaLItems.RING_OF_EXCAVATION)) return 2;
+        if (AccessoryHelper.getAccessory(this.minecraft.player).is(LaLItems.RING_OF_EXCAVATION)) return 2;
         else return 5;
     }
 }

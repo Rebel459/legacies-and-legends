@@ -1,25 +1,10 @@
 package net.legacy.legacies_and_legends.item.accessory;
 
-import com.google.common.collect.Multimap;
-import dev.emi.trinkets.api.SlotReference;
-import net.legacy.legacies_and_legends.LaLConstants;
-import net.legacy.legacies_and_legends.entity.impl.LaLPlayerDamageInterface;
 import net.legacy.legacies_and_legends.item.AmuletItem;
-import net.legacy.legacies_and_legends.registry.LaLItems;
-import net.minecraft.core.Holder;
-import net.minecraft.resources.Identifier;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 public class AbsorptionAmuletItem extends AmuletItem {
 
-    @Override
+/*    @Override
     public Item getItem() {
         return LaLItems.AMULET_OF_ABSORPTION;
     }
@@ -72,5 +57,5 @@ public class AbsorptionAmuletItem extends AmuletItem {
         modifiers.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(LaLConstants.id("armor_toughness"), toughness, AttributeModifier.Operation.ADD_VALUE));
         modifiers.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(LaLConstants.id("knockback_resistance"), knockbackResistance * 0.1, AttributeModifier.Operation.ADD_VALUE));
         return modifiers;
-    }
+    }*/
 }

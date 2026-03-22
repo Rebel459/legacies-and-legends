@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,17 +23,24 @@ public abstract class EaEItemStackMixin {
 
     @Shadow public abstract DataComponentMap getComponents();
 
-    @Shadow public abstract void applyComponents(DataComponentMap components);
-
     @Shadow public abstract Item getItem();
 
     @Shadow public abstract Stream<TagKey<Item>> getTags();
 
     @Shadow public abstract boolean is(TagKey<Item> tag);
 
+    @Unique
+    private int secondTicks = 20;
+
     @Inject(at = @At("HEAD"), method = "inventoryTick")
     private void applyEnchantable(Level level, Entity entity, EquipmentSlot slot, CallbackInfo ci) {
         ItemStack stack = ItemStack.class.cast(this);
-        AccessoryHelper.randomEnchantability(stack, RandomSource.create());
+
+        if (secondTicks >= 20) {
+            AccessoryHelper.setupRandomComponents(stack, RandomSource.create());
+            secondTicks = 0;
+        } else {
+            secondTicks += 1;
+        }
     }
 }

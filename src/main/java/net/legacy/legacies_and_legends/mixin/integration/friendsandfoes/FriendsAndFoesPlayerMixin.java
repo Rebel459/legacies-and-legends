@@ -3,8 +3,8 @@ package net.legacy.legacies_and_legends.mixin.integration.friendsandfoes;
 import com.faboslav.friendsandfoes.common.init.FriendsAndFoesItems;
 import com.faboslav.friendsandfoes.common.init.FriendsAndFoesParticleTypes;
 import com.faboslav.friendsandfoes.common.tag.FriendsAndFoesTags;
-import dev.emi.trinkets.api.TrinketsApi;
 import net.legacy.legacies_and_legends.integration.friendsandfoes.FriendsAndFoesTotemUtil;
+import net.legacy.legacies_and_legends.util.AccessoryHelper;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -23,8 +23,8 @@ public abstract class FriendsAndFoesPlayerMixin {
     @Inject(method = "actuallyHurt", at = @At(value = "TAIL"))
     private void activateTotem(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo info) {
         Player player = Player.class.cast(this);
-        if (TrinketsApi.getTrinketComponent(player).isPresent()) {
-            if (TrinketsApi.getTrinketComponent(player).get().isEquipped(FriendsAndFoesItems.TOTEM_OF_FREEZING.get()) && player.getHealth() <= player.getMaxHealth() / 2) {
+        if (AccessoryHelper.hasAccessory(player)) {
+            if (AccessoryHelper.getAccessory(player).is(FriendsAndFoesItems.TOTEM_OF_FREEZING.get()) && player.getHealth() <= player.getMaxHealth() / 2) {
                 com.faboslav.friendsandfoes.common.util.TotemUtil.freezeEntities(player, level);
                 FriendsAndFoesTotemUtil.playActivateAnimation(player, FriendsAndFoesParticleTypes.TOTEM_OF_FREEZING.get());
                 FriendsAndFoesTotemUtil.playActivateAnimationOnly(FriendsAndFoesItems.TOTEM_OF_FREEZING.get().getDefaultInstance());
@@ -33,7 +33,7 @@ public abstract class FriendsAndFoesPlayerMixin {
                 player.addTag("used_totem");
                 return;
             }
-            if (TrinketsApi.getTrinketComponent(player).get().isEquipped(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get()) && player.getHealth() <= player.getMaxHealth() / 2) {
+            if (AccessoryHelper.getAccessory(player).is(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get()) && player.getHealth() <= player.getMaxHealth() / 2) {
                 com.faboslav.friendsandfoes.common.util.TotemUtil.createIllusions(player, level);
                 FriendsAndFoesTotemUtil.playActivateAnimation(player, FriendsAndFoesParticleTypes.TOTEM_OF_ILLUSION.get());
                 FriendsAndFoesTotemUtil.playActivateAnimationOnly(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get().getDefaultInstance());

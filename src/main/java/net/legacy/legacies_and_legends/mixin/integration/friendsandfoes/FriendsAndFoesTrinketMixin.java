@@ -1,6 +1,6 @@
 package net.legacy.legacies_and_legends.mixin.integration.friendsandfoes;
 
-import com.faboslav.friendsandfoes.common.init.FriendsAndFoesItems;
+/*import com.faboslav.friendsandfoes.common.init.FriendsAndFoesItems;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -12,10 +12,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(Trinket.class)
+@Mixin(Trinket.class)*/
 public interface FriendsAndFoesTrinketMixin {
 
-    @Inject(at = @At("HEAD"), method = "tick")
+/*    @Inject(at = @At("HEAD"), method = "tick")
     private void tick(ItemStack stack, SlotReference slot, LivingEntity livingEntity, CallbackInfo ci) {
         if (livingEntity instanceof Player player && TrinketsApi.getTrinketComponent(livingEntity).isPresent()) {
             if (player.getTags().contains("used_totem") && (TrinketsApi.getTrinketComponent(livingEntity).get().isEquipped(FriendsAndFoesItems.TOTEM_OF_FREEZING.get()) || TrinketsApi.getTrinketComponent(livingEntity).get().isEquipped(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get()))) {
@@ -23,5 +23,5 @@ public interface FriendsAndFoesTrinketMixin {
                 slot.inventory().removeItem(slot.index(), 1);
             }
         }
-    }
+    }*/
 }
