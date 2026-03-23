@@ -4,10 +4,9 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
-import net.legacy.item_tooltips.config.ITConfig;
-import net.legacy.legacies_and_legends.LaLConstants;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.CollapsibleObject;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
+import net.legacy.legacies_and_legends.LaLConstants;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +25,6 @@ public class LaLConfig implements ConfigData {
 
 	public static void init() {
 		AutoConfig.register(LaLConfig.class, JanksonConfigSerializer::new);
-		get = AutoConfig.getConfigHolder(LaLConfig.class).getConfig();
 	}
 
 	@CollapsibleObject

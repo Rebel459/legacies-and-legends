@@ -1,6 +1,8 @@
 package net.legacy.legacies_and_legends.mixin;
 
+import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.loader.api.FabricLoader;
+import net.legacy.legacies_and_legends.config.LaLConfig;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.tree.ClassNode;
@@ -18,6 +20,7 @@ public final class LaLMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public void onLoad(String mixinPackage) {
+        LaLConfig.get = AutoConfig.getConfigHolder(LaLConfig.class).getConfig();
         this.hasEnchantsAndExpeditions = FabricLoader.getInstance().isModLoaded("enchants_and_expeditions");
         hasCombatReborn = FabricLoader.getInstance().isModLoaded("combat_reborn");
         this.hasFriendsAndFoes = FabricLoader.getInstance().isModLoaded("friendsandfoes");
