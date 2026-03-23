@@ -169,31 +169,20 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
 
     @Inject(method = "actuallyHurt", at = @At(value = "TAIL"))
     private void activateTotem(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo info) {
-        int resurrectionRegenDuration = 600;
-
         Player player = Player.class.cast(this);
         if (AccessoryHelper.hasAccessory(player) && player instanceof AccessoryInterface accessory) {
             ItemStack stack = AccessoryHelper.getAccessory(player);
             AccessoryHelper.Mutable mutable = accessory.getAccessoryData();
             if (stack.is(LaLItems.TOTEM_OF_TELEPORTATION) && amount >= player.getHealth()) {
                 player.setHealth(1.0F);
-                LaLItems.TOTEM_OF_TELEPORTATION.getDefaultInstance().get(DataComponents.DEATH_PROTECTION).applyEffects(LaLItems.TOTEM_OF_TELEPORTATION.getDefaultInstance(), player);
-                TotemUtil.playTotemAnimation(LaLItems.TOTEM_OF_TELEPORTATION.getDefaultInstance(), player);
+                stack.get(DataComponents.DEATH_PROTECTION).applyEffects(stack, player);
+                TotemUtil.playTotemAnimation(stack, player);
                 player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_TELEPORTATION));
-                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, LaLItems.TOTEM_OF_TELEPORTATION.getDefaultInstance());
-                mutable.usedTotem = true;
+                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, stack);
+                stack.copyAndClear();
             }
             if (stack.is(LaLItems.TOTEM_OF_RESURRECTION) && amount >= player.getHealth()) {
-                player.setHealth(1.0F);
-                player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, resurrectionRegenDuration));
-                TotemUtil.playTotemAnimation(LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance(), player);
-                player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_RESURRECTION));
-                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance());
-                if (player instanceof ServerPlayer serverPlayer) {
-                    player.teleport(serverPlayer.findRespawnPositionAndUseSpawnBlock(false, TeleportTransition.DO_NOTHING));
-                    level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
-                }
-                mutable.usedTotem = true;
+                handleTotemOfResurrection(level, player, stack);
             }
             if (LaLConfig.get.misc.accessory_of_undying && stack.is(Items.TOTEM_OF_UNDYING) && amount >= player.getHealth()) {
                 player.setHealth(1.0F);
@@ -201,36 +190,32 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
                 TotemUtil.playTotemAnimation(Items.TOTEM_OF_UNDYING.getDefaultInstance(), player);
                 player.awardStat(Stats.ITEM_USED.get(Items.TOTEM_OF_UNDYING));
                 CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, Items.TOTEM_OF_UNDYING.getDefaultInstance());
-                mutable.usedTotem = true;
+                stack.copyAndClear();
             }
             accessory.setAccessoryData(mutable);
         }
         if ((player.getMainHandItem().is(LaLItems.TOTEM_OF_RESURRECTION) || player.getOffhandItem().is(LaLItems.TOTEM_OF_RESURRECTION)) && amount >= player.getHealth()) {
             if (player.getMainHandItem().is(LaLItems.TOTEM_OF_RESURRECTION)) {
-                player.setHealth(1.0F);
-                player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, resurrectionRegenDuration));
-                TotemUtil.playTotemAnimation(LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance(), player);
-                player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_RESURRECTION));
-                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance());
-                if (player instanceof ServerPlayer serverPlayer) {
-                    player.teleport(serverPlayer.findRespawnPositionAndUseSpawnBlock(false, TeleportTransition.DO_NOTHING));
-                    level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
-                }
-                player.getItemBySlot(EquipmentSlot.MAINHAND).copyAndClear();
+                handleTotemOfResurrection(level, player, player.getMainHandItem());
             }
             else if (player.getOffhandItem().is(LaLItems.TOTEM_OF_RESURRECTION)) {
-                player.setHealth(1.0F);
-                player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, resurrectionRegenDuration));
-                TotemUtil.playTotemAnimation(LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance(), player);
-                player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_RESURRECTION));
-                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance());
-                if (player instanceof ServerPlayer serverPlayer) {
-                    player.teleport(serverPlayer.findRespawnPositionAndUseSpawnBlock(false, TeleportTransition.DO_NOTHING));
-                    level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
-                }
-                player.getItemBySlot(EquipmentSlot.OFFHAND).copyAndClear();
+                handleTotemOfResurrection(level, player, player.getOffhandItem());
             }
         }
+    }
+
+    @Unique
+    private static void handleTotemOfResurrection(Level level, Player player, ItemStack stack) {
+        player.setHealth(1.0F);
+        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 600));
+        TotemUtil.playTotemAnimation(LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance(), player);
+        player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_RESURRECTION));
+        if (player instanceof ServerPlayer serverPlayer) {
+            CriteriaTriggers.USED_TOTEM.trigger(serverPlayer, LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance());
+            player.teleport(serverPlayer.findRespawnPositionAndUseSpawnBlock(false, TeleportTransition.DO_NOTHING));
+            level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
+        }
+        stack.copyAndClear();
     }
 
     @Inject(method = "die", at = @At("HEAD"))

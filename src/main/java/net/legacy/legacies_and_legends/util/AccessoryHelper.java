@@ -28,14 +28,12 @@ public class AccessoryHelper {
 
     public static class Mutable {
 
-        public int amuletRepairTicks = 0;
-        public int amuletCooldownTicks = 0;
         public int secondTicks = 20;
         public int secondsElapsed = 3;
-        public boolean usedTotem = false;
+        public int amuletRepairTicks = 0;
+        public int amuletCooldownTicks = 0;
         public boolean hasInfiniteInvisibility = false;
         public boolean doOnEquip = false;
-        public ItemStack hiddenAccessory = ItemStack.EMPTY;
         public Multimap<Holder<Attribute>, AttributeModifier> temporaryModifiers = HashMultimap.create();
 
         public void onTick(Player player, ItemStack stack) {
@@ -95,7 +93,7 @@ public class AccessoryHelper {
         }
 
         public void onTickAmuletRepair(Player player, ItemStack stack) {
-            if (stack.is(LaLItemTags.AMULETS)) {
+            if (stack.is(LaLItemTags.AMULETS) && !player.getCooldowns().isOnCooldown(stack)) {
                 if (this.amuletRepairTicks >= getAmuletRepairFrequency(stack)) {
                     this.amuletRepairTicks = 0;
                     repairAccessory(stack, 1);
@@ -163,6 +161,10 @@ public class AccessoryHelper {
         accessorySlot.setAccessory(stack);
     }
 
+    public static void clearAccessory(Player player) {
+        setAccessory(player, ItemStack.EMPTY);
+    }
+
     public static boolean hasAccessory(Player player) {
         return getActualAccessory(player) != ItemStack.EMPTY;
     }
@@ -173,9 +175,6 @@ public class AccessoryHelper {
     public static int getAmuletRepairCooldown(ItemStack stack) {
         if (stack.is(LaLItems.AMULET_OF_DEFLECTION)) return 200;
         return 100;
-    }
-    public static int getAmuletTicksUntilDamage(ItemStack stack) {
-        return 10;
     }
 
     public static void damageAccessory(Player player, ItemStack stack) {
@@ -192,6 +191,9 @@ public class AccessoryHelper {
         stack.setDamageValue(stack.getDamageValue() + amount);
         if (player instanceof ServerPlayer serverPlayer) CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger(serverPlayer, stack, amount);
         if (stack.getDamageValue() >= stack.getMaxDamage() - 1) {
+            if (stack.is(LaLItemTags.AMULETS)) {
+                player.getCooldowns().addCooldown(stack, 6000);
+            }
             stack.setDamageValue(stack.getMaxDamage() - 1);
             onBreak(player, stack);
             player.playSound(LaLSounds.ACCESSORY_BREAK);

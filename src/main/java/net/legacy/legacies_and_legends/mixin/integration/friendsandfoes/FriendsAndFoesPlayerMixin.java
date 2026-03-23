@@ -3,19 +3,27 @@ package net.legacy.legacies_and_legends.mixin.integration.friendsandfoes;
 import com.faboslav.friendsandfoes.common.init.FriendsAndFoesItems;
 import com.faboslav.friendsandfoes.common.init.FriendsAndFoesParticleTypes;
 import com.faboslav.friendsandfoes.common.tag.FriendsAndFoesTags;
+import com.teamresourceful.resourcefullib.common.registry.RegistryEntry;
 import net.legacy.legacies_and_legends.integration.friendsandfoes.FriendsAndFoesTotemUtil;
 import net.legacy.legacies_and_legends.util.AccessoryHelper;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.function.Supplier;
 
 @Mixin(Player.class)
 public abstract class FriendsAndFoesPlayerMixin {
@@ -24,58 +32,48 @@ public abstract class FriendsAndFoesPlayerMixin {
     private void activateTotem(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo info) {
         Player player = Player.class.cast(this);
         if (AccessoryHelper.hasAccessory(player)) {
-            if (AccessoryHelper.getAccessory(player).is(FriendsAndFoesItems.TOTEM_OF_FREEZING.get()) && player.getHealth() <= player.getMaxHealth() / 2) {
+            ItemStack stack = AccessoryHelper.getAccessory(player);
+            if (stack.is(FriendsAndFoesItems.TOTEM_OF_FREEZING.get()) && player.getHealth() <= player.getMaxHealth() / 2) {
                 com.faboslav.friendsandfoes.common.util.TotemUtil.freezeEntities(player, level);
-                FriendsAndFoesTotemUtil.playActivateAnimation(player, FriendsAndFoesParticleTypes.TOTEM_OF_FREEZING.get());
-                FriendsAndFoesTotemUtil.playActivateAnimationOnly(FriendsAndFoesItems.TOTEM_OF_FREEZING.get().getDefaultInstance());
-                player.awardStat(Stats.ITEM_USED.get(FriendsAndFoesItems.TOTEM_OF_FREEZING.get()));
-                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, FriendsAndFoesItems.TOTEM_OF_FREEZING.get().getDefaultInstance());
-                player.addTag("used_totem");
+                handleTotem(player, stack, FriendsAndFoesParticleTypes.TOTEM_OF_FREEZING);
                 return;
             }
-            if (AccessoryHelper.getAccessory(player).is(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get()) && player.getHealth() <= player.getMaxHealth() / 2) {
+            if (stack.is(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get()) && player.getHealth() <= player.getMaxHealth() / 2) {
                 com.faboslav.friendsandfoes.common.util.TotemUtil.createIllusions(player, level);
-                FriendsAndFoesTotemUtil.playActivateAnimation(player, FriendsAndFoesParticleTypes.TOTEM_OF_ILLUSION.get());
-                FriendsAndFoesTotemUtil.playActivateAnimationOnly(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get().getDefaultInstance());
-                player.awardStat(Stats.ITEM_USED.get(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get()));
-                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, FriendsAndFoesItems.TOTEM_OF_ILLUSION.get().getDefaultInstance());
-                player.addTag("used_totem");
+                handleTotem(player, stack, FriendsAndFoesParticleTypes.TOTEM_OF_ILLUSION);
                 return;
             }
         }
         if ((player.getMainHandItem().is(FriendsAndFoesTags.TOTEMS) || player.getOffhandItem().is(FriendsAndFoesTags.TOTEMS)) && player.getHealth() <= player.getMaxHealth() / 2) {
             if (player.getMainHandItem().is(FriendsAndFoesItems.TOTEM_OF_FREEZING.get())) {
+                ItemStack stack = player.getItemBySlot(EquipmentSlot.MAINHAND);
                 com.faboslav.friendsandfoes.common.util.TotemUtil.freezeEntities(player, level);
-                FriendsAndFoesTotemUtil.playActivateAnimation(player, FriendsAndFoesParticleTypes.TOTEM_OF_FREEZING.get());
-                FriendsAndFoesTotemUtil.playActivateAnimationOnly(FriendsAndFoesItems.TOTEM_OF_FREEZING.get().getDefaultInstance());
-                player.awardStat(Stats.ITEM_USED.get(FriendsAndFoesItems.TOTEM_OF_FREEZING.get()));
-                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, FriendsAndFoesItems.TOTEM_OF_FREEZING.get().getDefaultInstance());
-                player.getItemBySlot(EquipmentSlot.MAINHAND).copyAndClear();
+                handleTotem(player, stack, FriendsAndFoesParticleTypes.TOTEM_OF_FREEZING);
             }
             else if (player.getMainHandItem().is(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get())) {
+                ItemStack stack = player.getItemBySlot(EquipmentSlot.MAINHAND);
                 com.faboslav.friendsandfoes.common.util.TotemUtil.createIllusions(player, level);
-                FriendsAndFoesTotemUtil.playActivateAnimation(player, FriendsAndFoesParticleTypes.TOTEM_OF_ILLUSION.get());
-                FriendsAndFoesTotemUtil.playActivateAnimationOnly(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get().getDefaultInstance());
-                player.awardStat(Stats.ITEM_USED.get(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get()));
-                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, FriendsAndFoesItems.TOTEM_OF_ILLUSION.get().getDefaultInstance());
-                player.getItemBySlot(EquipmentSlot.MAINHAND).copyAndClear();
+                handleTotem(player, stack, FriendsAndFoesParticleTypes.TOTEM_OF_ILLUSION);
             }
             else if (player.getOffhandItem().is(FriendsAndFoesItems.TOTEM_OF_FREEZING.get())) {
+                ItemStack stack = player.getItemBySlot(EquipmentSlot.OFFHAND);
                 com.faboslav.friendsandfoes.common.util.TotemUtil.freezeEntities(player, level);
-                FriendsAndFoesTotemUtil.playActivateAnimation(player, FriendsAndFoesParticleTypes.TOTEM_OF_FREEZING.get());
-                FriendsAndFoesTotemUtil.playActivateAnimationOnly(FriendsAndFoesItems.TOTEM_OF_FREEZING.get().getDefaultInstance());
-                player.awardStat(Stats.ITEM_USED.get(FriendsAndFoesItems.TOTEM_OF_FREEZING.get()));
-                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, FriendsAndFoesItems.TOTEM_OF_FREEZING.get().getDefaultInstance());
-                player.getItemBySlot(EquipmentSlot.OFFHAND).copyAndClear();
+                handleTotem(player, stack, FriendsAndFoesParticleTypes.TOTEM_OF_FREEZING);
             }
             else if (player.getOffhandItem().is(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get())) {
+                ItemStack stack = player.getItemBySlot(EquipmentSlot.OFFHAND);
                 com.faboslav.friendsandfoes.common.util.TotemUtil.createIllusions(player, level);
-                FriendsAndFoesTotemUtil.playActivateAnimation(player, FriendsAndFoesParticleTypes.TOTEM_OF_ILLUSION.get());
-                FriendsAndFoesTotemUtil.playActivateAnimationOnly(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get().getDefaultInstance());
-                player.awardStat(Stats.ITEM_USED.get(FriendsAndFoesItems.TOTEM_OF_ILLUSION.get()));
-                CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, FriendsAndFoesItems.TOTEM_OF_ILLUSION.get().getDefaultInstance());
-                player.getItemBySlot(EquipmentSlot.OFFHAND).copyAndClear();
+                handleTotem(player, stack, FriendsAndFoesParticleTypes.TOTEM_OF_ILLUSION);
             }
         }
+    }
+
+    @Unique
+    private static void handleTotem(Player player, ItemStack stack, RegistryEntry<SimpleParticleType> particle) {
+        FriendsAndFoesTotemUtil.playActivateAnimation(player, particle.get());
+        FriendsAndFoesTotemUtil.playActivateAnimationOnly(stack);
+        player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
+        if (player instanceof ServerPlayer serverPlayer) CriteriaTriggers.USED_TOTEM.trigger(serverPlayer, stack);
+        AccessoryHelper.clearAccessory(player);
     }
 }
