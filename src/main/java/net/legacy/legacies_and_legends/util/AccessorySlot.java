@@ -1,5 +1,7 @@
 package net.legacy.legacies_and_legends.util;
 
+import net.legacy.legacies_and_legends.LaLConstants;
+import net.legacy.legacies_and_legends.config.LaLConfig;
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
@@ -43,6 +45,6 @@ public class AccessorySlot extends Slot {
 
     @Override
     public boolean isActive() {
-        return !this.player.hasInfiniteMaterials();
+        return !this.player.hasInfiniteMaterials() && LaLConfig.get.misc.accessory_slot;
     }
 }

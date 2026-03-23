@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.LegaciesAndLegends;
+import net.legacy.legacies_and_legends.config.LaLConfig;
 import net.legacy.legacies_and_legends.registry.LaLItems;
 import net.legacy.legacies_and_legends.sound.LaLSounds;
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
@@ -147,7 +148,7 @@ public class AccessoryHelper {
 
     public static ItemStack getAccessory(Player player) {
         ItemStack stack = getActualAccessory(player);
-        if (stack.getDamageValue() >= stack.getMaxDamage() - 1) return ItemStack.EMPTY;
+        if (stack.getDamageValue() >= stack.getMaxDamage() - 1 || !LaLConfig.get.misc.accessory_slot) return ItemStack.EMPTY;
         else return stack;
     }
 
