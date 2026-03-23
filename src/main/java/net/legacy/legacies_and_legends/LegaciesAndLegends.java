@@ -18,7 +18,9 @@ import net.legacy.legacies_and_legends.sound.LaLSounds;
 import net.legacy.legacies_and_legends.util.AccessoryHelper;
 import net.legacy.legacies_and_legends.worldgen.LaLFeatures;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.gamerules.GameRules;
 
 import java.util.Optional;
 
@@ -58,6 +60,10 @@ public class LegaciesAndLegends implements ModInitializer {
 		LaLMapDecorationTypes.init();
 		LaLDataComponents.init();
 		LaLFeatures.init();
+
+        ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+            if (newPlayer.level().getGameRules().get(GameRules.KEEP_INVENTORY)) AccessoryHelper.setAccessory(newPlayer, AccessoryHelper.getActualAccessory(oldPlayer));
+        });
 	}
 
     public void loadResources() {

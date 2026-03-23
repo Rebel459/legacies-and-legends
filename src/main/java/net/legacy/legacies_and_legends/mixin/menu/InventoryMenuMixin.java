@@ -3,6 +3,8 @@ package net.legacy.legacies_and_legends.mixin.menu;
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
 import net.legacy.legacies_and_legends.util.AccessorySlotInterface;
 import net.legacy.legacies_and_legends.util.AccessorySlot;
+import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;

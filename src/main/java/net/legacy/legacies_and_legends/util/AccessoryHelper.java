@@ -2,7 +2,6 @@ package net.legacy.legacies_and_legends.util;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.mojang.datafixers.util.Pair;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.LegaciesAndLegends;
 import net.legacy.legacies_and_legends.registry.LaLItems;
@@ -22,13 +21,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.level.block.Blocks;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class AccessoryHelper {
 
@@ -37,11 +31,12 @@ public class AccessoryHelper {
         public int amuletRepairTicks = 0;
         public int amuletCooldownTicks = 0;
         public int secondTicks = 20;
-        public int damageTicks = 0;
         public int secondsElapsed = 3;
         public boolean usedTotem = false;
         public boolean hasInfiniteInvisibility = false;
-        private Multimap<Holder<Attribute>, AttributeModifier> temporaryModifiers = HashMultimap.create();
+        public boolean doOnEquip = false;
+        public ItemStack hiddenAccessory = ItemStack.EMPTY;
+        public Multimap<Holder<Attribute>, AttributeModifier> temporaryModifiers = HashMultimap.create();
 
         public void onTick(Player player, ItemStack stack) {
             if (this.secondTicks >= 20) {
@@ -75,8 +70,10 @@ public class AccessoryHelper {
             setupRandomComponents(stack, RandomSource.create());
             if (stack.is(LaLItems.AMULET_OF_OBSIDIAN)) {
                 secondsElapsed += 1;
+                boolean onFire = player.getRemainingFireTicks() > 0;
+                if (onFire) damageAccessory(player, stack, 2);
                 if (secondsElapsed >= 3) {
-                    if (player.getRemainingFireTicks() > 0) {
+                    if (onFire) {
                         if (player.isInLava() || player.getInBlockState().is(Blocks.LAVA)) player.playSound(SoundEvents.LAVA_EXTINGUISH);
                         else player.playSound(SoundEvents.FIRE_EXTINGUISH);
                         secondsElapsed = 0;
@@ -90,20 +87,10 @@ public class AccessoryHelper {
         public void onTickAmulet(Player player, ItemStack stack) {
             if (this.amuletCooldownTicks <= 0) {
                 this.amuletCooldownTicks = 0;
-                this.damageTicks = 0;
                 this.secondsElapsed = 3;
                 this.onTickAmuletRepair(player, stack);
             } else {
                 this.amuletCooldownTicks -= 1;
-            }
-        }
-
-        public void onTickDamage(Player player, ItemStack stack) {
-            if (this.damageTicks >= getAmuletTicksUntilDamage(stack)) {
-                this.damageTicks = 0;
-                damageAccessory(player, stack);
-            } else {
-                this.damageTicks += 1;
             }
         }
 
@@ -158,24 +145,26 @@ public class AccessoryHelper {
             }
             return attributes;
         }
-
     }
 
     public static ItemStack getAccessory(Player player) {
-        if (player.inventoryMenu instanceof AccessorySlotInterface accessorySlotInterface) {
-            return accessorySlotInterface.getAccessory();
-        }
-        return ItemStack.EMPTY;
+        ItemStack stack = getActualAccessory(player);
+        if (stack.getDamageValue() >= stack.getMaxDamage() - 1) return ItemStack.EMPTY;
+        else return stack;
+    }
+
+    public static ItemStack getActualAccessory(Player player) {
+        AccessorySlotInterface accessorySlot = (AccessorySlotInterface) player.inventoryMenu;
+        return accessorySlot.getAccessory();
     }
 
     public static void setAccessory(Player player, ItemStack stack) {
-        if (player.inventoryMenu instanceof AccessorySlotInterface accessorySlotInterface) {
-            accessorySlotInterface.setAccessory(stack);
-        }
+        AccessorySlotInterface accessorySlot = (AccessorySlotInterface) player.inventoryMenu;
+        accessorySlot.setAccessory(stack);
     }
 
     public static boolean hasAccessory(Player player) {
-        return getAccessory(player) != ItemStack.EMPTY;
+        return getActualAccessory(player) != ItemStack.EMPTY;
     }
 
     public static int getAmuletRepairFrequency(ItemStack stack) {
@@ -202,8 +191,8 @@ public class AccessoryHelper {
         }
         stack.setDamageValue(stack.getDamageValue() + amount);
         if (player instanceof ServerPlayer serverPlayer) CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger(serverPlayer, stack, amount);
-        if (stack.getDamageValue() >= stack.getMaxDamage()) {
-            setAccessory(player, ItemStack.EMPTY);
+        if (stack.getDamageValue() >= stack.getMaxDamage() - 1) {
+            stack.setDamageValue(stack.getMaxDamage() - 1);
             onBreak(player, stack);
             player.playSound(LaLSounds.ACCESSORY_BREAK);
         }
