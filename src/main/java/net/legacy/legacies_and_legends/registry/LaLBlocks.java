@@ -40,7 +40,8 @@ public class LaLBlocks {
                     .sound(LaLBlockSounds.SAPPHIRE_BLOCK)
                     .requiresCorrectToolForDrops()
     );
-    public static final DropExperienceBlock SAPPHIRE_ORE = register("sapphire_ore", (properties) -> new DropExperienceBlock(UniformInt.of(2, 5), properties),
+    public static final DropExperienceBlock SAPPHIRE_ORE = register("sapphire_ore",
+            (properties) -> new DropExperienceBlock(UniformInt.of(2, 5), properties),
             Properties.of()
                     .mapColor(MapColor.STONE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
@@ -48,7 +49,8 @@ public class LaLBlocks {
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
     );
-    public static final DropExperienceBlock DEEPSLATE_SAPPHIRE_ORE = register("deepslate_sapphire_ore", (properties) -> new DropExperienceBlock(UniformInt.of(2, 5), properties),
+    public static final DropExperienceBlock DEEPSLATE_SAPPHIRE_ORE = register("deepslate_sapphire_ore",
+            (properties) -> new DropExperienceBlock(UniformInt.of(2, 5), properties),
             Properties.of()
                     .mapColor(MapColor.DEEPSLATE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
