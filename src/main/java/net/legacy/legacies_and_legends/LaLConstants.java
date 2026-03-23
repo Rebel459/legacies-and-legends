@@ -17,7 +17,7 @@ public class LaLConstants {
 	}
 
 	public static Identifier vanillaId(String path) {
-		return Identifier.fromNamespaceAndPath(Identifier.DEFAULT_NAMESPACE, path);
+		return Identifier.withDefaultNamespace(path);
 	}
 
 	public static String string(@NotNull String path) {
