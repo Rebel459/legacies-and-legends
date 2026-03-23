@@ -113,13 +113,6 @@ public class LegaciesAndLegends implements ModInitializer {
                     ResourcePackActivationType.ALWAYS_ENABLED
             );
         }
-        if (LaLConfig.get.misc.accessory_slot) {
-            ResourceManagerHelper.registerBuiltinResourcePack(
-                    LaLConstants.id("accessory_slot"), modContainer.get(),
-                    Component.translatable("pack.legacies_and_legends.accessory_slot"),
-                    ResourcePackActivationType.ALWAYS_ENABLED
-            );
-        }
         if (!LaLConfig.get.structures.new_structures) {
             ResourceManagerHelper.registerBuiltinResourcePack(
                     LaLConstants.id("no_new_structures"), modContainer.get(),
