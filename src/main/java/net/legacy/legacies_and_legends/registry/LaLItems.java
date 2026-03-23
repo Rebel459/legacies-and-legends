@@ -3,7 +3,6 @@ package net.legacy.legacies_and_legends.registry;
 import net.frozenblock.lib.item.api.sherd.SherdRegistry;
 import net.legacy.legacies_and_legends.LaLConstants;
 import net.legacy.legacies_and_legends.item.*;
-import net.legacy.legacies_and_legends.item.accessory.*;
 import net.legacy.legacies_and_legends.sound.LaLJukeboxSongs;
 import net.legacy.legacies_and_legends.tag.LaLBlockTags;
 import net.legacy.legacies_and_legends.tag.LaLItemTags;
