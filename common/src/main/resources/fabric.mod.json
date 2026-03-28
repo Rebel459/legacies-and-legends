@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "legacies_and_legends",
+	"version": "${version}",
+	"name": "Legacies and Legends",
+	"description": "A complete and highly atmospheric soundtrack, immersion and lore expansion, with a few new items and structures to boot.",
+	"authors": [
+		"Rebel459"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/user/Rebel459",
+		"sources": "https://github.com/Rebel459/legacies-and-legends"
+	},
+	"license": "Legacy License",
+	"icon": "assets/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "net.rebel459.legacies_and_legends.LegaciesAndLegends"
+		],
+		"client": [
+          "net.rebel459.legacies_and_legends.LegaciesAndLegendsClient"
+		],
+		"fabric-datagen": [
+          "net.legacy.legacies_and_legends.datagen.LaLDataGenerator"
+		],
+		"modmenu": [
+			"net.legacy.legacies_and_legends.config.LaLModMenuIntegration"
+		],
+		"frozenlib:decorated_pot_patterns": [
+			"net.legacy.legacies_and_legends.registry.LaLDecoratedPotPatterns"
+		]
+	},
+	"accessWidener": "legacies_and_legends.accesswidener",
+	"mixins": [
+		"legacies_and_legends.mixins.json"
+	],
+	"depends": {
+		"minecraft": "1.21.11",
+		"fabric-api": "*",
+		"frozenlib": "*",
+		"cloth-config": "*"
+	}
+}
