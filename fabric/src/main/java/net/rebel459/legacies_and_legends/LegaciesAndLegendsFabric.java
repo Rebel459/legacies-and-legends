@@ -6,7 +6,7 @@ public class LegaciesAndLegendsFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        Template.initRegistries();
-        Template.init();
+        LegaciesAndLegends.initRegistries();
+        LegaciesAndLegends.init();
     }
 }

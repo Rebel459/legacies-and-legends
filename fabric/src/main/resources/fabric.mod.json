@@ -15,16 +15,16 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.rebel459.template.TemplateFabric"
+      "net.rebel459.legacies_and_legends.LegaciesAndLegendsFabric"
     ],
     "client": [
-      "net.rebel459.template.TemplateFabricClient"
+      "net.rebel459.legacies_and_legends.LegaciesAndLegendsFabricClient"
     ],
     "fabric-datagen": [
       "net.rebel459.legacies_and_legends.datagen.LaLDataGenerator"
     ],
     "modmenu": [
-      "net.legacy.legacies_and_legends.config.LaLModMenuIntegration"
+      "net.rebel459.legacies_and_legends.config.LaLModMenuIntegration"
     ]
   },
   "mixins": [
