@@ -6,6 +6,6 @@ public class LegaciesAndLegendsFabricClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        TemplateClient.initClient();
+        LegaciesAndLegendsClient.init();
     }
 }

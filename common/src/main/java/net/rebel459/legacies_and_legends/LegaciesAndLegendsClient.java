@@ -10,7 +10,7 @@ import net.rebel459.unified.util.PackInfo;
 
 public final class LegaciesAndLegendsClient {
 
-    public void init() {
+    public static void init() {
         LaLEntityRenderers.init();
         LaLModelLayers.init();
         LaLStructureMusic.init();
