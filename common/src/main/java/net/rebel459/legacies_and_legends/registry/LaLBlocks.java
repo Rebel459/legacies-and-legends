@@ -27,18 +27,18 @@ public class LaLBlocks {
     
     public static final SuppliedBlock SAPPHIRE_LANTERN = BLOCKS.register("sapphire_lantern",
             LanternBlock::new,
-            Properties.of()
+            () -> Properties.of()
                     .mapColor(MapColor.COLOR_BLUE)
                     .forceSolidOn()
                     .strength(3.5F)
-                    .lightLevel(blockStatex -> 14)
+                    .lightLevel(_ -> 14)
                     .sound(SoundType.LANTERN)
                     .noOcclusion()
                     .pushReaction(PushReaction.DESTROY)
     );
     public static final SuppliedBlock SAPPHIRE_BLOCK = BLOCKS.register("sapphire_block",
             Block::new,
-            Properties.of()
+            () -> Properties.of()
                     .mapColor(MapColor.COLOR_BLUE)
                     .forceSolidOn()
                     .strength(5F, 6F)
@@ -47,7 +47,7 @@ public class LaLBlocks {
     );
     public static final SuppliedBlock SAPPHIRE_ORE = BLOCKS.register("sapphire_ore",
             (properties) -> new DropExperienceBlock(UniformInt.of(2, 5), properties),
-            Properties.of()
+            () -> Properties.of()
                     .mapColor(MapColor.STONE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops()
@@ -56,7 +56,7 @@ public class LaLBlocks {
     );
     public static final SuppliedBlock DEEPSLATE_SAPPHIRE_ORE = BLOCKS.register("deepslate_sapphire_ore",
             (properties) -> new DropExperienceBlock(UniformInt.of(2, 5), properties),
-            Properties.of()
+            () -> Properties.of()
                     .mapColor(MapColor.DEEPSLATE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops()
@@ -66,7 +66,7 @@ public class LaLBlocks {
 
     public static final SuppliedBlock WAND_PLATFORM = BLOCKS.register("wand_platform",
             WandPlatformBlock::new,
-            Properties.of()
+            () -> Properties.of()
                     .mapColor(MapColor.COLOR_BLUE)
                     .noOcclusion()
                     .isViewBlocking(Blocks::never)

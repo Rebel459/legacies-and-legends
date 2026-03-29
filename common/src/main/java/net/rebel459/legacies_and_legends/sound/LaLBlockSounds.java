@@ -5,18 +5,18 @@ import net.minecraft.world.level.block.SoundType;
 public final class LaLBlockSounds {
 
     public static final SoundType SAPPHIRE_BLOCK = new SoundType(1F, 1F,
-            LaLSounds.SAPPHIRE_BLOCK_BREAK,
-            LaLSounds.SAPPHIRE_BLOCK_STEP,
-            LaLSounds.SAPPHIRE_BLOCK_PLACE,
-            LaLSounds.SAPPHIRE_BLOCK_HIT,
-            LaLSounds.SAPPHIRE_BLOCK_FALL
+            LaLSounds.SAPPHIRE_BLOCK_BREAK.get(),
+            LaLSounds.SAPPHIRE_BLOCK_STEP.get(),
+            LaLSounds.SAPPHIRE_BLOCK_PLACE.get(),
+            LaLSounds.SAPPHIRE_BLOCK_HIT.get(),
+            LaLSounds.SAPPHIRE_BLOCK_FALL.get()
     );
     public static final SoundType WAND_PLATFORM = new SoundType(1F, 1F,
-            LaLSounds.WAND_PLATFORM_BREAK,
-            LaLSounds.WAND_PLATFORM_STEP,
-            LaLSounds.WAND_PLATFORM_PLACE,
-            LaLSounds.WAND_PLATFORM_HIT,
-            LaLSounds.WAND_PLATFORM_FALL
+            LaLSounds.WAND_PLATFORM_BREAK.get(),
+            LaLSounds.WAND_PLATFORM_STEP.get(),
+            LaLSounds.WAND_PLATFORM_PLACE.get(),
+            LaLSounds.WAND_PLATFORM_HIT.get(),
+            LaLSounds.WAND_PLATFORM_FALL.get()
     );
 
     public static void init() {

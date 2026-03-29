@@ -6,6 +6,7 @@ public class LegaciesAndLegendsFabricClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        LegaciesAndLegendsClient.initRegistries();
         LegaciesAndLegendsClient.init();
     }
 }

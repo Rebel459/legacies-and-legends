@@ -58,7 +58,7 @@ public class WandItem extends Item {
             );
 
             platformInterface.setPlatformSummoned(true);
-            player.playSound(LaLSounds.WAND_SUMMON);
+            player.playSound(LaLSounds.WAND_SUMMON.get());
 
             stack.hurtAndBreak(1, player, hand);
 
@@ -76,9 +76,9 @@ public class WandItem extends Item {
                     BlockPos lastPlatformBlockPos = lastPlatformPos.pos();
                     if (!player.onGround() || player.getOnPos() != lastPlatformBlockPos) {
                         platformInterface.setPlatformSummoned(false);
-                        player.playSound(LaLSounds.WAND_RECALL);
+                        player.playSound(LaLSounds.WAND_RECALL.get());
 
-                        level.scheduleTick(lastPlatformBlockPos, LaLBlocks.WAND_PLATFORM, 5);
+                        level.scheduleTick(lastPlatformBlockPos, LaLBlocks.WAND_PLATFORM.get(), 5);
 
                         stack.applyComponents(DataComponentPatch.builder()
                                 .set(DataComponents.USE_COOLDOWN, new UseCooldown(0.5F))

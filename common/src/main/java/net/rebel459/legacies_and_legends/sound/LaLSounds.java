@@ -6,76 +6,64 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
+import net.rebel459.unified.platform.UnifiedRegistries;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Supplier;
+
 public class LaLSounds {
-	public static final Holder.Reference<SoundEvent> MUSIC_DISC_SVALL = registerForHolder("music_disc.svall");
-	public static final Holder.Reference<SoundEvent> MUSIC_DISC_TASWELL = registerForHolder("music_disc.taswell");
-	public static final Holder.Reference<SoundEvent> MUSIC_DISC_SHULKER = registerForHolder("music_disc.shulker");
-	public static final Holder.Reference<SoundEvent> MUSIC_DISC_TUNDRA = registerForHolder("music_disc.tundra");
-	public static final Holder.Reference<SoundEvent> MUSIC_DISC_FAR_LANDS = registerForHolder("music_disc.far_lands");
-	public static final Holder.Reference<SoundEvent> MUSIC_DISC_INFINITE_SPOOKY_AMETHYST = registerForHolder("music_disc.infinite_spooky_amethyst");
-	public static final Holder.Reference<SoundEvent> MUSIC_DISC_113 = registerForHolder("music_disc.113");
-	public static final Holder.Reference<SoundEvent> MUSIC_DISC_GRAVEL = registerForHolder("music_disc.gravel");
+	
+	public static UnifiedRegistries.SoundEvents SOUNDS = UnifiedRegistries.SoundEvents.create(LaLConstants.MOD_ID);
+	
+	public static final Holder<SoundEvent> MUSIC_DISC_SVALL = SOUNDS.registerHolder("music_disc.svall");
+	public static final Holder<SoundEvent> MUSIC_DISC_TASWELL = SOUNDS.registerHolder("music_disc.taswell");
+	public static final Holder<SoundEvent> MUSIC_DISC_SHULKER = SOUNDS.registerHolder("music_disc.shulker");
+	public static final Holder<SoundEvent> MUSIC_DISC_TUNDRA = SOUNDS.registerHolder("music_disc.tundra");
+	public static final Holder<SoundEvent> MUSIC_DISC_FAR_LANDS = SOUNDS.registerHolder("music_disc.far_lands");
+	public static final Holder<SoundEvent> MUSIC_DISC_INFINITE_SPOOKY_AMETHYST = SOUNDS.registerHolder("music_disc.infinite_spooky_amethyst");
+	public static final Holder<SoundEvent> MUSIC_DISC_113 = SOUNDS.registerHolder("music_disc.113");
+	public static final Holder<SoundEvent> MUSIC_DISC_GRAVEL = SOUNDS.registerHolder("music_disc.gravel");
 
-	public static final Holder.Reference<SoundEvent> TABLET_USE = registerForHolder("tablet.use");
-	public static final Holder.Reference<SoundEvent> TABLET_BREAK = registerForHolder("tablet.break");
-	public static final SoundEvent TABLET_TELEPORT = register("tablet.teleport");
+	public static final Holder<SoundEvent> TABLET_USE = SOUNDS.registerHolder("tablet.use");
+	public static final Holder<SoundEvent> TABLET_BREAK = SOUNDS.registerHolder("tablet.break");
+	public static final Supplier<SoundEvent> TABLET_TELEPORT = SOUNDS.register("tablet.teleport");
 
-	public static final SoundEvent BOOMERANG_THROW = register("boomerang.throw");
-	public static final SoundEvent BOOMERANG_HIT = register("boomerang.hit");
-	public static final SoundEvent BOOMERANG_RETURN = register("boomerang.return");
-	public static final SoundEvent BOOMERANG_WHOOSH = register("boomerang.whoosh");
+	public static final Supplier<SoundEvent> BOOMERANG_THROW = SOUNDS.register("boomerang.throw");
+	public static final Supplier<SoundEvent> BOOMERANG_HIT = SOUNDS.register("boomerang.hit");
+	public static final Supplier<SoundEvent> BOOMERANG_RETURN = SOUNDS.register("boomerang.return");
+	public static final Supplier<SoundEvent> BOOMERANG_WHOOSH = SOUNDS.register("boomerang.whoosh");
 
-	public static final SoundEvent WAND_SUMMON = register("wand.summon");
-	public static final SoundEvent WAND_RECALL = register("wand.recall");
+	public static final Supplier<SoundEvent> WAND_SUMMON = SOUNDS.register("wand.summon");
+	public static final Supplier<SoundEvent> WAND_RECALL = SOUNDS.register("wand.recall");
 
-	public static final SoundEvent TOTEM_EQUIP = register("accessory.totem_equip");
-	public static final SoundEvent AMULET_EQUIP = register("accessory.amulet_equip");
-	public static final SoundEvent RING_EQUIP = register("accessory.ring_equip");
-	public static final SoundEvent NECKLACE_EQUIP = register("accessory.necklace_equip");
+	public static final Supplier<SoundEvent> TOTEM_EQUIP = SOUNDS.register("accessory.totem_equip");
+	public static final Supplier<SoundEvent> AMULET_EQUIP = SOUNDS.register("accessory.amulet_equip");
+	public static final Supplier<SoundEvent> RING_EQUIP = SOUNDS.register("accessory.ring_equip");
+	public static final Supplier<SoundEvent> NECKLACE_EQUIP = SOUNDS.register("accessory.necklace_equip");
 
-	public static final SoundEvent ACCESSORY_BREAK = register("accessory.break");
+	public static final Supplier<SoundEvent> ACCESSORY_BREAK = SOUNDS.register("accessory.break");
 
-	public static final SoundEvent SAPPHIRE_BLOCK_BREAK = register("block.sapphire_block.break");
-	public static final SoundEvent SAPPHIRE_BLOCK_STEP = register("block.sapphire_block.step");
-	public static final SoundEvent SAPPHIRE_BLOCK_PLACE = register("block.sapphire_block.place");
-	public static final SoundEvent SAPPHIRE_BLOCK_HIT = register("block.sapphire_block.hit");
-	public static final SoundEvent SAPPHIRE_BLOCK_FALL = register("block.sapphire_block.fall");
+	public static final Supplier<SoundEvent> SAPPHIRE_BLOCK_BREAK = SOUNDS.register("block.sapphire_block.break");
+	public static final Supplier<SoundEvent> SAPPHIRE_BLOCK_STEP = SOUNDS.register("block.sapphire_block.step");
+	public static final Supplier<SoundEvent> SAPPHIRE_BLOCK_PLACE = SOUNDS.register("block.sapphire_block.place");
+	public static final Supplier<SoundEvent> SAPPHIRE_BLOCK_HIT = SOUNDS.register("block.sapphire_block.hit");
+	public static final Supplier<SoundEvent> SAPPHIRE_BLOCK_FALL = SOUNDS.register("block.sapphire_block.fall");
 
-	public static final SoundEvent WAND_PLATFORM_BREAK = register("block.wand_platform.break");
-	public static final SoundEvent WAND_PLATFORM_STEP = register("block.wand_platform.step");
-	public static final SoundEvent WAND_PLATFORM_PLACE = register("block.wand_platform.place");
-	public static final SoundEvent WAND_PLATFORM_HIT = register("block.wand_platform.hit");
-	public static final SoundEvent WAND_PLATFORM_FALL = register("block.wand_platform.fall");
+	public static final Supplier<SoundEvent> WAND_PLATFORM_BREAK = SOUNDS.register("block.wand_platform.break");
+	public static final Supplier<SoundEvent> WAND_PLATFORM_STEP = SOUNDS.register("block.wand_platform.step");
+	public static final Supplier<SoundEvent> WAND_PLATFORM_PLACE = SOUNDS.register("block.wand_platform.place");
+	public static final Supplier<SoundEvent> WAND_PLATFORM_HIT = SOUNDS.register("block.wand_platform.hit");
+	public static final Supplier<SoundEvent> WAND_PLATFORM_FALL = SOUNDS.register("block.wand_platform.fall");
 
-	public static final SoundEvent SHATTER = register("enchantment.shatter");
+	public static final Supplier<SoundEvent> SHATTER = SOUNDS.register("enchantment.shatter");
 
-	public static final Holder.Reference<SoundEvent> SNOWY_MUSIC = registerForHolder("music.overworld.snowy");
-	public static final Holder.Reference<SoundEvent> SAVANNA_MUSIC = registerForHolder("music.overworld.savanna");
-	public static final Holder.Reference<SoundEvent> DARK_FOREST_MUSIC = registerForHolder("music.overworld.dark_forest");
-	public static final Holder.Reference<SoundEvent> MAIN_END_ISLAND_MUSIC = registerForHolder("music.the_end.main_island");
+	public static final Holder<SoundEvent> SNOWY_MUSIC = SOUNDS.registerHolder("music.overworld.snowy");
+	public static final Holder<SoundEvent> SAVANNA_MUSIC = SOUNDS.registerHolder("music.overworld.savanna");
+	public static final Holder<SoundEvent> DARK_FOREST_MUSIC = SOUNDS.registerHolder("music.overworld.dark_forest");
+	public static final Holder<SoundEvent> MAIN_END_ISLAND_MUSIC = SOUNDS.registerHolder("music.the_end.main_island");
 
-	public static final Holder.Reference<SoundEvent> STRONGHOLD_MUSIC = registerForHolder("music.structure.stronghold");
-	public static final Holder.Reference<SoundEvent> ANCIENT_CITY_MUSIC = registerForHolder("music.structure.ancient_city");
-
-	@NotNull
-	private static SoundEvent register(@NotNull String string) {
-		Identifier identifier = LaLConstants.id(string);
-		return Registry.register(BuiltInRegistries.SOUND_EVENT, identifier, SoundEvent.createVariableRangeEvent(identifier));
-	}
-
-	private static Holder.@NotNull Reference<SoundEvent> registerForHolder(String id) {
-		return registerForHolder(LaLConstants.id(id));
-	}
-
-	private static Holder.@NotNull Reference<SoundEvent> registerForHolder(Identifier id) {
-		return registerForHolder(id, id);
-	}
-
-	private static Holder.@NotNull Reference<SoundEvent> registerForHolder(Identifier id, Identifier soundId) {
-		return Registry.registerForHolder(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(soundId));
-	}
+	public static final Holder<SoundEvent> STRONGHOLD_MUSIC = SOUNDS.registerHolder("music.structure.stronghold");
+	public static final Holder<SoundEvent> ANCIENT_CITY_MUSIC = SOUNDS.registerHolder("music.structure.ancient_city");
 
 	public static void init() {}
 }

@@ -1,84 +1,87 @@
 {
-    "processors":[
-       {
-          "processor_type":"minecraft:rule",
-          "rules":[
-             {
-                "location_predicate":{
-                   "predicate_type":"minecraft:always_true"
-                },
-                "input_predicate":{
-                   "predicate_type":"minecraft:random_block_match",
-                   "block":"minecraft:cobblestone",
-                   "probability":1.00
-                },
-                "output_state":{
-                   "Name":"wilderwild:gabbro_bricks"
-                }
-             }
-          ]
-       },
-       {
-          "processor_type": "frozenlib:block_state_respecting_rule",
-          "rules": [
-             {
-                "input_predicate": {
-                   "block": "minecraft:smooth_stone_slab",
-                   "predicate_type": "minecraft:random_block_match",
-                   "probability": 1.0
-                },
-                "location_predicate": {
-                   "predicate_type": "minecraft:always_true"
-                },
-                "output_block": "wilderwild:gabbro_slab"
-             },
-             {
-                "input_predicate": {
-                   "block": "minecraft:cobblestone_stairs",
-                   "predicate_type": "minecraft:random_block_match",
-                   "probability": 1.0
-                },
-                "location_predicate": {
-                   "predicate_type": "minecraft:always_true"
-                },
-                "output_block": "wilderwild:gabbro_brick_stairs"
-             }
-          ]
-       },
-       {
-          "processor_type":"minecraft:rule",
-          "rules":[
-             {
-                "location_predicate":{
-                   "predicate_type":"minecraft:always_true"
-                },
-                "input_predicate":{
-                   "predicate_type":"minecraft:random_block_match",
-                   "block":"wilderwild:gabbro_bricks",
-                   "probability":0.40
-                },
-                "output_state":{
-                   "Name":"wilderwild:cracked_gabbro_bricks"
-                }
-             },
-             {
-                "location_predicate":{
-                   "predicate_type":"minecraft:always_true"
-                },
-                "input_predicate":{
-                   "predicate_type":"minecraft:random_block_match",
-                   "block":"minecraft:chest",
-                   "probability":0.40
-                },
-                "output_state":{
-                   "Name":"minecraft:air"
-                }
-             }
-          ]
-       },
-       {
-          "processor_type": "minecraft:protected_blocks",
-          "value": "#legacies_and_legends:dungeon_protected_no_air"
-       }
-    ]
- }
+  "processors": [
+    {
+      "processor_type": "minecraft:rule",
+      "rules": [
+        {
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "input_predicate": {
+            "predicate_type": "minecraft:random_block_match",
+            "block": "minecraft:cobblestone",
+            "probability": 1.0
+          },
+          "output_state": {
+            "Name": "wilderwild:gabbro_bricks"
+          }
+        }
+      ]
+    },
+    {
+      "processor_type": "lithostitched:condition",
+      "if_true": {
+        "type": "lithostitched:matching_blocks",
+        "blocks": "minecraft:smooth_stone_slab"
+      },
+      "then": [
+        {
+          "processor_type": "lithostitched:block_swap",
+          "blocks": {
+            "minecraft:smooth_stone_slab": "wilderwild:gabbro_slab"
+          }
+        }
+      ]
+    },
+    {
+      "processor_type": "lithostitched:condition",
+      "if_true": {
+        "type": "lithostitched:matching_blocks",
+        "blocks": "minecraft:cobblestone_stairs"
+      },
+      "then": [
+        {
+          "processor_type": "lithostitched:block_swap",
+          "blocks": {
+            "minecraft:cobblestone_stairs": "wilderwild:gabbro_brick_stairs"
+          }
+        }
+      ]
+    },
+    {
+      "processor_type": "minecraft:rule",
+      "rules": [
+        {
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "input_predicate": {
+            "predicate_type": "minecraft:random_block_match",
+            "block": "wilderwild:gabbro_bricks",
+            "probability": 0.4
+          },
+          "output_state": {
+            "Name": "wilderwild:cracked_gabbro_bricks"
+          }
+        },
+        {
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "input_predicate": {
+            "predicate_type": "minecraft:random_block_match",
+            "block": "minecraft:chest",
+            "probability": 0.4
+          },
+          "output_state": {
+            "Name": "minecraft:air"
+          }
+        }
+      ]
+    },
+    {
+      "processor_type": "minecraft:protected_blocks",
+      "value": "#legacies_and_legends:dungeon_protected_no_air"
+    }
+  ]
+}

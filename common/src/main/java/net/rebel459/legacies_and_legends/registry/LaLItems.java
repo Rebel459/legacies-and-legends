@@ -190,22 +190,22 @@ public final class LaLItems {
     );
 
     // Sherds
-    public static final SuppliedItem DUSK_POTTERY_SHERD = ITEMS.registerSherd("dusk_pottery_sherd",
+    public static final SuppliedItem DUSK_POTTERY_SHERD = ITEMS.register("dusk_pottery_sherd",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.UNCOMMON)
     );
-    public static final SuppliedItem HARVEST_POTTERY_SHERD = ITEMS.registerSherd("harvest_pottery_sherd",
+    public static final SuppliedItem HARVEST_POTTERY_SHERD = ITEMS.register("harvest_pottery_sherd",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.UNCOMMON)
     );
-    public static final SuppliedItem VERDANT_POTTERY_SHERD = ITEMS.registerSherd("verdant_pottery_sherd",
+    public static final SuppliedItem VERDANT_POTTERY_SHERD = ITEMS.register("verdant_pottery_sherd",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.UNCOMMON)
     );
-    public static final SuppliedItem FORAGER_POTTERY_SHERD = ITEMS.registerSherd("forager_pottery_sherd",
+    public static final SuppliedItem FORAGER_POTTERY_SHERD = ITEMS.register("forager_pottery_sherd",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.UNCOMMON)

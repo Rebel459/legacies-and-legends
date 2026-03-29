@@ -1,8 +1,6 @@
 package net.rebel459.legacies_and_legends.mixin;
 
-import me.shedaniel.autoconfig.AutoConfig;
-import net.rebel459.legacies_and_legends.config.LaLConfig;
-import net.rebel459.unified.platform.UnifiedHelpers;
+import net.rebel459.unified.platform.UnifiedPlatform;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.tree.ClassNode;
@@ -14,16 +12,15 @@ import java.util.Set;
 
 public final class LaLMixinPlugin implements IMixinConfigPlugin {
 
-    private static boolean hasEnchantsAndExpeditions;
+    public static boolean hasEnchantsAndExpeditions;
     public static boolean hasCombatReborn;
-    private static boolean hasFriendsAndFoes;
+    public static boolean hasFriendsAndFoes;
 
     @Override
     public void onLoad(String mixinPackage) {
-        LaLConfig.get = AutoConfig.getConfigHolder(LaLConfig.class).getConfig();
-        hasEnchantsAndExpeditions = UnifiedHelpers.PLATFORM.isModLoaded("enchants_and_expeditions");
-        hasCombatReborn = UnifiedHelpers.PLATFORM.isModLoaded("combat_reborn");
-        hasFriendsAndFoes = UnifiedHelpers.PLATFORM.isModLoaded("friendsandfoes");
+        hasEnchantsAndExpeditions = UnifiedPlatform.get().isModLoaded("enchants_and_expeditions");
+        hasCombatReborn = UnifiedPlatform.get().isModLoaded("combat_reborn");
+        hasFriendsAndFoes = UnifiedPlatform.get().isModLoaded("friendsandfoes");
     }
 
     @Override
@@ -34,7 +31,6 @@ public final class LaLMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, @NotNull String mixinClassName) {
-
         if (mixinClassName.contains("integration.enchants_and_expeditions.")) return hasEnchantsAndExpeditions;
         if (mixinClassName.contains("integration.combat_reborn.")) return hasCombatReborn;
         if (mixinClassName.contains("integration.friendsandfoes.")) return hasFriendsAndFoes;

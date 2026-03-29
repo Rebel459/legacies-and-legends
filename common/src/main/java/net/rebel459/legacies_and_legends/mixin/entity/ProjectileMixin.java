@@ -43,7 +43,7 @@ public abstract class ProjectileMixin {
                 }
                 if (!projectile.is(LaLEntityTags.DAMAGELESS_PROJECTILES)) {
                     AccessoryHelper.damageAccessory(player, AccessoryHelper.getAccessory(player), 10);
-                    player.playSound(LaLSounds.BOOMERANG_RETURN);
+                    player.playSound(LaLSounds.BOOMERANG_RETURN.get());
                 }
                 cir.setReturnValue(projectileDeflection);
             }

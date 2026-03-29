@@ -1,10 +1,11 @@
 {
   "required": true,
   "package": "net.rebel459.legacies_and_legends.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_25",
   "plugin": "net.rebel459.legacies_and_legends.mixin.LaLMixinPlugin",
   "mixins": [
     "block.BlockMixin",
+    "block.entity.DecoratedPotPatternsMixin",
     "block.PowderSnowBlockMixin",
     "client.MultiPlayerGameModeMixin",
     "effect.MobEffectUtilMixin",

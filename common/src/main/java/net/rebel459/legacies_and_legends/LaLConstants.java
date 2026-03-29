@@ -1,7 +1,5 @@
 package net.rebel459.legacies_and_legends;
 
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;

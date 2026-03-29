@@ -43,6 +43,6 @@ public class AccessorySlot extends Slot {
 
     @Override
     public boolean isActive() {
-        return !this.player.hasInfiniteMaterials() && LaLConfig.get.misc.accessory_slot;
+        return !this.player.hasInfiniteMaterials() && LaLConfig.get().misc.accessory_slot;
     }
 }

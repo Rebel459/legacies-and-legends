@@ -20,11 +20,11 @@ public class LaLMobEffects {
 
     public static final Holder<MobEffect> FREEZING = EFFECTS.register(
             "freezing",
-            new MobEffect(MobEffectCategory.HARMFUL, 7720931)
+            new MobEffect(MobEffectCategory.HARMFUL, 7720931) {}
     );
     public static final Holder<MobEffect> INSTABILITY = EFFECTS.register(
             "instability", (
-                    new MobEffect(MobEffectCategory.NEUTRAL, 7901340)
+                    new MobEffect(MobEffectCategory.NEUTRAL, 7901340) {}
                             .addAttributeModifier(Attributes.MAX_ABSORPTION, Identifier.withDefaultNamespace("effect.absorption"), 2.0, AttributeModifier.Operation.ADD_VALUE)
                             .addAttributeModifier(Attributes.ATTACK_DAMAGE, Identifier.withDefaultNamespace("effect.weakness"), -2.0, AttributeModifier.Operation.ADD_VALUE)
                             .addAttributeModifier(Attributes.GRAVITY, LaLConstants.id("effect.gravity"), -0.04, AttributeModifier.Operation.ADD_VALUE)
@@ -33,7 +33,7 @@ public class LaLMobEffects {
     );
     public static final Holder<MobEffect> WARPING = EFFECTS.register(
             "warping",
-                    new MobEffect(MobEffectCategory.NEUTRAL, 9337599)
+                    new MobEffect(MobEffectCategory.NEUTRAL, 9337599) {}
     );
 
     public static void applyFreezing(ServerLevel level, LivingEntity attacked, LivingEntity attacker, int duration) {

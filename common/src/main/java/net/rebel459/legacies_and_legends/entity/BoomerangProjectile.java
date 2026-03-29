@@ -90,7 +90,7 @@ public class BoomerangProjectile extends AbstractArrow {
     }
 
     public BoomerangProjectile(Level level, LivingEntity shooter, ItemStack pickupItemStack) {
-        super(LaLEntityTypes.BOOMERANG, shooter, level, pickupItemStack, null);
+        super(LaLEntityTypes.BOOMERANG.get(), shooter, level, pickupItemStack, null);
         this.entityData.set(ID_REBOUND, this.getReboundFromItem(pickupItemStack));
         this.entityData.set(ID_SHADOWSTEP, this.getShadowstepFromItem(pickupItemStack));
         this.entityData.set(ID_FEATHERWEIGHT, this.getFeatherweightFromItem(pickupItemStack));
@@ -98,7 +98,7 @@ public class BoomerangProjectile extends AbstractArrow {
     }
 
     public BoomerangProjectile(Level level, double x, double y, double z, ItemStack pickupItemStack) {
-        super(LaLEntityTypes.BOOMERANG, x, y, z, level, pickupItemStack, pickupItemStack);
+        super(LaLEntityTypes.BOOMERANG.get(), x, y, z, level, pickupItemStack, pickupItemStack);
         this.entityData.set(ID_REBOUND, this.getReboundFromItem(pickupItemStack));
         this.entityData.set(ID_SHADOWSTEP, this.getShadowstepFromItem(pickupItemStack));
         this.entityData.set(ID_FEATHERWEIGHT, this.getFeatherweightFromItem(pickupItemStack));
@@ -155,7 +155,7 @@ public class BoomerangProjectile extends AbstractArrow {
             this.loopTick = this.loopTick + 1;
             if (this.loopTick >= 4){
                 if (!this.isInWater() && !this.isInPowderSnow) {
-                    this.playSound(LaLSounds.BOOMERANG_WHOOSH);
+                    this.playSound(LaLSounds.BOOMERANG_WHOOSH.get());
                 }
                 this.loopTick = 0;
             }
@@ -182,7 +182,7 @@ public class BoomerangProjectile extends AbstractArrow {
                 double d = 0.05 * (double)rebound;
                 this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec3.normalize().scale(d)));
                 if (this.clientSideReturnBoomerangTickCount == 0) {
-                    this.playSound(LaLSounds.BOOMERANG_RETURN, 10.0F, 1.0F);
+                    this.playSound(LaLSounds.BOOMERANG_RETURN.get(), 10.0F, 1.0F);
                 }
 
                 this.clientSideReturnBoomerangTickCount++;
@@ -191,7 +191,7 @@ public class BoomerangProjectile extends AbstractArrow {
         else if (entity instanceof ServerPlayer player && shadowstep > 0 && (this.dealtDamage || this.isNoPhysics())) {
             if (!this.hasTeleported) {
                 player.teleport(new TeleportTransition((ServerLevel) this.level(), this.position(), Vec3.ZERO, 0.0F, 0.0F, Relative.union(Relative.ROTATION, Relative.DELTA), TeleportTransition.DO_NOTHING));
-                player.level().playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
+                player.level().playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT.get(), SoundSource.PLAYERS, 0.6F, 1F);
                 this.hasTeleported = true;
                 if (player.gameMode() != GameType.CREATIVE) player.getCooldowns().addCooldown(this.getPickupItemStackOrigin(), 1200);;
             }
@@ -315,7 +315,7 @@ public class BoomerangProjectile extends AbstractArrow {
 
         this.deflect(ProjectileDeflection.REVERSE, entity, this.owner, false);
         this.setDeltaMovement(this.getDeltaMovement().multiply(0.02D, 0.2D, 0.02D));
-        this.playSound(LaLSounds.BOOMERANG_HIT, 1F, 1F);
+        this.playSound(LaLSounds.BOOMERANG_HIT.get(), 1F, 1F);
 
     }
 
@@ -346,12 +346,12 @@ public class BoomerangProjectile extends AbstractArrow {
 
     @Override
     protected @NotNull ItemStack getDefaultPickupItem() {
-        return new ItemStack(LaLItems.BOOMERANG);
+        return new ItemStack(LaLItems.BOOMERANG.get());
     }
 
     @Override
     protected @NotNull SoundEvent getDefaultHitGroundSoundEvent() {
-        return LaLSounds.BOOMERANG_HIT;
+        return LaLSounds.BOOMERANG_HIT.get();
     }
 
     @Override

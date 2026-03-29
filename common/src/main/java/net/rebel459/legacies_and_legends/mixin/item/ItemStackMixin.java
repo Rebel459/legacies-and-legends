@@ -9,6 +9,7 @@ import net.rebel459.legacies_and_legends.tag.LaLItemTags;
 import net.rebel459.legacies_and_legends.util.AccessoryHelper;
 import net.rebel459.legacies_and_legends.util.AccessoryInterface;
 import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -44,7 +45,7 @@ public abstract class ItemStackMixin {
         if (this.is(item -> item.is(LaLItemTags.TABLETS))) {
             if (new Random().nextInt(5) >= 1) {
                 this.applyComponents(DataComponentMap.builder()
-                        .set(DataComponents.USE_REMAINDER, new UseRemainder(new ItemStack(LaLItems.TABLET)))
+                        .set(DataComponents.USE_REMAINDER, new UseRemainder(LaLItems.TABLET.getTemplate()))
                         .build()
                 );
             }

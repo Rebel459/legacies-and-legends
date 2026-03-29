@@ -1,6 +1,5 @@
 package net.rebel459.legacies_and_legends.item;
 
-import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.rebel459.legacies_and_legends.registry.LaLToolMaterial;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.EquipmentSlot;

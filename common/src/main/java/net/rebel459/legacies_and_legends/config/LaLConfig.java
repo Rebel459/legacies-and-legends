@@ -21,7 +21,9 @@ public class LaLConfig implements ConfigData {
 		return Path.of("./config/" + LaLConstants.MOD_ID + "." + (json5 ? "json5" : "json"));
 	}
 
-	public static LaLConfig get;
+	public static LaLConfig get() {
+		return AutoConfig.getConfigHolder(LaLConfig.class).getConfig();
+	}
 
 	public static void init() {
 		AutoConfig.register(LaLConfig.class, JanksonConfigSerializer::new);

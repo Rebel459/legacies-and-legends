@@ -6,7 +6,7 @@ plugins {
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     api "net.fabricmc:fabric-loader:${fabric_loader}"
-    api "net.fabricmc.fabric-api:fabric-api:${fabric_api}"
+    api("net.fabricmc.fabric-api:fabric-api:${fabric_api}")
 
     implementation("maven.modrinth:modmenu:$modmenu_version")
 
@@ -14,7 +14,16 @@ dependencies {
         exclude(group: "net.fabricmc.fabric-api")
     }
     api("maven.modrinth:unified-api:$unified_version-fabric")
-    include implementation("maven.modrinth:item-tooltips:$tooltips_version-fabric")
+    implementation("maven.modrinth:item-tooltips:$tooltips_version-fabric")
+    implementation("maven.modrinth:lithostitched:$lithostitched_fabric_version-fabric-$minecraft_version")
+    implementation("net.rebel459.legacies_and_legends:Trim Patcher-2.0-mc26.1-fabric")
+}
+
+fabricApi {
+    configureDataGeneration() {
+        client = true;
+        modId = "legacies_and_legends"
+    }
 }
 
 loom {

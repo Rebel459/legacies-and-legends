@@ -24,6 +24,5 @@ public class LaLTrimMaterials {
 
     private static ResourceKey<TrimMaterial> register(String name) {
         return ResourceKey.create(Registries.TRIM_MATERIAL, LaLConstants.id(name));
-
     }
 }

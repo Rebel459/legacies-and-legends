@@ -22,7 +22,7 @@ public class LightmapRenderStateExtractorMixin {
 
     @Inject(method = "extract", at = @At(value = "HEAD"))
     private void modifyNightVisionUniform(LightmapRenderState renderState, float partialTicks, CallbackInfo ci) {
-        if (!LaLConfig.get.misc.improved_turtle_shell) return;
+        if (!LaLConfig.get().misc.improved_turtle_shell) return;
         LocalPlayer player = this.minecraft.player;
         if (player == null) return;
         if (player.isEquipped(Items.TURTLE_HELMET)) renderState.nightVisionEffectIntensity = player.getWaterVision();

@@ -28,7 +28,7 @@
     ]
   },
   "mixins": [
-    "template.mixins.json",
+    "legacies_and_legends.mixins.json",
     "legacies_and_legends-fabric.mixins.json"
   ],
   "accessWidener": "legacies_and_legends.classtweaker",

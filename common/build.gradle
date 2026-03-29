@@ -22,6 +22,8 @@ dependencies {
     compileOnly("me.shedaniel.cloth:cloth-config-neoforge:$cloth_version")
     compileOnly("maven.modrinth:unified-api:$unified_version-fabric")
     compileOnly("maven.modrinth:item-tooltips:$tooltips_version-fabric")
+    compileOnly("maven.modrinth:trim-patcher:$patcher_version")
+    compileOnly("maven.modrinth:lithostitched:$lithostitched_fabric_version-fabric-$minecraft_version")
 
     compileOnly("maven.modrinth:combat-reborn:$combat_version-fabric")
     compileOnly("maven.modrinth:rei:$rei_version")
@@ -40,6 +42,11 @@ configurations {
     commonResources {
         canBeResolved = false
         canBeConsumed = true
+    }
+    commonCompileOnly {
+        canBeResolved = false
+        canBeConsumed = true
+        extendsFrom compileOnly
     }
 }
 

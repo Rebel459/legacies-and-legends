@@ -148,7 +148,7 @@ public class AccessoryHelper {
 
     public static ItemStack getAccessory(Player player) {
         ItemStack stack = getActualAccessory(player);
-        if (stack.getDamageValue() >= stack.getMaxDamage() - 1 || !LaLConfig.get.misc.accessory_slot) return ItemStack.EMPTY;
+        if (stack.getDamageValue() >= stack.getMaxDamage() - 1 || !LaLConfig.get().misc.accessory_slot) return ItemStack.EMPTY;
         else return stack;
     }
 
@@ -197,7 +197,7 @@ public class AccessoryHelper {
             }
             stack.setDamageValue(stack.getMaxDamage() - 1);
             onBreak(player, stack);
-            player.playSound(LaLSounds.ACCESSORY_BREAK);
+            player.playSound(LaLSounds.ACCESSORY_BREAK.get());
         }
     }
 
@@ -210,14 +210,14 @@ public class AccessoryHelper {
     }
 
     public static void onBreak(Player player, ItemStack stack) {
-        player.playSound(LaLSounds.ACCESSORY_BREAK);
+        player.playSound(LaLSounds.ACCESSORY_BREAK.get());
     }
 
     public static void onEquip(Player player, ItemStack stack) {
-        if (stack.is(LaLItemTags.RINGS)) player.playSound(LaLSounds.RING_EQUIP);
-        else if (stack.is(LaLItemTags.NECKLACES)) player.playSound(LaLSounds.NECKLACE_EQUIP);
-        else if (stack.is(LaLItemTags.AMULETS)) player.playSound(LaLSounds.AMULET_EQUIP);
-        else if (stack.is(LaLItemTags.TOTEMS)) player.playSound(LaLSounds.TOTEM_EQUIP);
+        if (stack.is(LaLItemTags.RINGS)) player.playSound(LaLSounds.RING_EQUIP.get());
+        else if (stack.is(LaLItemTags.NECKLACES)) player.playSound(LaLSounds.NECKLACE_EQUIP.get());
+        else if (stack.is(LaLItemTags.AMULETS)) player.playSound(LaLSounds.AMULET_EQUIP.get());
+        else if (stack.is(LaLItemTags.TOTEMS)) player.playSound(LaLSounds.TOTEM_EQUIP.get());
         else player.playSound(SoundEvents.ARMOR_EQUIP_GENERIC.value());
     }
 

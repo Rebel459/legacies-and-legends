@@ -29,7 +29,7 @@ public abstract class LivingEntityMixin {
     @Inject(method = "dropFromLootTable(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;Z)V", at = @At("TAIL"))
     public void elderGuardianLootInject(ServerLevel level, DamageSource damageSource, boolean playerKill, CallbackInfo ci) {
         LivingEntity entity = LivingEntity.class.cast(this);
-        if (entity.getType() == EntityType.ELDER_GUARDIAN && LaLConfig.get.loot.trident_shard) entity.spawnAtLocation(level, LaLItems.TRIDENT_SHARD);
+        if (entity.getType() == EntityType.ELDER_GUARDIAN && LaLConfig.get().loot.trident_shard) entity.spawnAtLocation(level, LaLItems.TRIDENT_SHARD);
     }
     @Inject(method = "hurtServer", at = @At("HEAD"))
     public void frostedSpearFreeze(ServerLevel serverLevel, DamageSource damageSource, float f, CallbackInfoReturnable<Boolean> cir) {
@@ -69,7 +69,7 @@ public abstract class LivingEntityMixin {
             }
             if (teleported) {
                 entity.level.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(entity));
-                level.playSound(null, entity.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
+                level.playSound(null, entity.blockPosition(), LaLSounds.TABLET_TELEPORT.get(), SoundSource.PLAYERS, 0.6F, 1F);
             }
 
             cir.setReturnValue(false);
@@ -97,7 +97,7 @@ public abstract class LivingEntityMixin {
             }
             if (teleported) {
                 entity.level.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(entity));
-                level.playSound(null, entity.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
+                level.playSound(null, entity.blockPosition(), LaLSounds.TABLET_TELEPORT.get(), SoundSource.PLAYERS, 0.6F, 1F);
             }
         }
     }

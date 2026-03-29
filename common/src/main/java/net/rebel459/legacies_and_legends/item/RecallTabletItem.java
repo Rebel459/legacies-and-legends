@@ -21,7 +21,7 @@ public class RecallTabletItem extends Item {
         if (!(entity instanceof ServerPlayer player)) return stack;
 
         player.teleport(player.findRespawnPositionAndUseSpawnBlock(false, TeleportTransition.DO_NOTHING));
-        level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
+        level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT.get(), SoundSource.PLAYERS, 0.6F, 1F);
 
         if (player.gameMode.getGameModeForPlayer().isCreative()) return stack;
         return ItemStack.EMPTY;

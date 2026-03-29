@@ -82,7 +82,7 @@ public class BoomerangItem extends Item implements ProjectileItem {
                 player.getInventory().removeItem(stack);
             }
 
-            level.playSound(null, thrownBoomerang, LaLSounds.BOOMERANG_THROW, SoundSource.PLAYERS, 1F, 1F);
+            level.playSound(null, thrownBoomerang, LaLSounds.BOOMERANG_THROW.get(), SoundSource.PLAYERS, 1F, 1F);
         }
 
         return true;

@@ -74,7 +74,7 @@ public abstract class EntityMixin {
 
 		GlobalPos lastPlatformPos = globalPos.get();
 		if (!lastPlatformPos.dimension().equals(level.dimension())) return;
-		level.scheduleTick(lastPlatformPos.pos(), LaLBlocks.WAND_PLATFORM, 5);
+		level.scheduleTick(lastPlatformPos.pos(), LaLBlocks.WAND_PLATFORM.get(), 5);
 
 		if (Entity.class.cast(this) instanceof Player player && player instanceof PlatformInterface platform) {
 			platform.setPlatformSummoned(false);
@@ -91,7 +91,7 @@ public abstract class EntityMixin {
         GlobalPos lastPlatformPos = globalPos.get();
         Level level = Entity.class.cast(this).level();
         if (!lastPlatformPos.dimension().equals(level.dimension())) return;
-        level.scheduleTick(lastPlatformPos.pos(), LaLBlocks.WAND_PLATFORM, 5);
+        level.scheduleTick(lastPlatformPos.pos(), LaLBlocks.WAND_PLATFORM.get(), 5);
 
 		if (Entity.class.cast(this) instanceof Player player && player instanceof PlatformInterface platform) {
 			platform.setPlatformSummoned(false);

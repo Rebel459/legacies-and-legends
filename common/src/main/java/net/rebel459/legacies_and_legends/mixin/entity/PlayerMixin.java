@@ -176,14 +176,14 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
                 player.setHealth(1.0F);
                 stack.get(DataComponents.DEATH_PROTECTION).applyEffects(stack, player);
                 TotemUtil.playTotemAnimation(stack, player);
-                player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_TELEPORTATION));
+                player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_TELEPORTATION.get()));
                 CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, stack);
                 stack.copyAndClear();
             }
             if (stack.is(LaLItems.TOTEM_OF_RESURRECTION) && amount >= player.getHealth()) {
                 handleTotemOfResurrection(level, player, stack);
             }
-            if (LaLConfig.get.misc.accessory_of_undying && stack.is(Items.TOTEM_OF_UNDYING) && amount >= player.getHealth()) {
+            if (LaLConfig.get().misc.accessory_of_undying && stack.is(Items.TOTEM_OF_UNDYING) && amount >= player.getHealth()) {
                 player.setHealth(1.0F);
                 Items.TOTEM_OF_UNDYING.getDefaultInstance().get(DataComponents.DEATH_PROTECTION).applyEffects(Items.TOTEM_OF_UNDYING.getDefaultInstance(), player);
                 TotemUtil.playTotemAnimation(Items.TOTEM_OF_UNDYING.getDefaultInstance(), player);
@@ -208,11 +208,11 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
         player.setHealth(1.0F);
         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 600));
         TotemUtil.playTotemAnimation(LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance(), player);
-        player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_RESURRECTION));
+        player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_RESURRECTION.get()));
         if (player instanceof ServerPlayer serverPlayer) {
             CriteriaTriggers.USED_TOTEM.trigger(serverPlayer, LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance());
             player.teleport(serverPlayer.findRespawnPositionAndUseSpawnBlock(false, TeleportTransition.DO_NOTHING));
-            level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT, SoundSource.PLAYERS, 0.6F, 1F);
+            level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT.get(), SoundSource.PLAYERS, 0.6F, 1F);
         }
         stack.copyAndClear();
     }
@@ -226,7 +226,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
         if (!globalPos.dimension().equals(player.level().dimension())) return;
 
         BlockPos pos = globalPos.pos();
-        player.level().scheduleTick(pos, LaLBlocks.WAND_PLATFORM, 5);
+        player.level().scheduleTick(pos, LaLBlocks.WAND_PLATFORM.get(), 5);
 
         ((PlatformInterface)player).setPlatformSummoned(false);
     }
@@ -240,7 +240,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
         if (!globalPos.dimension().equals(player.level().dimension())) return;
 
         BlockPos pos = globalPos.pos();
-        player.level().scheduleTick(pos, LaLBlocks.WAND_PLATFORM, 5);
+        player.level().scheduleTick(pos, LaLBlocks.WAND_PLATFORM.get(), 5);
 
         ((PlatformInterface)player).setPlatformSummoned(false);
     }

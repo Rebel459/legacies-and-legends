@@ -31,7 +31,7 @@ public class LaLJukeboxSongs {
 	private static void register(
 		@NotNull BootstrapContext<JukeboxSong> context,
 		ResourceKey<JukeboxSong> registryKey,
-		Holder.Reference<SoundEvent> soundEvent,
+		Holder<SoundEvent> soundEvent,
 		int lengthInSeconds,
 		int comparatorOutput
 	) {
