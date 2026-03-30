@@ -20,8 +20,6 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.rebel459.legacies_and_legends.util.loot.LootTableModificationApi;
-import net.rebel459.legacies_and_legends.util.loot.MutableLootTable;
 import net.rebel459.unified.platform.UnifiedEvents;
 import org.apache.commons.lang3.BooleanUtils;
 import org.jetbrains.annotations.NotNull;
@@ -134,55 +132,55 @@ public class LaLLootTables {
 	public static void init() {
 		UnifiedEvents.LootTables.modify((table) -> {
 			LootPool.Builder pool;
-			
+
 			ResourceKey<LootTable> id = table.getKey();
 			HolderLookup.Provider registries = table.getProvider();
 
-            // LOOT
+			// LOOT
 
-            if (LaLConfig.get().loot.improved_loot) {
-                if (LaLConfig.get().integrations.enderscape) {
-                    if (enderscapeStrongholdRare(id)) {
-                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(2))
-                                .add(LootItem.lootTableItem(Items.MUSIC_DISC_MALL).setWeight(1));
-                        table.addPool(pool);
-                    }
-                }
-            }
+			if (LaLConfig.get().loot.improved_loot) {
+				if (LaLConfig.get().integrations.enderscape) {
+					if (enderscapeStrongholdRare(id)) {
+						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+								.add(EmptyLootItem.emptyItem().setWeight(2))
+								.add(LootItem.lootTableItem(Items.MUSIC_DISC_MALL).setWeight(1));
+						table.addPool(pool);
+					}
+				}
+			}
 
-            // BOOKS
+			// BOOKS
 
-            if (LaLConfig.get().loot.lore_books) {
-                if (LaLConfig.get().integrations.enderscape) {
-                    if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id)) {
-                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(11))
-                                .add(NestedLootTable.lootTableReference(Books.THE_END).setWeight(1));
-                        table.addPool(pool);
-                    }
-                    if (ENDERSCAPE_STRONGHOLD_BEDROOM.equals(id)) {
-                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(14))
-                                .add(NestedLootTable.lootTableReference(Books.THE_END).setWeight(1));
-                        table.addPool(pool);
-                    }
-                    if (ENDERSCAPE_STRONGHOLD_LIBRARY.equals(id)) {
-                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(3))
-                                .add(NestedLootTable.lootTableReference(Books.THE_STRONGHOLD).setWeight(1))
-                                .add(NestedLootTable.lootTableReference(Books.THE_PORTAL).setWeight(1))
-                                .add(NestedLootTable.lootTableReference(Books.THE_LIBRARY).setWeight(1));
-                        table.addPool(pool);
-                    }
-                    if (END_CITY_CHEST.equals(id)) {
-                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(23))
-                                .add(NestedLootTable.lootTableReference(Books.POEM).setWeight(1));
-                        table.addPool(pool);
-                    }
-                }
-            }
+			if (LaLConfig.get().loot.lore_books) {
+				if (LaLConfig.get().integrations.enderscape) {
+					if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id)) {
+						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+								.add(EmptyLootItem.emptyItem().setWeight(11))
+								.add(NestedLootTable.lootTableReference(Books.THE_END).setWeight(1));
+						table.addPool(pool);
+					}
+					if (ENDERSCAPE_STRONGHOLD_BEDROOM.equals(id)) {
+						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+								.add(EmptyLootItem.emptyItem().setWeight(14))
+								.add(NestedLootTable.lootTableReference(Books.THE_END).setWeight(1));
+						table.addPool(pool);
+					}
+					if (ENDERSCAPE_STRONGHOLD_LIBRARY.equals(id)) {
+						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+								.add(EmptyLootItem.emptyItem().setWeight(3))
+								.add(NestedLootTable.lootTableReference(Books.THE_STRONGHOLD).setWeight(1))
+								.add(NestedLootTable.lootTableReference(Books.THE_PORTAL).setWeight(1))
+								.add(NestedLootTable.lootTableReference(Books.THE_LIBRARY).setWeight(1));
+						table.addPool(pool);
+					}
+					if (END_CITY_CHEST.equals(id)) {
+						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+								.add(EmptyLootItem.emptyItem().setWeight(23))
+								.add(NestedLootTable.lootTableReference(Books.POEM).setWeight(1));
+						table.addPool(pool);
+					}
+				}
+			}
 
 			// ACCESSORIES - Pools
 
@@ -381,24 +379,24 @@ public class LaLLootTables {
 				table.addPool(pool);
 			}
 
-            if (BuiltInLootTables.STRONGHOLD_CORRIDOR.equals(id) || BuiltInLootTables.STRONGHOLD_CROSSING.equals(id)) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(14))
-                        .add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
-                table.addPool(pool);
-            }
-            if (enderscapeStrongholdRare(id) && LaLConfig.get().integrations.enderscape) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(11))
-                        .add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
-                table.addPool(pool);
-            }
-            if (enderscapeStrongholdCommon(id) && LaLConfig.get().integrations.enderscape) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(17))
-                        .add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
-                table.addPool(pool);
-            }
+			if (BuiltInLootTables.STRONGHOLD_CORRIDOR.equals(id) || BuiltInLootTables.STRONGHOLD_CROSSING.equals(id)) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(14))
+						.add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
+				table.addPool(pool);
+			}
+			if (enderscapeStrongholdRare(id) && LaLConfig.get().integrations.enderscape) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(11))
+						.add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
+				table.addPool(pool);
+			}
+			if (enderscapeStrongholdCommon(id) && LaLConfig.get().integrations.enderscape) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(17))
+						.add(NestedLootTable.lootTableReference(LaLLootTables.UNDERGROUND_GENERAL_ACCESSORIES).setWeight(1));
+				table.addPool(pool);
+			}
 			if (BuiltInLootTables.TRIAL_CHAMBERS_REWARD.equals(id) || BuiltInLootTables.TRIAL_CHAMBERS_REWARD_OMINOUS.equals(id)) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(29))
@@ -504,30 +502,30 @@ public class LaLLootTables {
 
 			// Withered Hoe Loot Table
 
-            if (BuiltInLootTables.IGLOO_CHEST.equals(id) && LaLConfig.get().artifacts.frosted_spear && LaLConfig.get().structures.dungeon_overhaul) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(8))
-                        .add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
-                table.addPool(pool);
-            }
-            else if (BuiltInLootTables.IGLOO_CHEST.equals(id) && LaLConfig.get().artifacts.frosted_spear && !LaLConfig.get().structures.dungeon_overhaul) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(2))
-                        .add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
-                table.addPool(pool);
-            }
-            if (LaLLootTables.DUNGEON_CHEST_FROZEN.equals(id) && LaLConfig.get().artifacts.frosted_spear) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(11))
-                        .add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
-                table.addPool(pool);
-            }
-            if (BuiltInLootTables.SIMPLE_DUNGEON.equals(id) && LaLConfig.get().artifacts.frosted_spear) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(17))
-                        .add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
-                table.addPool(pool);
-            }
+			if (BuiltInLootTables.IGLOO_CHEST.equals(id) && LaLConfig.get().artifacts.frosted_spear && LaLConfig.get().structures.dungeon_overhaul) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(8))
+						.add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
+				table.addPool(pool);
+			}
+			else if (BuiltInLootTables.IGLOO_CHEST.equals(id) && LaLConfig.get().artifacts.frosted_spear && !LaLConfig.get().structures.dungeon_overhaul) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(2))
+						.add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
+				table.addPool(pool);
+			}
+			if (LaLLootTables.DUNGEON_CHEST_FROZEN.equals(id) && LaLConfig.get().artifacts.frosted_spear) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(11))
+						.add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
+				table.addPool(pool);
+			}
+			if (BuiltInLootTables.SIMPLE_DUNGEON.equals(id) && LaLConfig.get().artifacts.frosted_spear) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(17))
+						.add(LootItem.lootTableItem(LaLItems.FROSTED_SPEAR).setWeight(1));
+				table.addPool(pool);
+			}
 
 			// ARTIFACTS - Totems
 
@@ -641,30 +639,30 @@ public class LaLLootTables {
 						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
 				table.addPool(pool);
 			}
-            if (BuiltInLootTables.STRONGHOLD_CORRIDOR.equals(id) && LaLConfig.get().artifacts.tablet_of_recall) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(5))
-                        .add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
-                table.addPool(pool);
-            }
-            if (enderscapeStrongholdRare(id) && LaLConfig.get().artifacts.tablet_of_recall && LaLConfig.get().integrations.enderscape) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(5))
-                        .add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
-                table.addPool(pool);
-            }
-            if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get().artifacts.tablet_of_recall && LaLConfig.get().integrations.enderscape) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(8))
-                        .add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
-                table.addPool(pool);
-            }
-            if (enderscapeStrongholdCommon(id) && LaLConfig.get().artifacts.tablet_of_recall && LaLConfig.get().integrations.enderscape) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(14))
-                        .add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
-                table.addPool(pool);
-            }
+			if (BuiltInLootTables.STRONGHOLD_CORRIDOR.equals(id) && LaLConfig.get().artifacts.tablet_of_recall) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(5))
+						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
+				table.addPool(pool);
+			}
+			if (enderscapeStrongholdRare(id) && LaLConfig.get().artifacts.tablet_of_recall && LaLConfig.get().integrations.enderscape) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(5))
+						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
+				table.addPool(pool);
+			}
+			if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get().artifacts.tablet_of_recall && LaLConfig.get().integrations.enderscape) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(8))
+						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
+				table.addPool(pool);
+			}
+			if (enderscapeStrongholdCommon(id) && LaLConfig.get().artifacts.tablet_of_recall && LaLConfig.get().integrations.enderscape) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(14))
+						.add(LootItem.lootTableItem(LaLItems.TABLET_OF_RECALL).setWeight(1));
+				table.addPool(pool);
+			}
 			if (BuiltInLootTables.RUINED_PORTAL.equals(id) && LaLConfig.get().artifacts.tablet_of_recall) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(11))
@@ -741,77 +739,26 @@ public class LaLLootTables {
 			// LOOT - General
 
 			if (LaLConfig.get().loot.enchanted_beetroot) {
-				LootTableModificationApi.editTable(
-						LaLLootTables.END_RUINS, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.FISHING_ROD),
-								(lootPool) -> lootPool.replace(Items.BEETROOT, LaLItems.ENCHANTED_BEETROOT)
-						)
-				);
-                if (!LegaciesAndLegends.isEnderscapeLoaded) {
-                    LootTableModificationApi.editTable(
-                            BuiltInLootTables.END_CITY_TREASURE, false,
-                            (itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-                                    MutableLootTable.has(Items.BEETROOT_SEEDS),
-                                    (lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 1, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-                            )
-                    );
-                }
 				if (LaLConfig.get().integrations.enderscape) {
-                    if (LaLLootTables.END_CITY_CHEST.equals(id) && LaLConfig.get().loot.enchanted_beetroot) {
-                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(20))
-                                .add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
-                        table.addPool(pool);
-                    }
-                    if (LaLLootTables.ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get().loot.enchanted_beetroot) {
-                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(11))
-                                .add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
-                        table.addPool(pool);
-                    }
-                    if (enderscapeStrongholdRare(id) && LaLConfig.get().loot.enchanted_beetroot) {
-                        pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(EmptyLootItem.emptyItem().setWeight(2))
-                                .add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
-                        table.addPool(pool);
-                    }
+					if (LaLLootTables.END_CITY_CHEST.equals(id) && LaLConfig.get().loot.enchanted_beetroot) {
+						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+								.add(EmptyLootItem.emptyItem().setWeight(20))
+								.add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
+						table.addPool(pool);
+					}
+					if (LaLLootTables.ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get().loot.enchanted_beetroot) {
+						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+								.add(EmptyLootItem.emptyItem().setWeight(11))
+								.add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
+						table.addPool(pool);
+					}
+					if (enderscapeStrongholdRare(id) && LaLConfig.get().loot.enchanted_beetroot) {
+						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+								.add(EmptyLootItem.emptyItem().setWeight(2))
+								.add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
+						table.addPool(pool);
+					}
 				}
-                if (!LegaciesAndLegends.isEnderscapeLoaded) {
-                    LootTableModificationApi.editTable(
-                            BuiltInLootTables.STRONGHOLD_CORRIDOR, false,
-                            (itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-                                    MutableLootTable.has(Items.GOLDEN_APPLE),
-                                    (lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 3, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-                            )
-                    );
-                    LootTableModificationApi.editTable(
-                            BuiltInLootTables.STRONGHOLD_CROSSING, false,
-                            (itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-                                    MutableLootTable.has(Items.APPLE),
-                                    (lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 3, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-                            )
-                    );
-                }
-				LootTableModificationApi.editTable(
-						LaLLootTables.END_REMAINS, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								(lootPool) -> lootPool.add(LaLItems.ENCHANTED_BEETROOT, 3, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-						)
-				);
-			}
-
-			if (LaLConfig.get().loot.hook && LaLConfig.get().loot.metal_chunk && LaLConfig.get().loot.wooden_buckets) {
-				LootTableModificationApi.editTable(
-						BuiltInLootTables.FISHING_JUNK, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.LILY_PAD),
-								(lootPool) -> lootPool
-										.add(LaLItems.HOOK, BooleanUtils.toInteger(LaLConfig.get().loot.hook) * 2, SetItemDamageFunction.setDamage(UniformGenerator.between(0.0F, 0.9F)))
-										.add(LaLItems.METAL_CHUNK, BooleanUtils.toInteger(LaLConfig.get().loot.metal_chunk) * 10, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
-										.add(LaLItems.WOODEN_BUCKET, BooleanUtils.toInteger(LaLConfig.get().loot.wooden_buckets) * 10, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-						)
-				);
 			}
 
 			if (LaLLootTables.DUNGEON_CHEST.equals(id) && LaLConfig.get().loot.metal_chunk) {
@@ -819,16 +766,6 @@ public class LaLLootTables {
 						.add(EmptyLootItem.emptyItem().setWeight(5))
 						.add(LootItem.lootTableItem(LaLItems.METAL_CHUNK).setWeight(1).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))));
 				table.addPool(pool);
-			}
-
-			if (LaLConfig.get().loot.wooden_buckets) {
-				LootTableModificationApi.editTable(
-						BuiltInLootTables.SHIPWRECK_SUPPLY, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.PAPER),
-								(lootPool) -> lootPool.add(LaLItems.WOODEN_BUCKET, 3, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-						)
-				);
 			}
 
 			if (LaLLootTables.END_REMAINS.equals(id) && LaLConfig.get().loot.lore_books) {
@@ -852,31 +789,6 @@ public class LaLLootTables {
 						.add(LootItem.lootTableItem(LaLItems.BOOMERANG).setWeight(1));
 				table.addPool(pool);
 			}
-
-			if (LaLConfig.get().loot.hook) {
-				LootTableModificationApi.editTable(
-						BuiltInLootTables.FISHING_TREASURE, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.FISHING_ROD),
-								(lootPool) -> lootPool
-										.add(LaLItems.HOOK, 1, EnchantRandomlyFunction.randomApplicableEnchantment(registries))
-						)
-				);
-			}
-			LootTableModificationApi.editTable(
-					BuiltInLootTables.UNDERWATER_RUIN_BIG, false,
-					(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-							MutableLootTable.has(Items.FISHING_ROD),
-							(lootPool) -> lootPool.add(LaLItems.HOOK, 3, EnchantRandomlyFunction.randomApplicableEnchantment(registries))
-					)
-			);
-			LootTableModificationApi.editTable(
-					BuiltInLootTables.UNDERWATER_RUIN_SMALL, false,
-					(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-							MutableLootTable.has(Items.FISHING_ROD),
-							(lootPool) -> lootPool.add(LaLItems.HOOK, 3, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-					)
-			);
 
 			// LOOT - Music Discs
 
@@ -964,18 +876,18 @@ public class LaLLootTables {
 						.add(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).setWeight(1));
 				table.addPool(pool);
 			}
-            if (BuiltInLootTables.STRONGHOLD_CROSSING.equals(id) && LaLConfig.get().loot.new_music_discs) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(8))
-                        .add(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).setWeight(1));
-                table.addPool(pool);
-            }
-            if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get().loot.new_music_discs && LaLConfig.get().integrations.enderscape) {
-                pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(EmptyLootItem.emptyItem().setWeight(8))
-                        .add(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).setWeight(1));
-                table.addPool(pool);
-            }
+			if (BuiltInLootTables.STRONGHOLD_CROSSING.equals(id) && LaLConfig.get().loot.new_music_discs) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(8))
+						.add(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).setWeight(1));
+				table.addPool(pool);
+			}
+			if (ENDERSCAPE_STRONGHOLD_ALTAR.equals(id) && LaLConfig.get().loot.new_music_discs && LaLConfig.get().integrations.enderscape) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(EmptyLootItem.emptyItem().setWeight(8))
+						.add(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).setWeight(1));
+				table.addPool(pool);
+			}
 			if (BuiltInLootTables.JUNGLE_TEMPLE.equals(id) && LaLConfig.get().loot.new_music_discs) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(5))
@@ -994,50 +906,6 @@ public class LaLLootTables {
 						.add(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).setWeight(1));
 				table.addPool(pool);
 			}
-			if (LaLConfig.get().loot.new_music_discs) {
-				LootTableModificationApi.editTable(
-						BuiltInLootTables.SIMPLE_DUNGEON, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.GOLDEN_APPLE),
-								(lootPool) -> lootPool.add(LaLItems.DISC_FRAGMENT_FAR_LANDS, 10, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-						)
-				);
-				LootTableModificationApi.editTable(
-						LaLLootTables.DUNGEON_CHEST_ARID, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.GOLDEN_APPLE),
-								(lootPool) -> lootPool.add(LaLItems.DISC_FRAGMENT_FAR_LANDS, 10, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-						)
-				);
-				LootTableModificationApi.editTable(
-						LaLLootTables.DUNGEON_CHEST_FROZEN, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.GOLDEN_APPLE),
-								(lootPool) -> lootPool.add(LaLItems.DISC_FRAGMENT_FAR_LANDS, 10, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-						)
-				);
-				LootTableModificationApi.editTable(
-						LaLLootTables.DUNGEON_CHEST_VERDANT, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.GOLDEN_APPLE),
-								(lootPool) -> lootPool
-										.add(LaLItems.DISC_FRAGMENT_FAR_LANDS, 10, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-										.replace(Items.MUSIC_DISC_13, LaLItems.MUSIC_DISC_CASTLES)
-						)
-				);
-
-				LootTableModificationApi.editTable(
-						LaLLootTables.DUNGEON_CHEST_SIMPLE, false,
-						(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-								MutableLootTable.has(Items.MUSIC_DISC_13),
-								(lootPool) -> lootPool
-										.add(LaLItems.DISC_FRAGMENT_FAR_LANDS, 10, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-										.replace(Items.MUSIC_DISC_13, LaLItems.MUSIC_DISC_CASTLES)
-
-						)
-				);
-			}
-
 			// ENCHANTMENTS
 
 			if (BuiltInLootTables.JUNGLE_TEMPLE.equals(id) && LaLConfig.get().enchantments.tangled) {
@@ -1148,38 +1016,83 @@ public class LaLLootTables {
 				table.addPool(pool);
 			}
 
-			// Archaeology
+			if (LaLLootTables.END_RUINS.equals(id)) {
+				table.editPool(item -> item == Items.BEETROOT, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(6), true);
+			}
 
-			LootTableModificationApi.editTable(
-					BuiltInLootTables.TRAIL_RUINS_ARCHAEOLOGY_RARE, false,
-					(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-							(lootPool) -> lootPool
-									.add(LaLItems.RING_OF_CONSTRUCTION, BooleanUtils.toInteger(LaLConfig.get().accessories.ring_of_construction), SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-									.add(LaLItems.KNIFE, BooleanUtils.toInteger(LaLConfig.get().loot.knife), SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-					)
-			);
-			LootTableModificationApi.editTable(
-					LaLLootTables.REDIRECTED_TRAIL_RUINS_ARCHAEOLOGY_RARE, false,
-					(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-							(lootPool) -> lootPool
-									.add(LaLItems.RING_OF_CONSTRUCTION, BooleanUtils.toInteger(LaLConfig.get().accessories.ring_of_construction), SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-									.add(LaLItems.KNIFE, BooleanUtils.toInteger(LaLConfig.get().loot.knife), SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-					)
-			);
-			LootTableModificationApi.editTable(
-					LaLLootTables.OBELISK_ARCHAEOLOGY, false,
-					(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-							(lootPool) -> lootPool
-									.add(LaLItems.RING_OF_CONSTRUCTION, 1, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-					)
-			);
-			LootTableModificationApi.editTable(
-					LaLLootTables.OBELISK_ARCHAEOLOGY, false,
-					(itemId, mutableLootTable) -> mutableLootTable.modifyPools(
-							(lootPool) -> lootPool
-									.add(LaLItems.KNIFE, 1, SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F)))
-					)
-			);
+			if (!LegaciesAndLegends.isEnderscapeLoaded) {
+				if (BuiltInLootTables.END_CITY_TREASURE.equals(id)) {
+					table.editPool(item -> item == Items.BEETROOT_SEEDS, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1), false);
+				}
+				if (BuiltInLootTables.STRONGHOLD_CORRIDOR.equals(id)) {
+					table.editPool(item -> item == Items.GOLDEN_APPLE, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
+				}
+				if (BuiltInLootTables.STRONGHOLD_CROSSING.equals(id)) {
+					table.editPool(item -> item == Items.APPLE, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
+				}
+			}
+			if (LaLLootTables.END_REMAINS.equals(id)) {
+				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
+			}
+
+			if (LaLConfig.get().loot.hook && LaLConfig.get().loot.metal_chunk && LaLConfig.get().loot.wooden_buckets) {
+				if (BuiltInLootTables.FISHING_JUNK.equals(id)) {
+					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.HOOK).apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.0F, 0.9F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().loot.hook) * 2), false);
+					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.METAL_CHUNK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().loot.metal_chunk) * 10), false);
+					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.WOODEN_BUCKET).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().loot.wooden_buckets) * 10), false);
+				}
+			}
+
+			if (LaLConfig.get().loot.wooden_buckets) {
+				if (BuiltInLootTables.SHIPWRECK_SUPPLY.equals(id)) {
+					table.editPool(item -> item == Items.PAPER, LootItem.lootTableItem(LaLItems.WOODEN_BUCKET).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
+				}
+			}
+
+			if (LaLConfig.get().loot.hook) {
+				if (BuiltInLootTables.FISHING_TREASURE.equals(id)) {
+					table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(LaLItems.HOOK).apply(EnchantRandomlyFunction.randomApplicableEnchantment(registries)).setWeight(1), false);
+				}
+			}
+
+			if (BuiltInLootTables.UNDERWATER_RUIN_BIG.equals(id)) {
+				table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(LaLItems.HOOK).apply(EnchantRandomlyFunction.randomApplicableEnchantment(registries)).setWeight(3), false);
+			}
+			if (BuiltInLootTables.UNDERWATER_RUIN_SMALL.equals(id)) {
+				table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(LaLItems.HOOK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
+			}
+
+			if (LaLConfig.get().loot.new_music_discs) {
+				if (BuiltInLootTables.SIMPLE_DUNGEON.equals(id)) {
+					table.editPool(item -> item == Items.GOLDEN_APPLE, LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10), false);
+				}
+				if (LaLLootTables.DUNGEON_CHEST_ARID.equals(id)) {
+					table.editPool(item -> item == Items.GOLDEN_APPLE, LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10), false);
+				}
+				if (LaLLootTables.DUNGEON_CHEST_FROZEN.equals(id)) {
+					table.editPool(item -> item == Items.GOLDEN_APPLE, LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10), false);
+				}
+				if (LaLLootTables.DUNGEON_CHEST_SIMPLE.equals(id) || LaLLootTables.DUNGEON_CHEST_VERDANT.equals(id)) {
+					table.editPool(item -> item == Items.MUSIC_DISC_13, LootItem.lootTableItem(LaLItems.MUSIC_DISC_CASTLES).setWeight(10), true);
+					table.editPool(item -> item == Items.GOLDEN_APPLE, LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10), false);
+				}
+				if (LaLLootTables.DUNGEON_CHEST_SIMPLE.equals(id)) {
+					table.editPool(item -> item == Items.MUSIC_DISC_13, LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10), false);
+				}
+			}
+
+			if (BuiltInLootTables.TRAIL_RUINS_ARCHAEOLOGY_RARE.equals(id)) {
+				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.RING_OF_CONSTRUCTION).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().accessories.ring_of_construction)), false);
+				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.KNIFE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().loot.knife)), false);
+			}
+			if (LaLLootTables.REDIRECTED_TRAIL_RUINS_ARCHAEOLOGY_RARE.equals(id)) {
+				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.RING_OF_CONSTRUCTION).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().accessories.ring_of_construction)), false);
+				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.KNIFE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().loot.knife)), false);
+			}
+			if (LaLLootTables.OBELISK_ARCHAEOLOGY.equals(id)) {
+				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.RING_OF_CONSTRUCTION).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1), false);
+				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.KNIFE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1), false);
+			}
 		});
 	}
 

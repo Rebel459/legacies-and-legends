@@ -329,7 +329,7 @@
   "text.autoconfig.legacies_and_legends.option.misc.improved_turtle_shell": "Improved Turtle Shell",
   "text.autoconfig.legacies_and_legends.option.misc.improved_turtle_shell.@Tooltip": "Whether Turtle Shells should provide improved underwater vision & mining speed, and have a description added to their tooltip.",
   "text.autoconfig.legacies_and_legends.option.misc.echo_shard_trim": "Echo Shard Trim",
-  "text.autoconfig.legacies_and_legends.option.misc.echo_shard_trim.@Tooltip": "Whether Echo Shards should be usable as a trim material (Fabric only).",
+  "text.autoconfig.legacies_and_legends.option.misc.echo_shard_trim.@Tooltip": "Whether Echo Shards should be usable as a trim material.",
   "text.autoconfig.legacies_and_legends.option.misc.wandering_trader_trades": "Wandering Trader Trades",
   "text.autoconfig.legacies_and_legends.option.misc.wandering_trader_trades.@Tooltip": "Whether Wandering Traders should have improved trades and be able to sell Legacies and Legends' items. Requires Villager Config.",
   "text.autoconfig.legacies_and_legends.option.misc.save_vanilla_cooldowns": "Save Vanilla Cooldowns",

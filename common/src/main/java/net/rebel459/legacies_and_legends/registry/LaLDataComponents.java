@@ -30,7 +30,7 @@ import java.util.function.UnaryOperator;
 public class LaLDataComponents {
 
     public static void init(){
-        UnifiedEvents.DefaultItemComponents.modify((item, builder) -> {
+        UnifiedEvents.DefaultItemComponents.modify((item, builder, provider) -> {
             if (!LegaciesAndLegends.isCombatRebornLoaded) {
                 if (item == Items.TRIDENT) {
                     builder.set(DataComponents.ATTRIBUTE_MODIFIERS, TridentItem.createAttributes());
@@ -45,6 +45,11 @@ public class LaLDataComponents {
             if (LaLConfig.get().misc.stackable_saddles) {
                 if ((item == Items.SADDLE || item.builtInRegistryHolder().is(ItemTags.HARNESSES))) {
                     builder.set(DataComponents.MAX_STACK_SIZE, 16);
+                }
+            }
+            if (LaLConfig.get().misc.echo_shard_trim) {
+                if (item == Items.ECHO_SHARD) {
+                    builder.set(DataComponents.PROVIDES_TRIM_MATERIAL, provider.lookup(Registries.TRIM_MATERIAL).get().getOrThrow(LaLTrimMaterials.ECHO));
                 }
             }
         });

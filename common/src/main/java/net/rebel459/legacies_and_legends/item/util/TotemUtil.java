@@ -7,11 +7,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.rebel459.unified.platform.UnifiedPlatform;
-import net.rebel459.unified.util.EnvInfo;
 
 public class TotemUtil {
     public static void playTotemAnimation(ItemStack itemStack, Entity entity) {
-        if (UnifiedPlatform.get().getEnvironment() != EnvInfo.CLIENT) return;
+        if (UnifiedPlatform.get().isServerSide()) return;
         Minecraft minecraftClient = Minecraft.getInstance();
         minecraftClient.particleEngine.createTrackingEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
 

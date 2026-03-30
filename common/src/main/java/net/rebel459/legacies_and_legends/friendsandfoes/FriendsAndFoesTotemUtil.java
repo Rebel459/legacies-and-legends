@@ -8,11 +8,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.rebel459.unified.platform.UnifiedPlatform;
-import net.rebel459.unified.util.EnvInfo;
 
 public class FriendsAndFoesTotemUtil {
     public static void playActivateAnimation(Entity entity, ParticleType<?> particleType) {
-        if (UnifiedPlatform.get().getEnvironment() != EnvInfo.CLIENT) return;
+        if (UnifiedPlatform.get().isServerSide()) return;
         Minecraft minecraftClient = Minecraft.getInstance();
         minecraftClient.particleEngine.createTrackingEmitter(entity, (ParticleOptions)particleType, 30);
         ClientLevel clientWorld = minecraftClient.level;
@@ -22,7 +21,7 @@ public class FriendsAndFoesTotemUtil {
     }
 
     public static void playActivateAnimationOnly(ItemStack itemStack) {
-        if (UnifiedPlatform.get().getEnvironment() != EnvInfo.CLIENT) return;
+        if (UnifiedPlatform.get().isServerSide()) return;
 
         Minecraft minecraftClient = Minecraft.getInstance();
 
