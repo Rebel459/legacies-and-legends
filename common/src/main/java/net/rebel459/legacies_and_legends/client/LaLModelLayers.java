@@ -8,6 +8,6 @@ public final class LaLModelLayers {
     public static final ModelLayerLocation BOOMERANG = new ModelLayerLocation(LaLConstants.id("boomerang"), "main");
 
     public static void init() {
-        UnifiedClientHelpers.ENTITY_RENDERERS.addLayerDefinition(BOOMERANG, () -> BoomerangModel.createBodyLayer());
+        UnifiedClientHelpers.ENTITY_RENDERERS.addLayerDefinition(BOOMERANG, BoomerangModel::createBodyLayer);
     }
 }

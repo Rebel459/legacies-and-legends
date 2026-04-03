@@ -130,11 +130,8 @@ public class LaLLootTables {
 	public static int epicWeight = 1;
 
 	public static void init() {
-		UnifiedEvents.LootTables.modify((table) -> {
+		UnifiedEvents.LootTables.modify((table, id, registries) -> {
 			LootPool.Builder pool;
-
-			ResourceKey<LootTable> id = table.getKey();
-			HolderLookup.Provider registries = table.getProvider();
 
 			// LOOT
 

@@ -30,7 +30,7 @@ import java.util.function.UnaryOperator;
 public class LaLDataComponents {
 
     public static void init(){
-        UnifiedEvents.DefaultItemComponents.modify((item, builder, provider) -> {
+        UnifiedEvents.DefaultDataComponents.modify((item, builder, provider) -> {
             if (!LegaciesAndLegends.isCombatRebornLoaded) {
                 if (item == Items.TRIDENT) {
                     builder.set(DataComponents.ATTRIBUTE_MODIFIERS, TridentItem.createAttributes());
