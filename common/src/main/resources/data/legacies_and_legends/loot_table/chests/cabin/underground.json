@@ -122,21 +122,6 @@
           ]
         }
       ]
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:empty",
-          "weight": 90
-        },
-        {
-          "type": "minecraft:loot_table",
-          "value": "legacies_and_legends:books/respite",
-          "weight": 10
-        }
-      ],
-      "rolls": 1.0
     }
   ],
   "random_sequence": "legacies_and_legends:chests/cabin/underground"

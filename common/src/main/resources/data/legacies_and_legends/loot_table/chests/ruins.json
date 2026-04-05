@@ -355,21 +355,6 @@
         "max": 8.0,
         "min": 4.0
       }
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:empty",
-          "weight": 80
-        },
-        {
-          "type": "minecraft:item",
-          "name": "legacies_and_legends:disc_fragment_far_lands",
-          "weight": 20
-        }
-      ],
-      "rolls": 1.0
     }
   ],
   "random_sequence": "legacies_and_legends:chests/ruins"

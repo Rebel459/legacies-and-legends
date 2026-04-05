@@ -21,9 +21,9 @@ public final class LegaciesAndLegendsClient {
         LaLEntityRenderers.init();
         LaLModelLayers.init();
 
-        UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.REINFORCED);
-        UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.TRAVELLING);
-        UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.WANDERER);
+        UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.REINFORCED, true);
+        UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.TRAVELLING, true);
+        UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.WANDERER, true);
 
         if (LaLConfig.get().music.music_and_melody) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("music_and_melody"), PackType.REQUIRED_RESOURCES);

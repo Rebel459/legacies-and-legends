@@ -209,41 +209,6 @@
         "max": 8.0,
         "min": 4.0
       }
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:empty",
-          "weight": 65
-        },
-        {
-         "type":"item",
-         "name":"minecraft:music_disc_ward",
-         "weight":35
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:empty",
-          "weight": 75
-        },
-        {
-          "type": "minecraft:loot_table",
-          "value": "legacies_and_legends:books/derelict",
-          "weight": 15
-        },
-        {
-          "type": "minecraft:loot_table",
-          "value": "legacies_and_legends:books/ward",
-          "weight": 10
-        }
-      ],
-      "rolls": 1.0
     }
   ],
   "random_sequence": "legacies_and_legends:chests/deep_ruins"

@@ -388,20 +388,6 @@
         "max": 7.0,
         "min": 4.0
       }
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:empty",
-          "weight": 3
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:music_disc_far"
-        }
-      ],
-      "rolls": 1.0
     }
   ],
   "random_sequence": "legacies_and_legends:chests/golden_birch_ruins"

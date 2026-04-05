@@ -14,7 +14,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "legacies_and_legends:wooden_bucket"
+          "name": "minecraft:bucket"
         },
         {
           "type": "minecraft:item",

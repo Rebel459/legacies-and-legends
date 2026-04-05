@@ -1,5 +1,6 @@
 package net.rebel459.legacies_and_legends;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
 import net.rebel459.legacies_and_legends.enchantment.LaLEnchantmentEffects;
@@ -63,14 +64,8 @@ public class LegaciesAndLegends {
 
         isCombatRebornLoaded = UnifiedPlatform.get().isModLoaded("combat_reborn");
 
-        if (LaLConfig.get().loot.lore_books) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("lore_books"), PackType.REQUIRED_DATA);
-        }
         if (!LaLConfig.get().misc.save_vanilla_cooldowns) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("save_vanilla_cooldowns"), PackType.REQUIRED_DATA);
-        }
-        if (!LaLConfig.get().loot.improved_loot) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_improved_loot"), PackType.REQUIRED_DATA);
         }
         if (LaLConfig.get().structures.dungeon_overhaul) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("dungeon_overhaul"), PackType.REQUIRED_DATA);
