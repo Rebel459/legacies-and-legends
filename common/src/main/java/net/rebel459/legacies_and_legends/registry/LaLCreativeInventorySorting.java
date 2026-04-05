@@ -92,5 +92,7 @@ public class LaLCreativeInventorySorting {
 
 		UnifiedHelpers.CREATIVE_ENTRIES.insertAfter(CreativeModeTabs.BUILDING_BLOCKS, Blocks.LAPIS_BLOCK, LaLBlocks.SAPPHIRE_BLOCK);
 		UnifiedHelpers.CREATIVE_ENTRIES.insertAfter(CreativeModeTabs.FUNCTIONAL_BLOCKS, Blocks.LANTERN, LaLBlocks.SAPPHIRE_LANTERN);
+
+		UnifiedHelpers.CREATIVE_ENTRIES.insertBefore(CreativeModeTabs.FUNCTIONAL_BLOCKS, Blocks.SEA_LANTERN, LaLBlocks.GLOW_STICK);
 	}
 }

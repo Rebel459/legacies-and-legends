@@ -5,8 +5,8 @@
   "plugin": "net.rebel459.legacies_and_legends.mixin.LaLMixinPlugin",
   "mixins": [
     "block.BlockMixin",
-    "block.entity.DecoratedPotPatternsMixin",
     "block.PowderSnowBlockMixin",
+    "block.entity.DecoratedPotPatternsMixin",
     "client.MultiPlayerGameModeMixin",
     "effect.MobEffectUtilMixin",
     "entity.EnderManMixin",
@@ -17,6 +17,7 @@
     "entity.PiglinAiMixin",
     "entity.PlayerMixin",
     "entity.ProjectileMixin",
+    "entity.ThrowableProjectileMixin",
     "integration.combat_reborn.QuiverHelperMixin",
     "integration.enchants_and_expeditions.EaEItemStackMixin",
     "integration.enchants_and_expeditions.EaELaLToolMaterialMixin",

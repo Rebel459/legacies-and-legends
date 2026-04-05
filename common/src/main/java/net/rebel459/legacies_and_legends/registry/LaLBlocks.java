@@ -2,8 +2,13 @@ package net.rebel459.legacies_and_legends.registry;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SnowballItem;
 import net.rebel459.legacies_and_legends.LaLConstants;
+import net.rebel459.legacies_and_legends.block.GlowStickBlock;
 import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
+import net.rebel459.legacies_and_legends.item.GlowStickItem;
 import net.rebel459.legacies_and_legends.sound.LaLBlockSounds;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -24,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
 public class LaLBlocks {
     
     public static UnifiedRegistries.Blocks BLOCKS = UnifiedRegistries.Blocks.create(LaLConstants.MOD_ID);
-    
+
     public static final SuppliedBlock SAPPHIRE_LANTERN = BLOCKS.register("sapphire_lantern",
             LanternBlock::new,
             () -> Properties.of()
@@ -75,6 +80,18 @@ public class LaLBlocks {
                     .strength(3F, 6F)
                     .sound(LaLBlockSounds.WAND_PLATFORM)
                     .pushReaction(PushReaction.DESTROY)
+    );
+
+    public static final SuppliedBlock GLOW_STICK = BLOCKS.register("glow_stick",
+            GlowStickBlock::new,
+            () -> Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GREEN)
+                    .lightLevel(_ -> 14)
+                    .sound(SoundType.STONE)
+                    .noOcclusion()
+                    .instabreak()
+                    .pushReaction(PushReaction.DESTROY),
+            GlowStickItem::new
     );
 
     public static void init() {}
