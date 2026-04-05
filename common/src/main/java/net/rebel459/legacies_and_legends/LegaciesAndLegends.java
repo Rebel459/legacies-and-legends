@@ -1,6 +1,5 @@
 package net.rebel459.legacies_and_legends;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
 import net.rebel459.legacies_and_legends.enchantment.LaLEnchantmentEffects;
