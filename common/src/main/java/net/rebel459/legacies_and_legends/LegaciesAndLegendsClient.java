@@ -15,12 +15,11 @@ public final class LegaciesAndLegendsClient {
 
     public static void initRegistries() {
         TrimPaths.addPath("travelling_strides", ItemModelGenerators.TRIM_PREFIX_LEGGINGS);
+        LaLModelLayers.init();
+        LaLEntityRenderers.init();
     }
 
     public static void init() {
-        LaLEntityRenderers.init();
-        LaLModelLayers.init();
-
         UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.REINFORCED, true);
         UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.TRAVELLING, true);
         UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.WANDERER, true);
@@ -33,6 +32,9 @@ public final class LegaciesAndLegendsClient {
         }
         if (UnifiedPlatform.get().isModLoaded("farmersdelight") && LaLConfig.get().integrations.farmers_delight) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("farmers_delight_integration"), PackType.REQUIRED_RESOURCES);
+        }
+        if (LaLConfig.get().misc.improved_turtle_shell) {
+            UnifiedHelpers.PACKS.add(LaLConstants.id("improved_turtle_shell"), PackType.REQUIRED_RESOURCES);
         }
     }
 }

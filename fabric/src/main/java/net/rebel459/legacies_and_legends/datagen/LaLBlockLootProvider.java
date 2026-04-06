@@ -2,9 +2,9 @@ package net.rebel459.legacies_and_legends.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
-import net.minecraft.world.level.block.Block;
-import net.rebel459.legacies_and_legends.registry.LaLBlocks;
 import net.minecraft.core.HolderLookup;
+import net.rebel459.legacies_and_legends.registry.LaLBlocks;
+import net.rebel459.legacies_and_legends.registry.LaLItems;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -19,6 +19,6 @@ public final class LaLBlockLootProvider extends FabricBlockLootSubProvider {
 	public void generate() {
 		this.dropSelf(LaLBlocks.SAPPHIRE_BLOCK.get());
 		this.dropSelf(LaLBlocks.SAPPHIRE_LANTERN.get());
-		this.dropOther(LaLBlocks.GLOW_STICK.get(), LaLBlocks.GLOW_STICK);
+		this.dropOther(LaLBlocks.GLOW_STICK.get(), LaLItems.GLOW_STICK);
 	}
 }

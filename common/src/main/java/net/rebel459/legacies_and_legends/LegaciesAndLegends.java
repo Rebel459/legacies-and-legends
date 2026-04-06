@@ -90,9 +90,6 @@ public class LegaciesAndLegends {
         if (LaLConfig.get().misc.no_creeper_discs) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("no_creeper_discs"), PackType.REQUIRED_DATA);
         }
-        if (LaLConfig.get().misc.improved_turtle_shell) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("improved_turtle_shell"), PackType.REQUIRED_DATA);
-        }
         if (UnifiedPlatform.get().isModLoaded("enchants_and_expeditions")) {
             isEnchantsAndExpeditionsLoaded = true;
         }

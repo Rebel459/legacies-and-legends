@@ -1,9 +1,5 @@
 package net.rebel459.legacies_and_legends.entity;
 
-import net.rebel459.legacies_and_legends.item.BoomerangItem;
-import net.rebel459.legacies_and_legends.registry.LaLEntityTypes;
-import net.rebel459.legacies_and_legends.registry.LaLItems;
-import net.rebel459.legacies_and_legends.sound.LaLSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -35,6 +31,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.rebel459.legacies_and_legends.item.BoomerangItem;
+import net.rebel459.legacies_and_legends.registry.LaLEntityTypes;
+import net.rebel459.legacies_and_legends.registry.LaLItems;
+import net.rebel459.legacies_and_legends.sound.LaLSounds;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

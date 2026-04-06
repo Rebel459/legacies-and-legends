@@ -24,6 +24,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.rebel459.unified.platform.UnifiedRegistries;
 import net.rebel459.unified.util.SuppliedBlock;
+import net.rebel459.unified.util.SuppliedItem;
 import org.jetbrains.annotations.NotNull;
 
 public class LaLBlocks {
@@ -82,16 +83,15 @@ public class LaLBlocks {
                     .pushReaction(PushReaction.DESTROY)
     );
 
-    public static final SuppliedBlock GLOW_STICK = BLOCKS.register("glow_stick",
+    public static final SuppliedBlock GLOW_STICK = BLOCKS.registerWithoutItem("glow_stick",
             GlowStickBlock::new,
             () -> Properties.of()
                     .mapColor(MapColor.COLOR_LIGHT_GREEN)
-                    .lightLevel(_ -> 14)
+                    .lightLevel(_ -> 15)
                     .sound(SoundType.STONE)
                     .noOcclusion()
                     .instabreak()
-                    .pushReaction(PushReaction.DESTROY),
-            GlowStickItem::new
+                    .pushReaction(PushReaction.DESTROY)
     );
 
     public static void init() {}

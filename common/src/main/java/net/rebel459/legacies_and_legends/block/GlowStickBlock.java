@@ -3,6 +3,7 @@ package net.rebel459.legacies_and_legends.block;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -16,7 +17,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class GlowStickBlock extends Block implements SimpleWaterloggedBlock {
+public class GlowStickBlock extends FallingBlock implements SimpleWaterloggedBlock {
 	public static final MapCodec<GlowStickBlock> CODEC = simpleCodec(GlowStickBlock::new);
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -69,6 +70,11 @@ public class GlowStickBlock extends Block implements SimpleWaterloggedBlock {
 		}
 
 		return super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
+	}
+
+	@Override
+	public int getDustColor(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+		return 8046080;
 	}
 
 	@Override

@@ -17,7 +17,12 @@ import net.minecraft.world.item.consume_effects.ClearAllStatusEffectsConsumeEffe
 import net.minecraft.world.item.consume_effects.TeleportRandomlyConsumeEffect;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.Equippable;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.rebel459.legacies_and_legends.LaLConstants;
+import net.rebel459.legacies_and_legends.block.GlowStickBlock;
 import net.rebel459.legacies_and_legends.item.*;
 import net.rebel459.legacies_and_legends.sound.LaLJukeboxSongs;
 import net.rebel459.legacies_and_legends.tag.LaLBlockTags;
@@ -122,6 +127,10 @@ public final class LaLItems {
             () -> new Properties()
                     .stacksTo(64)
                     .trimMaterial(LaLTrimMaterials.SAPPHIRE)
+    );
+    public static final SuppliedItem GLOW_STICK = ITEMS.register("glow_stick",
+            properties -> new GlowStickItem(LaLBlocks.GLOW_STICK.get(), properties),
+            Properties::new
     );
 
     // Discs
