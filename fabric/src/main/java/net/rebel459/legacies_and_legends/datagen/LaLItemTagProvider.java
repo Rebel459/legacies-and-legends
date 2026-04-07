@@ -15,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.rebel459.unified.tag.UnifiedItemTags;
+import net.rebel459.unified.util.SuppliedItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -43,6 +44,11 @@ public class LaLItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
                 .add(LaLItems.FORAGER_POTTERY_SHERD.get())
                 .add(LaLItems.HARVEST_POTTERY_SHERD.get())
                 .add(LaLItems.DUSK_POTTERY_SHERD.get());
+
+        for (SuppliedItem item : LaLItems.GEMS) {
+            this.valueLookupBuilder(LaLItemTags.GEMS)
+                    .add(item.get());
+        }
 
         this.valueLookupBuilder(LaLItemTags.TABLETS)
                 .add(LaLItems.TABLET_OF_HASTE.get())

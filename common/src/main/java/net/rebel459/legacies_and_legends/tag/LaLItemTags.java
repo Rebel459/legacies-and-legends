@@ -46,6 +46,8 @@ public class LaLItemTags {
 
     public static final TagKey<Item> TABLETS = bind("tablets");
 
+    public static final TagKey<Item> GEMS = bind("gems");
+
     public static final TagKey<Item> RINGS = bind("rings");
     public static final TagKey<Item> NECKLACES = bind("necklaces");
     public static final TagKey<Item> AMULETS = bind("amulets");

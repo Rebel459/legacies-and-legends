@@ -2,8 +2,10 @@ package net.rebel459.legacies_and_legends.registry;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -132,6 +134,64 @@ public final class LaLItems {
             properties -> new GlowStickItem(LaLBlocks.GLOW_STICK.get(), properties),
             Properties::new
     );
+    public static final SuppliedItem METEORITE_BRICK = ITEMS.register("meteorite_brick",
+            Item::new,
+            () -> new Properties()
+                    .fireResistant()
+                    .rarity(Rarity.UNCOMMON)
+    );
+
+    // Gems
+    public static final SuppliedItem SLIME_GEM = ITEMS.register("slime_gem",
+            Item::new,
+            () -> new Properties()
+                    .rarity(Rarity.UNCOMMON)
+    );
+    public static final SuppliedItem METEORITE_GEM = ITEMS.register("mteorite_gem",
+            Item::new,
+            () -> new Properties()
+                    .rarity(Rarity.RARE)
+                    .fireResistant()
+                    .delayedComponent(DataComponents.DAMAGE_RESISTANT, provider -> new DamageResistant(provider.getOrThrow(DamageTypeTags.IS_EXPLOSION)))
+    );
+    public static final SuppliedItem ICE_GEM = ITEMS.register("ice_gem",
+            Item::new,
+            () -> new Properties()
+                    .rarity(Rarity.UNCOMMON)
+    );
+    public static final SuppliedItem BREEZE_GEM = ITEMS.register("breeze_gem",
+            Item::new,
+            () -> new Properties()
+                    .rarity(Rarity.RARE)
+    );
+    public static final SuppliedItem OBSIDIAN_GEM = ITEMS.register("obsidian_gem",
+            Item::new,
+            () -> new Properties()
+                    .rarity(Rarity.RARE)
+                    .fireResistant()
+    );
+    public static final SuppliedItem PRISMARINE_GEM = ITEMS.register("prismarine_gem",
+            Item::new,
+            () -> new Properties()
+                    .rarity(Rarity.UNCOMMON)
+    );
+    public static final SuppliedItem TIMELOST_GEM = ITEMS.register("timelost_gem",
+            Item::new,
+            () -> new Properties()
+                    .rarity(Rarity.EPIC)
+    );
+    public static final SuppliedItem NEBULITE_GEM = ITEMS.register("nebulite_gem",
+            Item::new,
+            () -> new Properties()
+                    .rarity(Rarity.RARE)
+    );
+    public static final SuppliedItem RUBY_GEM = ITEMS.register("ruby_gem",
+            Item::new,
+            () -> new Properties()
+                    .rarity(Rarity.RARE)
+    );
+
+    public static final List<SuppliedItem> GEMS = List.of(SLIME_GEM, METEORITE_GEM, ICE_GEM, BREEZE_GEM, OBSIDIAN_GEM, PRISMARINE_GEM, TIMELOST_GEM, NEBULITE_GEM, RUBY_GEM);
 
     // Discs
     public static final SuppliedItem MUSIC_DISC_SVALL = ITEMS.register("music_disc_svall",

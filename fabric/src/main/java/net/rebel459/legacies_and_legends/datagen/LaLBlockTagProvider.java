@@ -25,15 +25,36 @@ public final class LaLBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
                 .add(LaLBlocks.SAPPHIRE_BLOCK.get())
                 .add(LaLBlocks.SAPPHIRE_LANTERN.get())
                 .add(LaLBlocks.SAPPHIRE_ORE.get())
-                .add(LaLBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+                .add(LaLBlocks.DEEPSLATE_SAPPHIRE_ORE.get())
+                .add(LaLBlocks.METEORITE.get())
+                .add(LaLBlocks.CONCENTRATED_METEORITE.get())
+                .add(LaLBlocks.METEORITE_BRICKS.get())
+                .add(LaLBlocks.METEORITE_BRICK_STAIRS.get())
+                .add(LaLBlocks.METEORITE_BRICK_SLAB.get())
+                .add(LaLBlocks.METEORITE_BRICK_WALL.get())
+                .add(LaLBlocks.CHISELED_METEORITE_BRICKS.get());
 
         this.valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(LaLBlocks.SAPPHIRE_BLOCK.get())
                 .add(LaLBlocks.SAPPHIRE_ORE.get())
-                .add(LaLBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+                .add(LaLBlocks.DEEPSLATE_SAPPHIRE_ORE.get())
+                .add(LaLBlocks.METEORITE.get())
+                .add(LaLBlocks.CONCENTRATED_METEORITE.get())
+                .add(LaLBlocks.METEORITE_BRICKS.get())
+                .add(LaLBlocks.METEORITE_BRICK_STAIRS.get())
+                .add(LaLBlocks.METEORITE_BRICK_SLAB.get())
+                .add(LaLBlocks.METEORITE_BRICK_WALL.get())
+                .add(LaLBlocks.CHISELED_METEORITE_BRICKS.get());
 
         this.valueLookupBuilder(BlockTags.SLABS)
-                .add(LaLBlocks.WAND_PLATFORM.get());
+                .add(LaLBlocks.WAND_PLATFORM.get())
+                .add(LaLBlocks.METEORITE_BRICK_SLAB.get());
+
+        this.valueLookupBuilder(BlockTags.STAIRS)
+                .add(LaLBlocks.METEORITE_BRICK_STAIRS.get());
+
+        this.valueLookupBuilder(BlockTags.WALLS)
+                .add(LaLBlocks.METEORITE_BRICK_WALL.get());
 
         this.valueLookupBuilder(BlockTags.BEACON_BASE_BLOCKS)
                 .add(LaLBlocks.SAPPHIRE_BLOCK.get());

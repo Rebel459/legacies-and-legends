@@ -20,5 +20,12 @@ public final class LaLBlockLootProvider extends FabricBlockLootSubProvider {
 		this.dropSelf(LaLBlocks.SAPPHIRE_BLOCK.get());
 		this.dropSelf(LaLBlocks.SAPPHIRE_LANTERN.get());
 		this.dropOther(LaLBlocks.GLOW_STICK.get(), LaLItems.GLOW_STICK);
+		this.dropSelf(LaLBlocks.METEORITE.get());
+		this.add(LaLBlocks.CONCENTRATED_METEORITE.get(), this.createOreDrop(LaLBlocks.CONCENTRATED_METEORITE.get(), LaLItems.METEORITE_GEM.get()));
+		this.dropSelf(LaLBlocks.METEORITE_BRICKS.get());
+		this.dropSelf(LaLBlocks.METEORITE_BRICK_WALL.get());
+		this.dropSelf(LaLBlocks.METEORITE_BRICK_STAIRS.get());
+		this.dropSelf(LaLBlocks.METEORITE_BRICK_SLAB.get());
+		this.dropSelf(LaLBlocks.CHISELED_METEORITE_BRICKS.get());
 	}
 }

@@ -2,6 +2,7 @@ package net.rebel459.legacies_and_legends.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+import net.rebel459.legacies_and_legends.registry.LaLEntityTypes;
 import net.rebel459.legacies_and_legends.tag.LaLEntityTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.entity.EntityType;
@@ -21,6 +22,7 @@ public class LaLEntityTagProvider extends FabricTagsProvider.EntityTypeTagsProvi
                 .add(EntityType.WIND_CHARGE)
                 .add(EntityType.BREEZE_WIND_CHARGE)
                 .add(EntityType.SNOWBALL)
-                .add(EntityType.EGG);
+                .add(EntityType.EGG)
+                .add(LaLEntityTypes.GLOW_STICK.get());
     }
 }

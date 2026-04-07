@@ -2,10 +2,13 @@ package net.rebel459.legacies_and_legends.datagen;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.minecraft.data.BlockFamilies;
+import net.minecraft.data.BlockFamily;
 import net.rebel459.legacies_and_legends.registry.*;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
+import net.rebel459.unified.util.SuppliedItem;
 import org.jetbrains.annotations.NotNull;
 
 public final class LaLModelProvider extends FabricModelProvider {
@@ -13,12 +16,22 @@ public final class LaLModelProvider extends FabricModelProvider {
 		super(output);
 	}
 
+	public static final BlockFamily FAMILY_METEORITE_BRICKS = BlockFamilies.familyBuilder(LaLBlocks.METEORITE_BRICKS.get())
+			.stairs(LaLBlocks.METEORITE_BRICK_STAIRS.get())
+			.slab(LaLBlocks.METEORITE_BRICK_SLAB.get())
+			.wall(LaLBlocks.METEORITE_BRICK_WALL.get())
+			.getFamily();
+
 	@Override
 	public void generateBlockStateModels(@NotNull BlockModelGenerators generator) {
 		generator.createLantern(LaLBlocks.SAPPHIRE_LANTERN.get());
 		generator.createTrivialCube(LaLBlocks.SAPPHIRE_BLOCK.get());
 		generator.createTrivialCube(LaLBlocks.SAPPHIRE_ORE.get());
 		generator.createTrivialCube(LaLBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+		generator.createTrivialCube(LaLBlocks.METEORITE.get());
+		generator.createTrivialCube(LaLBlocks.CONCENTRATED_METEORITE.get());
+		generator.family(LaLBlocks.METEORITE_BRICKS.get()).generateFor(FAMILY_METEORITE_BRICKS);
+		generator.createTrivialCube(LaLBlocks.CHISELED_METEORITE_BRICKS.get());
 	}
 
 	@Override
@@ -66,10 +79,15 @@ public final class LaLModelProvider extends FabricModelProvider {
 		generator.generateFlatItem(LaLItems.TABLET.get(), ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(LaLItems.TRIDENT_SHARD.get(), ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(LaLItems.DISC_FRAGMENT_FAR_LANDS.get(), ModelTemplates.FLAT_ITEM);
+		generator.generateFlatItem(LaLItems.METEORITE_BRICK.get(), ModelTemplates.FLAT_ITEM);
 
 		generator.generateFlatItem(LaLItems.WOODEN_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(LaLItems.CHARCOAL_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(LaLItems.COAL_BUCKET.get(), ModelTemplates.FLAT_ITEM);
+
+		for (SuppliedItem item : LaLItems.GEMS) {
+			generator.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM);
+		}
 
 		generator.generateFlatItem(LaLItems.MUSIC_DISC_SVALL.get(), ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(LaLItems.MUSIC_DISC_CASTLES.get(), ModelTemplates.FLAT_ITEM);

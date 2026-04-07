@@ -1,31 +1,26 @@
 package net.rebel459.legacies_and_legends.registry;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SnowballItem;
-import net.rebel459.legacies_and_legends.LaLConstants;
-import net.rebel459.legacies_and_legends.block.GlowStickBlock;
-import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
-import net.rebel459.legacies_and_legends.item.GlowStickItem;
-import net.rebel459.legacies_and_legends.sound.LaLBlockSounds;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.data.registries.VanillaRegistries;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.component.DamageResistant;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.rebel459.legacies_and_legends.LaLConstants;
+import net.rebel459.legacies_and_legends.block.GlowStickBlock;
+import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
+import net.rebel459.legacies_and_legends.sound.LaLBlockSounds;
+import net.rebel459.unified.platform.UnifiedHelpers;
 import net.rebel459.unified.platform.UnifiedRegistries;
 import net.rebel459.unified.util.SuppliedBlock;
-import net.rebel459.unified.util.SuppliedItem;
-import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class LaLBlocks {
     
@@ -94,5 +89,44 @@ public class LaLBlocks {
                     .pushReaction(PushReaction.DESTROY)
     );
 
-    public static void init() {}
+    public static final SuppliedBlock METEORITE = BLOCKS.register("meteorite",
+            Block::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+                    .strength(4.5F, 25F)
+                    .mapColor(MapColor.TERRACOTTA_ORANGE)
+                    .sound(SoundType.STONE)
+    );
+    public static final SuppliedBlock CONCENTRATED_METEORITE = BLOCKS.register("concentrated_meteorite",
+            Block::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(METEORITE.get())
+                    .strength(6F, 25F)
+    );
+    public static final SuppliedBlock METEORITE_BRICKS = BLOCKS.register("meteorite_bricks",
+            Block::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(METEORITE.get())
+    );
+    public static final SuppliedBlock METEORITE_BRICK_SLAB = BLOCKS.register("meteorite_brick_wall",
+            SlabBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(METEORITE_BRICKS.get())
+    );
+    public static final SuppliedBlock METEORITE_BRICK_WALL = BLOCKS.register("meteorite_brick_slab",
+            WallBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(METEORITE_BRICKS.get())
+    );
+    public static final SuppliedBlock METEORITE_BRICK_STAIRS = BLOCKS.register("meteorite_brick_stairs",
+            properties -> new StairBlock(METEORITE_BRICKS.get().defaultBlockState(), properties),
+            () -> BlockBehaviour.Properties.ofFullCopy(METEORITE_BRICKS.get())
+    );
+    public static final SuppliedBlock CHISELED_METEORITE_BRICKS = BLOCKS.register("chiseled_meteorite_bricks",
+            Block::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(METEORITE_BRICKS.get())
+    );
+
+    public static void init() {
+        for (SuppliedBlock block : List.of(METEORITE, CONCENTRATED_METEORITE, METEORITE_BRICKS, METEORITE_BRICK_SLAB, METEORITE_BRICK_WALL, METEORITE_BRICK_STAIRS)) {
+            UnifiedHelpers.DATA_COMPONENTS.add(block, DataComponents.DAMAGE_RESISTANT, new DamageResistant(VanillaRegistries.createLookup().getOrThrow(DamageTypeTags.IS_FIRE)));
+            UnifiedHelpers.DATA_COMPONENTS.add(block, DataComponents.DAMAGE_RESISTANT, new DamageResistant(VanillaRegistries.createLookup().getOrThrow(DamageTypeTags.IS_EXPLOSION)));
+            UnifiedHelpers.DATA_COMPONENTS.add(block, DataComponents.RARITY, Rarity.UNCOMMON);
+        }
+    }
 }

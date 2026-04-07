@@ -23,3 +23,4 @@ accessible method net/minecraft/world/inventory/AbstractContainerMenu addSlot (L
 accessible method net/minecraft/client/gui/screens/inventory/AbstractContainerScreen renderSlot (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/inventory/Slot;II)V
 accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen leftPos I
 accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen topPos I
+accessible method net/minecraft/world/level/block/StairBlock <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
