@@ -70,13 +70,14 @@ public abstract class EntityMixin implements FallOnInterface {
 	public void obsidianPlatformSetFire(int remainingTicks, CallbackInfo ci) {
 		Entity entity = Entity.class.cast(this);
 		BlockState state = entity.getBlockStateOn();
-		if (state.getBlock() instanceof WandPlatformBlock && state.getValue(WandPlatformBlock.PRIMARY_MATERIAL) == Gem.SAPPHIRE) ci.cancel();
+		if (state.getBlock() instanceof WandPlatformBlock && state.getValue(WandPlatformBlock.PRIMARY_MATERIAL) == Gem.OBSIDIAN) ci.cancel();
 	}
+
 	@Inject(method = "getRemainingFireTicks", at = @At("HEAD"), cancellable = true)
 	public void obsidianPlatformGetFire(CallbackInfoReturnable<Integer> cir) {
 		Entity entity = Entity.class.cast(this);
 		BlockState state = entity.getBlockStateOn();
-		if (state.getBlock() instanceof WandPlatformBlock && state.getValue(WandPlatformBlock.PRIMARY_MATERIAL) == Gem.SAPPHIRE) cir.setReturnValue(0);
+		if (state.getBlock() instanceof WandPlatformBlock && state.getValue(WandPlatformBlock.PRIMARY_MATERIAL) == Gem.OBSIDIAN) cir.setReturnValue(0);
 	}
 
     @Shadow
@@ -118,11 +119,7 @@ public abstract class EntityMixin implements FallOnInterface {
 					target = "Lnet/minecraft/world/entity/Entity;teleportCrossDimension(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/portal/TeleportTransition;)Lnet/minecraft/world/entity/Entity;"
 			)
 	)
-	public void removePlatformOnDimensionChange(
-			TeleportTransition dimensionTransition,
-			CallbackInfoReturnable<Entity> info,
-			@Local(ordinal = 0) ServerLevel level
-	) {
+	public void removePlatformOnDimensionChange(TeleportTransition dimensionTransition, CallbackInfoReturnable<Entity> info, @Local(ordinal = 0) ServerLevel level) {
 		if (!(Entity.class.cast(this) instanceof PlatformInterface platformInterface)) return;
 
 		Optional<GlobalPos> globalPos = platformInterface.lal$getLastPlatformPos();

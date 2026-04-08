@@ -364,7 +364,7 @@ public class WandItem extends Item {
     }
 
     public static void hurtAndBreak(ItemStack stack, Gem.Slots gems, Player player, InteractionHand hand) {
-        if (gems.primary() == Gem.OBSIDIAN && player.getRandom().nextBoolean()) return;
+        if (gems.primary() == Gem.SAPPHIRE && player.getRandom().nextBoolean()) return;
         stack.hurtAndBreak(1, player, hand);
     }
 
