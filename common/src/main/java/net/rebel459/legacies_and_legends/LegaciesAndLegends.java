@@ -1,8 +1,11 @@
 package net.rebel459.legacies_and_legends;
 
 import net.minecraft.world.level.gamerules.GameRules;
+import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
 import net.rebel459.legacies_and_legends.enchantment.LaLEnchantmentEffects;
+import net.rebel459.legacies_and_legends.event.PlayerEvents;
+import net.rebel459.legacies_and_legends.event.ServerEvents;
 import net.rebel459.legacies_and_legends.registry.*;
 import net.rebel459.legacies_and_legends.sound.LaLMusic;
 import net.rebel459.legacies_and_legends.sound.LaLJukeboxSongs;
@@ -43,6 +46,7 @@ public class LegaciesAndLegends {
 		LaLEnchantments.init();
 		LaLMapDecorationTypes.init();
 		LaLDataComponents.init();
+        LaLMenus.init();
         LaLFeatures.init();
 	}
 
@@ -50,13 +54,8 @@ public class LegaciesAndLegends {
         LaLCreativeInventorySorting.init();
         LaLLootTables.init();
         LaLMusic.init();
-
-        UnifiedEvents.Players.onRespawn((oldPlayer, newPlayer) -> {
-            var level = newPlayer.level;
-            var serverLevel = level.getServer().getLevel(level.dimension());
-            if (serverLevel == null) return;
-            if (serverLevel.getGameRules().get(GameRules.KEEP_INVENTORY)) AccessoryHelper.setAccessory(newPlayer, AccessoryHelper.getActualAccessory(oldPlayer));
-        });
+        ServerEvents.init();
+        PlayerEvents.init();
     }
 
     public static void loadResources() {

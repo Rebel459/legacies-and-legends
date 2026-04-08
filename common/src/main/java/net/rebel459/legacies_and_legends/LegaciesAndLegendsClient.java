@@ -3,6 +3,7 @@ package net.rebel459.legacies_and_legends;
 import net.frozenblock.trimpatcher.client.util.TrimPaths;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.rebel459.legacies_and_legends.client.LaLEntityRenderers;
+import net.rebel459.legacies_and_legends.client.LaLMenuScreens;
 import net.rebel459.legacies_and_legends.client.LaLModelLayers;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
 import net.rebel459.legacies_and_legends.registry.LaLEquipmentAssets;
@@ -17,6 +18,7 @@ public final class LegaciesAndLegendsClient {
         TrimPaths.addPath("travelling_strides", ItemModelGenerators.TRIM_PREFIX_LEGGINGS);
         LaLModelLayers.init();
         LaLEntityRenderers.init();
+        LaLMenuScreens.init();
     }
 
     public static void init() {

@@ -14,6 +14,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.block.GlowStickBlock;
+import net.rebel459.legacies_and_legends.block.JewelingTableBlock;
 import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
 import net.rebel459.legacies_and_legends.sound.LaLBlockSounds;
 import net.rebel459.unified.platform.UnifiedHelpers;
@@ -25,6 +26,14 @@ import java.util.List;
 public class LaLBlocks {
     
     public static UnifiedRegistries.Blocks BLOCKS = UnifiedRegistries.Blocks.create(LaLConstants.MOD_ID);
+
+    public static final SuppliedBlock JEWELING_TABLE = BLOCKS.register("jeweling_table",
+            JewelingTableBlock::new,
+            () -> Properties.of()
+                    .mapColor(MapColor.QUARTZ)
+                    .strength(3F)
+                    .sound(SoundType.STONE)
+    );
 
     public static final SuppliedBlock SAPPHIRE_LANTERN = BLOCKS.register("sapphire_lantern",
             LanternBlock::new,

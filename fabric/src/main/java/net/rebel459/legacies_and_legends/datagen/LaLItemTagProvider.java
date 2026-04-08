@@ -220,7 +220,6 @@ public class LaLItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
 
         this.valueLookupBuilder(ItemTags.DURABILITY_ENCHANTABLE)
                 .add(LaLItems.BOOMERANG.get())
-                .add(LaLItems.WAND.get())
                 .add(LaLItems.HOOK.get())
                 .add(LaLItems.KNIFE.get());
 

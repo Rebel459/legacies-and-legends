@@ -2,8 +2,11 @@ package net.rebel459.legacies_and_legends.mixin.entity;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.mojang.serialization.Codec;
+import net.minecraft.world.level.block.state.BlockState;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
+import net.rebel459.legacies_and_legends.item.WandItem;
 import net.rebel459.legacies_and_legends.util.PlatformInterface;
 import net.rebel459.legacies_and_legends.item.util.TotemUtil;
 import net.rebel459.legacies_and_legends.registry.LaLBlocks;
@@ -50,10 +53,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.HashMap;
 import java.util.Optional;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin implements PlatformInterface, AccessoryInterface {
+
+    @Unique
+    private static final Codec<HashMap<BlockPos, BlockState>> LAL_OLD_STATES_CODEC = Codec.unboundedMap(BlockPos.CODEC, BlockState.CODEC)
+            .xmap(HashMap::new, HashMap::new);
 
     @Unique
     private AccessoryHelper.Mutable mutable;
@@ -87,6 +95,19 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Override
     public void setPlatformSummoned(boolean summoned) {
         this.isPlatformSummoned = summoned;
+    }
+
+    @Unique
+    private HashMap<BlockPos, BlockState> oldStates = new HashMap<>();
+
+    @Override
+    public HashMap<BlockPos, BlockState> getOldStates() {
+        return this.oldStates;
+    }
+
+    @Override
+    public void setOldStates(HashMap<BlockPos, BlockState> states) {
+        this.oldStates = states;
     }
 
     @Inject(method = "actuallyHurt", at = @At(value = "TAIL"))
@@ -221,26 +242,24 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     public void destroyPlatformOnDeath(DamageSource damageSource, CallbackInfo info) {
         if (this.lastPlatformPos.isEmpty()) return;
 
-        Player player = Player.class.cast(this);
-        GlobalPos globalPos = this.lastPlatformPos.get();
-        if (!globalPos.dimension().equals(player.level().dimension())) return;
-
-        BlockPos pos = globalPos.pos();
-        player.level().scheduleTick(pos, LaLBlocks.WAND_PLATFORM.get(), 5);
-
-        ((PlatformInterface)player).setPlatformSummoned(false);
+        destroyPlatform();
     }
 
     @Inject(method = "drop", at = @At("HEAD"))
     public void destroyPlatformOnDrop(ItemStack itemStack, boolean includeThrowerName, CallbackInfoReturnable<ItemEntity> cir) {
         if (this.lastPlatformPos.isEmpty() || this.getInventory().contains(LaLItems.WAND.getDefaultInstance())) return;
 
+        destroyPlatform();
+    }
+
+    @Unique
+    private void destroyPlatform() {
         Player player = Player.class.cast(this);
         GlobalPos globalPos = this.lastPlatformPos.get();
         if (!globalPos.dimension().equals(player.level().dimension())) return;
 
         BlockPos pos = globalPos.pos();
-        player.level().scheduleTick(pos, LaLBlocks.WAND_PLATFORM.get(), 5);
+        WandItem.removePlatforms(player.level, (PlatformInterface)player, pos);
 
         ((PlatformInterface)player).setPlatformSummoned(false);
     }
@@ -263,11 +282,20 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
     public void readPlatformSaveData(ValueInput input, CallbackInfo ci) {
         this.lastPlatformPos = input.read("LalLastPlatformPos", GlobalPos.CODEC);
+        this.isPlatformSummoned = input.getBooleanOr("LalPlatformSummoned", false);
+        this.oldStates = input.read("LalPlatformOldStates", LAL_OLD_STATES_CODEC).orElseGet(HashMap::new);
+        if (this.lastPlatformPos.isEmpty()) {
+            this.isPlatformSummoned = false;
+        }
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
     public void addAdditionalSaveData(ValueOutput output, CallbackInfo ci) {
         this.lastPlatformPos.ifPresent(pos -> output.store("LalLastPlatformPos", GlobalPos.CODEC, pos));
+        output.putBoolean("LalPlatformSummoned", this.isPlatformSummoned);
+        if (!this.oldStates.isEmpty()) {
+            output.store("LalPlatformOldStates", LAL_OLD_STATES_CODEC, this.oldStates);
+        }
     }
 
     @Unique

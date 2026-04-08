@@ -1,5 +1,11 @@
 package net.rebel459.legacies_and_legends.mixin.entity;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
 import net.rebel459.legacies_and_legends.registry.LaLMobEffects;
@@ -17,7 +23,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
+import net.rebel459.legacies_and_legends.util.FallOnInterface;
+import net.rebel459.legacies_and_legends.util.Gem;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -26,11 +35,44 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
 
+    @Unique
+    private BlockState frictionState;
+
+    @WrapOperation(method = "travelInAir", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getBlock()Lnet/minecraft/world/level/block/Block;"))
+    public Block getBlock(BlockState state, Operation<Block> original) {
+        this.frictionState = state;
+        return original.call(state);
+    }
+    @WrapOperation(method = "travelInAir", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;getFriction()F"))
+    public float getFriction(Block block, Operation<Float> original) {
+        if (block instanceof WandPlatformBlock) return WandPlatformBlock.getFriction(this.frictionState);
+        else return original.call(block);
+    }
+
+    @Inject(method = "knockback", at = @At("HEAD"), cancellable = true)
+    public void obsidianPlatform(double power, double xd, double zd, CallbackInfo ci) {
+        LivingEntity entity = LivingEntity.class.cast(this);
+        BlockState state = entity.getBlockStateOn();
+        if (state.getBlock() instanceof WandPlatformBlock && WandPlatformBlock.hasMaterial(state, Gem.OBSIDIAN)) ci.cancel();
+    }
+
     @Inject(method = "dropFromLootTable(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;Z)V", at = @At("TAIL"))
     public void elderGuardianLootInject(ServerLevel level, DamageSource damageSource, boolean playerKill, CallbackInfo ci) {
         LivingEntity entity = LivingEntity.class.cast(this);
         if (entity.getType() == EntityType.ELDER_GUARDIAN && LaLConfig.get().loot.trident_shard) entity.spawnAtLocation(level, LaLItems.TRIDENT_SHARD);
     }
+
+    @Inject(method = "tick", at = @At(value = "TAIL"))
+    private void removeTimelostEffect(CallbackInfo ci) {
+        LivingEntity entity = LivingEntity.class.cast(this);
+        if (entity.hasEffect(LaLMobEffects.PROJECTILE_PASSTHROUGH) || entity.hasEffect(LaLMobEffects.LOW_GRAVITY)) {
+            if (entity.isFallFlying() || !entity.getBlockStateOn().is(BlockTags.AIR) || entity.isInWater()) {
+                entity.removeEffect(LaLMobEffects.PROJECTILE_PASSTHROUGH);
+                entity.removeEffect(LaLMobEffects.LOW_GRAVITY);
+            }
+        }
+    }
+
     @Inject(method = "hurtServer", at = @At("HEAD"))
     public void frostedSpearFreeze(ServerLevel serverLevel, DamageSource damageSource, float f, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity attacked = LivingEntity.class.cast(this);

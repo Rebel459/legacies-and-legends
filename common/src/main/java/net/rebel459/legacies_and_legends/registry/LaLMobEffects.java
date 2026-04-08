@@ -2,7 +2,6 @@ package net.rebel459.legacies_and_legends.registry;
 
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -34,6 +33,17 @@ public class LaLMobEffects {
     public static final Holder<MobEffect> WARPING = EFFECTS.registerHolder(
             "warping",
             () -> new MobEffect(MobEffectCategory.NEUTRAL, 9337599) {}
+    );
+    public static final Holder<MobEffect> LOW_GRAVITY = EFFECTS.registerHolder(
+            "low_gravity", () -> (
+                    new MobEffect(MobEffectCategory.BENEFICIAL, 0) {}
+                            .addAttributeModifier(Attributes.GRAVITY, LaLConstants.id("effect.gravity"), -0.06, AttributeModifier.Operation.ADD_VALUE)
+            )
+    );
+    public static final Holder<MobEffect> PROJECTILE_PASSTHROUGH = EFFECTS.registerHolder(
+            "projectile_passthrough", () -> (
+                    new MobEffect(MobEffectCategory.BENEFICIAL, 0) {}
+            )
     );
 
     public static void applyFreezing(ServerLevel level, LivingEntity attacked, LivingEntity attacker, int duration) {

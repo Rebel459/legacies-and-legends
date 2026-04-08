@@ -29,6 +29,7 @@ import net.rebel459.legacies_and_legends.item.*;
 import net.rebel459.legacies_and_legends.sound.LaLJukeboxSongs;
 import net.rebel459.legacies_and_legends.tag.LaLBlockTags;
 import net.rebel459.legacies_and_legends.tag.LaLItemTags;
+import net.rebel459.legacies_and_legends.util.Gem;
 import net.rebel459.unified.platform.UnifiedRegistries;
 import net.rebel459.unified.registry.UnifiedDataComponents;
 import net.rebel459.unified.util.SuppliedItem;
@@ -85,7 +86,8 @@ public final class LaLItems {
                     .durability(256)
                     .enchantable(20)
                     .rarity(Rarity.RARE)
-                    .component(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(), List.of(true), List.of(), List.of()))
+                    .component(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(), List.of(true), List.of(Gem.EMPTY.getSerializedName()), List.of()))
+                    .component(LaLDataComponents.WAND_SLOTS.get(), Gem.Slots.EMPTY)
                     .useCooldown(1)
     );
 
@@ -142,56 +144,71 @@ public final class LaLItems {
     );
 
     // Gems
+    public static final SuppliedItem SAPPHIRE_GEM = ITEMS.register("sapphire_gem",
+            Item::new,
+            () -> new Properties()
+                    .rarity(Rarity.UNCOMMON)
+                    .component(LaLDataComponents.GEM.get(), Gem.SAPPHIRE)
+    );
     public static final SuppliedItem SLIME_GEM = ITEMS.register("slime_gem",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.UNCOMMON)
+                    .component(LaLDataComponents.GEM.get(), Gem.SLIME)
     );
-    public static final SuppliedItem METEORITE_GEM = ITEMS.register("mteorite_gem",
+    public static final SuppliedItem METEORITE_GEM = ITEMS.register("meteorite_gem",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.RARE)
                     .fireResistant()
                     .delayedComponent(DataComponents.DAMAGE_RESISTANT, provider -> new DamageResistant(provider.getOrThrow(DamageTypeTags.IS_EXPLOSION)))
+                    .component(LaLDataComponents.GEM.get(), Gem.METEORITE)
     );
     public static final SuppliedItem ICE_GEM = ITEMS.register("ice_gem",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.UNCOMMON)
+                    .component(LaLDataComponents.GEM.get(), Gem.ICE)
     );
     public static final SuppliedItem BREEZE_GEM = ITEMS.register("breeze_gem",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.RARE)
+                    .component(LaLDataComponents.GEM.get(), Gem.BREEZE)
     );
     public static final SuppliedItem OBSIDIAN_GEM = ITEMS.register("obsidian_gem",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.RARE)
                     .fireResistant()
+                    .component(LaLDataComponents.GEM.get(), Gem.OBSIDIAN)
     );
     public static final SuppliedItem PRISMARINE_GEM = ITEMS.register("prismarine_gem",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.UNCOMMON)
+                    .component(LaLDataComponents.GEM.get(), Gem.PRISMARINE)
     );
     public static final SuppliedItem TIMELOST_GEM = ITEMS.register("timelost_gem",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.EPIC)
+                    .component(LaLDataComponents.GEM.get(), Gem.TIMELOST)
     );
     public static final SuppliedItem NEBULITE_GEM = ITEMS.register("nebulite_gem",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.RARE)
+                    .component(LaLDataComponents.GEM.get(), Gem.NEBULITE)
     );
     public static final SuppliedItem RUBY_GEM = ITEMS.register("ruby_gem",
             Item::new,
             () -> new Properties()
                     .rarity(Rarity.RARE)
+                    .component(LaLDataComponents.GEM.get(), Gem.RUBY)
     );
 
-    public static final List<SuppliedItem> GEMS = List.of(SLIME_GEM, METEORITE_GEM, ICE_GEM, BREEZE_GEM, OBSIDIAN_GEM, PRISMARINE_GEM, TIMELOST_GEM, NEBULITE_GEM, RUBY_GEM);
+    public static final List<SuppliedItem> GEMS = List.of(SAPPHIRE_GEM, SLIME_GEM, METEORITE_GEM, ICE_GEM, BREEZE_GEM, OBSIDIAN_GEM, PRISMARINE_GEM, TIMELOST_GEM, NEBULITE_GEM, RUBY_GEM);
 
     // Discs
     public static final SuppliedItem MUSIC_DISC_SVALL = ITEMS.register("music_disc_svall",
