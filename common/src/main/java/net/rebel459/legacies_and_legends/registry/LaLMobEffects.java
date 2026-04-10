@@ -37,7 +37,7 @@ public class LaLMobEffects {
     public static final Holder<MobEffect> LOW_GRAVITY = EFFECTS.registerHolder(
             "low_gravity", () -> (
                     new MobEffect(MobEffectCategory.BENEFICIAL, 0) {}
-                            .addAttributeModifier(Attributes.GRAVITY, LaLConstants.id("effect.gravity"), -0.06, AttributeModifier.Operation.ADD_VALUE)
+                            .addAttributeModifier(Attributes.GRAVITY, LaLConstants.id("effect.gravity"), -0.8, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
             )
     );
     public static final Holder<MobEffect> PROJECTILE_PASSTHROUGH = EFFECTS.registerHolder(

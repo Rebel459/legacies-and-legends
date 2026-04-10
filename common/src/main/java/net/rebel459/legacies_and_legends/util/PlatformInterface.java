@@ -16,4 +16,6 @@ public interface PlatformInterface {
     void setPlatformSummoned(boolean summoned);
     HashMap<BlockPos, BlockState> getOldStates();
     void setOldStates(HashMap<BlockPos, BlockState> states);
+    HashMap<BlockPos, BlockState> getPlatformStates();
+    void setPlatformStates(HashMap<BlockPos, BlockState> states);
 }

@@ -136,19 +136,18 @@ public abstract class EntityMixin implements FallOnInterface {
 
     @Inject(method = "remove", at = @At("HEAD"))
     public void removePlatformOnRemove(Entity.RemovalReason reason, CallbackInfo info) {
-        if (!(Entity.class.cast(this) instanceof PlatformInterface platformInterface)) return;
+        if (!(Entity.class.cast(this) instanceof PlatformInterface platform)) return;
+        if (Entity.class.cast(this) instanceof Player) return;
 
-        Optional<GlobalPos> globalPos = platformInterface.lal$getLastPlatformPos();
+        Optional<GlobalPos> globalPos = platform.lal$getLastPlatformPos();
         if (globalPos.isEmpty()) return;
 
         GlobalPos lastPlatformPos = globalPos.get();
         Level level = Entity.class.cast(this).level();
         if (!lastPlatformPos.dimension().equals(level.dimension())) return;
-		WandItem.removePlatforms(level, platformInterface, lastPlatformPos.pos());
+		WandItem.removePlatforms(level, platform, lastPlatformPos.pos());
 
-		if (Entity.class.cast(this) instanceof Player player && player instanceof PlatformInterface platform) {
-			platform.setPlatformSummoned(false);
-		}
+		platform.setPlatformSummoned(false);
     }
 
     @Inject(method = "setTicksFrozen", at = @At("HEAD"), cancellable = true)

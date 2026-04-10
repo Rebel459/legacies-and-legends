@@ -19,6 +19,14 @@ public final class LaLBlockSounds {
             LaLSounds.WAND_PLATFORM_FALL.get()
     );
 
+    public static final SoundType METEORITE = new SoundType(1F, 1F,
+            LaLSounds.METEORITE_BREAK.get(),
+            LaLSounds.METEORITE_STEP.get(),
+            LaLSounds.METEORITE_PLACE.get(),
+            LaLSounds.METEORITE_HIT.get(),
+            LaLSounds.METEORITE_FALL.get()
+    );
+
     public static void init() {
     }
 }

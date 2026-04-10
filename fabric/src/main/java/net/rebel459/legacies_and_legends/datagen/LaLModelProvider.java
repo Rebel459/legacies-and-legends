@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.data.BlockFamilies;
 import net.minecraft.data.BlockFamily;
+import net.minecraft.world.level.block.Blocks;
 import net.rebel459.legacies_and_legends.registry.*;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -32,6 +33,20 @@ public final class LaLModelProvider extends FabricModelProvider {
 		generator.createTrivialCube(LaLBlocks.CONCENTRATED_METEORITE.get());
 		generator.family(LaLBlocks.METEORITE_BRICKS.get()).generateFor(FAMILY_METEORITE_BRICKS);
 		generator.createTrivialCube(LaLBlocks.CHISELED_METEORITE_BRICKS.get());
+		createJewelingTable(generator);
+	}
+
+	public void createJewelingTable(@NotNull BlockModelGenerators generator) {
+		TextureMapping mapping = new TextureMapping()
+				.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_back")) // particle
+				.put(TextureSlot.DOWN, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_bottom")) // bottom
+				.put(TextureSlot.UP, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_top")) // top
+				.put(TextureSlot.NORTH, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_front")) // front
+				.put(TextureSlot.SOUTH, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_back")) // back
+				.put(TextureSlot.EAST, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_left")) // left
+				.put(TextureSlot.WEST, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_right")); // right
+		generator.blockStateOutput
+				.accept(BlockModelGenerators.createSimpleBlock(LaLBlocks.JEWELING_TABLE.get(), BlockModelGenerators.plainVariant(ModelTemplates.CUBE.create(LaLBlocks.JEWELING_TABLE.get(), mapping, generator.modelOutput))));
 	}
 
 	@Override

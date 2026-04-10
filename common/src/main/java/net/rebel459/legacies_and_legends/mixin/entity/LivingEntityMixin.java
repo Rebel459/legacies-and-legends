@@ -3,10 +3,13 @@ package net.rebel459.legacies_and_legends.mixin.entity;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
+import net.rebel459.legacies_and_legends.item.WandItem;
+import net.rebel459.legacies_and_legends.registry.LaLDataComponents;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
 import net.rebel459.legacies_and_legends.registry.LaLMobEffects;
 import net.rebel459.legacies_and_legends.sound.LaLSounds;
@@ -25,6 +28,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import net.rebel459.legacies_and_legends.util.FallOnInterface;
 import net.rebel459.legacies_and_legends.util.Gem;
+import net.rebel459.legacies_and_legends.util.PlatformInterface;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -141,6 +145,15 @@ public abstract class LivingEntityMixin {
                 entity.level.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(entity));
                 level.playSound(null, entity.blockPosition(), LaLSounds.TABLET_TELEPORT.get(), SoundSource.PLAYERS, 0.6F, 1F);
             }
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "onItemPickup")
+    private void dropWand(ItemEntity entity, CallbackInfo ci) {
+        ItemStack stack = entity.getItem();
+        if (stack.getItem() instanceof WandItem && this instanceof PlatformInterface platform) {
+            WandItem.checkComponents(stack);
+            WandItem.updateModel(stack, stack.get(LaLDataComponents.WAND_SLOTS.get()), !platform.getPlatformSummoned());
         }
     }
 }

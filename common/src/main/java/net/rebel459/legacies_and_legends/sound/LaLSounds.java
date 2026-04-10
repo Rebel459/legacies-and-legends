@@ -55,6 +55,14 @@ public class LaLSounds {
 	public static final Supplier<SoundEvent> WAND_PLATFORM_HIT = SOUNDS.register("block.wand_platform.hit");
 	public static final Supplier<SoundEvent> WAND_PLATFORM_FALL = SOUNDS.register("block.wand_platform.fall");
 
+	public static final Supplier<SoundEvent> METEORITE_BREAK = SOUNDS.register("block.meteorite.break");
+	public static final Supplier<SoundEvent> METEORITE_STEP = SOUNDS.register("block.meteorite.step");
+	public static final Supplier<SoundEvent> METEORITE_PLACE = SOUNDS.register("block.meteorite.place");
+	public static final Supplier<SoundEvent> METEORITE_HIT = SOUNDS.register("block.meteorite.hit");
+	public static final Supplier<SoundEvent> METEORITE_FALL = SOUNDS.register("block.meteorite.fall");
+
+	public static final Supplier<SoundEvent> JEWEL = SOUNDS.register("block.jeweling_table.jewel");
+
 	public static final Supplier<SoundEvent> SHATTER = SOUNDS.register("enchantment.shatter");
 
 	public static final Holder<SoundEvent> SNOWY_MUSIC = SOUNDS.registerHolder("music.overworld.snowy");

@@ -440,6 +440,63 @@
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
+  "block.meteorite.break": {
+    "sounds": [
+      "legacies_and_legends:block/meteorite/break1",
+      "legacies_and_legends:block/meteorite/break2",
+      "legacies_and_legends:block/meteorite/break3",
+      "legacies_and_legends:block/meteorite/break4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.meteorite.fall": {
+    "sounds": [
+      "legacies_and_legends:block/meteorite/step1",
+      "legacies_and_legends:block/meteorite/step2",
+      "legacies_and_legends:block/meteorite/step3",
+      "legacies_and_legends:block/meteorite/step4",
+      "legacies_and_legends:block/meteorite/step5"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.meteorite.hit": {
+    "sounds": [
+      "legacies_and_legends:block/meteorite/step1",
+      "legacies_and_legends:block/meteorite/step2",
+      "legacies_and_legends:block/meteorite/step3",
+      "legacies_and_legends:block/meteorite/step4",
+      "legacies_and_legends:block/meteorite/step5"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.meteorite.place": {
+    "sounds": [
+      "legacies_and_legends:block/meteorite/break1",
+      "legacies_and_legends:block/meteorite/break2",
+      "legacies_and_legends:block/meteorite/break3",
+      "legacies_and_legends:block/meteorite/break4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.meteorite.step": {
+    "sounds": [
+      "legacies_and_legends:block/meteorite/step1",
+      "legacies_and_legends:block/meteorite/step2",
+      "legacies_and_legends:block/meteorite/step3",
+      "legacies_and_legends:block/meteorite/step4",
+      "legacies_and_legends:block/meteorite/step5"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.jeweling_table.jewel": {
+    "sounds": [
+      "legacies_and_legends:block/jeweling_table/jewel1",
+      "legacies_and_legends:block/jeweling_table/jewel2",
+      "legacies_and_legends:block/jeweling_table/jewel3",
+      "legacies_and_legends:block/jeweling_table/jewel4"
+    ],
+    "subtitle": "subtitles.block.jeweling_table.jewel"
+  },
   "music_disc.svall": {
     "sounds": [
       {

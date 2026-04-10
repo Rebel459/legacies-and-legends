@@ -8,10 +8,15 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.menu.JewelingMenu;
+import org.spongepowered.asm.mixin.Unique;
 
 public class JewelingScreen extends AbstractContainerScreen<JewelingMenu> {
 
-    private static final Identifier TEXTURE = LaLConstants.id("textures/gui/container/jeweling_table.png");
+    @Unique
+    private static final Identifier MENU_TEXTURE = LaLConstants.id("textures/gui/container/jeweling_table.png");
+
+    @Unique
+    private static final Identifier WAND_SLOT = LaLConstants.id("container/slot/wand");
 
     public JewelingScreen(JewelingMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
@@ -20,6 +25,7 @@ public class JewelingScreen extends AbstractContainerScreen<JewelingMenu> {
 
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
-        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, this.leftPos, this.topPos, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 256);
-    }
+        graphics.blit(RenderPipelines.GUI_TEXTURED, MENU_TEXTURE, this.leftPos, this.topPos, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 256);
+        if (!this.menu.slots.getFirst().hasItem()) graphics.blitSprite(RenderPipelines.GUI_TEXTURED, WAND_SLOT, this.leftPos + 34, this.topPos + 47, 16, 16);
+    };
 }

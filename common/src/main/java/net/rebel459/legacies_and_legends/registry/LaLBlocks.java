@@ -30,9 +30,9 @@ public class LaLBlocks {
     public static final SuppliedBlock JEWELING_TABLE = BLOCKS.register("jeweling_table",
             JewelingTableBlock::new,
             () -> Properties.of()
-                    .mapColor(MapColor.QUARTZ)
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
                     .strength(3F)
-                    .sound(SoundType.STONE)
+                    .sound(SoundType.WOOD)
     );
 
     public static final SuppliedBlock SAPPHIRE_LANTERN = BLOCKS.register("sapphire_lantern",
@@ -103,7 +103,7 @@ public class LaLBlocks {
             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .strength(4.5F, 25F)
                     .mapColor(MapColor.TERRACOTTA_ORANGE)
-                    .sound(SoundType.STONE)
+                    .sound(LaLBlockSounds.METEORITE)
     );
     public static final SuppliedBlock CONCENTRATED_METEORITE = BLOCKS.register("concentrated_meteorite",
             Block::new,

@@ -10,13 +10,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MaceItem;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.item.component.UseCooldown;
 import net.minecraft.world.level.ClipContext;
@@ -38,14 +38,8 @@ import net.rebel459.legacies_and_legends.sound.LaLSounds;
 import net.rebel459.legacies_and_legends.util.Gem;
 import net.rebel459.legacies_and_legends.util.PlatformInterface;
 import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Unique;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class WandItem extends Item {
 
@@ -72,19 +66,33 @@ public class WandItem extends Item {
         var currentGems = stack.get(LaLDataComponents.WAND_SLOTS.get());
         if (primary == null) primary = currentGems.primary();
         if (secondary == null) secondary = currentGems.secondary();
-        boolean currentState = Boolean.TRUE.equals(stack.get(DataComponents.CUSTOM_MODEL_DATA).getBoolean(0));
-        String name = primary.getSerializedName();
-        if (primary == Gem.EMPTY) name = secondary.getSerializedName();
-        stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(), List.of(currentState), List.of(name), List.of()));
-        stack.set(LaLDataComponents.WAND_SLOTS.get(), new Gem.Slots(primary, secondary));
+        String currentState = stack.get(DataComponents.CUSTOM_MODEL_DATA).getString(1);
+        if (currentState == null || currentState.isEmpty()) currentState = "charged";
+        Gem.Slots newGems = new Gem.Slots(primary, secondary);
+        updateModel(stack, newGems, currentState.equals("charged"));
+        stack.set(LaLDataComponents.WAND_SLOTS.get(), newGems);
+        if (newGems.primary() == Gem.EMPTY && newGems.secondary() == Gem.EMPTY) stack.set(DataComponents.RARITY, Rarity.UNCOMMON);
+        else if (newGems.primary() != Gem.EMPTY && newGems.secondary() != Gem.EMPTY) stack.set(DataComponents.RARITY, Rarity.EPIC);
+        else stack.set(DataComponents.RARITY, Rarity.RARE);
     }
 
-    private static void checkComponents(ItemStack stack) {
+    public static void checkComponents(ItemStack stack) {
         if (!stack.has(LaLDataComponents.WAND_SLOTS.get())) {
-            boolean currentState = Boolean.TRUE.equals(stack.get(DataComponents.CUSTOM_MODEL_DATA).getBoolean(0));
-            stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(), List.of(currentState), List.of(Gem.SAPPHIRE.getSerializedName()), List.of()));
+            Gem.Slots gems = new Gem.Slots(Gem.SAPPHIRE, Gem.EMPTY);
+            String currentState = stack.get(DataComponents.CUSTOM_MODEL_DATA).getString(1);
+            if (currentState == null || currentState.isEmpty()) currentState = "charged";
+            updateModel(stack, gems, currentState.equals("charged"));
             stack.set(LaLDataComponents.WAND_SLOTS.get(), new Gem.Slots(Gem.SAPPHIRE, Gem.EMPTY));
+            stack.set(DataComponents.RARITY, Rarity.RARE);
         }
+    }
+
+    public static void updateModel(ItemStack stack, Gem.Slots gems, boolean charged) {
+        String name = gems.primary().getSerializedName();
+        if (gems.primary() == Gem.EMPTY) name = gems.secondary().getSerializedName();
+        String currentState = "charged";
+        if (!charged) currentState = "summoned";
+        stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(), List.of(), List.of(name, currentState), List.of()));
     }
 
     public static float getCooldown(Gem.Slots gems) {
@@ -96,10 +104,6 @@ public class WandItem extends Item {
         if (hasGem(gems, Gem.SAPPHIRE)) cooldown -= 2F;
         cooldown = Math.max(cooldown, 1F);
         return cooldown;
-    }
-
-    public static boolean canUseWandWithoutPlatform(Gem.Slots gems) {
-        return hasGem(gems, Gem.BREEZE);
     }
 
     private static HashMap<BlockPos, BlockState> getSurroundingBlocks(Level level, BlockPos pos, int radius, boolean grounded) {
@@ -135,22 +139,30 @@ public class WandItem extends Item {
         return surroundingBlocks;
     }
 
-    private static HashMap<BlockPos, BlockState> getTargetPositions(Level level, BlockPos pos, Gem.Slots gems) {
-        if (gems.secondary() == Gem.METEORITE) return getSurroundingBlocks(level, pos, 2, true);
+    private static HashMap<BlockPos, BlockState> getFireTargetPositions(Level level, BlockPos pos, Gem.Slots gems) {
         if (gems.primary() == Gem.METEORITE) return getSurroundingBlocks(level, pos, 4, true);
-        if (gems.primary() == Gem.ICE) return getSurroundingBlocks(level, pos, 2, false);
-        if (gems.secondary() == Gem.ICE) return getSurroundingBlocks(level, pos, 1, false);
-        if (gems.primary() == Gem.RUBY) return getSurroundingBlocks(level, pos, 1, false);
+        if (gems.secondary() == Gem.METEORITE) return getSurroundingBlocks(level, pos, 2, true);
         return new HashMap<>();
     }
 
-    private static BlockState getPlacedBlock(ItemStack stack, boolean useBottomSlab, boolean useWaterloggedDoubleSlab) {
-        if (hasGem(getGems(stack), Gem.METEORITE)) return Blocks.FIRE.defaultBlockState().setValue(WandPlatformBlock.CANCEL_TICK, true);
-        return WandPlatformBlock.getSummonedState(stack, useBottomSlab, useWaterloggedDoubleSlab);
+    private static HashMap<BlockPos, BlockState> getIceTargetPositions(Level level, BlockPos pos, Gem.Slots gems) {
+        if (gems.primary() == Gem.ICE) return getSurroundingBlocks(level, pos, 2, false);
+        if (gems.secondary() == Gem.ICE) return getSurroundingBlocks(level, pos, 1, false);
+        return new HashMap<>();
+    }
+
+    private static HashMap<BlockPos, BlockState> getTargetPositions(Level level, BlockPos pos, Gem.Slots gems) {
+        HashMap<BlockPos, BlockState> combinedPositions = new HashMap<>(getFireTargetPositions(level, pos, gems));
+        combinedPositions.putAll(getIceTargetPositions(level, pos, gems));
+        return combinedPositions;
     }
 
     private static boolean isUnderwaterPlacement(Level level, BlockPos pos) {
         return level.getFluidState(pos).is(FluidTags.WATER) || level.getFluidState(pos.above()).is(FluidTags.WATER);
+    }
+
+    public static boolean canUseWandWithoutGrounded(Gem.Slots gems) {
+        return hasGem(gems, Gem.BREEZE) || hasGem(gems, Gem.RUBY);
     }
 
     private void handlePrismarineMaterial(Level level, BlockPos pos, PlatformInterface platform, boolean useBottomSlab, boolean underwaterPlacement, boolean createBubbleColumns) {
@@ -280,57 +292,78 @@ public class WandItem extends Item {
         }
 
         boolean useWaterloggedDoubleSlab = hasGem(gems, Gem.PRISMARINE) && level.getBlockState(newPlatformPos).getFluidState().is(FluidTags.WATER);
-        boolean canPlacePlatform = (useBottomSlab || level.getBlockState(newPlatformPos).isAir() || useWaterloggedDoubleSlab) && !platformInterface.getPlatformSummoned() && !player.onGround();
+        boolean canPlacePlatform = (useBottomSlab || level.getBlockState(newPlatformPos).isAir() || useWaterloggedDoubleSlab) && !platformInterface.getPlatformSummoned() && (!player.onGround() || hasGem(gems, Gem.RUBY));
         HashMap<BlockPos, BlockState> targetPositions = getTargetPositions(level, newPlatformPos, gems);
-        boolean hasStandaloneAbility = canUseWandWithoutPlatform(gems) || teleported || (hasGem(gems, Gem.METEORITE) && !targetPositions.isEmpty());
-        boolean canSummonWithoutMainPlatform = !canPlacePlatform
-                && !platformInterface.getPlatformSummoned()
-                && player.onGround()
-                && hasStandaloneAbility;
+        boolean hasStandaloneAbility = canUseWandWithoutGrounded(gems) || teleported || (hasGem(gems, Gem.METEORITE) && !targetPositions.isEmpty());
+        boolean canSummonWithoutMainPlatform = !canPlacePlatform && !platformInterface.getPlatformSummoned() && player.onGround() && hasStandaloneAbility;
         boolean shouldSummon = canPlacePlatform || canSummonWithoutMainPlatform;
 
         if (shouldSummon && !platformInterface.getPlatformSummoned()) {
             platformInterface.lal$setLastPlatformPos(level, newPlatformPos);
 
-            prePlatformSummoned(level, player, stack, gems);
-            platformInterface.setOldStates(targetPositions);
-            List<BlockPos> validBlocks = platformInterface.getOldStates().keySet().stream().toList();
-            List<BlockPos> placedBlocks = new ArrayList<>();
-            if (canPlacePlatform) {
-                placedBlocks.add(newPlatformPos);
-            }
-            placedBlocks.addAll(validBlocks);
-            Set<BlockPos> underwaterBlocks = new HashSet<>();
-            if (hasGem(gems, Gem.PRISMARINE)) {
-                for (BlockPos placedBlock : placedBlocks) {
-                    if (isUnderwaterPlacement(level, placedBlock)) {
-                        underwaterBlocks.add(placedBlock);
+            if (!level.isClientSide()) {
+                prePlatformSummoned(level, player, stack, gems);
+                HashMap<BlockPos, BlockState> fireTargets = getFireTargetPositions(level, newPlatformPos, gems);
+                HashMap<BlockPos, BlockState> iceTargets = getIceTargetPositions(level, newPlatformPos, gems);
+                platformInterface.setOldStates(targetPositions);
+                List<BlockPos> validBlocks = platformInterface.getOldStates().keySet().stream().toList();
+                List<BlockPos> placedBlocks = new ArrayList<>();
+                if (canPlacePlatform) {
+                    placedBlocks.add(newPlatformPos);
+                }
+                placedBlocks.addAll(validBlocks);
+                Set<BlockPos> underwaterBlocks = new HashSet<>();
+                if (hasGem(gems, Gem.PRISMARINE)) {
+                    for (BlockPos placedBlock : placedBlocks) {
+                        if (isUnderwaterPlacement(level, placedBlock)) {
+                            underwaterBlocks.add(placedBlock);
+                        }
                     }
                 }
-            }
 
-            if (canPlacePlatform) {
-                level.setBlock(
-                        newPlatformPos,
-                        WandPlatformBlock.getSummonedState(stack, useBottomSlab, useWaterloggedDoubleSlab),
-                        Block.UPDATE_ALL
-                );
-            }
-
-            for (BlockPos targetPos : validBlocks) {
-                level.setBlock(
-                        targetPos,
-                        getPlacedBlock(stack, useBottomSlab, useWaterloggedDoubleSlab),
-                        Block.UPDATE_ALL
-                );
-            }
-
-            if (hasGem(gems, Gem.PRISMARINE)) {
-                boolean createBubbleColumns = gems.primary() == Gem.PRISMARINE;
-                for (BlockPos targetPos : placedBlocks) {
-                    boolean underwaterPlacement = underwaterBlocks.contains(targetPos);
-                    handlePrismarineMaterial(level, targetPos, platformInterface, useBottomSlab, underwaterPlacement, createBubbleColumns && underwaterPlacement);
+                if (level instanceof ServerLevel serverLevel) {
+                    for (BlockPos placedBlock : placedBlocks) {
+                        ServerEvents.cancelBlockChange(serverLevel.dimension(), placedBlock);
+                    }
                 }
+
+                if (canPlacePlatform) {
+                    level.setBlock(
+                            newPlatformPos,
+                            WandPlatformBlock.getSummonedState(stack, useBottomSlab, useWaterloggedDoubleSlab),
+                            Block.UPDATE_ALL
+                    );
+                }
+
+                for (BlockPos targetPos : fireTargets.keySet()) {
+                    level.setBlock(
+                            targetPos,
+                            Blocks.FIRE.defaultBlockState().setValue(WandPlatformBlock.CANCEL_TICK, true),
+                            Block.UPDATE_ALL
+                    );
+                }
+
+                for (BlockPos targetPos : iceTargets.keySet()) {
+                    level.setBlock(
+                            targetPos,
+                            WandPlatformBlock.getSummonedState(stack, useBottomSlab, useWaterloggedDoubleSlab),
+                            Block.UPDATE_ALL
+                    );
+                }
+
+                if (hasGem(gems, Gem.PRISMARINE)) {
+                    boolean createBubbleColumns = gems.primary() == Gem.PRISMARINE;
+                    for (BlockPos targetPos : placedBlocks) {
+                        boolean underwaterPlacement = underwaterBlocks.contains(targetPos);
+                        handlePrismarineMaterial(level, targetPos, platformInterface, useBottomSlab, underwaterPlacement, createBubbleColumns && underwaterPlacement);
+                    }
+                }
+
+                HashMap<BlockPos, BlockState> placedStates = new HashMap<>();
+                for (BlockPos placedBlock : placedBlocks) {
+                    placedStates.put(placedBlock.immutable(), level.getBlockState(placedBlock));
+                }
+                platformInterface.setPlatformStates(placedStates);
             }
 
             platformInterface.setPlatformSummoned(true);
@@ -344,16 +377,20 @@ public class WandItem extends Item {
                     .build()
             );
 
+            updateModel(stack, gems, false);
+
             return InteractionResult.SUCCESS;
         } else {
             InteractionResult result = removePlatforms(level, player);
             if (result == InteractionResult.SUCCESS) {
-                postPlatformRecalled(level, player, stack, gems);
+                if (!level.isClientSide()) postPlatformRecalled(level, player, stack, gems);
 
                 stack.applyComponents(DataComponentPatch.builder()
                         .set(DataComponents.USE_COOLDOWN, new UseCooldown(0.5F))
                         .build()
                 );
+
+                updateModel(stack, gems, true);
 
                 return result;
             }
@@ -386,16 +423,70 @@ public class WandItem extends Item {
 
     public static void removePlatforms(Level level, PlatformInterface platform, BlockPos lastPos) {
         platform.setPlatformSummoned(false);
+        if (level.isClientSide()) return;
+        Set<BlockPos> validBlocks = new HashSet<>(platform.getOldStates().keySet());
+        validBlocks.addAll(platform.getPlatformStates().keySet());
+        validBlocks.addAll(getCurrentPlatformBlocks(level, lastPos));
+        validBlocks.remove(lastPos);
 
-        List<BlockPos> validBlocks = platform.getOldStates().keySet().stream().toList();
+        Set<BlockPos> savedPlatforms = ServerEvents.SAVED_PLATFORMS.get(level.dimension());
+        if (savedPlatforms == null) savedPlatforms = new HashSet<>();
 
         if (level instanceof ServerLevel serverLevel) {
             for (BlockPos targetPos : validBlocks) {
-                ServerEvents.queueBlockChange(serverLevel, targetPos, platform.getOldStates().get(targetPos), 5);
+                BlockState state = serverLevel.getBlockState(targetPos);
+                if (hasRubyPrimary(state)) {
+                    savedPlatforms.add(targetPos);
+                    continue;
+                }
+                BlockState restoredState = platform.getOldStates().getOrDefault(targetPos, Blocks.AIR.defaultBlockState());
+                ServerEvents.queueBlockChange(serverLevel, targetPos, restoredState, 5);
             }
         }
 
+        BlockState state = level.getBlockState(lastPos);
+        if (hasRubyPrimary(state)) {
+            savedPlatforms.add(lastPos);
+            ServerEvents.SAVED_PLATFORMS.put(level.dimension(), savedPlatforms);
+            return;
+        } else {
+            if (!savedPlatforms.isEmpty()) ServerEvents.SAVED_PLATFORMS.put(level.dimension(), savedPlatforms);
+        }
         level.scheduleTick(lastPos, LaLBlocks.WAND_PLATFORM.get(), 5);
+        platform.setPlatformStates(new HashMap<>());
+    }
+
+    private static Set<BlockPos> getCurrentPlatformBlocks(Level level, BlockPos lastPos) {
+        Set<BlockPos> positions = new HashSet<>();
+        BlockState mainState = level.getBlockState(lastPos);
+        Gem primary = mainState.hasProperty(WandPlatformBlock.PRIMARY_MATERIAL) ? mainState.getValue(WandPlatformBlock.PRIMARY_MATERIAL) : null;
+        Gem secondary = mainState.hasProperty(WandPlatformBlock.SECONDARY_MATERIAL) ? mainState.getValue(WandPlatformBlock.SECONDARY_MATERIAL) : null;
+
+        for (int x = -4; x <= 4; x++) {
+            for (int y = -2; y <= 1; y++) {
+                for (int z = -4; z <= 4; z++) {
+                    BlockPos pos = lastPos.offset(x, y, z);
+                    if (pos.equals(lastPos)) continue;
+
+                    BlockState state = level.getBlockState(pos);
+                    if (state.is(Blocks.FIRE) && state.hasProperty(WandPlatformBlock.CANCEL_TICK) && state.getValue(WandPlatformBlock.CANCEL_TICK)) {
+                        positions.add(pos.immutable());
+                        continue;
+                    }
+
+                    if (!state.is(LaLBlocks.WAND_PLATFORM.get()) || primary == null || secondary == null) continue;
+                    if (state.getValue(WandPlatformBlock.PRIMARY_MATERIAL) != primary) continue;
+                    if (state.getValue(WandPlatformBlock.SECONDARY_MATERIAL) != secondary) continue;
+                    positions.add(pos.immutable());
+                }
+            }
+        }
+
+        return positions;
+    }
+
+    private static boolean hasRubyPrimary(BlockState state) {
+        return state.hasProperty(WandPlatformBlock.PRIMARY_MATERIAL) && state.getValue(WandPlatformBlock.PRIMARY_MATERIAL) == Gem.RUBY;
     }
 
     public static int applyBreezeKnockback(Level level, LivingEntity source, double strength) {

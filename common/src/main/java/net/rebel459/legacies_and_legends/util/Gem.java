@@ -4,33 +4,39 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.rebel459.item_tooltips.config.ITConfig;
+import net.rebel459.item_tooltips.util.ScreenHelper;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
 import net.rebel459.unified.util.SuppliedItem;
 import org.jetbrains.annotations.NotNull;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
 
 public enum Gem implements StringRepresentable {
-    EMPTY(0, "empty", ChatFormatting.GRAY.getColor(), 0xFFFFFFFF),
-    SAPPHIRE(1, "sapphire", 0, argb("5a76c8")),
-    SLIME(2, "slime", 0, argb("8fc85a")),
-    METEORITE(3, "meteorite", 0, argb("c8815a")),
-    ICE(4, "ice", 0, argb("5ab2c8")),
-    BREEZE(5, "breeze", 0, argb("5c5ac8")),
-    OBSIDIAN(6, "obsidian", 0, argb("725ac8")),
-    PRISMARINE(7, "prismarine", 0, argb("5ac8ab")),
-    TIMELOST(8, "timelost", 0, argb("5ac87f")),
-    NEBULITE(9, "nebulite", 0, argb("b65ac8")),
-    RUBY(10, "ruby", 0, argb("c85a6a"));
+    EMPTY(0, "empty", "ffffff"),
+    SAPPHIRE(1, "sapphire", "5a76c8"),
+    SLIME(2, "slime", "8fc85a"),
+    METEORITE(3, "meteorite", "c8815a"),
+    ICE(4, "ice", "5ab2c8"),
+    BREEZE(5, "breeze", "5c5ac8"),
+    OBSIDIAN(6, "obsidian", "725ac8"),
+    PRISMARINE(7, "prismarine", "5ac8ab"),
+    TIMELOST(8, "timelost", "5ac87f"),
+    NEBULITE(9, "nebulite", "b65ac8"),
+    RUBY(10, "ruby", "c85a6a");
 
     private static int decimal(String hex) {
         String normalized = hex.startsWith("#") ? hex.substring(1) : hex;
@@ -39,28 +45,43 @@ public enum Gem implements StringRepresentable {
     private static int argb(String hex) {
         return 0xFF000000 | decimal(hex);
     }
+    private static final String TRANSLATION_PATH = "gem.legacies_and_legends.";
 
     public static final Codec<Gem> CODEC = StringRepresentable.fromValues(Gem::values);
     public static final IntFunction<Gem> BY_ID = ByIdMap.continuous((r) -> r.id, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
     public static final StreamCodec<ByteBuf, Gem> STREAM_CODEC = ByteBufCodecs.idMapper(BY_ID, (r) -> r.id);
     private final int id;
     private final String name;
-    private final int color;
-    private final int tint;
+    private final String color;
 
-    Gem(int id, String name, int color, int tint) {
+    Gem(int id, String name, String color) {
         this.id = id;
         this.name = name;
         this.color = color;
-        this.tint = tint;
     }
 
     public int color() {
-        return this.color;
+        return decimal(color);
     }
 
     public int tint() {
-        return this.tint;
+        return argb(color);
+    }
+
+    public void createTooltip(Consumer<Component> consumer, boolean bonus) {
+        if (this == Gem.EMPTY) return;
+        MutableComponent prefixText = Component.translatable(ITConfig.get().enchantments.prefix.text).withColor(ITConfig.get().enchantments.prefix.color);
+        int descriptionColor = ITConfig.get().enchantments.color;
+        consumer.accept(Component.translatable(TRANSLATION_PATH + this.getSerializedName()).withColor(this.color()));
+        if (!ScreenHelper.Tooltip.hasKeyDown()) return;
+        consumer.accept(Component.literal("")
+                .append(prefixText)
+                .append(Component.translatable(TRANSLATION_PATH + this.getSerializedName() + ".desc").withColor(descriptionColor)));
+        if (!bonus) return;
+        consumer.accept(Component.literal("")
+                .append(prefixText)
+                .append(Component.literal("+ ").withStyle(ChatFormatting.GREEN))
+                .append(Component.translatable(TRANSLATION_PATH + this.getSerializedName() + ".desc.bonus").withColor(descriptionColor)));
     }
 
     public Item item() {
@@ -84,6 +105,7 @@ public enum Gem implements StringRepresentable {
     }
 
     public record Slots(@NotNull Gem primary, @NotNull Gem secondary) {
+        public static Slots DEFAULT = new Slots(Gem.SAPPHIRE, Gem.EMPTY);
         public static Slots EMPTY = new Slots(Gem.EMPTY, Gem.EMPTY);
 
         public static final Codec<Slots> CODEC = RecordCodecBuilder.create(instance -> instance.group(

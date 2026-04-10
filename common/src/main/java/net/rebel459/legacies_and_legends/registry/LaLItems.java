@@ -86,8 +86,8 @@ public final class LaLItems {
                     .durability(256)
                     .enchantable(20)
                     .rarity(Rarity.RARE)
-                    .component(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(), List.of(true), List.of(Gem.EMPTY.getSerializedName()), List.of()))
-                    .component(LaLDataComponents.WAND_SLOTS.get(), Gem.Slots.EMPTY)
+                    .component(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(), List.of(), List.of(Gem.Slots.DEFAULT.primary().getSerializedName(), "charged"), List.of()))
+                    .component(LaLDataComponents.WAND_SLOTS.get(), Gem.Slots.DEFAULT)
                     .useCooldown(1)
     );
 

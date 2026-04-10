@@ -21,9 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(InventoryMenu.class)
 public abstract class InventoryMenuMixin extends AbstractContainerMenu implements AccessorySlotInterface {
 
-    @Shadow
-    @Final
-    public static int ARMOR_SLOT_END;
     @Unique
     private final SimpleContainer accessoryContainer = new SimpleContainer(1);
 
@@ -58,7 +55,6 @@ public abstract class InventoryMenuMixin extends AbstractContainerMenu implement
         menu.addSlot(this.accessorySlot);
     }
 
-    // Optional but recommended: make shift-click work
     @Inject(method = "quickMoveStack", at = @At("HEAD"), cancellable = true)
     private void handleAccessoryQuickMove(Player player, int index, CallbackInfoReturnable<ItemStack> cir) {
         InventoryMenu menu = InventoryMenu.class.cast(this);

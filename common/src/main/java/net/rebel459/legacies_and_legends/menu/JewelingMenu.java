@@ -12,6 +12,7 @@ import net.rebel459.legacies_and_legends.block.JewelingTableBlock;
 import net.rebel459.legacies_and_legends.item.WandItem;
 import net.rebel459.legacies_and_legends.registry.LaLDataComponents;
 import net.rebel459.legacies_and_legends.registry.LaLMenus;
+import net.rebel459.legacies_and_legends.sound.LaLSounds;
 import net.rebel459.legacies_and_legends.util.Gem;
 
 public class JewelingMenu extends AbstractContainerMenu {
@@ -56,6 +57,7 @@ public class JewelingMenu extends AbstractContainerMenu {
 
             @Override
             public void onTake(Player player, ItemStack stack) {
+                player.playSound(LaLSounds.JEWEL.get());
                 JewelingMenu.this.applyGemSlotsToWand(stack);
                 JewelingMenu.this.clearGemSlots();
                 super.onTake(player, stack);
@@ -110,8 +112,7 @@ public class JewelingMenu extends AbstractContainerMenu {
         ItemStack secondary = this.container.getItem(SECONDARY_SLOT);
 
         boolean wandChanged = !ItemStack.isSameItemSameComponents(wand, this.lastWand);
-        boolean gemsChanged = !ItemStack.isSameItemSameComponents(primary, this.lastPrimary)
-                || !ItemStack.isSameItemSameComponents(secondary, this.lastSecondary);
+        boolean gemsChanged = !ItemStack.isSameItemSameComponents(primary, this.lastPrimary) || !ItemStack.isSameItemSameComponents(secondary, this.lastSecondary);
 
         if (!wandChanged && !gemsChanged) return;
 
@@ -119,7 +120,7 @@ public class JewelingMenu extends AbstractContainerMenu {
         try {
             if (wandChanged) {
                 this.loadGemsFromWand();
-            } else if (gemsChanged) {
+            } else {
                 this.writeGemsToWand(wand);
             }
         } finally {
@@ -274,6 +275,7 @@ public class JewelingMenu extends AbstractContainerMenu {
 
     @Override
     public void removed(Player player) {
+        if (this.slots.getFirst().hasItem()) player.playSound(LaLSounds.JEWEL.get());
         this.syncing = true;
         try {
             this.applyGemSlotsToWand(this.container.getItem(WAND_SLOT));

@@ -109,7 +109,6 @@ public class LaLItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
                 .addTag(LaLItemTags.TOTEMS);
 
         this.valueLookupBuilder(ITItemTags.HAS_DESCRIPTION)
-                .add(LaLItems.WAND.get())
                 .addTag(LaLItemTags.ARTIFACTS)
                 .addTag(LaLItemTags.ACCESSORIES);
 

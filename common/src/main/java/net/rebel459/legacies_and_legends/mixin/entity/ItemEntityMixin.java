@@ -5,6 +5,8 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
+import net.rebel459.legacies_and_legends.item.WandItem;
+import net.rebel459.legacies_and_legends.registry.LaLDataComponents;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
@@ -14,6 +16,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.level.Level;
+import net.rebel459.legacies_and_legends.util.Gem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -33,13 +36,12 @@ public abstract class ItemEntityMixin extends Entity {
         super(type, level);
     }
 
-    @Inject(at = @At("HEAD"), method = "tick()V")
+    @Inject(at = @At("HEAD"), method = "playerTouch")
     private void dropWand(CallbackInfo ci) {
-        if (this.getItem().is(LaLItems.WAND)) {
-            this.getItem().applyComponents(DataComponentPatch.builder()
-                    .set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(), List.of(true), List.of(), List.of()))
-                    .build()
-            );
+        ItemStack stack = this.getItem();
+        if (stack.getItem() instanceof WandItem) {
+            WandItem.checkComponents(stack);
+            WandItem.updateModel(stack, stack.get(LaLDataComponents.WAND_SLOTS.get()), true);
         }
     }
 

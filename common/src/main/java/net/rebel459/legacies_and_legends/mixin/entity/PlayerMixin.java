@@ -3,12 +3,15 @@ package net.rebel459.legacies_and_legends.mixin.entity;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.mojang.serialization.Codec;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
+import net.rebel459.legacies_and_legends.event.ServerEvents;
 import net.rebel459.legacies_and_legends.item.WandItem;
 import net.rebel459.legacies_and_legends.util.PlatformInterface;
-import net.rebel459.legacies_and_legends.item.util.TotemUtil;
 import net.rebel459.legacies_and_legends.registry.LaLBlocks;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
 import net.rebel459.legacies_and_legends.sound.LaLSounds;
@@ -44,6 +47,7 @@ import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.rebel459.unified.platform.UnifiedPlatform;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -60,7 +64,7 @@ import java.util.Optional;
 public abstract class PlayerMixin implements PlatformInterface, AccessoryInterface {
 
     @Unique
-    private static final Codec<HashMap<BlockPos, BlockState>> LAL_OLD_STATES_CODEC = Codec.unboundedMap(BlockPos.CODEC, BlockState.CODEC)
+    private static final Codec<HashMap<BlockPos, BlockState>> LAL_STATES_CODEC = Codec.unboundedMap(BlockPos.CODEC, BlockState.CODEC)
             .xmap(HashMap::new, HashMap::new);
 
     @Unique
@@ -100,6 +104,9 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Unique
     private HashMap<BlockPos, BlockState> oldStates = new HashMap<>();
 
+    @Unique
+    private HashMap<BlockPos, BlockState> platformStates = new HashMap<>();
+
     @Override
     public HashMap<BlockPos, BlockState> getOldStates() {
         return this.oldStates;
@@ -108,6 +115,16 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Override
     public void setOldStates(HashMap<BlockPos, BlockState> states) {
         this.oldStates = states;
+    }
+
+    @Override
+    public HashMap<BlockPos, BlockState> getPlatformStates() {
+        return this.platformStates;
+    }
+
+    @Override
+    public void setPlatformStates(HashMap<BlockPos, BlockState> states) {
+        this.platformStates = states;
     }
 
     @Inject(method = "actuallyHurt", at = @At(value = "TAIL"))
@@ -196,7 +213,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
             if (stack.is(LaLItems.TOTEM_OF_TELEPORTATION) && amount >= player.getHealth()) {
                 player.setHealth(1.0F);
                 stack.get(DataComponents.DEATH_PROTECTION).applyEffects(stack, player);
-                TotemUtil.playTotemAnimation(stack, player);
+                playTotemAnimation(stack, player);
                 player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_TELEPORTATION.get()));
                 CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, stack);
                 stack.copyAndClear();
@@ -207,7 +224,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
             if (LaLConfig.get().misc.accessory_of_undying && stack.is(Items.TOTEM_OF_UNDYING) && amount >= player.getHealth()) {
                 player.setHealth(1.0F);
                 Items.TOTEM_OF_UNDYING.getDefaultInstance().get(DataComponents.DEATH_PROTECTION).applyEffects(Items.TOTEM_OF_UNDYING.getDefaultInstance(), player);
-                TotemUtil.playTotemAnimation(Items.TOTEM_OF_UNDYING.getDefaultInstance(), player);
+                playTotemAnimation(Items.TOTEM_OF_UNDYING.getDefaultInstance(), player);
                 player.awardStat(Stats.ITEM_USED.get(Items.TOTEM_OF_UNDYING));
                 CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, Items.TOTEM_OF_UNDYING.getDefaultInstance());
                 stack.copyAndClear();
@@ -228,7 +245,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     private static void handleTotemOfResurrection(Level level, Player player, ItemStack stack) {
         player.setHealth(1.0F);
         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 600));
-        TotemUtil.playTotemAnimation(LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance(), player);
+        playTotemAnimation(LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance(), player);
         player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_RESURRECTION.get()));
         if (player instanceof ServerPlayer serverPlayer) {
             CriteriaTriggers.USED_TOTEM.trigger(serverPlayer, LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance());
@@ -245,9 +262,11 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
         destroyPlatform();
     }
 
-    @Inject(method = "drop", at = @At("HEAD"))
+    @Inject(method = "drop", at = @At("TAIL"))
     public void destroyPlatformOnDrop(ItemStack itemStack, boolean includeThrowerName, CallbackInfoReturnable<ItemEntity> cir) {
-        if (this.lastPlatformPos.isEmpty() || this.getInventory().contains(LaLItems.WAND.getDefaultInstance())) return;
+        if (this.lastPlatformPos.isEmpty()) return;
+        if (!itemStack.is(LaLItems.WAND)) return;
+        if (this.getInventory().contains(LaLItems.WAND.getDefaultInstance())) return;
 
         destroyPlatform();
     }
@@ -283,9 +302,26 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     public void readPlatformSaveData(ValueInput input, CallbackInfo ci) {
         this.lastPlatformPos = input.read("LalLastPlatformPos", GlobalPos.CODEC);
         this.isPlatformSummoned = input.getBooleanOr("LalPlatformSummoned", false);
-        this.oldStates = input.read("LalPlatformOldStates", LAL_OLD_STATES_CODEC).orElseGet(HashMap::new);
+        this.oldStates = input.read("LalPlatformOldStates", LAL_STATES_CODEC).orElseGet(HashMap::new);
+        this.platformStates = input.read("LalPlatformStates", LAL_STATES_CODEC).orElseGet(HashMap::new);
         if (this.lastPlatformPos.isEmpty()) {
             this.isPlatformSummoned = false;
+        } else if (this.isPlatformSummoned && !this.oldStates.isEmpty()) {
+            int mainPlatformY = this.lastPlatformPos.get().pos().getY();
+            for (BlockPos pos : this.oldStates.keySet()) {
+                if (pos.getY() <= mainPlatformY && !this.platformStates.containsKey(pos)) {
+                    this.platformStates.put(pos.immutable(), LaLBlocks.WAND_PLATFORM.get().defaultBlockState());
+                }
+            }
+        }
+        Player player = Player.class.cast(this);
+        Level level = player.level();
+        if (level.isClientSide()) return;
+        for (BlockPos pos : this.oldStates.keySet()) {
+            ServerEvents.cancelBlockChange(level.dimension(), pos);
+        }
+        for (BlockPos pos : this.platformStates.keySet()) {
+            ServerEvents.cancelBlockChange(level.dimension(), pos);
         }
     }
 
@@ -294,7 +330,10 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
         this.lastPlatformPos.ifPresent(pos -> output.store("LalLastPlatformPos", GlobalPos.CODEC, pos));
         output.putBoolean("LalPlatformSummoned", this.isPlatformSummoned);
         if (!this.oldStates.isEmpty()) {
-            output.store("LalPlatformOldStates", LAL_OLD_STATES_CODEC, this.oldStates);
+            output.store("LalPlatformOldStates", LAL_STATES_CODEC, this.oldStates);
+        }
+        if (!this.platformStates.isEmpty()) {
+            output.store("LalPlatformStates", LAL_STATES_CODEC, this.platformStates);
         }
     }
 
@@ -346,5 +385,20 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
         Player player = Player.class.cast(this);
         ItemStack stack = AccessoryHelper.getActualAccessory(player);
         if (!serverLevel.getGameRules().get(GameRules.KEEP_INVENTORY) && !(stack.is(LaLItemTags.AMULETS) && AccessoryHelper.getAccessory(player) == ItemStack.EMPTY)) player.drop(stack, true, false);
+    }
+
+    @Unique
+    private static void playTotemAnimation(ItemStack itemStack, Entity entity) {
+        if (UnifiedPlatform.get().isServerSide()) return;
+        Minecraft minecraftClient = Minecraft.getInstance();
+        minecraftClient.particleEngine.createTrackingEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
+
+        ClientLevel clientWorld = minecraftClient.level;
+
+        if (clientWorld != null) {
+            clientWorld.playLocalSound(entity.getX(), entity.getY(), entity.getZ(), SoundEvents.TOTEM_USE, entity.getSoundSource(), 1.0f, 1.0f, false);
+        }
+
+        minecraftClient.gameRenderer.displayItemActivation(itemStack);
     }
 }
