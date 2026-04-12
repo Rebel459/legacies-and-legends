@@ -23,8 +23,8 @@ public final class LaLMusic {
 
 	public static void init() {
 
-		UnifiedHelpers.STRUCTURE_MUSIC.add(BuiltinStructures.STRONGHOLD.identifier(), STRONGHOLD);
-		UnifiedHelpers.STRUCTURE_MUSIC.add(BuiltinStructures.ANCIENT_CITY.identifier(), ANCIENT_CITY);
+		if (LaLConfig.get().music.stronghold_music) UnifiedHelpers.STRUCTURE_MUSIC.add(BuiltinStructures.STRONGHOLD.identifier(), STRONGHOLD);
+		if (LaLConfig.get().music.ancient_city_music) UnifiedHelpers.STRUCTURE_MUSIC.add(BuiltinStructures.ANCIENT_CITY.identifier(), ANCIENT_CITY);
 
 		UnifiedHelpers.BIOME_MODIFICATIONS.register(LaLBiomeTags.MUSIC_SNOWY, context -> {
 			if (LaLConfig.get().music.snowy_music && (!LegaciesAndLegends.isWilderWildLoaded || !LaLConfig.get().integrations.wilder_wild)) {

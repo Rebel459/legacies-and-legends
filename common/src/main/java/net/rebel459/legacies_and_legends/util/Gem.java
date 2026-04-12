@@ -45,7 +45,6 @@ public enum Gem implements StringRepresentable {
     private static int argb(String hex) {
         return 0xFF000000 | decimal(hex);
     }
-    private static final String TRANSLATION_PATH = "gem.legacies_and_legends.";
 
     public static final Codec<Gem> CODEC = StringRepresentable.fromValues(Gem::values);
     public static final IntFunction<Gem> BY_ID = ByIdMap.continuous((r) -> r.id, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
@@ -66,22 +65,6 @@ public enum Gem implements StringRepresentable {
 
     public int tint() {
         return argb(color);
-    }
-
-    public void createTooltip(Consumer<Component> consumer, boolean bonus) {
-        if (this == Gem.EMPTY) return;
-        MutableComponent prefixText = Component.translatable(ITConfig.get().enchantments.prefix.text).withColor(ITConfig.get().enchantments.prefix.color);
-        int descriptionColor = ITConfig.get().enchantments.color;
-        consumer.accept(Component.translatable(TRANSLATION_PATH + this.getSerializedName()).withColor(this.color()));
-        if (!ScreenHelper.Tooltip.hasKeyDown()) return;
-        consumer.accept(Component.literal("")
-                .append(prefixText)
-                .append(Component.translatable(TRANSLATION_PATH + this.getSerializedName() + ".desc").withColor(descriptionColor)));
-        if (!bonus) return;
-        consumer.accept(Component.literal("")
-                .append(prefixText)
-                .append(Component.literal("+ ").withStyle(ChatFormatting.GREEN))
-                .append(Component.translatable(TRANSLATION_PATH + this.getSerializedName() + ".desc.bonus").withColor(descriptionColor)));
     }
 
     public Item item() {

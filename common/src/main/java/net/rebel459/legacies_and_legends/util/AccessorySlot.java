@@ -9,10 +9,11 @@ import net.minecraft.world.item.ItemStack;
 
 public class AccessorySlot extends Slot {
 
-    Player player;
+    private final Player player;
 
     public AccessorySlot(Container container, Player player, int index, int x, int y) {
-        super(container, index, x, y);
+        LaLConfig.AccessoryConfig.Slot slot = LaLConfig.get().accessories.slot;
+        super(container, index, x + slot.offset_x, y + slot.offset_y);
         this.player = player;
     }
 
@@ -43,6 +44,6 @@ public class AccessorySlot extends Slot {
 
     @Override
     public boolean isActive() {
-        return !this.player.hasInfiniteMaterials() && LaLConfig.get().misc.accessory_slot;
+        return !this.player.hasInfiniteMaterials() && LaLConfig.get().accessories.slot.enabled;
     }
 }

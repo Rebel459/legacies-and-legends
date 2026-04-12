@@ -16,7 +16,7 @@ public class MultiPlayerGameModeMixin {
 
     @ModifyConstant(method = "continueDestroyBlock", constant = @Constant(intValue = 5))
     private int ringOfExcavation(int value) {
-        if (AccessoryHelper.getAccessory(this.minecraft.player).is(LaLItems.RING_OF_EXCAVATION)) return 2;
+        if (AccessoryHelper.getAccessory(this.minecraft.player).is(LaLItems.RING_OF_EXCAVATION.get())) return 2;
         else return 5;
     }
 }

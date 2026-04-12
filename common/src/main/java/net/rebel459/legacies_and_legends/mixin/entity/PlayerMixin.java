@@ -2,6 +2,7 @@ package net.rebel459.legacies_and_legends.mixin.entity;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -143,21 +144,23 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Inject(method = "actuallyHurt", at = @At(value = "HEAD"))
     private void necklaceOfRegeneration(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo info) {
         Player player = Player.class.cast(this);
-        if (AccessoryHelper.getAccessory(player).is(LaLItems.NECKLACE_OF_REGENERATION) && !player.hasEffect(MobEffects.REGENERATION)) player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60));
+        if (AccessoryHelper.getAccessory(player).is(LaLItems.NECKLACE_OF_REGENERATION.get()) && !player.hasEffect(MobEffects.REGENERATION)) {
+            player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60));
+        }
     }
 
     @Inject(method = "attack", at = @At(value = "TAIL"))
     private void ringOfStriking(Entity target, CallbackInfo ci) {
         Player player = Player.class.cast(this);
         ItemStack stack = AccessoryHelper.getAccessory(player);
-        if (stack.is(LaLItems.RING_OF_STRIKING)) AccessoryHelper.damageAccessory(player, stack);
+        if (stack.is(LaLItems.RING_OF_STRIKING.get())) AccessoryHelper.damageAccessory(player, stack);
     }
 
     @Inject(method = "hurtServer", at = @At(value = "HEAD"), cancellable = true)
     private void amuletOfObsidian(ServerLevel level, DamageSource damageSource, float amount, CallbackInfoReturnable<Boolean> cir) {
         Player player = Player.class.cast(this);
         ItemStack stack = AccessoryHelper.getAccessory(player);
-        if (stack.is(LaLItems.AMULET_OF_OBSIDIAN) && damageSource.is(DamageTypeTags.IS_FIRE) && !this.isInvulnerableTo(level, damageSource) && !player.hasEffect(MobEffects.FIRE_RESISTANCE) && !player.fireImmune()) {
+        if (stack.is(LaLItems.AMULET_OF_OBSIDIAN.get()) && damageSource.is(DamageTypeTags.IS_FIRE) && !this.isInvulnerableTo(level, damageSource) && !player.hasEffect(MobEffects.FIRE_RESISTANCE) && !player.fireImmune()) {
             if (player.getRemainingFireTicks() > 1) player.setRemainingFireTicks(1);
             cir.setReturnValue(false);
         }
@@ -167,7 +170,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     private void amuletOfAbsorption(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo ci) {
         Player player = Player.class.cast(this);
         ItemStack stack = AccessoryHelper.getAccessory(player);
-        if (AccessoryHelper.getAccessory(player).is(LaLItems.AMULET_OF_ABSORPTION)) {
+        if (AccessoryHelper.getAccessory(player).is(LaLItems.AMULET_OF_ABSORPTION.get())) {
             AccessoryHelper.damageAccessory(player, stack, (int) (amount * 2));
         }
     }
@@ -181,7 +184,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
             cancellable = true)
     private void necklaceOfResilience(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo ci) {
         Player player = Player.class.cast(this);
-        if (AccessoryHelper.getAccessory(player).is(LaLItems.NECKLACE_OF_RESILIENCE)) {
+        if (AccessoryHelper.getAccessory(player).is(LaLItems.NECKLACE_OF_RESILIENCE.get())) {
             if (player.getHealth() > 6 && amount > player.getHealth() - 1) amount = player.getHealth() - 1;
             player.setHealth(player.getHealth() - amount);
             if (amount < 3.4028235E37F) {
@@ -197,7 +200,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     private void ringOfHunting(ServerLevel serverLevel, LivingEntity livingEntity, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
         Player player = Player.class.cast(this);
         ItemStack stack = AccessoryHelper.getAccessory(player);
-        if (stack.is(LaLItems.RING_OF_HUNTING)) {
+        if (stack.is(LaLItems.RING_OF_HUNTING.get())) {
             player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + 2);
             serverLevel.playSound(player, player.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.PLAYERS, 1F, 1F);
             AccessoryHelper.damageAccessory(player, stack);
@@ -210,7 +213,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
         if (AccessoryHelper.hasAccessory(player) && player instanceof AccessoryInterface accessory) {
             ItemStack stack = AccessoryHelper.getAccessory(player);
             AccessoryHelper.Mutable mutable = accessory.getAccessoryData();
-            if (stack.is(LaLItems.TOTEM_OF_TELEPORTATION) && amount >= player.getHealth()) {
+            if (stack.is(LaLItems.TOTEM_OF_TELEPORTATION.get()) && amount >= player.getHealth()) {
                 player.setHealth(1.0F);
                 stack.get(DataComponents.DEATH_PROTECTION).applyEffects(stack, player);
                 playTotemAnimation(stack, player);
@@ -218,10 +221,10 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
                 CriteriaTriggers.USED_TOTEM.trigger((ServerPlayer) player, stack);
                 stack.copyAndClear();
             }
-            if (stack.is(LaLItems.TOTEM_OF_RESURRECTION) && amount >= player.getHealth()) {
+            if (stack.is(LaLItems.TOTEM_OF_RESURRECTION.get()) && amount >= player.getHealth()) {
                 handleTotemOfResurrection(level, player, stack);
             }
-            if (LaLConfig.get().misc.accessory_of_undying && stack.is(Items.TOTEM_OF_UNDYING) && amount >= player.getHealth()) {
+            if (stack.is(Items.TOTEM_OF_UNDYING) && amount >= player.getHealth()) {
                 player.setHealth(1.0F);
                 Items.TOTEM_OF_UNDYING.getDefaultInstance().get(DataComponents.DEATH_PROTECTION).applyEffects(Items.TOTEM_OF_UNDYING.getDefaultInstance(), player);
                 playTotemAnimation(Items.TOTEM_OF_UNDYING.getDefaultInstance(), player);
@@ -231,11 +234,11 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
             }
             accessory.setAccessoryData(mutable);
         }
-        if ((player.getMainHandItem().is(LaLItems.TOTEM_OF_RESURRECTION) || player.getOffhandItem().is(LaLItems.TOTEM_OF_RESURRECTION)) && amount >= player.getHealth()) {
-            if (player.getMainHandItem().is(LaLItems.TOTEM_OF_RESURRECTION)) {
+        if ((player.getMainHandItem().is(LaLItems.TOTEM_OF_RESURRECTION.get()) || player.getOffhandItem().is(LaLItems.TOTEM_OF_RESURRECTION.get())) && amount >= player.getHealth()) {
+            if (player.getMainHandItem().is(LaLItems.TOTEM_OF_RESURRECTION.get())) {
                 handleTotemOfResurrection(level, player, player.getMainHandItem());
             }
-            else if (player.getOffhandItem().is(LaLItems.TOTEM_OF_RESURRECTION)) {
+            else if (player.getOffhandItem().is(LaLItems.TOTEM_OF_RESURRECTION.get())) {
                 handleTotemOfResurrection(level, player, player.getOffhandItem());
             }
         }
@@ -265,7 +268,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Inject(method = "drop", at = @At("TAIL"))
     public void destroyPlatformOnDrop(ItemStack itemStack, boolean includeThrowerName, CallbackInfoReturnable<ItemEntity> cir) {
         if (this.lastPlatformPos.isEmpty()) return;
-        if (!itemStack.is(LaLItems.WAND)) return;
+        if (!itemStack.is(LaLItems.WAND.get())) return;
         if (this.getInventory().contains(LaLItems.WAND.getDefaultInstance())) return;
 
         destroyPlatform();

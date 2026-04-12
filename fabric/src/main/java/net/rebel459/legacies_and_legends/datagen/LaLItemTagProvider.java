@@ -2,6 +2,7 @@ package net.rebel459.legacies_and_legends.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+import net.minecraft.world.entity.npc.wanderingtrader.WanderingTrader;
 import net.rebel459.item_tooltips.tag.ITItemTags;
 import net.rebel459.legacies_and_legends.registry.LaLBlocks;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
@@ -132,7 +133,7 @@ public class LaLItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
         this.valueLookupBuilder(LaLItemTags.BOOMERANG_REPAIR_MATERIALS)
                 .add(LaLItems.METAL_CHUNK.get());
         this.valueLookupBuilder(LaLItemTags.WAND_REPAIR_MATERIALS)
-                .add(LaLItems.SAPPHIRE.get());
+                .add(Items.GOLD_INGOT);
         this.valueLookupBuilder(LaLItemTags.HOOK_REPAIR_MATERIALS)
                 .add(LaLItems.METAL_CHUNK.get());
         this.valueLookupBuilder(LaLItemTags.KNIFE_REPAIR_MATERIALS)
@@ -225,6 +226,9 @@ public class LaLItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
         this.valueLookupBuilder(ItemTags.TRIM_MATERIALS)
                 .add(Items.ECHO_SHARD)
                 .add(LaLItems.SAPPHIRE.get());
+
+        this.valueLookupBuilder(LaLItemTags.VOID_IMMUNE)
+                .add(LaLItems.TIMELOST_GEM.get());
 
         this.valueLookupBuilder(UnifiedItemTags.PERSISTENT_COOLDOWNS)
                 .add(LaLItems.BOOMERANG.get())

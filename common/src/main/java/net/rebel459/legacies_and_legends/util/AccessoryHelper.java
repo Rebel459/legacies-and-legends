@@ -2,6 +2,7 @@ package net.rebel459.legacies_and_legends.util;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.mojang.logging.LogUtils;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.LegaciesAndLegends;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
@@ -44,10 +45,10 @@ public class AccessoryHelper {
             } else {
                 this.secondTicks += 1;
             }
-            if (stack.is(LaLItems.AMULET_OF_ABSORPTION)) {
+            if (stack.is(LaLItems.AMULET_OF_ABSORPTION.get())) {
                 getAndApplyModifiers(player, stack);
             }
-            else if (stack.is(LaLItems.RING_OF_EVASION)) {
+            else if (stack.is(LaLItems.RING_OF_EVASION.get())) {
                 getAndApplyModifiers(player, stack);
                 if (player.isShiftKeyDown() && !player.hasEffect(MobEffects.INVISIBILITY)) {
                     player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, MobEffectInstance.INFINITE_DURATION));
@@ -58,7 +59,7 @@ public class AccessoryHelper {
                     this.hasInfiniteInvisibility = false;
                 }
             }
-            else if (stack.is(LaLItems.NECKLACE_OF_PURITY)) {
+            else if (stack.is(LaLItems.NECKLACE_OF_PURITY.get())) {
                 if (!player.getActiveEffects().isEmpty()) {
                     player.removeAllEffects();
                 }
@@ -67,7 +68,7 @@ public class AccessoryHelper {
 
         public void onSecond(Player player, ItemStack stack) {
             setupRandomComponents(stack, RandomSource.create());
-            if (stack.is(LaLItems.AMULET_OF_OBSIDIAN)) {
+            if (stack.is(LaLItems.AMULET_OF_OBSIDIAN.get())) {
                 secondsElapsed += 1;
                 boolean onFire = player.getRemainingFireTicks() > 0;
                 if (onFire) damageAccessory(player, stack, 2);
@@ -117,7 +118,7 @@ public class AccessoryHelper {
 
         public Multimap<Holder<Attribute>, AttributeModifier> getModifiers(Player player, ItemStack stack) {
             Multimap<Holder<Attribute>, AttributeModifier> attributes = HashMultimap.create();
-            if (stack.is(LaLItems.AMULET_OF_ABSORPTION)) {
+            if (stack.is(LaLItems.AMULET_OF_ABSORPTION.get())) {
                 int armor = (int) (player.getMaxHealth() - player.getHealth()) / 2;
                 int toughness = (int) (player.getMaxHealth() - player.getHealth()) / 4;
                 int knockbackResistance = (int) (player.getMaxHealth() - player.getHealth()) / 6;
@@ -126,20 +127,20 @@ public class AccessoryHelper {
                 attributes.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(LaLConstants.id("armor_toughness"), toughness, AttributeModifier.Operation.ADD_VALUE));
                 attributes.put(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(LaLConstants.id("knockback_resistance"), knockbackResistance * 0.1, AttributeModifier.Operation.ADD_VALUE));
             }
-            else if (stack.is(LaLItems.RING_OF_CONSTRUCTION)) {
+            else if (stack.is(LaLItems.RING_OF_CONSTRUCTION.get())) {
                 attributes.put(Attributes.BLOCK_INTERACTION_RANGE, new AttributeModifier(LaLConstants.id("block_interaction_range"), 1, AttributeModifier.Operation.ADD_VALUE));
             }
-            else if (stack.is(LaLItems.RING_OF_EVASION) && player.isShiftKeyDown()) {
+            else if (stack.is(LaLItems.RING_OF_EVASION.get()) && player.isShiftKeyDown()) {
                 attributes.put(Attributes.SNEAKING_SPEED, new AttributeModifier(LaLConstants.id("sneaking_speed"), 0.3, AttributeModifier.Operation.ADD_VALUE));
             }
-            else if (stack.is(LaLItems.NECKLACE_OF_LEAPING)) {
+            else if (stack.is(LaLItems.NECKLACE_OF_LEAPING.get())) {
                 attributes.put(Attributes.JUMP_STRENGTH, new AttributeModifier(LaLConstants.id("jump_strength"), 0.15, AttributeModifier.Operation.ADD_VALUE));
                 attributes.put(Attributes.SAFE_FALL_DISTANCE, new AttributeModifier(LaLConstants.id("safe_fall_distance"), 1, AttributeModifier.Operation.ADD_VALUE));
             }
-            else if (stack.is(LaLItems.NECKLACE_OF_PROTECTION)) {
+            else if (stack.is(LaLItems.NECKLACE_OF_PROTECTION.get())) {
                 attributes.put(Attributes.ARMOR, new AttributeModifier(LaLConstants.id("armor"), 2, AttributeModifier.Operation.ADD_VALUE));
             }
-            else if (stack.is(LaLItems.RING_OF_STRIKING)) {
+            else if (stack.is(LaLItems.RING_OF_STRIKING.get())) {
                 attributes.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(LaLConstants.id("attack_damage"), 1, AttributeModifier.Operation.ADD_VALUE));
             }
             return attributes;
@@ -148,8 +149,12 @@ public class AccessoryHelper {
 
     public static ItemStack getAccessory(Player player) {
         ItemStack stack = getActualAccessory(player);
-        if (stack.getDamageValue() >= stack.getMaxDamage() - 1 || !LaLConfig.get().misc.accessory_slot) return ItemStack.EMPTY;
+        if (isBroken(stack) || !LaLConfig.get().accessories.slot.enabled) return ItemStack.EMPTY;
         else return stack;
+    }
+
+    public static boolean isBroken(ItemStack stack) {
+        return stack.has(DataComponents.MAX_DAMAGE) && stack.getDamageValue() >= stack.getMaxDamage() - 1;
     }
 
     public static ItemStack getActualAccessory(Player player) {
@@ -174,7 +179,7 @@ public class AccessoryHelper {
         return 20;
     }
     public static int getAmuletRepairCooldown(ItemStack stack) {
-        if (stack.is(LaLItems.AMULET_OF_DEFLECTION)) return 200;
+        if (stack.is(LaLItems.AMULET_OF_DEFLECTION.get())) return 200;
         return 100;
     }
 
@@ -191,7 +196,7 @@ public class AccessoryHelper {
         }
         stack.setDamageValue(stack.getDamageValue() + amount);
         if (player instanceof ServerPlayer serverPlayer) CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger(serverPlayer, stack, amount);
-        if (stack.getDamageValue() >= stack.getMaxDamage() - 1) {
+        if (isBroken(stack)) {
             if (stack.is(LaLItemTags.AMULETS)) {
                 player.getCooldowns().addCooldown(stack, 6000);
             }
@@ -222,7 +227,7 @@ public class AccessoryHelper {
     }
 
     public static void onUnequip(Player player, ItemStack stack) {
-        if (stack.is(LaLItems.RING_OF_EVASION)) {
+        if (stack.is(LaLItems.RING_OF_EVASION.get())) {
             player.removeEffect(MobEffects.INVISIBILITY);
             AccessoryInterface accessory = (AccessoryInterface) player;
             Mutable mutable = accessory.getAccessoryData();

@@ -64,6 +64,7 @@ public class LaLItemTags {
     public static final TagKey<Item> SAPPHIRE_ORES = bind("sapphire_ores");
 
     public static final TagKey<Item> VARIABLE_REPAIR_COST = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("enchants_and_expeditions", "variable_repair_cost"));
+    public static final TagKey<Item> VOID_IMMUNE = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("end_reborn", "void_immune"));
 
     @NotNull
     private static TagKey<Item> bind(@NotNull String path) {

@@ -5,6 +5,8 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.rebel459.item_tooltips.config.ITConfig;
@@ -60,19 +62,6 @@ public abstract class ItemStackMixin {
         }
     }
 
-    @Inject(at = @At("HEAD"), method = "addDetailsToTooltip")
-    private void gemTooltips(Item.TooltipContext context, TooltipDisplay display, @Nullable Player player, TooltipFlag tooltipFlag, Consumer<Component> consumer, CallbackInfo ci) {
-        ItemStack stack = ItemStack.class.cast(this);
-        if (stack.has(LaLDataComponents.WAND_SLOTS.get())) {
-            Gem.Slots gems = stack.get(LaLDataComponents.WAND_SLOTS.get());
-            gems.primary().createTooltip(consumer, true);
-            gems.secondary().createTooltip(consumer, false);
-        }
-        if (stack.has(LaLDataComponents.GEM.get())) {
-            stack.get(LaLDataComponents.GEM.get()).createTooltip(consumer, true);
-        }
-    }
-
     @Inject(at = @At("TAIL"), method = "inventoryTick")
     private void inventoryTick(Level level, Entity entity, EquipmentSlot equipmentSlot, CallbackInfo ci) {
         ItemStack stack = ItemStack.class.cast(this);
@@ -84,6 +73,19 @@ public abstract class ItemStackMixin {
             }
             accessory.setAccessoryData(mutable);
             //}
+        }
+    }
+
+    @Inject(at = @At("TAIL"), method = "use", cancellable = true)
+    private void useAccessory(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (stack.is(LaLItemTags.ACCESSORIES) && LaLConfig.get().accessories.slot.use_equip && cir.getReturnValue() != InteractionResult.SUCCESS) {
+            ItemStack oldAccessory = AccessoryHelper.getActualAccessory(player);
+            ItemStack newAccessory = stack.copyAndClear();
+            AccessoryHelper.setAccessory(player, newAccessory);
+            AccessoryHelper.onEquip(player, newAccessory);
+            player.setItemInHand(hand, oldAccessory);
+            cir.setReturnValue(InteractionResult.SUCCESS);
         }
     }
 }

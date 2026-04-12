@@ -1,7 +1,5 @@
 package net.rebel459.legacies_and_legends;
 
-import net.minecraft.world.level.gamerules.GameRules;
-import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
 import net.rebel459.legacies_and_legends.enchantment.LaLEnchantmentEffects;
 import net.rebel459.legacies_and_legends.event.PlayerEvents;
@@ -10,9 +8,7 @@ import net.rebel459.legacies_and_legends.registry.*;
 import net.rebel459.legacies_and_legends.sound.LaLMusic;
 import net.rebel459.legacies_and_legends.sound.LaLJukeboxSongs;
 import net.rebel459.legacies_and_legends.sound.LaLSounds;
-import net.rebel459.legacies_and_legends.util.AccessoryHelper;
 import net.rebel459.legacies_and_legends.worldgen.LaLFeatures;
-import net.rebel459.unified.platform.UnifiedEvents;
 import net.rebel459.unified.platform.UnifiedHelpers;
 import net.rebel459.unified.platform.UnifiedPlatform;
 import net.rebel459.unified.util.PackType;
@@ -62,9 +58,6 @@ public class LegaciesAndLegends {
 
         isCombatRebornLoaded = UnifiedPlatform.get().isModLoaded("combat_reborn");
 
-        if (!LaLConfig.get().misc.save_vanilla_cooldowns) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("save_vanilla_cooldowns"), PackType.REQUIRED_DATA);
-        }
         if (LaLConfig.get().structures.dungeon_overhaul) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("dungeon_overhaul"), PackType.REQUIRED_DATA);
         }
@@ -80,11 +73,20 @@ public class LegaciesAndLegends {
         if (!LaLConfig.get().artifacts.travelling_strides) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("no_travelling_strides"), PackType.REQUIRED_DATA);
         }
-        if (!LaLConfig.get().artifacts.withered_hoe) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_withered_hoe"), PackType.REQUIRED_DATA);
-        }
-        if (!LaLConfig.get().worldgen.sapphire) {
+        if (!LaLConfig.get().magic.sapphire) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("no_sapphire"), PackType.REQUIRED_DATA);
+        }
+        if (!LaLConfig.get().magic.wands) {
+            UnifiedHelpers.PACKS.add(LaLConstants.id("no_wands"), PackType.REQUIRED_DATA);
+        }
+        if (!LaLConfig.get().magic.jeweling) {
+            UnifiedHelpers.PACKS.add(LaLConstants.id("no_jeweling"), PackType.REQUIRED_DATA);
+        }
+        if (!LaLConfig.get().magic.meteors) {
+            UnifiedHelpers.PACKS.add(LaLConstants.id("no_meteors"), PackType.REQUIRED_DATA);
+        }
+        if (!LaLConfig.get().loot.glow_stick) {
+            UnifiedHelpers.PACKS.add(LaLConstants.id("no_glow_sticks"), PackType.REQUIRED_DATA);
         }
         if (LaLConfig.get().misc.no_creeper_discs) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("no_creeper_discs"), PackType.REQUIRED_DATA);
@@ -102,7 +104,7 @@ public class LegaciesAndLegends {
             isFarmersDelightLoaded = true;
             UnifiedHelpers.PACKS.add(LaLConstants.id("farmers_delight_integration"), PackType.REQUIRED_DATA);
         }
-        if (LaLConfig.get().misc.wandering_trader_trades && LaLConfig.get().loot.wooden_buckets && LaLConfig.get().loot.metal_chunk && LaLConfig.get().artifacts.tablet_of_recall && LaLConfig.get().artifacts.tablet_of_haste && LaLConfig.get().artifacts.tablet_of_revealing && LaLConfig.get().structures.dungeon_overhaul) {
+        if (LaLConfig.get().misc.wandering_trader_trades) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("wandering_trader_trades"), PackType.REQUIRED_DATA);
         }
         if (UnifiedPlatform.get().isModLoaded("bloom") && LaLConfig.get().integrations.bloom) {

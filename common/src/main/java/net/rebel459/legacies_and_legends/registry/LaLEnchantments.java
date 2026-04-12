@@ -14,6 +14,7 @@ public class LaLEnchantments {
 	public static final ResourceKey<Enchantment> REJUVENATE = key("rejuvenate");
 	public static final ResourceKey<Enchantment> SHADOWSTEP = key("shadowstep");
 	public static final ResourceKey<Enchantment> SHATTER = key("shatter");
+	public static final ResourceKey<Enchantment> PULL = key("pull");
 	public static final ResourceKey<Enchantment> STRIKING = key("striking");
 	public static final ResourceKey<Enchantment> TANGLED = key("tangled");
 

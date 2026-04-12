@@ -1,19 +1,18 @@
 package net.rebel459.legacies_and_legends.registry;
 
-import com.mojang.logging.LogUtils;
 import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.loot.packs.VanillaBlockLoot;
+import net.minecraft.data.loot.packs.VanillaEntityLoot;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.StructureTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.saveddata.maps.MapDecorationTypes;
@@ -22,22 +21,20 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithEnchantedBonusCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
-import net.rebel459.unified.platform.EventsImpl;
 import net.rebel459.unified.platform.UnifiedEvents;
 import net.rebel459.unified.platform.UnifiedPlatform;
 import org.apache.commons.lang3.BooleanUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 public class LaLLootTables {
 	public static final ResourceKey<LootTable> BIRCH_RUINS = register("chests/forest_ruins/birch");
@@ -269,6 +266,14 @@ public class LaLLootTables {
 							.add(LootItem.lootTableItem(Items.MUSIC_DISC_FAR).setWeight(1));
 					table.addPool(pool);
 				}
+			}
+
+			// MISC LOOT
+
+			if (EntityType.ELDER_GUARDIAN.getDefaultLootTable().get().equals(id) && LaLConfig.get().loot.trident_shard) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(LootItem.lootTableItem(LaLItems.TRIDENT_SHARD).setWeight(1));
+				table.addPool(pool);
 			}
 
 			// BOOKS
@@ -724,7 +729,11 @@ public class LaLLootTables {
 				table.addPool(pool);
 			}
 
-			// Withered Hoe Loot Table
+			if (EntityType.WITHER_SKELETON.getDefaultLootTable().get().equals(id) && LaLConfig.get().artifacts.withered_hoe) {
+				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+						.add(LootItem.lootTableItem(LaLItems.TRIDENT_SHARD).setWeight(1).when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(registries, 0.0125F, 0.0025F)));
+				table.addPool(pool);
+			}
 
 			if (BuiltInLootTables.IGLOO_CHEST.equals(id) && LaLConfig.get().artifacts.frosted_spear && LaLConfig.get().structures.dungeon_overhaul) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))

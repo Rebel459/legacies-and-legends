@@ -29,6 +29,7 @@
     "item.AxeItemMixin",
     "item.ItemStackMixin",
     "item.ProjectileWeaponItemMixin",
+    "entity.WanderingTraderMixin",
     "menu.InventoryMenuMixin"
   ],
   "injectors": {
@@ -37,6 +38,7 @@
   "client": [
     "client.BlockColorsMixin",
     "client.InventoryScreenMixin",
+    "client.ItemStackMixin",
     "client.LightmapRenderStateExtractorMixin",
     "client.MinecraftMixin"
   ]

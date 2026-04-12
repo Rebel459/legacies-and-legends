@@ -2,14 +2,17 @@ package net.rebel459.legacies_and_legends.mixin.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
+import net.rebel459.legacies_and_legends.item.HookItem;
 import net.rebel459.legacies_and_legends.item.WandItem;
 import net.rebel459.legacies_and_legends.registry.LaLDataComponents;
+import net.rebel459.legacies_and_legends.registry.LaLEnchantments;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
 import net.rebel459.legacies_and_legends.registry.LaLMobEffects;
 import net.rebel459.legacies_and_legends.sound.LaLSounds;
@@ -26,7 +29,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
-import net.rebel459.legacies_and_legends.util.FallOnInterface;
 import net.rebel459.legacies_and_legends.util.Gem;
 import net.rebel459.legacies_and_legends.util.PlatformInterface;
 import org.spongepowered.asm.mixin.Mixin;
@@ -60,10 +62,25 @@ public abstract class LivingEntityMixin {
         if (state.getBlock() instanceof WandPlatformBlock && WandPlatformBlock.hasMaterial(state, Gem.OBSIDIAN)) ci.cancel();
     }
 
-    @Inject(method = "dropFromLootTable(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;Z)V", at = @At("TAIL"))
-    public void elderGuardianLootInject(ServerLevel level, DamageSource damageSource, boolean playerKill, CallbackInfo ci) {
-        LivingEntity entity = LivingEntity.class.cast(this);
-        if (entity.getType() == EntityType.ELDER_GUARDIAN && LaLConfig.get().loot.trident_shard) entity.spawnAtLocation(level, LaLItems.TRIDENT_SHARD);
+    @Unique
+    private DamageSource knockbackSource;
+
+    @WrapOperation(method = "hurtServer", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/DamageSource;getDirectEntity()Lnet/minecraft/world/entity/Entity;"))
+    public Entity getKnockbackSource(DamageSource source, Operation<Entity> original) {
+        this.knockbackSource = source;
+        return original.call(source);
+    }
+
+    @WrapOperation(method = "hurtServer", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;knockback(DDD)V"))
+    public void hookPull(LivingEntity entity, double power, double xd, double zd, Operation<Void> original) {
+        ItemStack stack = this.knockbackSource.getWeaponItem();
+        if (stack != null && stack.getItem() instanceof HookItem) {
+            int hauling = stack.getEnchantments().getLevel(entity.level.registryAccess().lookup(Registries.ENCHANTMENT).get().getOrThrow(LaLEnchantments.PULL));
+            power = 0.3 + 0.1 * hauling;
+            xd = -xd;
+            zd = -zd;
+        }
+        original.call(entity, power, xd, zd);
     }
 
     @Inject(method = "tick", at = @At(value = "TAIL"))

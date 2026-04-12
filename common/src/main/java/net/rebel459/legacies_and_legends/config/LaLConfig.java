@@ -33,10 +33,10 @@ public class LaLConfig implements ConfigData {
 	public final StructureConfig structures = new StructureConfig();
 
 	@CollapsibleObject
-	public final WorldgenConfig worldgen = new WorldgenConfig();
+	public LootConfig loot = new LootConfig();
 
 	@CollapsibleObject
-	public LootConfig loot = new LootConfig();
+	public final MagicConfig magic = new MagicConfig();
 
 	@CollapsibleObject
 	public ArtifactConfig artifacts = new ArtifactConfig();
@@ -66,16 +66,9 @@ public class LaLConfig implements ConfigData {
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean buried_treasure_rework = true;
-
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean new_structures = true;
-	}
-
-	public static class WorldgenConfig {
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean sapphire = true;
 	}
 
 	public static class LootConfig {
@@ -91,6 +84,9 @@ public class LaLConfig implements ConfigData {
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean wooden_buckets = true;
+		@ConfigEntry.Category("config")
+		@ConfigEntry.Gui.Tooltip
+		public boolean glow_stick = true;
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean new_music_discs = true;
@@ -111,6 +107,21 @@ public class LaLConfig implements ConfigData {
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean improved_loot = true;
+	}
+
+	public static class MagicConfig {
+		@ConfigEntry.Category("config")
+		@ConfigEntry.Gui.Tooltip
+		public boolean sapphire = true;
+		@ConfigEntry.Category("config")
+		@ConfigEntry.Gui.Tooltip
+		public boolean wands = true;
+		@ConfigEntry.Category("config")
+		@ConfigEntry.Gui.Tooltip
+		public boolean jeweling = true;
+		@ConfigEntry.Category("config")
+		@ConfigEntry.Gui.Tooltip
+		public boolean meteors = true;
 	}
 
 	public static class ArtifactConfig {
@@ -151,6 +162,22 @@ public class LaLConfig implements ConfigData {
 	}
 
 	public static class AccessoryConfig {
+
+		@CollapsibleObject
+		public Slot slot = new Slot();
+		public static class Slot {
+			@ConfigEntry.Category("config")
+			@ConfigEntry.Gui.Tooltip
+			public boolean enabled = true;
+			@ConfigEntry.Category("config")
+			public int offset_x = 0;
+			@ConfigEntry.Category("config")
+			public int offset_y = 0;
+			@ConfigEntry.Category("config")
+			@ConfigEntry.Gui.Tooltip
+			public boolean use_equip = true;
+		}
+
 		@ConfigEntry.Category("config")
 		public boolean amulet_of_absorption = true;
 		@ConfigEntry.Category("config")
@@ -243,15 +270,6 @@ public class LaLConfig implements ConfigData {
 	}
 
 	public static class MiscConfig {
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean accessory_slot = true;
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean accessory_of_undying = true;
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean totem_use_equip = true;
         @ConfigEntry.Category("config")
         @ConfigEntry.Gui.Tooltip
         public boolean stackable_saddles = true;
@@ -264,9 +282,6 @@ public class LaLConfig implements ConfigData {
         @ConfigEntry.Category("config")
         @ConfigEntry.Gui.Tooltip
         public boolean wandering_trader_trades = true;
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean save_vanilla_cooldowns = true;
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean no_creeper_discs = false;

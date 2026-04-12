@@ -14,7 +14,7 @@ public abstract class EnderManMixin {
 
     @Inject(method = "isBeingStaredBy", at = @At(value = "TAIL"), cancellable = true)
     private void necklaceOfIsolation(Player player, CallbackInfoReturnable<Boolean> cir) {
-        if (AccessoryHelper.getAccessory(player).is(LaLItems.NECKLACE_OF_ISOLATION)) {
+        if (AccessoryHelper.getAccessory(player).is(LaLItems.NECKLACE_OF_ISOLATION.get())) {
             cir.setReturnValue(false);
         }
     }

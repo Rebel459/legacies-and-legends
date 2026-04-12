@@ -26,7 +26,7 @@ public abstract class ProjectileWeaponItemMixin {
     @Inject(at = @At("HEAD"), method = "shoot", cancellable = true)
     private void ringOfArchery(ServerLevel level, LivingEntity shooter, InteractionHand hand, ItemStack weapon, List<ItemStack> projectileItems, float velocity, float inaccuracy, boolean isCrit, LivingEntity target, CallbackInfo ci) {
         if (LaLMixinPlugin.hasCombatReborn) return;
-        if (shooter instanceof Player player && AccessoryHelper.getAccessory(player).is(LaLItems.RING_OF_ARCHERY)) {
+        if (shooter instanceof Player player && AccessoryHelper.getAccessory(player).is(LaLItems.RING_OF_ARCHERY.get())) {
             ProjectileWeaponItem item = (ProjectileWeaponItem) (Object) this;
             ProjectileWeaponItemAccessor projectileWeaponItemAccessor = (ProjectileWeaponItemAccessor) item;
 

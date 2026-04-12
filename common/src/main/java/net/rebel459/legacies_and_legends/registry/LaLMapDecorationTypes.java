@@ -1,15 +1,10 @@
 package net.rebel459.legacies_and_legends.registry;
 
-import net.minecraft.resources.Identifier;
-import net.rebel459.legacies_and_legends.LaLConstants;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.saveddata.maps.MapDecorationType;
+import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.unified.platform.UnifiedRegistries;
-import org.jetbrains.annotations.NotNull;
 
 public class LaLMapDecorationTypes {
 

@@ -36,7 +36,7 @@ public abstract class ProjectileMixin {
         if (hitResult.getType() == HitResult.Type.ENTITY) {
             EntityHitResult entityHitResult = (EntityHitResult) hitResult;
             Entity entity = entityHitResult.getEntity();
-            if (entity instanceof Player player && AccessoryHelper.getAccessory(player).is(LaLItems.AMULET_OF_DEFLECTION)) {
+        if (entity instanceof Player player && AccessoryHelper.getAccessory(player).is(LaLItems.AMULET_OF_DEFLECTION.get())) {
                 ProjectileDeflection projectileDeflection = ProjectileDeflection.MOMENTUM_DEFLECT;
                 if (entity != this.lastDeflectedBy && this.deflect(projectileDeflection, entity, this.owner, false)) {
                     this.lastDeflectedBy = entity;

@@ -16,7 +16,7 @@ public abstract class PiglinAiMixin {
     @Inject(method = "isWearingSafeArmor", at = @At(value = "HEAD"), cancellable = true)
     private static void necklaceOfBartering(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
         if (entity instanceof Player player) {
-            if (AccessoryHelper.getAccessory(player).is(LaLItems.NECKLACE_OF_BARTERING)) {
+        if (AccessoryHelper.getAccessory(player).is(LaLItems.NECKLACE_OF_BARTERING.get())) {
                 cir.setReturnValue(true);
             }
         }

@@ -24,7 +24,7 @@ public class BlockMixin {
     @Inject(method = "playerDestroy", at = @At(value = "TAIL"))
     private void excavationRing(Level level, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci) {
         ItemStack stack = AccessoryHelper.getAccessory(player);
-        if (AccessoryHelper.getAccessory(player).is(LaLItems.RING_OF_EXCAVATION)) {
+        if (AccessoryHelper.getAccessory(player).is(LaLItems.RING_OF_EXCAVATION.get())) {
             AccessoryHelper.damageAccessory(player, stack);
         }
     }

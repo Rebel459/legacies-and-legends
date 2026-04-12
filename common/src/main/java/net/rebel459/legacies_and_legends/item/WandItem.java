@@ -19,6 +19,8 @@ import net.minecraft.world.item.MaceItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.item.component.UseCooldown;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -26,6 +28,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BubbleColumnBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -42,6 +45,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class WandItem extends Item {
+    private static final double TELEPORT_STEP = 0.25D;
+    private static final double TELEPORT_BLOCK_MARGIN = 0.1D;
 
     public WandItem(Properties properties) {
         super(properties);
@@ -83,6 +88,7 @@ public class WandItem extends Item {
             if (currentState == null || currentState.isEmpty()) currentState = "charged";
             updateModel(stack, gems, currentState.equals("charged"));
             stack.set(LaLDataComponents.WAND_SLOTS.get(), new Gem.Slots(Gem.SAPPHIRE, Gem.EMPTY));
+            stack.set(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
             stack.set(DataComponents.RARITY, Rarity.RARE);
         }
     }
@@ -219,7 +225,15 @@ public class WandItem extends Item {
 
         if (delta.lengthSqr() > distance * distance) {
             end = start.add(delta.normalize().scale(distance));
+            delta = end.subtract(start);
         }
+
+        double pathLength = delta.length();
+        if (pathLength <= 1.0E-6D) {
+            return false;
+        }
+
+        Vec3 direction = delta.scale(1.0D / pathLength);
 
         BlockHitResult hitResult = player.level().clip(new ClipContext(
                 start,
@@ -230,10 +244,24 @@ public class WandItem extends Item {
         ));
 
         if (hitResult.getType() != HitResult.Type.MISS) {
-            return false;
+            pathLength = Math.max(0.0D, start.distanceTo(hitResult.getLocation()) - TELEPORT_BLOCK_MARGIN);
         }
 
-        BlockPos targetPos = BlockPos.containing(end);
+        for (double candidateDistance = pathLength; candidateDistance > 1.0E-6D; candidateDistance -= TELEPORT_STEP) {
+            Vec3 target = start.add(direction.scale(candidateDistance));
+            if (!canTeleportTo(player, target)) {
+                continue;
+            }
+
+            player.teleportTo(target.x, target.y, target.z);
+            return true;
+        }
+
+        return false;
+    }
+
+    private static boolean canTeleportTo(Player player, Vec3 target) {
+        BlockPos targetPos = BlockPos.containing(target);
         BlockState feetState = player.level().getBlockState(targetPos);
         BlockState headState = player.level().getBlockState(targetPos.above());
 
@@ -241,8 +269,8 @@ public class WandItem extends Item {
             return false;
         }
 
-        player.teleportTo(end.x, end.y, end.z);
-        return true;
+        AABB targetBounds = player.getBoundingBox().move(target.subtract(player.position()));
+        return player.level().noCollision(player, targetBounds);
     }
 
     @Override

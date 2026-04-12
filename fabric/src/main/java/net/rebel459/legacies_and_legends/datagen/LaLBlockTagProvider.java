@@ -56,6 +56,9 @@ public final class LaLBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
         this.valueLookupBuilder(BlockTags.WALLS)
                 .add(LaLBlocks.METEORITE_BRICK_WALL.get());
 
+        this.valueLookupBuilder(BlockTags.MINEABLE_WITH_AXE)
+                .add(LaLBlocks.JEWELING_TABLE.get());
+
         this.valueLookupBuilder(BlockTags.BEACON_BASE_BLOCKS)
                 .add(LaLBlocks.SAPPHIRE_BLOCK.get());
     }

@@ -29,10 +29,8 @@ public class LaLBlocks {
 
     public static final SuppliedBlock JEWELING_TABLE = BLOCKS.register("jeweling_table",
             JewelingTableBlock::new,
-            () -> Properties.of()
+            () -> Properties.ofFullCopy(Blocks.SMITHING_TABLE)
                     .mapColor(MapColor.COLOR_LIGHT_GRAY)
-                    .strength(3F)
-                    .sound(SoundType.WOOD)
     );
 
     public static final SuppliedBlock SAPPHIRE_LANTERN = BLOCKS.register("sapphire_lantern",
@@ -108,7 +106,7 @@ public class LaLBlocks {
     public static final SuppliedBlock CONCENTRATED_METEORITE = BLOCKS.register("concentrated_meteorite",
             Block::new,
             () -> BlockBehaviour.Properties.ofFullCopy(METEORITE.get())
-                    .strength(6F, 25F)
+                    .strength(6F, 20F)
     );
     public static final SuppliedBlock METEORITE_BRICKS = BLOCKS.register("meteorite_bricks",
             Block::new,
@@ -133,8 +131,8 @@ public class LaLBlocks {
 
     public static void init() {
         for (SuppliedBlock block : List.of(METEORITE, CONCENTRATED_METEORITE, METEORITE_BRICKS, METEORITE_BRICK_SLAB, METEORITE_BRICK_WALL, METEORITE_BRICK_STAIRS)) {
-            UnifiedHelpers.DATA_COMPONENTS.add(block, DataComponents.DAMAGE_RESISTANT, new DamageResistant(VanillaRegistries.createLookup().getOrThrow(DamageTypeTags.IS_FIRE)));
-            UnifiedHelpers.DATA_COMPONENTS.add(block, DataComponents.DAMAGE_RESISTANT, new DamageResistant(VanillaRegistries.createLookup().getOrThrow(DamageTypeTags.IS_EXPLOSION)));
+            UnifiedHelpers.DATA_COMPONENTS.addWithProvider(block, DataComponents.DAMAGE_RESISTANT, (provider) -> new DamageResistant(provider.getOrThrow(DamageTypeTags.IS_FIRE)));
+            UnifiedHelpers.DATA_COMPONENTS.addWithProvider(block, DataComponents.DAMAGE_RESISTANT, (provider) -> new DamageResistant(provider.getOrThrow(DamageTypeTags.IS_EXPLOSION)));
             UnifiedHelpers.DATA_COMPONENTS.add(block, DataComponents.RARITY, Rarity.UNCOMMON);
         }
     }

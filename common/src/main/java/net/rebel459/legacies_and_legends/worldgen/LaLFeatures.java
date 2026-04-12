@@ -16,7 +16,7 @@ public class LaLFeatures {
     public static final ResourceKey<PlacedFeature> SAPPHIRE_ORE_DEEP = ResourceKey.create(PLACED_FEATURE, LaLConstants.id("ore_sapphire_deep"));
 
     public static void init() {
-        if (LaLConfig.get().worldgen.sapphire) {
+        if (LaLConfig.get().magic.sapphire) {
             UnifiedHelpers.BIOME_MODIFICATIONS.register(BiomeTags.IS_OVERWORLD, context -> {
                 context.getFeatures().addFeature(SAPPHIRE_ORE, GenerationStep.Decoration.UNDERGROUND_ORES);
                 context.getFeatures().addFeature(SAPPHIRE_ORE_DEEP, GenerationStep.Decoration.UNDERGROUND_ORES);

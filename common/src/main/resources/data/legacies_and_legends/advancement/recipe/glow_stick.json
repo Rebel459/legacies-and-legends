@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "has_items": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:glow_ink_sac",
+              "legacies_and_legends:glow_stick"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 0,
+    "recipes": [
+      "legacies_and_legends:glow_stick"
+    ]
+  }
+}
