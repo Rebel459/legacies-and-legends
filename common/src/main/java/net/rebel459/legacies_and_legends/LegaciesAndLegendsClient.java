@@ -18,10 +18,11 @@ public final class LegaciesAndLegendsClient {
         TrimPaths.addPath("travelling_strides", ItemModelGenerators.TRIM_PREFIX_LEGGINGS);
         LaLModelLayers.init();
         LaLEntityRenderers.init();
-        LaLMenuScreens.init();
     }
 
     public static void init() {
+        LaLMenuScreens.init();
+
         UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.REINFORCED, true);
         UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.TRAVELLING, true);
         UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.WANDERER, true);

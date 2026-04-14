@@ -3,32 +3,28 @@ package net.rebel459.legacies_and_legends.mixin.entity;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
-import net.rebel459.legacies_and_legends.config.LaLConfig;
-import net.rebel459.legacies_and_legends.item.HookItem;
-import net.rebel459.legacies_and_legends.item.WandItem;
-import net.rebel459.legacies_and_legends.registry.LaLDataComponents;
-import net.rebel459.legacies_and_legends.registry.LaLEnchantments;
-import net.rebel459.legacies_and_legends.registry.LaLItems;
-import net.rebel459.legacies_and_legends.registry.LaLMobEffects;
-import net.rebel459.legacies_and_legends.sound.LaLSounds;
-import net.rebel459.legacies_and_legends.tag.LaLItemTags;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
+import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
+import net.rebel459.legacies_and_legends.item.HookItem;
+import net.rebel459.legacies_and_legends.item.WandItem;
+import net.rebel459.legacies_and_legends.registry.LaLDataComponents;
+import net.rebel459.legacies_and_legends.registry.LaLEnchantments;
+import net.rebel459.legacies_and_legends.registry.LaLMobEffects;
+import net.rebel459.legacies_and_legends.sound.LaLSounds;
+import net.rebel459.legacies_and_legends.tag.LaLItemTags;
 import net.rebel459.legacies_and_legends.util.Gem;
 import net.rebel459.legacies_and_legends.util.PlatformInterface;
 import org.spongepowered.asm.mixin.Mixin;
@@ -40,20 +36,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-
-    @Unique
-    private BlockState frictionState;
-
-    @WrapOperation(method = "travelInAir", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getBlock()Lnet/minecraft/world/level/block/Block;"))
-    public Block getBlock(BlockState state, Operation<Block> original) {
-        this.frictionState = state;
-        return original.call(state);
-    }
-    @WrapOperation(method = "travelInAir", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;getFriction()F"))
-    public float getFriction(Block block, Operation<Float> original) {
-        if (block instanceof WandPlatformBlock) return WandPlatformBlock.getFriction(this.frictionState);
-        else return original.call(block);
-    }
 
     @Inject(method = "knockback", at = @At("HEAD"), cancellable = true)
     public void obsidianPlatform(double power, double xd, double zd, CallbackInfo ci) {

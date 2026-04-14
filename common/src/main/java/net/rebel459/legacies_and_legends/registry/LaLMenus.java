@@ -14,7 +14,7 @@ public final class LaLMenus {
     public static UnifiedRegistries.DeferredRegistry MENUS = UnifiedRegistries.DeferredRegistry.create(LaLConstants.MOD_ID, BuiltInRegistries.MENU);
 
     public static final Supplier<MenuType<JewelingMenu>> JEWLING = MENUS.register(
-            "jewling",
+            "jeweling",
             () -> new MenuType<>(JewelingMenu::new, FeatureFlags.VANILLA_SET)
     );
 
