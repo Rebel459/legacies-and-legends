@@ -21,14 +21,14 @@
     "entity.PlayerMixin",
     "entity.ProjectileMixin",
     "entity.ThrowableProjectileMixin",
+    "entity.WanderingTraderMixin",
     "integration.combat_reborn.QuiverHelperMixin",
-    "integration.enchants_and_expeditions.EaEItemStackMixin",
     "integration.enchants_and_expeditions.EaELaLToolMaterialMixin",
     "integration.friendsandfoes.FriendsAndFoesPlayerMixin",
     "item.AxeItemMixin",
     "item.ItemStackMixin",
     "item.ProjectileWeaponItemMixin",
-    "entity.WanderingTraderMixin",
+    "level.LootTableMixin",
     "menu.InventoryMenuMixin"
   ],
   "injectors": {

@@ -24,7 +24,9 @@ public class AccessorySlot extends Slot {
 
     @Override
     public void onTake(Player player, ItemStack itemStack) {
-        AccessoryHelper.onUnequip(player, itemStack);
+        AccessoryInterface accessory = (AccessoryInterface) player;
+        AccessoryHelper.Mutable mutable = accessory.getAccessoryData();
+        AccessoryHelper.onUnequip(player, itemStack, mutable);
         super.onTake(player, itemStack);
     }
 

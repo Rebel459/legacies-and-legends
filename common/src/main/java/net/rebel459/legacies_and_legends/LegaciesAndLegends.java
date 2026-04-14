@@ -21,7 +21,9 @@ public class LegaciesAndLegends {
     public static boolean isWilderWildLoaded = false;
 	public static boolean isVariantsAndVenturesLoaded = false;
 	public static boolean isTrailierTalesLoaded = false;
-    public static boolean isEnchantsAndExpeditionsLoaded = false;
+    public static boolean isEnchantsAndExpeditionsLoaded() {
+        return UnifiedPlatform.get().isModLoaded("enchants_and_expeditions");
+    }
     public static boolean isEndRebornLoaded = false;
 	public static boolean isEnderscapeLoaded = false;
     public static boolean isCombatRebornLoaded = false;
@@ -90,9 +92,6 @@ public class LegaciesAndLegends {
         }
         if (LaLConfig.get().misc.no_creeper_discs) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("no_creeper_discs"), PackType.REQUIRED_DATA);
-        }
-        if (UnifiedPlatform.get().isModLoaded("enchants_and_expeditions")) {
-            isEnchantsAndExpeditionsLoaded = true;
         }
         if (UnifiedPlatform.get().isModLoaded("end_reborn")) {
             isEndRebornLoaded = true;

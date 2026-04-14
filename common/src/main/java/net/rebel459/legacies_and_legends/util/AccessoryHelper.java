@@ -2,10 +2,10 @@ package net.rebel459.legacies_and_legends.util;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.mojang.logging.LogUtils;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.LegaciesAndLegends;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
+import net.rebel459.legacies_and_legends.registry.LaLDataComponents;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
 import net.rebel459.legacies_and_legends.sound.LaLSounds;
 import net.rebel459.legacies_and_legends.tag.LaLItemTags;
@@ -39,6 +39,7 @@ public class AccessoryHelper {
         public Multimap<Holder<Attribute>, AttributeModifier> temporaryModifiers = HashMultimap.create();
 
         public void onTick(Player player, ItemStack stack) {
+            if (stack.has(LaLDataComponents.VARIABLE_DURABILITY.get()) && !stack.has(DataComponents.MAX_DAMAGE)) setupRandomComponents(stack, RandomSource.create());
             if (this.secondTicks >= 20) {
                 this.secondTicks = 0;
                 this.onSecond(player, stack);
@@ -95,7 +96,7 @@ public class AccessoryHelper {
         }
 
         public void onTickAmuletRepair(Player player, ItemStack stack) {
-            if (stack.is(LaLItemTags.AMULETS) && !player.getCooldowns().isOnCooldown(stack)) {
+            if (stack.is(LaLItemTags.AMULETS)) {
                 if (this.amuletRepairTicks >= getAmuletRepairFrequency(stack)) {
                     this.amuletRepairTicks = 0;
                     repairAccessory(stack, 1);
@@ -149,12 +150,20 @@ public class AccessoryHelper {
 
     public static ItemStack getAccessory(Player player) {
         ItemStack stack = getActualAccessory(player);
-        if (isBroken(stack) || !LaLConfig.get().accessories.slot.enabled) return ItemStack.EMPTY;
-        else return stack;
+        if (stack.isEmpty()) stack = checkOtherSlots(player);
+        if (isBroken(stack) || !LaLConfig.get().accessories.slot.enabled) stack = ItemStack.EMPTY;
+        return stack;
+    }
+
+    private static ItemStack checkOtherSlots(Player player) {
+        ItemStack stack = player.getMainHandItem();
+        if (stack.isEmpty()) stack = player.getOffhandItem();
+        if (stack.is(LaLItemTags.AMULETS)) return stack;
+        else return ItemStack.EMPTY;
     }
 
     public static boolean isBroken(ItemStack stack) {
-        return stack.has(DataComponents.MAX_DAMAGE) && stack.getDamageValue() >= stack.getMaxDamage() - 1;
+        return (stack.has(DataComponents.MAX_DAMAGE) && stack.getDamageValue() >= stack.getMaxDamage() - 1 && !stack.is(LaLItemTags.AMULETS)) || stack.getDamageValue() >= stack.getMaxDamage();
     }
 
     public static ItemStack getActualAccessory(Player player) {
@@ -197,11 +206,10 @@ public class AccessoryHelper {
         stack.setDamageValue(stack.getDamageValue() + amount);
         if (player instanceof ServerPlayer serverPlayer) CriteriaTriggers.ITEM_DURABILITY_CHANGED.trigger(serverPlayer, stack, amount);
         if (isBroken(stack)) {
-            if (stack.is(LaLItemTags.AMULETS)) {
-                player.getCooldowns().addCooldown(stack, 6000);
-            }
-            stack.setDamageValue(stack.getMaxDamage() - 1);
-            onBreak(player, stack);
+            ItemStack savedStack = stack.copy();
+            if (stack.is(LaLItemTags.AMULETS)) stack.copyAndClear();
+            else stack.setDamageValue(stack.getMaxDamage() - 1);
+            onBreak(player, savedStack);
             player.playSound(LaLSounds.ACCESSORY_BREAK.get());
         }
     }
@@ -226,24 +234,23 @@ public class AccessoryHelper {
         else player.playSound(SoundEvents.ARMOR_EQUIP_GENERIC.value());
     }
 
-    public static void onUnequip(Player player, ItemStack stack) {
+    public static void onUnequip(Player player, ItemStack stack, Mutable mutable) {
         if (stack.is(LaLItems.RING_OF_EVASION.get())) {
             player.removeEffect(MobEffects.INVISIBILITY);
-            AccessoryInterface accessory = (AccessoryInterface) player;
-            Mutable mutable = accessory.getAccessoryData();
             mutable.hasInfiniteInvisibility = false;
-            accessory.setAccessoryData(mutable);
         }
+        ((AccessoryInterface) player).setAccessoryData(mutable);
     }
 
     public static void setupRandomComponents(ItemStack stack, RandomSource random) {
-        if (LegaciesAndLegends.isEnchantsAndExpeditionsLoaded) {
+        randomDurability(stack, random);
+        if (LegaciesAndLegends.isEnchantsAndExpeditionsLoaded()) {
             randomEnchantability(stack, random);
         }
     }
 
-    public static void randomEnchantability(ItemStack stack, RandomSource random) {
-        if (stack.getComponents().has(DataComponents.ENCHANTABLE) || !stack.getComponents().has(DataComponents.RARITY) || !stack.is(LaLItemTags.VARIABLE_REPAIR_COST)) return;
+    private static void randomEnchantability(ItemStack stack, RandomSource random) {
+        if (stack.getComponents().has(DataComponents.ENCHANTABLE) || !stack.getComponents().has(DataComponents.RARITY) || !stack.is(LaLItemTags.VARIABLE_REPAIRABILITY)) return;
         if (stack.getItem().getDefaultInstance().get(DataComponents.RARITY).getSerializedName().equals("common")) {
             stack.applyComponents(DataComponentMap.builder()
                     .set(DataComponents.ENCHANTABLE, new Enchantable(random.nextInt(16, 31)))
@@ -268,5 +275,11 @@ public class AccessoryHelper {
                     .build()
             );
         }
+    }
+
+    private static void randomDurability(ItemStack stack, RandomSource random) {
+        if (stack.has(DataComponents.MAX_DAMAGE) || !stack.has(LaLDataComponents.VARIABLE_DURABILITY.get())) return;
+        int durability = stack.get(LaLDataComponents.VARIABLE_DURABILITY.get());
+        stack.set(DataComponents.MAX_DAMAGE, random.nextIntBetweenInclusive((int) (durability * 0.5F), (int) (durability * 1.5F)));
     }
 }

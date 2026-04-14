@@ -42,7 +42,7 @@ public abstract class ProjectileMixin {
                     this.lastDeflectedBy = entity;
                 }
                 if (!projectile.is(LaLEntityTags.DAMAGELESS_PROJECTILES)) {
-                    AccessoryHelper.damageAccessory(player, AccessoryHelper.getAccessory(player), 10);
+                    AccessoryHelper.damageAccessory(player, AccessoryHelper.getAccessory(player), 5);
                     player.playSound(LaLSounds.BOOMERANG_RETURN.get());
                 }
                 cir.setReturnValue(projectileDeflection);

@@ -7,6 +7,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.food.FoodData;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
@@ -171,7 +172,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
         Player player = Player.class.cast(this);
         ItemStack stack = AccessoryHelper.getAccessory(player);
         if (AccessoryHelper.getAccessory(player).is(LaLItems.AMULET_OF_ABSORPTION.get())) {
-            AccessoryHelper.damageAccessory(player, stack, (int) (amount * 2));
+            AccessoryHelper.damageAccessory(player, stack, (int) amount);
         }
     }
 
@@ -201,7 +202,9 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
         Player player = Player.class.cast(this);
         ItemStack stack = AccessoryHelper.getAccessory(player);
         if (stack.is(LaLItems.RING_OF_HUNTING.get())) {
-            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + 2);
+            FoodData food = player.getFoodData();
+            if (!food.needsFood()) return;
+            food.setFoodLevel(food.getFoodLevel() + 2);
             serverLevel.playSound(player, player.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.PLAYERS, 1F, 1F);
             AccessoryHelper.damageAccessory(player, stack);
         }
@@ -387,7 +390,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     private void dropAccessory(ServerLevel serverLevel, CallbackInfo ci) {
         Player player = Player.class.cast(this);
         ItemStack stack = AccessoryHelper.getActualAccessory(player);
-        if (!serverLevel.getGameRules().get(GameRules.KEEP_INVENTORY) && !(stack.is(LaLItemTags.AMULETS) && AccessoryHelper.getAccessory(player) == ItemStack.EMPTY)) player.drop(stack, true, false);
+        if (!serverLevel.getGameRules().get(GameRules.KEEP_INVENTORY) && !(AccessoryHelper.getActualAccessory(player) == ItemStack.EMPTY)) player.drop(stack, true, false);
     }
 
     @Unique

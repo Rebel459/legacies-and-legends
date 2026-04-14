@@ -440,7 +440,6 @@ public class LaLLootTables {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(LootItem.lootTableItem(LaLItems.NECKLACE_OF_PROTECTION).setWeight(BooleanUtils.toInteger(LaLConfig.get().accessories.necklace_of_protection) * uncommonWeight))
 						.add(LootItem.lootTableItem(LaLItems.NECKLACE_OF_REGENERATION).setWeight(BooleanUtils.toInteger(LaLConfig.get().accessories.necklace_of_regeneration) * epicWeight))
-						.add(LootItem.lootTableItem(LaLItems.NECKLACE_OF_PROTECTION).setWeight(BooleanUtils.toInteger(LaLConfig.get().accessories.necklace_of_protection) * uncommonWeight))
 						.add(LootItem.lootTableItem(LaLItems.RING_OF_STRIKING).setWeight(BooleanUtils.toInteger(LaLConfig.get().accessories.ring_of_striking) * uncommonWeight))
 						.add(LootItem.lootTableItem(LaLItems.RING_OF_EVASION).setWeight(BooleanUtils.toInteger(LaLConfig.get().accessories.ring_of_evasion) * rareWeight))
 						.add(LootItem.lootTableItem(LaLItems.RING_OF_RESTORATION).setWeight(BooleanUtils.toInteger(LaLConfig.get().accessories.ring_of_restoration) * epicWeight))
@@ -602,9 +601,9 @@ public class LaLLootTables {
 
 			if (LaLLootTables.SWAMP_HUT.equals(id)) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(EmptyLootItem.emptyItem().setWeight(4))
+						.add(EmptyLootItem.emptyItem().setWeight(3))
 						.add(NestedLootTable.lootTableReference(LaLLootTables.OVERWORLD_GENERAL_ACCESSORIES).setWeight(1))
-						.add(NestedLootTable.lootTableReference(LaLLootTables.OVERWORLD_SWAMP_HUT_ACCESSORIES).setWeight(1));
+						.add(NestedLootTable.lootTableReference(LaLLootTables.OVERWORLD_SWAMP_HUT_ACCESSORIES).setWeight(2));
 				table.addPool(pool);
 			}
 

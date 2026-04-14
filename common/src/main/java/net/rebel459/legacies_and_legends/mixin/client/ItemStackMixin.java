@@ -3,19 +3,24 @@ package net.rebel459.legacies_and_legends.mixin.client;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.rebel459.item_tooltips.config.ITConfig;
 import net.rebel459.item_tooltips.util.ScreenHelper;
+import net.rebel459.legacies_and_legends.LegaciesAndLegends;
 import net.rebel459.legacies_and_legends.client.JewelingScreen;
 import net.rebel459.legacies_and_legends.item.WandItem;
 import net.rebel459.legacies_and_legends.registry.LaLDataComponents;
+import net.rebel459.legacies_and_legends.tag.LaLItemTags;
+import net.rebel459.legacies_and_legends.util.AccessoryHelper;
 import net.rebel459.legacies_and_legends.util.Gem;
 import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,12 +29,47 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
 
-    @Inject(at = @At("HEAD"), method = "addDetailsToTooltip")
+    @Inject(at = @At("TAIL"), method = "addDetailsToTooltip")
+    private void accessoryTooltips(Item.TooltipContext context, TooltipDisplay display, @Nullable Player player, TooltipFlag tooltipFlag, Consumer<Component> consumer, CallbackInfo ci) {
+        ItemStack stack = ItemStack.class.cast(this);
+        if (!stack.is(LaLItemTags.ACCESSORIES)) return;
+        if ((stack.is(LaLItemTags.RINGS) || stack.is(LaLItemTags.NECKLACES)) && !stack.has(LaLDataComponents.VARIABLE_DURABILITY.get())) stack.set(LaLDataComponents.VARIABLE_DURABILITY.get(), stack.getMaxDamage());
+        if (stack.has(DataComponents.MAX_DAMAGE) && stack.has(LaLDataComponents.VARIABLE_DURABILITY.get())) {
+            int durability = stack.getMaxDamage();
+            int averageDurability = stack.get(LaLDataComponents.VARIABLE_DURABILITY.get());
+            ChatFormatting color = ChatFormatting.DARK_GREEN;
+            if (durability >= averageDurability * 1.3F) color = ChatFormatting.GREEN;
+            if (durability <= averageDurability * 0.7F) color = ChatFormatting.YELLOW;
+            if (durability <= averageDurability * 0.55F) color = ChatFormatting.RED;
+            consumer.accept(Component.translatable("tooltip.legacies_and_legends.max_durability").append(": ").withStyle(ChatFormatting.DARK_GREEN).append(Component.literal(String.valueOf(durability)).withStyle(color)));
+        }
+        if (stack.has(DataComponents.ENCHANTABLE) && LegaciesAndLegends.isEnchantsAndExpeditionsLoaded() && stack.is(LaLItemTags.VARIABLE_REPAIRABILITY)) {
+            int repairability = Math.min(stack.get(DataComponents.ENCHANTABLE).value(), 25);
+            int averageRepairability = 23;
+            ChatFormatting color = ChatFormatting.DARK_GREEN;
+            if (stack.has(DataComponents.RARITY)) {
+                var rarity = stack.get(DataComponents.RARITY);
+                if (rarity == Rarity.UNCOMMON) averageRepairability = 18;
+                if (rarity == Rarity.RARE) averageRepairability = 13;
+                if (rarity == Rarity.EPIC) averageRepairability = 8;
+            }
+            if (repairability >= averageRepairability + 4) color = ChatFormatting.GREEN;
+            if (repairability <= averageRepairability - 4) color = ChatFormatting.YELLOW;
+            if (repairability <= averageRepairability - 7) color = ChatFormatting.RED;
+            consumer.accept(Component.translatable("tooltip.legacies_and_legends.repair_cost").append(": ").withStyle(ChatFormatting.DARK_GREEN).append(Component.literal(String.valueOf(26 - repairability)).withStyle(color)));
+        }
+        if (AccessoryHelper.isBroken(stack)) {
+            consumer.accept(Component.translatable("tooltip.legacies_and_legends.broken").withStyle(ChatFormatting.DARK_RED));
+        }
+    }
+
+    @Inject(at = @At("TAIL"), method = "addDetailsToTooltip")
     private void gemTooltips(Item.TooltipContext context, TooltipDisplay display, @Nullable Player player, TooltipFlag tooltipFlag, Consumer<Component> consumer, CallbackInfo ci) {
         ItemStack stack = ItemStack.class.cast(this);
         if (stack.getItem() instanceof WandItem || stack.has(LaLDataComponents.WAND_SLOTS.get())) {

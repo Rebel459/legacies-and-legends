@@ -3,6 +3,7 @@ package net.rebel459.legacies_and_legends.registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.DamageResistant;
@@ -99,12 +100,12 @@ public class LaLBlocks {
     public static final SuppliedBlock METEORITE = BLOCKS.register("meteorite",
             Block::new,
             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
-                    .strength(4.5F, 25F)
+                    .strength(4.5F, 20F)
                     .mapColor(MapColor.TERRACOTTA_ORANGE)
                     .sound(LaLBlockSounds.METEORITE)
     );
     public static final SuppliedBlock CONCENTRATED_METEORITE = BLOCKS.register("concentrated_meteorite",
-            Block::new,
+            (properties) -> new DropExperienceBlock(UniformInt.of(2, 5), properties),
             () -> BlockBehaviour.Properties.ofFullCopy(METEORITE.get())
                     .strength(6F, 20F)
     );

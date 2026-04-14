@@ -16,7 +16,7 @@ public abstract class ExperienceOrbMixin {
     @Inject(method = "playerTouch", at = @At(value = "HEAD"))
     private void ringOfRestoration(Player player, CallbackInfo ci) {
         ItemStack stack = AccessoryHelper.getAccessory(player);
-        if (stack.is(LaLItems.RING_OF_RESTORATION.get())) {
+        if (stack.is(LaLItems.RING_OF_RESTORATION.get()) && player.getHealth() < player.getMaxHealth()) {
             player.heal(1);
             AccessoryHelper.damageAccessory(player, stack);
         }

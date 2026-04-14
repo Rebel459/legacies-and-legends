@@ -48,6 +48,7 @@
   "block.legacies_and_legends.sapphire_block": "Block of Sapphire",
   "block.legacies_and_legends.sapphire_lantern": "Sapphire Lantern",
   "block.legacies_and_legends.wand_platform": "Wand Platform",
+  "block.legacies_and_legends.jeweling_table": "Jeweling Table",
   "block.legacies_and_legends.meteorite": "Meteorite",
   "block.legacies_and_legends.concentrated_meteorite": "Concentrated Meteorite",
   "block.legacies_and_legends.meteorite_bricks": "Meteorite Bricks",
@@ -223,6 +224,10 @@
   "gem.legacies_and_legends.ruby": "Ruby",
   "gem.legacies_and_legends.ruby.desc": "Platforms are placed wherever the wielder looks",
   "gem.legacies_and_legends.ruby.desc.bonus": "Platforms do not decay after recall until no entities are present upon them",
+
+  "tooltip.legacies_and_legends.max_durability": "Max Durability",
+  "tooltip.legacies_and_legends.repair_cost": "Repair Cost",
+  "tooltip.legacies_and_legends.broken": "Broken",
 
   "subtitles.item.totem.equip": "Totem equips",
   "subtitles.item.amulet.equip": "Amulet equips",

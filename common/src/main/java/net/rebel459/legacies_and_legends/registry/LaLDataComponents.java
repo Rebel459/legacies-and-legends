@@ -13,6 +13,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TridentItem;
@@ -61,6 +62,10 @@ public class LaLDataComponents {
 
     public static final Supplier<DataComponentType<String>> LORE_BOOK = COMPONENTS.register(
             "lore_book", builder -> builder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8)
+    );
+
+    public static final Supplier<DataComponentType<Integer>> VARIABLE_DURABILITY = COMPONENTS.register(
+            "variable_durability", builder -> builder.persistent(ExtraCodecs.POSITIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
     );
 
     public static final Supplier<DataComponentType<Gem>> GEM = COMPONENTS.register(

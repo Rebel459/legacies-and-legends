@@ -5,6 +5,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.*;
@@ -86,6 +87,17 @@ public abstract class ItemStackMixin {
             AccessoryHelper.onEquip(player, newAccessory);
             player.setItemInHand(hand, oldAccessory);
             cir.setReturnValue(InteractionResult.SUCCESS);
+        }
+    }
+
+    @Unique
+    private boolean checked = false;
+
+    @Inject(at = @At("HEAD"), method = "inventoryTick")
+    private void checkRandomComponents(Level level, Entity entity, EquipmentSlot slot, CallbackInfo ci) {
+        if (this.is(item -> item.is(LaLItemTags.ACCESSORIES)) && !this.checked) {
+            AccessoryHelper.setupRandomComponents(ItemStack.class.cast(this), RandomSource.create());
+            this.checked = true;
         }
     }
 }

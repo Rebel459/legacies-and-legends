@@ -2,7 +2,6 @@ package net.rebel459.legacies_and_legends.registry;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
@@ -19,12 +18,7 @@ import net.minecraft.world.item.consume_effects.ClearAllStatusEffectsConsumeEffe
 import net.minecraft.world.item.consume_effects.TeleportRandomlyConsumeEffect;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.Equippable;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.PushReaction;
 import net.rebel459.legacies_and_legends.LaLConstants;
-import net.rebel459.legacies_and_legends.block.GlowStickBlock;
 import net.rebel459.legacies_and_legends.item.*;
 import net.rebel459.legacies_and_legends.sound.LaLJukeboxSongs;
 import net.rebel459.legacies_and_legends.tag.LaLBlockTags;
@@ -479,6 +473,7 @@ public final class LaLItems {
             CleavingBattleAxeItem::new,
             () -> new Properties()
                     .rarity(Rarity.UNCOMMON)
+                    .attributes(ItemAttributeModifiers.builder().add(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(LaLConstants.id("attack_knockback"), 1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND).build())
     );
     public static final SuppliedItem PROSPECTOR_SHOVEL = ITEMS.register("prospector_shovel",
             (properties) -> new ShovelItem(LaLToolMaterial.PROSPECTOR, 1.5F, -3F, properties), (
@@ -503,49 +498,56 @@ public final class LaLItems {
     public static final SuppliedItem RING_OF_HUNTING = ITEMS.register("ring_of_hunting",
             Item::new,
             () -> new Properties()
-                    .durability(145)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 195)
                     .repairable(LaLItemTags.HUNTING_RING_MATERIALS)
                     .rarity(Rarity.RARE)
     );
     public static final SuppliedItem RING_OF_EVASION = ITEMS.register("ring_of_evasion",
             Item::new,
             () -> new Properties()
-                    .durability(326)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 426)
                     .repairable(LaLItemTags.EVASION_RING_MATERIALS)
                     .rarity(Rarity.RARE)
     );
     public static final SuppliedItem RING_OF_CONSTRUCTION = ITEMS.register("ring_of_construction",
             Item::new,
             () -> new Properties()
-                    .durability(1024)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 1024)
                     .repairable(LaLItemTags.CONSTRUCTION_RING_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
     public static final SuppliedItem RING_OF_STRIKING = ITEMS.register("ring_of_striking",
             Item::new,
             () -> new Properties()
-                    .durability(152)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 352)
                     .repairable(LaLItemTags.STRIKING_RING_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
     public static final SuppliedItem RING_OF_ARCHERY = ITEMS.register("ring_of_archery",
             Item::new,
             () -> new Properties()
-                    .durability(249)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 449)
                     .repairable(LaLItemTags.ARCHERY_RING_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
     public static final SuppliedItem RING_OF_EXCAVATION = ITEMS.register("ring_of_excavation",
             Item::new,
             () -> new Properties()
-                    .durability(512)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 768)
                     .repairable(LaLItemTags.EXCAVATION_RING_MATERIALS)
                     .rarity(Rarity.RARE)
     );
     public static final SuppliedItem RING_OF_RESTORATION = ITEMS.register("ring_of_restoration",
             Item::new,
             () -> new Properties()
-                    .durability(330)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 330)
                     .repairable(LaLItemTags.RESTORATION_RING_MATERIALS)
                     .rarity(Rarity.EPIC)
     );
@@ -553,49 +555,56 @@ public final class LaLItems {
     public static final SuppliedItem NECKLACE_OF_ISOLATION = ITEMS.register("necklace_of_isolation",
             Item::new,
             () -> new Properties()
-                    .durability(408)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 408)
                     .repairable(LaLItemTags.ISOLATION_NECKLACE_MATERIALS)
                     .rarity(Rarity.RARE)
     );
     public static final SuppliedItem NECKLACE_OF_PURITY = ITEMS.register("necklace_of_purity",
             Item::new,
             () -> new Properties()
-                    .durability(173)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 173)
                     .repairable(LaLItemTags.PURITY_NECKLACE_MATERIALS)
                     .rarity(Rarity.RARE)
     );
     public static final SuppliedItem NECKLACE_OF_LEAPING = ITEMS.register("necklace_of_leaping",
             Item::new,
             () -> new Properties()
-                    .durability(212)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 212)
                     .repairable(LaLItemTags.LEAPING_NECKLACE_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
     public static final SuppliedItem NECKLACE_OF_PROTECTION = ITEMS.register("necklace_of_protection",
             Item::new,
             () -> new Properties()
-                    .durability(237)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 237)
                     .repairable(LaLItemTags.PROTECTION_NECKLACE_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
     public static final SuppliedItem NECKLACE_OF_RESILIENCE = ITEMS.register("necklace_of_resilience",
             Item::new,
             () -> new Properties()
-                    .durability(155)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 155)
                     .repairable(LaLItemTags.RESILIENCE_NECKLACE_MATERIALS)
                     .rarity(Rarity.EPIC)
     );
     public static final SuppliedItem NECKLACE_OF_REGENERATION = ITEMS.register("necklace_of_regeneration",
             Item::new,
             () -> new Properties()
-                    .durability(284)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 284)
                     .repairable(LaLItemTags.REGENERATION_NECKLACE_MATERIALS)
                     .rarity(Rarity.RARE)
     );
     public static final SuppliedItem NECKLACE_OF_BARTERING = ITEMS.register("necklace_of_bartering",
             Item::new,
             () -> new Properties()
-                    .durability(351)
+                    .stacksTo(1)
+                    .component(LaLDataComponents.VARIABLE_DURABILITY.get(), 351)
                     .repairable(LaLItemTags.BARTERING_NECKLACE_MATERIALS)
                     .rarity(Rarity.UNCOMMON)
     );
@@ -603,18 +612,21 @@ public final class LaLItems {
     public static final SuppliedItem AMULET_OF_OBSIDIAN = ITEMS.register("amulet_of_obsidian",
             Item::new,
             () -> new Properties()
+                    .stacksTo(1)
                     .durability(AMULET_DURABILITY)
                     .rarity(Rarity.EPIC)
     );
     public static final SuppliedItem AMULET_OF_ABSORPTION = ITEMS.register("amulet_of_absorption",
             Item::new,
             () -> new Properties()
+                    .stacksTo(1)
                     .durability(AMULET_DURABILITY)
                     .rarity(Rarity.RARE)
     );
     public static final SuppliedItem AMULET_OF_DEFLECTION = ITEMS.register("amulet_of_deflection",
             Item::new,
             () -> new Properties()
+                    .stacksTo(1)
                     .durability(AMULET_DURABILITY)
                     .rarity(Rarity.RARE)
     );
