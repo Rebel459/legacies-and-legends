@@ -3,8 +3,6 @@ package net.rebel459.legacies_and_legends.registry;
 import net.minecraft.advancements.criterion.LocationPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.loot.packs.VanillaBlockLoot;
-import net.minecraft.data.loot.packs.VanillaEntityLoot;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -13,6 +11,9 @@ import net.minecraft.tags.StructureTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.saveddata.maps.MapDecorationTypes;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithEnchantedBonusCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
@@ -105,7 +107,7 @@ public class LaLLootTables {
 	public static final ResourceKey<LootTable> END_CITY_ACCESSORIES = register("accessories/end/end_city");
 	public static final ResourceKey<LootTable> END_RUINS_ACCESSORIES = register("accessories/end/ruins");
 
-	public static final ResourceKey<LootTable> END_REMAINS = registerEndReborn("chests/end_remains");
+	public static final ResourceKey<LootTable> END_REMAINS = register("end_reborn", "chests/end_remains");
 
 	public static final ResourceKey<LootTable> END_CITY_CHEST = registerEnderscape("end_city/chest");
 	public static final ResourceKey<LootTable> END_CITY_VAULT = registerEnderscape("end_city/vault");
@@ -272,6 +274,19 @@ public class LaLLootTables {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(LootItem.lootTableItem(LaLItems.TRIDENT_SHARD).setWeight(1));
 				table.addPool(pool);
+			}
+			if (LaLConfig.get().loot.glow_stick) {
+				if (BuiltInLootTables.ABANDONED_MINESHAFT.equals(id)) {
+					table.editPool(item -> item == Items.TORCH, LootItem.lootTableItem(LaLItems.GLOW_STICK).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 12.0F))), false);
+				}
+				if (BuiltInLootTables.SIMPLE_DUNGEON.equals(id) || DUNGEON_CHEST.equals(id)) {
+					table.editPool(item -> item == Items.COAL, LootItem.lootTableItem(LaLItems.GLOW_STICK).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 8.0F))), false);
+				}
+				if (UNDERGROUND_CABIN.equals(id) || DEEP_CABIN.equals(id)) {
+					pool = LootPool.lootPool().setRolls(UniformGenerator.between(0F, 1F))
+							.add(LootItem.lootTableItem(LaLItems.GLOW_STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 8.0F))));
+					table.addPool(pool);
+				}
 			}
 
 			// BOOKS
@@ -728,7 +743,7 @@ public class LaLLootTables {
 
 			if (EntityType.WITHER_SKELETON.getDefaultLootTable().get().equals(id) && LaLConfig.get().artifacts.withered_hoe) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-						.add(LootItem.lootTableItem(LaLItems.TRIDENT_SHARD).setWeight(1).when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(registries, 0.0125F, 0.0025F)));
+						.add(LootItem.lootTableItem(LaLItems.WITHERED_HOE).setWeight(1).when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(registries, 0.0125F, 0.0025F)));
 				table.addPool(pool);
 			}
 
@@ -1271,11 +1286,15 @@ public class LaLLootTables {
 				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
 			}
 
-			if (LaLConfig.get().loot.hook && LaLConfig.get().loot.metal_chunk && LaLConfig.get().loot.wooden_buckets) {
-				if (BuiltInLootTables.FISHING_JUNK.equals(id)) {
-					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.HOOK).apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.0F, 0.9F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().loot.hook) * 2), false);
-					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.METAL_CHUNK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().loot.metal_chunk) * 10), false);
-					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.WOODEN_BUCKET).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().loot.wooden_buckets) * 10), false);
+			if (BuiltInLootTables.FISHING_JUNK.equals(id)) {
+				if (LaLConfig.get().loot.hook) {
+					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.HOOK).apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.0F, 0.9F))).setWeight(2), false);
+				}
+				if (LaLConfig.get().loot.metal_chunk) {
+					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.METAL_CHUNK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).setWeight(10), false);
+				}
+				if (LaLConfig.get().loot.wooden_buckets) {
+					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.WOODEN_BUCKET).setWeight(10), false);
 				}
 			}
 
@@ -1320,13 +1339,13 @@ public class LaLLootTables {
 				}
 			}
 
-			if (BuiltInLootTables.TRAIL_RUINS_ARCHAEOLOGY_RARE.equals(id)) {
-				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.RING_OF_CONSTRUCTION).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().accessories.ring_of_construction)), false);
-				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.KNIFE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(BooleanUtils.toInteger(LaLConfig.get().loot.knife)), false);
-			}
-			if (LaLLootTables.OBELISK_ARCHAEOLOGY.equals(id)) {
-				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.RING_OF_CONSTRUCTION).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1), false);
-				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.KNIFE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1), false);
+			if (BuiltInLootTables.TRAIL_RUINS_ARCHAEOLOGY_RARE.equals(id) || LaLLootTables.OBELISK_ARCHAEOLOGY.equals(id)) {
+				if (LaLConfig.get().accessories.ring_of_construction) {
+					table.editPool(item -> true, LootItem.lootTableItem(LaLItems.RING_OF_CONSTRUCTION).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1), false);
+				}
+				if (LaLConfig.get().loot.knife) {
+					table.editPool(item -> true, LootItem.lootTableItem(LaLItems.KNIFE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1), false);
+				}
 			}
 
 			// MODIFIED VANILLA LOOT
@@ -1348,18 +1367,94 @@ public class LaLLootTables {
 				table.editPool(item -> true, LootItem.lootTableItem(Items.PUMPKIN_SEEDS).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.DARK_FOREST)))), false);
 				table.editPool(item -> true, LootItem.lootTableItem(Items.PALE_HANGING_MOSS).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.PALE_GARDEN)))), false);
 			}
+
+			// GEMS
+			if (LaLConfig.get().magic.jeweling) {
+				if (EntityType.SLIME.getDefaultLootTable().get().equals(id)) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(LootItem.lootTableItem(LaLItems.SLIME_GEM).setWeight(1).when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(registries, 0.0035F, 0.0005F)));
+					table.addPool(pool);
+				}
+				if (EntityType.BREEZE.getDefaultLootTable().get().equals(id)) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(LootItem.lootTableItem(LaLItems.BREEZE_GEM).setWeight(1).when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(registries, 0.0125F, 0.0025F)));
+					table.addPool(pool);
+				}
+				if (EntityType.GUARDIAN.getDefaultLootTable().get().equals(id) || EntityType.ELDER_GUARDIAN.getDefaultLootTable().get().equals(id)) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(LootItem.lootTableItem(LaLItems.PRISMARINE_GEM).setWeight(1).when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(registries, 0.0125F, 0.0025F)));
+					table.addPool(pool);
+				}
+				if (BuiltInLootTables.FISHING_TREASURE.equals(id)) {
+					table.editPool(item -> true, LootItem.lootTableItem(LaLItems.PRISMARINE_GEM).setWeight(1), true);
+				}
+				if (UNDERGROUND_CABIN.equals(id) || DEEP_CABIN.equals(id)) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(2))
+							.add(LootItem.lootTableItem(LaLItems.RUBY_GEM).setWeight(1));
+					table.addPool(pool);
+				}
+				if (DUNGEON_CHEST_FROZEN.equals(id)) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(14))
+							.add(LootItem.lootTableItem(LaLItems.ICE_GEM).setWeight(1));
+					table.addPool(pool);
+				}
+				if (BuiltInLootTables.IGLOO_CHEST.equals(id)) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(5))
+							.add(LootItem.lootTableItem(LaLItems.ICE_GEM).setWeight(1));
+					table.addPool(pool);
+				}
+				if (LaLBlocks.CONCENTRATED_METEORITE.get().getLootTable().get().equals(id)) {
+					table.editPool(item -> item == LaLItems.METEORITE_BRICK.get(), LootItem.lootTableItem(LaLItems.METEORITE_GEM).setWeight(1).when(randomChanceAndFortuneBoost(registries, 0.5F, 0.1F)), true);
+				}
+				if (SPIRE.equals(id) || BuiltInLootTables.NETHER_BRIDGE.equals(id)) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(14))
+							.add(LootItem.lootTableItem(LaLItems.OBSIDIAN_GEM).setWeight(1));
+					table.addPool(pool);
+				}
+				if (BuiltInLootTables.END_CITY_TREASURE.equals(id) && !isEnderscapeLoaded) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(17))
+							.add(LootItem.lootTableItem(LaLItems.TIMELOST_GEM).setWeight(1));
+					table.addPool(pool);
+				}
+				if ((END_CITY_VAULT.equals(id) || END_CITY_ELYTRA_VAULT.equals(id)) && isEnderscapeLoaded) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(8))
+							.add(LootItem.lootTableItem(LaLItems.TIMELOST_GEM).setWeight(1));
+					table.addPool(pool);
+				}
+				if (END_RUINS.equals(id) && !isEnderscapeLoaded) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(EmptyLootItem.emptyItem().setWeight(5))
+							.add(LootItem.lootTableItem(LaLItems.NEBULITE_GEM).setWeight(1));
+					table.addPool(pool);
+				}
+				if ((registerEnderscape("blocks/nebulite_ore").equals(id) || registerEnderscape("blocks/mirestone_nebulite_ore").equals(id)) && isEnderscapeLoaded) {
+					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+							.add(LootItem.lootTableItem(LaLItems.NEBULITE_GEM).setWeight(1).when(randomChanceAndFortuneBoost(registries, 0.009F, 0.002F)));
+					table.addPool(pool);
+				}
+			}
 		});
 	}
 
-	private static @NotNull ResourceKey<LootTable> register(String path) {
-		return ResourceKey.create(Registries.LOOT_TABLE, LaLConstants.id(path));
+	public static LootItemCondition.Builder randomChanceAndFortuneBoost(HolderLookup.Provider registries, float chance, float perEnchantmentLevel) {
+		HolderLookup.RegistryLookup<Enchantment> enchantments = registries.lookupOrThrow(Registries.ENCHANTMENT);
+		return () -> new LootItemRandomChanceWithEnchantedBonusCondition(chance, new LevelBasedValue.Linear(chance + perEnchantmentLevel, perEnchantmentLevel), enchantments.getOrThrow(Enchantments.FORTUNE));
 	}
 
-	private static @NotNull ResourceKey<LootTable> registerEndReborn(String path) {
-		return ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("end_reborn", path));
+	private static @NotNull ResourceKey<LootTable> register(String path) {
+		return register(LaLConstants.MOD_ID, path);
+	}
+	private static @NotNull ResourceKey<LootTable> register(String namespace, String path) {
+		return ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath(namespace, path));
 	}
 
 	private static @NotNull ResourceKey<LootTable> registerEnderscape(String path) {
-		return ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("enderscape", path));
+		return register("enderscape", path);
 	}
 }
