@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.Vec3;
 import net.rebel459.legacies_and_legends.item.WandItem;
@@ -30,7 +31,8 @@ public class WandPlatformBlock extends TransparentSlabBlock {
     public static final EnumProperty<Gem> PRIMARY_MATERIAL = EnumProperty.create("primary_material", Gem.class);
     public static final EnumProperty<Gem> SECONDARY_MATERIAL = EnumProperty.create("secondary_material", Gem.class);
 
-    public static final BooleanProperty CANCEL_TICK = BooleanProperty.create("should_tick");
+    // External
+    public static final BooleanProperty CANCEL_TICK = BooleanProperty.create("cancel_tick");
 
     public WandPlatformBlock(Properties properties) {
         super(properties);

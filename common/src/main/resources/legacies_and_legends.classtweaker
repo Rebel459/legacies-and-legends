@@ -15,12 +15,8 @@ accessible field net/minecraft/world/entity/Entity level Lnet/minecraft/world/le
 accessible method net/minecraft/world/item/BowItem shootProjectile (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/projectile/Projectile;IFFFLnet/minecraft/world/entity/LivingEntity;)V
 accessible method net/minecraft/world/item/CrossbowItem shootProjectile (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/projectile/Projectile;IFFFLnet/minecraft/world/entity/LivingEntity;)V
 accessible method net/minecraft/world/item/ItemStack applyDamage (ILnet/minecraft/server/level/ServerPlayer;Ljava/util/function/Consumer;)V
-accessible field net/minecraft/client/renderer/item/BlockModelWrapper ITEM_RENDER_TYPE_GETTER Ljava/util/function/Function;
-accessible field net/minecraft/client/renderer/item/BlockModelWrapper BLOCK_RENDER_TYPE_GETTER Ljava/util/function/Function;
 accessible method net/minecraft/world/entity/player/Player isEquipped (Lnet/minecraft/world/item/Item;)Z
-accessible field net/minecraft/client/renderer/LightTexture minecraft Lnet/minecraft/client/Minecraft;
 accessible method net/minecraft/world/inventory/AbstractContainerMenu addSlot (Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
-accessible method net/minecraft/client/gui/screens/inventory/AbstractContainerScreen renderSlot (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/inventory/Slot;II)V
 accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen leftPos I
 accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen topPos I
 accessible method net/minecraft/world/level/block/StairBlock <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V

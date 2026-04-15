@@ -148,6 +148,8 @@
   "item.legacies_and_legends.nebulite_gem": "Gem",
   "item.legacies_and_legends.ruby_gem": "Gem",
 
+  "item.legacies_and_legends.meteorite_brick": "Meteorite Brick",
+
   "trim_material.legacies_and_legends.echo": "Echo Material",
   "trim_material.legacies_and_legends.sapphire": "Sapphire Material",
 
@@ -219,11 +221,11 @@
   "gem.legacies_and_legends.timelost.desc": "Reduce gravity on platform recall",
   "gem.legacies_and_legends.timelost.desc.bonus": "Projectiles pass through the wielder after platform recall",
   "gem.legacies_and_legends.nebulite": "Nebulite",
-  "gem.legacies_and_legends.nebulite.desc": "Teleport a short distance",
-  "gem.legacies_and_legends.nebulite.desc.bonus": "Increases teleportation range",
+  "gem.legacies_and_legends.nebulite.desc": "Platforms are placed wherever the wielder looks",
+  "gem.legacies_and_legends.nebulite.desc.bonus": "Teleport to summoned platforms",
   "gem.legacies_and_legends.ruby": "Ruby",
-  "gem.legacies_and_legends.ruby.desc": "Platforms are placed wherever the wielder looks",
-  "gem.legacies_and_legends.ruby.desc.bonus": "Platforms do not decay after recall until no entities are present upon them",
+  "gem.legacies_and_legends.ruby.desc": "Platforms do not decay after recall whilst stood on",
+  "gem.legacies_and_legends.ruby.desc.bonus": "Places a second, temporary platform on recall",
 
   "tooltip.legacies_and_legends.max_durability": "Max Durability",
   "tooltip.legacies_and_legends.repair_cost": "Repair Cost",

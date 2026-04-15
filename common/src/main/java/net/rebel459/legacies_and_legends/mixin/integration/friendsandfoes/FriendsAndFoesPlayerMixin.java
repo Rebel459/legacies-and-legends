@@ -34,7 +34,7 @@ public abstract class FriendsAndFoesPlayerMixin {
     @Inject(method = "actuallyHurt", at = @At(value = "TAIL"))
     private void activateTotem(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo info) {
         Player player = Player.class.cast(this);
-        if (AccessoryHelper.hasAccessory(player)) {
+        if (AccessoryHelper.isSlotFilled(player)) {
             ItemStack stack = AccessoryHelper.getAccessory(player);
             if (isTotem(stack, TOTEM_OF_FREEZING_ID) && player.getHealth() <= player.getMaxHealth() / 2) {
                 invokeTotemAction("freezeEntities", player, level);

@@ -15,7 +15,6 @@ import net.rebel459.legacies_and_legends.util.Gem;
 import net.rebel459.unified.platform.UnifiedEvents;
 import net.rebel459.unified.util.EventType;
 
-import java.awt.*;
 import java.util.*;
 
 public class ServerEvents {
@@ -61,7 +60,7 @@ public class ServerEvents {
                 if (retainedPlatforms.contains(pos)) continue;
 
                 BlockState state = level.getBlockState(pos);
-                level.scheduleTick(pos, state.getBlock(), 5);
+                level.scheduleTick(pos, state.getBlock(), 25);
                 iterator.remove();
             }
             if (!retainedPlatforms.isEmpty()) SAVED_PLATFORMS.put(level.dimension(), retainedPlatforms);
@@ -89,8 +88,8 @@ public class ServerEvents {
 
                 if (change.ticksRemaining <= 0) {
                     if (change.gems.primary() == Gem.TIMELOST) {
-                        change.player.addEffect(new MobEffectInstance(LaLMobEffects.LOW_GRAVITY, MobEffectInstance.INFINITE_DURATION, 0, true, false, false));
-                        change.player.addEffect(new MobEffectInstance(LaLMobEffects.PROJECTILE_PASSTHROUGH, MobEffectInstance.INFINITE_DURATION, 0, true, false, false));
+                        change.player.addEffect(new MobEffectInstance(LaLMobEffects.LOW_GRAVITY, MobEffectInstance.INFINITE_DURATION, 0, false, false, false));
+                        change.player.addEffect(new MobEffectInstance(LaLMobEffects.PROJECTILE_PASSTHROUGH, MobEffectInstance.INFINITE_DURATION, 0, false, false, false));
                     }
                     iterator.remove();
                 }

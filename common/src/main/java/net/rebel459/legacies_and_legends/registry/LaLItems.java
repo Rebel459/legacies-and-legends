@@ -77,7 +77,7 @@ public final class LaLItems {
             WandItem::new,
             () -> new Properties()
                     .repairable(LaLItemTags.WAND_REPAIR_MATERIALS)
-                    .durability(256)
+                    .durability(512)
                     .enchantable(20)
                     .rarity(Rarity.RARE)
                     .component(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(List.of(), List.of(), List.of(Gem.Slots.DEFAULT.primary().getSerializedName(), "charged"), List.of()))

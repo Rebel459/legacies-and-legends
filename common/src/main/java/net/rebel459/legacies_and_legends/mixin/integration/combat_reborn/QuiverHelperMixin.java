@@ -16,20 +16,20 @@ public abstract class QuiverHelperMixin {
 
 /*    @Inject(at = @At("TAIL"), method = "getStack", cancellable = true)
     private static void ringOfArchery(Player player, CallbackInfoReturnable<ItemStack> cir) {
-        if (cir.getReturnValue() != null || !AccessoryHelper.hasAccessory(player)) return;
+        if (cir.getReturnValue() != null || !AccessoryHelper.isSlotFilled(player)) return;
         ItemStack stack = AccessoryHelper.getAccessory(player);
         if (stack.is(LaLItems.RING_OF_ARCHERY.get())) cir.setReturnValue(stack);
     }
 
     @Inject(at = @At("TAIL"), method = "getAccuracy(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)F", cancellable = true)
     private static void ringOfArcheryAccuracy(ItemStack stack, Player player, CallbackInfoReturnable<Float> cir) {
-        if (player == null || !AccessoryHelper.hasAccessory(player)) return;
+        if (player == null || !AccessoryHelper.isSlotFilled(player)) return;
         if (AccessoryHelper.getAccessory(player).is(LaLItems.RING_OF_ARCHERY.get())) cir.setReturnValue(cir.getReturnValue() + 4);
     }
 
     @Inject(at = @At("TAIL"), method = "postProjectileEvent")
     private static void ringOfArcheryDamage(Player player, CallbackInfo ci) {
-        if (!AccessoryHelper.hasAccessory(player)) return;
+        if (!AccessoryHelper.isSlotFilled(player)) return;
         ItemStack stack = AccessoryHelper.getAccessory(player);
         if (stack.is(LaLItems.RING_OF_ARCHERY.get())) AccessoryHelper.damageAccessory(player, stack);
     }*/

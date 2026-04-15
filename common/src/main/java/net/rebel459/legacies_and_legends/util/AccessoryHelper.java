@@ -2,6 +2,7 @@ package net.rebel459.legacies_and_legends.util;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.world.item.Item;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.LegaciesAndLegends;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
@@ -25,6 +26,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.level.block.Blocks;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class AccessoryHelper {
 
@@ -150,20 +154,41 @@ public class AccessoryHelper {
 
     public static ItemStack getAccessory(Player player) {
         ItemStack stack = getActualAccessory(player);
-        if (stack.isEmpty()) stack = checkOtherSlots(player);
         if (isBroken(stack) || !LaLConfig.get().accessories.slot.enabled) stack = ItemStack.EMPTY;
         return stack;
     }
 
-    private static ItemStack checkOtherSlots(Player player) {
+    public static Set<ItemStack> getAllAccessories(Player player) {
+        Set<ItemStack> accessories = new HashSet<>();
+        ItemStack accessory = getAccessory(player);
+        if (accessory.is(LaLItemTags.ACCESSORIES)) accessories.add(accessory);
+        ItemStack mainHand = player.getMainHandItem();
+        if (isHoldableAccessory(mainHand)) accessories.add(mainHand);
+        ItemStack offhand = player.getOffhandItem();
+        if (isHoldableAccessory(offhand)) accessories.add(offhand);
+        return accessories;
+    }
+
+    public static boolean hasAccessory(Player player, Item item) {
+        return getFirst(player, item) != ItemStack.EMPTY;
+    }
+
+    public static ItemStack getFirst(Player player, Item item) {
         ItemStack stack = player.getMainHandItem();
-        if (stack.isEmpty()) stack = player.getOffhandItem();
-        if (stack.is(LaLItemTags.AMULETS)) return stack;
+        if (isHoldableAccessory(stack) && stack.getItem() == item) return stack;
+        stack = player.getOffhandItem();
+        if (isHoldableAccessory(stack) && stack.getItem() == item) return stack;
+        stack = getAccessory(player);
+        if (stack.getItem() == item) return stack;
         else return ItemStack.EMPTY;
     }
 
+    public static boolean isHoldableAccessory(ItemStack stack) {
+        return stack.is(LaLItemTags.AMULETS) || stack.is(LaLItemTags.TOTEMS);
+    }
+
     public static boolean isBroken(ItemStack stack) {
-        return (stack.has(DataComponents.MAX_DAMAGE) && stack.getDamageValue() >= stack.getMaxDamage() - 1 && !stack.is(LaLItemTags.AMULETS)) || stack.getDamageValue() >= stack.getMaxDamage();
+        return stack.has(DataComponents.MAX_DAMAGE) && ((stack.getDamageValue() >= stack.getMaxDamage() - 1 && !stack.is(LaLItemTags.AMULETS)) || stack.getDamageValue() >= stack.getMaxDamage());
     }
 
     public static ItemStack getActualAccessory(Player player) {
@@ -180,7 +205,7 @@ public class AccessoryHelper {
         setAccessory(player, ItemStack.EMPTY);
     }
 
-    public static boolean hasAccessory(Player player) {
+    public static boolean isSlotFilled(Player player) {
         return getActualAccessory(player) != ItemStack.EMPTY;
     }
 

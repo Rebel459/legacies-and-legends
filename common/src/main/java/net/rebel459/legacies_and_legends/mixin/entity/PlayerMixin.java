@@ -2,15 +2,14 @@ package net.rebel459.legacies_and_legends.mixin.entity;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.food.FoodData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rebel459.legacies_and_legends.LaLConstants;
-import net.rebel459.legacies_and_legends.config.LaLConfig;
 import net.rebel459.legacies_and_legends.event.ServerEvents;
 import net.rebel459.legacies_and_legends.item.WandItem;
 import net.rebel459.legacies_and_legends.util.PlatformInterface;
@@ -59,8 +58,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin implements PlatformInterface, AccessoryInterface {
@@ -160,8 +158,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Inject(method = "hurtServer", at = @At(value = "HEAD"), cancellable = true)
     private void amuletOfObsidian(ServerLevel level, DamageSource damageSource, float amount, CallbackInfoReturnable<Boolean> cir) {
         Player player = Player.class.cast(this);
-        ItemStack stack = AccessoryHelper.getAccessory(player);
-        if (stack.is(LaLItems.AMULET_OF_OBSIDIAN.get()) && damageSource.is(DamageTypeTags.IS_FIRE) && !this.isInvulnerableTo(level, damageSource) && !player.hasEffect(MobEffects.FIRE_RESISTANCE) && !player.fireImmune()) {
+        if (AccessoryHelper.hasAccessory(player, LaLItems.AMULET_OF_OBSIDIAN.get()) && damageSource.is(DamageTypeTags.IS_FIRE) && !this.isInvulnerableTo(level, damageSource) && !player.hasEffect(MobEffects.FIRE_RESISTANCE) && !player.fireImmune()) {
             if (player.getRemainingFireTicks() > 1) player.setRemainingFireTicks(1);
             cir.setReturnValue(false);
         }
@@ -170,9 +167,8 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Inject(method = "actuallyHurt", at = @At(value = "HEAD"))
     private void amuletOfAbsorption(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo ci) {
         Player player = Player.class.cast(this);
-        ItemStack stack = AccessoryHelper.getAccessory(player);
-        if (AccessoryHelper.getAccessory(player).is(LaLItems.AMULET_OF_ABSORPTION.get())) {
-            AccessoryHelper.damageAccessory(player, stack, (int) amount);
+        if (AccessoryHelper.hasAccessory(player, LaLItems.AMULET_OF_ABSORPTION.get())) {
+            AccessoryHelper.damageAccessory(player, AccessoryHelper.getFirst(player, LaLItems.AMULET_OF_ABSORPTION.get()), (int) amount);
         }
     }
 
@@ -213,7 +209,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Inject(method = "actuallyHurt", at = @At(value = "TAIL"))
     private void activateTotem(ServerLevel level, DamageSource damageSource, float amount, CallbackInfo info) {
         Player player = Player.class.cast(this);
-        if (AccessoryHelper.hasAccessory(player) && player instanceof AccessoryInterface accessory) {
+        if (AccessoryHelper.isSlotFilled(player) && player instanceof AccessoryInterface accessory) {
             ItemStack stack = AccessoryHelper.getAccessory(player);
             AccessoryHelper.Mutable mutable = accessory.getAccessoryData();
             if (stack.is(LaLItems.TOTEM_OF_TELEPORTATION.get()) && amount >= player.getHealth()) {
@@ -344,9 +340,6 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     }
 
     @Unique
-    private Multimap<Holder<Attribute>, AttributeModifier> temporaryModifiers = HashMultimap.create();
-
-    @Unique
     private int intervalTick = 0;
 
     @Inject(method = "tick", at = @At("TAIL"))
@@ -355,17 +348,22 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
 
         AccessoryHelper.Mutable mutable = this.getAccessoryData();
 
-        ItemStack stack = AccessoryHelper.getAccessory(player);
-        if (AccessoryHelper.hasAccessory(player)) {
-            mutable.onTick(player, stack);
+        Set<ItemStack> accessories = AccessoryHelper.getAllAccessories(player);
+        Set<Item> tickedItems = new HashSet<>();
+        for (ItemStack stack : accessories) {
+            Item item = stack.getItem();
+            if (!tickedItems.contains(item)) {
+                stack = AccessoryHelper.getFirst(player, item);
+                mutable.onTick(player, stack);
+                tickedItems.add(item);
+                if (this.intervalTick >= 5) {
+                    mutable.getAndApplyModifiers(player, stack);
+                    this.intervalTick = 0;
+                }
+            }
             mutable.onTickAmulet(player, stack);
         }
-        if (intervalTick >= 5) {
-            mutable.getAndApplyModifiers(player, stack);
-        } else {
-            intervalTick += 1;
-        }
-
+        this.intervalTick++;
         this.setAccessoryData(mutable);
     }
 

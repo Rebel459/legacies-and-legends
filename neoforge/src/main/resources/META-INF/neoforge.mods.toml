@@ -43,6 +43,10 @@ type="required"
 modId="trimpatcher"
 type="required"
 
+[[dependencies.${mod_id}]]
+modId="lithostitched"
+type="required"
+
 [[accessTransformers]]
 file="META-INF/accesstransformer.cfg"
 

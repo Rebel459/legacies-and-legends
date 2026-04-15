@@ -104,9 +104,9 @@ public class WandItem extends Item {
     public static float getCooldown(Gem.Slots gems) {
         float cooldown = 2F;
         if (hasGem(gems, Gem.METEORITE)) cooldown += 2F;
-        if (hasGem(gems, Gem.BREEZE)) cooldown += 8F;
-        if (hasGem(gems, Gem.NEBULITE)) cooldown += 10F;
-        if (hasGem(gems, Gem.TIMELOST)) cooldown += 6F;
+        if (hasGem(gems, Gem.BREEZE)) cooldown += 6F;
+        if (gems.primary() == Gem.NEBULITE) cooldown += 8F;
+        if (hasGem(gems, Gem.TIMELOST)) cooldown += 4F;
         if (hasGem(gems, Gem.SAPPHIRE)) cooldown -= 2F;
         cooldown = Math.max(cooldown, 1F);
         return cooldown;
@@ -167,10 +167,6 @@ public class WandItem extends Item {
         return level.getFluidState(pos).is(FluidTags.WATER) || level.getFluidState(pos.above()).is(FluidTags.WATER);
     }
 
-    public static boolean canUseWandWithoutGrounded(Gem.Slots gems) {
-        return hasGem(gems, Gem.BREEZE) || hasGem(gems, Gem.RUBY);
-    }
-
     private void handlePrismarineMaterial(Level level, BlockPos pos, PlatformInterface platform, boolean useBottomSlab, boolean underwaterPlacement, boolean createBubbleColumns) {
         BlockState targetState = level.getBlockState(pos);
         if (!targetState.hasProperty(BlockStateProperties.WATERLOGGED)) return;
@@ -211,15 +207,7 @@ public class WandItem extends Item {
         }
     }
 
-    private static boolean tryTeleport(Player player, double distance) {
-        Vec3 start = player.position();
-        Vec3 look = player.getLookAngle().normalize();
-        Vec3 end = start.add(look.scale(distance));
-
-        return tryTeleport(player, distance, end);
-    }
-
-    private static boolean tryTeleport(Player player, double distance, Vec3 end) {
+    private static boolean tryTeleport(Player player, Gem.Slots gems, double distance, Vec3 end) {
         Vec3 start = player.position();
         Vec3 delta = end.subtract(start);
 
@@ -249,7 +237,7 @@ public class WandItem extends Item {
 
         for (double candidateDistance = pathLength; candidateDistance > 1.0E-6D; candidateDistance -= TELEPORT_STEP) {
             Vec3 target = start.add(direction.scale(candidateDistance));
-            if (!canTeleportTo(player, target)) {
+            if (!canTeleportTo(player, gems, target)) {
                 continue;
             }
 
@@ -260,12 +248,12 @@ public class WandItem extends Item {
         return false;
     }
 
-    private static boolean canTeleportTo(Player player, Vec3 target) {
+    private static boolean canTeleportTo(Player player, Gem.Slots gems, Vec3 target) {
         BlockPos targetPos = BlockPos.containing(target);
         BlockState feetState = player.level().getBlockState(targetPos);
         BlockState headState = player.level().getBlockState(targetPos.above());
 
-        if (feetState.blocksMotion() || headState.blocksMotion()) {
+        if (feetState.blocksMotion() || headState.blocksMotion() || (!hasGem(gems, Gem.PRISMARINE) && !feetState.getFluidState().isEmpty() && (feetState.getFluidState().is(FluidTags.WATER) || headState.getFluidState().is(FluidTags.WATER)))) {
             return false;
         }
 
@@ -279,11 +267,11 @@ public class WandItem extends Item {
 
         ItemStack stack = player.getItemInHand(hand);
         Gem.Slots gems = getGems(stack);
-        if (gems.primary() == Gem.EMPTY && gems.secondary() == Gem.EMPTY) return InteractionResult.FAIL;
+        if (gems.primary() == Gem.EMPTY && gems.secondary() == Gem.EMPTY || player.getCooldowns().isOnCooldown(stack)) return InteractionResult.FAIL;
 
         Vec3 playerPos = player.position();
         BlockPos newPlatformPos = player.blockPosition();
-        if (hasGem(gems, Gem.RUBY)) {
+        if (hasGem(gems, Gem.NEBULITE)) {
             Vec3 eyePos = player.getEyePosition();
             Vec3 reachPos = eyePos.add(player.getViewVector(1.0F).scale(player.blockInteractionRange()));
             BlockHitResult hitResult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
@@ -292,24 +280,11 @@ public class WandItem extends Item {
         }
 
         boolean teleported = false;
-        if (!platformInterface.getPlatformSummoned() && hasGem(gems, Gem.NEBULITE)) {
-            double distance = 3D;
-            if (gems.primary() == Gem.NEBULITE) distance += 3D;
-            if (hasGem(gems, Gem.RUBY)) {
-                BlockPos rubyPlatformPos = level.getBlockState(newPlatformPos).isAir() ? newPlatformPos : newPlatformPos.below();
-                Vec3 targetPos = Vec3.atBottomCenterOf(rubyPlatformPos.above());
-                teleported = tryTeleport(player, distance, targetPos);
-            } else {
-                teleported = tryTeleport(player, distance);
-                if (teleported) {
-                    playerPos = player.position();
-                    newPlatformPos = player.blockPosition();
-                }
-            }
-
-            if (teleported) {
-                if (gems.secondary() == Gem.NEBULITE && level instanceof ServerLevel serverLevel) player.hurtServer(serverLevel, player.damageSources().enderPearl(), 1F);
-            }
+        if (!platformInterface.getPlatformSummoned() && gems.primary() == Gem.NEBULITE) {
+            double distance = player.getAttributeValue(Attributes.BLOCK_INTERACTION_RANGE) + 1D;
+            BlockPos rubyPlatformPos = level.getBlockState(newPlatformPos).isAir() ? newPlatformPos : newPlatformPos.below();
+            Vec3 targetPos = Vec3.atBottomCenterOf(rubyPlatformPos.above());
+            teleported = tryTeleport(player, gems, distance, targetPos);
         }
 
         boolean useBottomSlab = false;
@@ -320,16 +295,16 @@ public class WandItem extends Item {
         }
 
         boolean useWaterloggedDoubleSlab = hasGem(gems, Gem.PRISMARINE) && level.getBlockState(newPlatformPos).getFluidState().is(FluidTags.WATER);
-        boolean canPlacePlatform = (useBottomSlab || level.getBlockState(newPlatformPos).isAir() || useWaterloggedDoubleSlab) && !platformInterface.getPlatformSummoned() && (!player.onGround() || hasGem(gems, Gem.RUBY));
+        boolean canPlacePlatform = (useBottomSlab || level.getBlockState(newPlatformPos).isAir() || useWaterloggedDoubleSlab) && !platformInterface.getPlatformSummoned() && (!player.onGround() || hasGem(gems, Gem.NEBULITE));
         HashMap<BlockPos, BlockState> targetPositions = getTargetPositions(level, newPlatformPos, gems);
-        boolean hasStandaloneAbility = canUseWandWithoutGrounded(gems) || teleported || (hasGem(gems, Gem.METEORITE) && !targetPositions.isEmpty());
+        boolean hasStandaloneAbility = hasGem(gems, Gem.BREEZE) || teleported || (hasGem(gems, Gem.METEORITE) && !targetPositions.isEmpty());
         boolean canSummonWithoutMainPlatform = !canPlacePlatform && !platformInterface.getPlatformSummoned() && player.onGround() && hasStandaloneAbility;
         boolean shouldSummon = canPlacePlatform || canSummonWithoutMainPlatform;
 
-        if (shouldSummon && !platformInterface.getPlatformSummoned()) {
+        if (!platformInterface.getPlatformSummoned()) {
             platformInterface.lal$setLastPlatformPos(level, newPlatformPos);
 
-            if (!level.isClientSide()) {
+            if (shouldSummon && !level.isClientSide()) {
                 prePlatformSummoned(level, player, stack, gems);
                 HashMap<BlockPos, BlockState> fireTargets = getFireTargetPositions(level, newPlatformPos, gems);
                 HashMap<BlockPos, BlockState> iceTargets = getIceTargetPositions(level, newPlatformPos, gems);
@@ -411,7 +386,7 @@ public class WandItem extends Item {
         } else {
             InteractionResult result = removePlatforms(level, player);
             if (result == InteractionResult.SUCCESS) {
-                if (!level.isClientSide()) postPlatformRecalled(level, player, stack, gems);
+                if (!level.isClientSide()) postPlatformRecalled(level, player, stack, gems, newPlatformPos, useBottomSlab, useWaterloggedDoubleSlab);
 
                 stack.applyComponents(DataComponentPatch.builder()
                         .set(DataComponents.USE_COOLDOWN, new UseCooldown(0.5F))
@@ -446,6 +421,7 @@ public class WandItem extends Item {
                 return InteractionResult.SUCCESS;
             }
         }
+        platform.setPlatformSummoned(false);
         return InteractionResult.PASS;
     }
 
@@ -463,7 +439,7 @@ public class WandItem extends Item {
         if (level instanceof ServerLevel serverLevel) {
             for (BlockPos targetPos : validBlocks) {
                 BlockState state = serverLevel.getBlockState(targetPos);
-                if (hasRubyPrimary(state)) {
+                if (WandPlatformBlock.hasMaterial(state, Gem.RUBY)) {
                     savedPlatforms.add(targetPos);
                     continue;
                 }
@@ -473,7 +449,7 @@ public class WandItem extends Item {
         }
 
         BlockState state = level.getBlockState(lastPos);
-        if (hasRubyPrimary(state)) {
+        if (state.hasProperty(WandPlatformBlock.PRIMARY_MATERIAL) && state.hasProperty(WandPlatformBlock.SECONDARY_MATERIAL) && WandPlatformBlock.hasMaterial(state, Gem.RUBY)) {
             savedPlatforms.add(lastPos);
             ServerEvents.SAVED_PLATFORMS.put(level.dimension(), savedPlatforms);
             return;
@@ -513,10 +489,6 @@ public class WandItem extends Item {
         return positions;
     }
 
-    private static boolean hasRubyPrimary(BlockState state) {
-        return state.hasProperty(WandPlatformBlock.PRIMARY_MATERIAL) && state.getValue(WandPlatformBlock.PRIMARY_MATERIAL) == Gem.RUBY;
-    }
-
     public static int applyBreezeKnockback(Level level, LivingEntity source, double strength) {
         level.levelEvent(2013, source.getOnPos(), 750);
         List<LivingEntity> entityList = level.getEntitiesOfClass(LivingEntity.class, source.getBoundingBox().inflate(3.5F), MaceItem.knockbackPredicate(source, source));
@@ -547,10 +519,16 @@ public class WandItem extends Item {
             player.removeEffect(LaLMobEffects.PROJECTILE_PASSTHROUGH);
         }
     }
-    private void postPlatformRecalled(Level level, Player player, ItemStack stack, Gem.Slots gems) {
+    private void postPlatformRecalled(Level level, Player player, ItemStack stack, Gem.Slots gems, BlockPos platformPos, boolean useBottomSlab, boolean useWaterloggedDoubleSlab) {
         if (gems.primary() == Gem.BREEZE) applyBreezeKnockback(level, player, 2F);
         if (hasGem(gems, Gem.TIMELOST)) {
             ServerEvents.queuePlayerChange(player, gems, 5);
+        }
+        if (gems.primary() == Gem.RUBY) {
+            level.setBlock(platformPos, WandPlatformBlock.getSummonedState(stack, useBottomSlab, useWaterloggedDoubleSlab), Block.UPDATE_ALL);
+            Set<BlockPos> savedPositions = ServerEvents.SAVED_PLATFORMS.get(level.dimension());
+            savedPositions.add(platformPos);
+            ServerEvents.SAVED_PLATFORMS.put(level.dimension(), savedPositions);
         }
     }
 }

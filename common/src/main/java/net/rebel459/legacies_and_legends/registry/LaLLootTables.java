@@ -105,8 +105,6 @@ public class LaLLootTables {
 	public static final ResourceKey<LootTable> END_CITY_ACCESSORIES = register("accessories/end/end_city");
 	public static final ResourceKey<LootTable> END_RUINS_ACCESSORIES = register("accessories/end/ruins");
 
-	public static final ResourceKey<LootTable> CONSEQUENCES_BOOK = register("books/consequences");
-
 	public static final ResourceKey<LootTable> END_REMAINS = registerEndReborn("chests/end_remains");
 
 	public static final ResourceKey<LootTable> END_CITY_CHEST = registerEnderscape("end_city/chest");
@@ -130,7 +128,7 @@ public class LaLLootTables {
     public static class Books {
 		public static final ResourceKey<LootTable> AS_ABOVE = register("books/as_above");
 		public static final ResourceKey<LootTable> ASCENT = register("books/ascent");
-		public static final ResourceKey<LootTable> CONSEQUENCES = register("books/as_above");
+		public static final ResourceKey<LootTable> CONSEQUENCES = register("books/consequences");
 		public static final ResourceKey<LootTable> DERELICT = register("books/derelict");
 		public static final ResourceKey<LootTable> DISTANT_MEMORY = register("books/distant_memory");
 		public static final ResourceKey<LootTable> FISHERMANS_TALE = register("books/fishermans_tale");
@@ -1003,7 +1001,7 @@ public class LaLLootTables {
 			if (LaLLootTables.END_REMAINS.equals(id) && LaLConfig.get().loot.lore_books) {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(EmptyLootItem.emptyItem().setWeight(95))
-						.add(NestedLootTable.lootTableReference(LaLLootTables.CONSEQUENCES_BOOK).setWeight(5));
+						.add(NestedLootTable.lootTableReference(Books.CONSEQUENCES).setWeight(5));
 				table.addPool(pool);
 			}
 

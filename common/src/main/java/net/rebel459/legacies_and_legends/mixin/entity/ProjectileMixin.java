@@ -36,13 +36,13 @@ public abstract class ProjectileMixin {
         if (hitResult.getType() == HitResult.Type.ENTITY) {
             EntityHitResult entityHitResult = (EntityHitResult) hitResult;
             Entity entity = entityHitResult.getEntity();
-        if (entity instanceof Player player && AccessoryHelper.getAccessory(player).is(LaLItems.AMULET_OF_DEFLECTION.get())) {
+        if (entity instanceof Player player && AccessoryHelper.hasAccessory(player, LaLItems.AMULET_OF_DEFLECTION.get())) {
                 ProjectileDeflection projectileDeflection = ProjectileDeflection.MOMENTUM_DEFLECT;
                 if (entity != this.lastDeflectedBy && this.deflect(projectileDeflection, entity, this.owner, false)) {
                     this.lastDeflectedBy = entity;
                 }
                 if (!projectile.is(LaLEntityTags.DAMAGELESS_PROJECTILES)) {
-                    AccessoryHelper.damageAccessory(player, AccessoryHelper.getAccessory(player), 5);
+                    AccessoryHelper.damageAccessory(player, AccessoryHelper.getFirst(player, LaLItems.AMULET_OF_DEFLECTION.get()), 5);
                     player.playSound(LaLSounds.BOOMERANG_RETURN.get());
                 }
                 cir.setReturnValue(projectileDeflection);

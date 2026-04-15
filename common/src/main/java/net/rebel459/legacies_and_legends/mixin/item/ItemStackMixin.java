@@ -67,13 +67,11 @@ public abstract class ItemStackMixin {
     private void inventoryTick(Level level, Entity entity, EquipmentSlot equipmentSlot, CallbackInfo ci) {
         ItemStack stack = ItemStack.class.cast(this);
         if (entity instanceof Player player && stack.is(LaLItemTags.ACCESSORIES) && player instanceof AccessoryInterface accessory) {
-            //if (AccessoryHelper.getAccessory(player) != stack) {
             AccessoryHelper.Mutable mutable = accessory.getAccessoryData();
             if (stack.is(LaLItemTags.AMULETS)) {
                 mutable.onTickAmulet(player, stack);
             }
             accessory.setAccessoryData(mutable);
-            //}
         }
     }
 
@@ -82,6 +80,7 @@ public abstract class ItemStackMixin {
         ItemStack stack = player.getItemInHand(hand);
         if (stack.is(LaLItemTags.ACCESSORIES) && LaLConfig.get().accessories.slot.use_equip && cir.getReturnValue() != InteractionResult.SUCCESS) {
             ItemStack oldAccessory = AccessoryHelper.getActualAccessory(player);
+            if (!oldAccessory.isEmpty() && (stack.is(LaLItemTags.TOTEMS) || stack.is(LaLItemTags.AMULETS))) return;
             ItemStack newAccessory = stack.copyAndClear();
             AccessoryHelper.setAccessory(player, newAccessory);
             AccessoryHelper.onEquip(player, newAccessory);

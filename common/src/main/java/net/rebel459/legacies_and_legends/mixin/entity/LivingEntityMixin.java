@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
+import net.rebel459.legacies_and_legends.event.ServerEvents;
 import net.rebel459.legacies_and_legends.item.HookItem;
 import net.rebel459.legacies_and_legends.item.WandItem;
 import net.rebel459.legacies_and_legends.registry.LaLDataComponents;
@@ -70,6 +71,7 @@ public abstract class LivingEntityMixin {
         LivingEntity entity = LivingEntity.class.cast(this);
         if (entity.hasEffect(LaLMobEffects.PROJECTILE_PASSTHROUGH) || entity.hasEffect(LaLMobEffects.LOW_GRAVITY)) {
             if (entity.isFallFlying() || !entity.getBlockStateOn().is(BlockTags.AIR) || entity.isInWater()) {
+                if (ServerEvents.SAVED_PLATFORMS.get(entity.level.dimension()).contains(entity.getOnPos())) return;
                 entity.removeEffect(LaLMobEffects.PROJECTILE_PASSTHROUGH);
                 entity.removeEffect(LaLMobEffects.LOW_GRAVITY);
             }
