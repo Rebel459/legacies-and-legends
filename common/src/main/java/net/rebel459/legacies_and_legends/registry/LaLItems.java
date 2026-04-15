@@ -304,6 +304,7 @@ public final class LaLItems {
     public static final SuppliedItem ENCHANTED_BEETROOT_SOUP = ITEMS.register("enchanted_beetroot_soup",
             Item::new,
             () -> new Properties()
+                    .stacksTo(16)
                     .rarity(Rarity.RARE)
                     .food(LaLFoods.ENCHANTED_BEETROOT_SOUP, LaLConsumables.ENCHANTED_BEETROOT_SOUP)
                     .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)
