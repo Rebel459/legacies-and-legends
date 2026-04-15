@@ -15,7 +15,7 @@ public class LaLConsumables {
             .onConsume(
                     new ApplyStatusEffectsConsumeEffect(
                             List.of(
-                                    new MobEffectInstance(MobEffects.REGENERATION, 100, 1)
+                                    new MobEffectInstance(MobEffects.REGENERATION, 100, 2)
                             )
                     )
             )
@@ -24,8 +24,7 @@ public class LaLConsumables {
             .onConsume(
                     new ApplyStatusEffectsConsumeEffect(
                             List.of(
-                                    new MobEffectInstance(MobEffects.REGENERATION, 300, 2),
-                                    new MobEffectInstance(MobEffects.SATURATION, 10, 0)
+                                    new MobEffectInstance(MobEffects.REGENERATION, 300, 4)
                             )
                     )
             )

@@ -987,7 +987,7 @@ public class LaLLootTables {
 				if (LaLConfig.get().integrations.enderscape) {
 					if (LaLLootTables.END_CITY_CHEST.equals(id) && LaLConfig.get().loot.enchanted_beetroot) {
 						pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-								.add(EmptyLootItem.emptyItem().setWeight(20))
+								.add(EmptyLootItem.emptyItem().setWeight(17))
 								.add(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(1));
 						table.addPool(pool);
 					}
