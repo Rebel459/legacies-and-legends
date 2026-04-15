@@ -216,7 +216,9 @@ public class LaLItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
                 .add(LaLItems.FROSTED_SPEAR.get());
 
         this.valueLookupBuilder(ItemTags.WEAPON_ENCHANTABLE)
-                .add(LaLItems.HOOK.get())
+                .add(LaLItems.HOOK.get());
+
+        this.valueLookupBuilder(ItemTags.MELEE_WEAPON_ENCHANTABLE)
                 .add(LaLItems.KNIFE.get());
 
         this.valueLookupBuilder(ItemTags.DURABILITY_ENCHANTABLE)
