@@ -127,6 +127,9 @@ public class LegaciesAndLegends {
         if (UnifiedPlatform.get().isModLoaded("enderscape") && LaLConfig.get().integrations.enderscape) {
             isEnderscapeLoaded = true;
             UnifiedHelpers.PACKS.add(LaLConstants.id("enderscape_integration"), PackType.REQUIRED_DATA);
+            if (LaLConfig.get().magic.jeweling) {
+                UnifiedHelpers.PACKS.add(LaLConstants.id("enderscape_jeweling"), PackType.REQUIRED_DATA);
+            }
         }
     }
 }
