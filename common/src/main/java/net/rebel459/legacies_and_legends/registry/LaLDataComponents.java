@@ -14,14 +14,19 @@ import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TridentItem;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Repairable;
 import net.minecraft.world.item.equipment.trim.TrimMaterials;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.LegaciesAndLegends;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
+import net.rebel459.legacies_and_legends.item.VerdantSwordItem;
 import net.rebel459.legacies_and_legends.tag.LaLItemTags;
 import net.rebel459.legacies_and_legends.util.Gem;
 import net.rebel459.unified.platform.UnifiedEvents;
@@ -54,6 +59,9 @@ public class LaLDataComponents {
                 if (item == Items.ECHO_SHARD) {
                     builder.set(DataComponents.PROVIDES_TRIM_MATERIAL, provider.lookup(Registries.TRIM_MATERIAL).get().getOrThrow(LaLTrimMaterials.ECHO));
                 }
+            }
+            if (item == LaLItems.CLEAVING_BATTLEAXE.get()) {
+                builder.set(DataComponents.ATTRIBUTE_MODIFIERS, VerdantSwordItem.createAttributes());
             }
         });
     }

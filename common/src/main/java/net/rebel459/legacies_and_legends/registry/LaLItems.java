@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -473,7 +474,6 @@ public final class LaLItems {
             CleavingBattleAxeItem::new,
             () -> new Properties()
                     .rarity(Rarity.UNCOMMON)
-                    .attributes(ItemAttributeModifiers.builder().add(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(LaLConstants.id("attack_knockback"), 1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND).build())
     );
     public static final SuppliedItem PROSPECTOR_SHOVEL = ITEMS.register("prospector_shovel",
             (properties) -> new ShovelItem(LaLToolMaterial.PROSPECTOR, 1.5F, -3F, properties), (

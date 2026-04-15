@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class WitheredHoeItem extends Item {
-    protected static final Map<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>> TILLABLES = Maps.<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>>newHashMap(
+    protected static final Map<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>> TILLABLES = Maps.newHashMap(
             ImmutableMap.of(
                     Blocks.WARPED_NYLIUM,
                     Pair.of(HoeItem::onlyIfAirAbove, HoeItem.changeIntoState(Blocks.NETHERRACK.defaultBlockState())),
@@ -36,6 +36,10 @@ public class WitheredHoeItem extends Item {
                     Pair.of(HoeItem::onlyIfAirAbove, HoeItem.changeIntoState(Blocks.SOUL_SAND.defaultBlockState()))
             )
     );
+
+    static {
+        TILLABLES.putAll(HoeItem.TILLABLES);
+    }
 
     public WitheredHoeItem(ToolMaterial material, float attackDamage, float attackSpeed, Properties properties) {
         super(properties.hoe(material, attackDamage, attackSpeed));

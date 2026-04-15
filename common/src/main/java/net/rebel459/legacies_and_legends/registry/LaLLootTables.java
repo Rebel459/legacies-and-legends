@@ -1406,9 +1406,6 @@ public class LaLLootTables {
 							.add(LootItem.lootTableItem(LaLItems.ICE_GEM).setWeight(1));
 					table.addPool(pool);
 				}
-				if (LaLBlocks.CONCENTRATED_METEORITE.get().getLootTable().get().equals(id)) {
-					table.editPool(item -> item == LaLItems.METEORITE_BRICK.get(), LootItem.lootTableItem(LaLItems.METEORITE_GEM).setWeight(1).when(randomChanceAndFortuneBoost(registries, 0.5F, 0.1F)), true);
-				}
 				if (SPIRE.equals(id) || BuiltInLootTables.NETHER_BRIDGE.equals(id)) {
 					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 							.add(EmptyLootItem.emptyItem().setWeight(14))
@@ -1431,11 +1428,6 @@ public class LaLLootTables {
 					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 							.add(EmptyLootItem.emptyItem().setWeight(5))
 							.add(LootItem.lootTableItem(LaLItems.NEBULITE_GEM).setWeight(1));
-					table.addPool(pool);
-				}
-				if ((registerEnderscape("blocks/nebulite_ore").equals(id) || registerEnderscape("blocks/mirestone_nebulite_ore").equals(id)) && isEnderscapeLoaded) {
-					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-							.add(LootItem.lootTableItem(LaLItems.NEBULITE_GEM).setWeight(1).when(randomChanceAndFortuneBoost(registries, 0.009F, 0.002F)));
 					table.addPool(pool);
 				}
 			}

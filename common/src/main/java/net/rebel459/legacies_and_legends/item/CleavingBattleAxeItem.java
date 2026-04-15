@@ -16,6 +16,6 @@ public class CleavingBattleAxeItem extends AxeItem {
 
     @Override
     public void postHurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, LivingEntity attacker) {
-        target.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 0), attacker);
+        target.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 0), attacker);
     }
 }

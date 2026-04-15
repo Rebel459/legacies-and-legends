@@ -36,6 +36,7 @@
   },
   "client": [
     "client.BlockColorsMixin",
+    "client.EffectsInInventoryMixin",
     "client.InventoryScreenMixin",
     "client.ItemStackMixin",
     "client.LightmapRenderStateExtractorMixin",

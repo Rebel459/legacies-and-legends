@@ -28,3 +28,4 @@ accessible class net/minecraft/client/gui/screens/MenuScreens$ScreenConstructor
 accessible method net/minecraft/server/level/ServerLevel getEntities ()Lnet/minecraft/world/level/entity/LevelEntityGetter;
 accessible method net/minecraft/world/entity/Entity getOnPos (F)Lnet/minecraft/core/BlockPos;
 accessible method net/minecraft/world/entity/npc/villager/AbstractVillager addOffersFromTradeSet (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/trading/MerchantOffers;Lnet/minecraft/resources/ResourceKey;)V
+accessible field net/minecraft/world/item/HoeItem TILLABLES Ljava/util/Map;

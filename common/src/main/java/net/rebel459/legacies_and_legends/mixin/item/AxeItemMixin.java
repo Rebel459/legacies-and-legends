@@ -25,7 +25,7 @@ public class AxeItemMixin {
             Item.Properties original,
             @Local(argsOnly = true) ToolMaterial material
     ) {
-        if (material == LaLToolMaterial.CLEAVING) original = original.component(DataComponents.WEAPON, new Weapon(2, 10F));
+        if (material == LaLToolMaterial.CLEAVING) original = original.component(DataComponents.WEAPON, new Weapon(1, 10F));
         return original;
     }
 }

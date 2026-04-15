@@ -2,6 +2,9 @@ package net.rebel459.legacies_and_legends.mixin.entity;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.mojang.logging.LogUtils;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -9,6 +12,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -34,6 +38,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Set;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -71,7 +77,8 @@ public abstract class LivingEntityMixin {
         LivingEntity entity = LivingEntity.class.cast(this);
         if (entity.hasEffect(LaLMobEffects.PROJECTILE_PASSTHROUGH) || entity.hasEffect(LaLMobEffects.LOW_GRAVITY)) {
             if (entity.isFallFlying() || !entity.getBlockStateOn().is(BlockTags.AIR) || entity.isInWater()) {
-                if (ServerEvents.SAVED_PLATFORMS.get(entity.level.dimension()).contains(entity.getOnPos())) return;
+                Set<BlockPos> savedPositions = ServerEvents.SAVED_PLATFORMS.get(entity.level.dimension());
+                if (savedPositions != null && savedPositions.contains(entity.getOnPos())) return;
                 entity.removeEffect(LaLMobEffects.PROJECTILE_PASSTHROUGH);
                 entity.removeEffect(LaLMobEffects.LOW_GRAVITY);
             }
@@ -79,19 +86,19 @@ public abstract class LivingEntityMixin {
     }
 
     @Inject(method = "hurtServer", at = @At("HEAD"))
-    public void frostedSpearFreeze(ServerLevel serverLevel, DamageSource damageSource, float f, CallbackInfoReturnable<Boolean> cir) {
+    public void frostedSpearFreeze(ServerLevel level, DamageSource source, float damage, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity attacked = LivingEntity.class.cast(this);
-        Entity entity = damageSource.getEntity();
+        Entity entity = source.getEntity();
         if (!(entity instanceof LivingEntity attacker)) return;
         ItemStack stack = attacker.getWeaponItem();
         if (stack.is(LaLItemTags.CHILLING)) {
             float ignoredDamage = 0;
             if (stack.isEnchanted()) {
-                ignoredDamage = EnchantmentHelper.modifyDamage(serverLevel, stack, attacked, damageSource, 0F);
+                ignoredDamage = EnchantmentHelper.modifyDamage(level, stack, attacked, source, 0F);
             }
-            int duration = (int) Math.min(f - ignoredDamage, 0);
-            duration = Math.min(duration, 15) * 20;
-            LaLMobEffects.applyFreezing(serverLevel, attacked, attacker, duration);
+            int duration = (int) Math.max(damage - ignoredDamage, 0);
+            duration = Math.min(duration, 20) * 20;
+            LaLMobEffects.applyFreezing(level, attacked, attacker, duration);
         }
     }
 
@@ -156,5 +163,10 @@ public abstract class LivingEntityMixin {
             WandItem.checkComponents(stack);
             WandItem.updateModel(stack, stack.get(LaLDataComponents.WAND_SLOTS.get()), !platform.getPlatformSummoned());
         }
+    }
+
+    @WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/core/Holder;)Z", ordinal = 0), method = "aiStep")
+    private boolean lowGravityFallReset(LivingEntity entity, Holder<MobEffect> effect, Operation<Boolean> original) {
+        return original.call(entity, effect) || entity.hasEffect(LaLMobEffects.LOW_GRAVITY);
     }
 }

@@ -26,29 +26,41 @@
                   }
                 }
               ],
-              "name": "legacies_and_legends:concentrated_meteorite"
+              "name": "enderscape:nebulite_ore"
             },
             {
               "type": "minecraft:item",
-              "conditions": [
+              "functions": [
                 {
-                  "condition": "minecraft:random_chance_with_enchanted_bonus",
-                  "unenchanted_chance": 0.5,
-                  "enchanted_chance": {
-                    "type": "minecraft:linear",
-                    "base": 0.6,
-                    "per_level_above_first": 0.1
+                  "add": false,
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "max": 3.0,
+                    "min": 1.0
                   },
-                  "enchantment": "minecraft:fortune"
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:ore_drops",
+                  "function": "minecraft:apply_bonus"
+                },
+                {
+                  "function": "minecraft:limit_count",
+                  "limit": {
+                    "max": 8.0
+                  }
+                },
+                {
+                  "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "legacies_and_legends:meteorite_gem"
+              "name": "enderscape:nebulite_shards"
             }
           ]
         }
       ],
       "rolls": 1.0
     }
-  ],
-  "random_sequence": "legacies_and_legends:blocks/concentrated_meteorite"
+  ]
 }

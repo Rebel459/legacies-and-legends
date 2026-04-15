@@ -111,7 +111,8 @@ public class LaLItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
 
         this.valueLookupBuilder(ITItemTags.HAS_DESCRIPTION)
                 .addTag(LaLItemTags.ARTIFACTS)
-                .addTag(LaLItemTags.ACCESSORIES);
+                .addTag(LaLItemTags.ACCESSORIES)
+                .add(LaLBlocks.JEWELING_TABLE.asItem());
 
         this.valueLookupBuilder(LaLItemTags.HAS_USE_EFFECT)
                 .add(LaLItems.TABLET_OF_CHANNELING.get())
