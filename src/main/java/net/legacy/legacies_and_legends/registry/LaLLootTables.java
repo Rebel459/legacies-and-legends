@@ -209,7 +209,7 @@ public class LaLLootTables {
 				pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
 						.add(LootItem.lootTableItem(LaLItems.NECKLACE_OF_PROTECTION).setWeight(BooleanUtils.toInteger(LaLConfig.get.accessories.necklace_of_protection) * uncommonWeight))
 						.add(LootItem.lootTableItem(LaLItems.NECKLACE_OF_REGENERATION).setWeight(BooleanUtils.toInteger(LaLConfig.get.accessories.necklace_of_regeneration) * epicWeight))
-						.add(LootItem.lootTableItem(LaLItems.NECKLACE_OF_PROTECTION).setWeight(BooleanUtils.toInteger(LaLConfig.get.accessories.necklace_of_protection) * uncommonWeight))
+						.add(LootItem.lootTableItem(LaLItems.NECKLACE_OF_RESILIENCE).setWeight(BooleanUtils.toInteger(LaLConfig.get.accessories.necklace_of_resilience) * epicWeight))
 						.add(LootItem.lootTableItem(LaLItems.RING_OF_STRIKING).setWeight(BooleanUtils.toInteger(LaLConfig.get.accessories.ring_of_striking) * uncommonWeight))
 						.add(LootItem.lootTableItem(LaLItems.RING_OF_EVASION).setWeight(BooleanUtils.toInteger(LaLConfig.get.accessories.ring_of_evasion) * rareWeight))
 						.add(LootItem.lootTableItem(LaLItems.RING_OF_RESTORATION).setWeight(BooleanUtils.toInteger(LaLConfig.get.accessories.ring_of_restoration) * epicWeight))
