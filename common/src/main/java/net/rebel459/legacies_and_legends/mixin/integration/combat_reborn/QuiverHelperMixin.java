@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(QuiverHelper.class)
 public abstract class QuiverHelperMixin {
 
-/*    @Inject(at = @At("TAIL"), method = "getStack", cancellable = true)
+    @Inject(at = @At("TAIL"), method = "getStack", cancellable = true)
     private static void ringOfArchery(Player player, CallbackInfoReturnable<ItemStack> cir) {
         if (cir.getReturnValue() != null || !AccessoryHelper.isSlotFilled(player)) return;
         ItemStack stack = AccessoryHelper.getAccessory(player);
@@ -32,5 +32,5 @@ public abstract class QuiverHelperMixin {
         if (!AccessoryHelper.isSlotFilled(player)) return;
         ItemStack stack = AccessoryHelper.getAccessory(player);
         if (stack.is(LaLItems.RING_OF_ARCHERY.get())) AccessoryHelper.damageAccessory(player, stack);
-    }*/
+    }
 }

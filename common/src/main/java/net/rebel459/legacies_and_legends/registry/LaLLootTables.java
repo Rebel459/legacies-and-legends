@@ -33,6 +33,7 @@ import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
 import net.rebel459.unified.platform.UnifiedEvents;
 import net.rebel459.unified.platform.UnifiedPlatform;
+import net.rebel459.unified.util.LootEntry;
 import org.apache.commons.lang3.BooleanUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -194,7 +195,7 @@ public class LaLLootTables {
 					table.addPool(pool);
 				}
 				if (BuiltInLootTables.PILLAGER_OUTPOST.equals(id)) {
-					table.editPool(item -> item == Items.CROSSBOW, EmptyLootItem.emptyItem(), true);
+					table.editPool(item -> item == Items.CROSSBOW, LootEntry.remove());
 					pool = LootPool.lootPool().setRolls(UniformGenerator.between(0F, 1F))
 							.add(LootItem.lootTableItem(Items.CROSSBOW).setWeight(4))
 							.add(LootItem.lootTableItem(Items.CROSSBOW).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(10F, 30F))).setWeight(1))
@@ -203,8 +204,8 @@ public class LaLLootTables {
 				}
 				if (BuiltInLootTables.SHIPWRECK_MAP.equals(id)) {
 
-					table.editPool(item -> List.of(Items.COPPER_NAUTILUS_ARMOR, Items.IRON_NAUTILUS_ARMOR, Items.GOLDEN_NAUTILUS_ARMOR, Items.DIAMOND_NAUTILUS_ARMOR).contains(item), EmptyLootItem.emptyItem(), true);
-					table.editPool(item -> item == Items.COMPASS || item == Items.MAP || item == Items.CLOCK, EmptyLootItem.emptyItem(), true);
+					table.editPool(item -> List.of(Items.COPPER_NAUTILUS_ARMOR, Items.IRON_NAUTILUS_ARMOR, Items.GOLDEN_NAUTILUS_ARMOR, Items.DIAMOND_NAUTILUS_ARMOR).contains(item), LootEntry.remove());
+					table.editPool(item -> item == Items.COMPASS || item == Items.MAP || item == Items.CLOCK, LootEntry.remove());
 					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1F))
 							.add(LootItem.lootTableItem(Items.MAP)
 									.apply(ExplorationMapFunction.makeExplorationMap().setDestination(StructureTags.ON_TREASURE_MAPS).setMapDecoration(MapDecorationTypes.RED_X).setZoom((byte)1).setSkipKnownStructures(false))
@@ -217,10 +218,10 @@ public class LaLLootTables {
 					table.addPool(pool);
 				}
 				if (BuiltInLootTables.SIMPLE_DUNGEON.equals(id)) {
-					table.editPool(item -> item == Items.BOOK, LootItem.lootTableItem(Items.BOOK).apply(EnchantRandomlyFunction.randomEnchantment()).setWeight(5), false);
-					table.editPool(item -> item == Items.MUSIC_DISC_13, LootItem.lootTableItem(Items.MUSIC_DISC_13).setWeight(10), true);
-					table.editPool(item -> item == Items.MUSIC_DISC_CAT, LootItem.lootTableItem(Items.MUSIC_DISC_CAT).setWeight(10), true);
-					table.editPool(item -> item == Items.MUSIC_DISC_OTHERSIDE, LootItem.lootTableItem(Items.MUSIC_DISC_STAL).setWeight(10), false);
+					table.editPool(item -> item == Items.BOOK, LootEntry.insert(LootItem.lootTableItem(Items.BOOK).apply(EnchantRandomlyFunction.randomEnchantment()).setWeight(5)));
+					table.editPool(item -> item == Items.MUSIC_DISC_13, LootEntry.replace(LootItem.lootTableItem(Items.MUSIC_DISC_13).setWeight(10)));
+					table.editPool(item -> item == Items.MUSIC_DISC_CAT, LootEntry.replace(LootItem.lootTableItem(Items.MUSIC_DISC_CAT).setWeight(10)));
+					table.editPool(item -> item == Items.MUSIC_DISC_OTHERSIDE, LootEntry.insert(LootItem.lootTableItem(Items.MUSIC_DISC_STAL).setWeight(10)));
 				}
 				if (BuiltInLootTables.STRONGHOLD_CROSSING.equals(id) && !isEnderscapeLoaded) {
 					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
@@ -235,12 +236,12 @@ public class LaLLootTables {
 							.add(EmptyLootItem.emptyItem().setWeight(emptyWeight))
 							.add(LootItem.lootTableItem(Items.MUSIC_DISC_WAIT).setWeight(1));
 					table.addPool(pool);
-					table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(Items.STONE_SWORD).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1), false);
-					table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(Items.STONE_SPEAR).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1), false);
-					table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(Items.STONE_PICKAXE).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1), false);
-					table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(Items.STONE_AXE).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1), false);
-					table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(Items.STONE_SHOVEL).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1), false);
-					table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(Items.STONE_HOE).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1), false);
+					table.editPool(item -> item == Items.FISHING_ROD, LootEntry.insert(LootItem.lootTableItem(Items.STONE_SWORD).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1)));
+					table.editPool(item -> item == Items.FISHING_ROD, LootEntry.insert(LootItem.lootTableItem(Items.STONE_SPEAR).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1)));
+					table.editPool(item -> item == Items.FISHING_ROD, LootEntry.insert(LootItem.lootTableItem(Items.STONE_PICKAXE).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1)));
+					table.editPool(item -> item == Items.FISHING_ROD, LootEntry.insert(LootItem.lootTableItem(Items.STONE_AXE).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1)));
+					table.editPool(item -> item == Items.FISHING_ROD, LootEntry.insert(LootItem.lootTableItem(Items.STONE_SHOVEL).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1)));
+					table.editPool(item -> item == Items.FISHING_ROD, LootEntry.insert(LootItem.lootTableItem(Items.STONE_HOE).apply(EnchantWithLevelsFunction.enchantWithLevels(registries, UniformGenerator.between(3F, 24F))).setWeight(1)));
 				}
 				if (BuiltInLootTables.WOODLAND_MANSION.equals(id)) {
 					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
@@ -277,10 +278,10 @@ public class LaLLootTables {
 			}
 			if (LaLConfig.get().loot.glow_stick) {
 				if (BuiltInLootTables.ABANDONED_MINESHAFT.equals(id)) {
-					table.editPool(item -> item == Items.TORCH, LootItem.lootTableItem(LaLItems.GLOW_STICK).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 12.0F))), false);
+					table.editPool(item -> item == Items.TORCH, LootEntry.insert(LootItem.lootTableItem(LaLItems.GLOW_STICK).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 12.0F)))));
 				}
 				if (BuiltInLootTables.SIMPLE_DUNGEON.equals(id) || DUNGEON_CHEST.equals(id)) {
-					table.editPool(item -> item == Items.COAL, LootItem.lootTableItem(LaLItems.GLOW_STICK).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 8.0F))), false);
+					table.editPool(item -> item == Items.COAL, LootEntry.insert(LootItem.lootTableItem(LaLItems.GLOW_STICK).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 8.0F)))));
 				}
 				if (UNDERGROUND_CABIN.equals(id) || DEEP_CABIN.equals(id)) {
 					pool = LootPool.lootPool().setRolls(UniformGenerator.between(0F, 1F))
@@ -321,10 +322,10 @@ public class LaLLootTables {
 					}
 				}
 				if (BuiltInLootTables.FISHING_TREASURE.equals(id)) {
-					table.editPool(item -> true, NestedLootTable.lootTableReference(Books.FISHERMANS_TALE).setWeight(1).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_DEEP_OCEAN)))), false);
-					table.editPool(item -> true, NestedLootTable.lootTableReference(Books.FORGOTTEN_TALE).setWeight(1).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.DEEP_DARK)))), false);
-					table.editPool(item -> true, NestedLootTable.lootTableReference(Books.TREASURE_TALE).setWeight(1).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath("c", "is_shallow_ocean")))))), false);
-					table.editPool(item -> true, NestedLootTable.lootTableReference(Books.TREASURE_TALE).setWeight(1).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_BEACH)))), false);
+					table.editPool(item -> true, LootEntry.insert(NestedLootTable.lootTableReference(Books.FISHERMANS_TALE).setWeight(1).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_DEEP_OCEAN))))));
+					table.editPool(item -> true, LootEntry.insert(NestedLootTable.lootTableReference(Books.FORGOTTEN_TALE).setWeight(1).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.DEEP_DARK))))));
+					table.editPool(item -> true, LootEntry.insert(NestedLootTable.lootTableReference(Books.TREASURE_TALE).setWeight(1).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath("c", "is_shallow_ocean"))))))));
+					table.editPool(item -> true, LootEntry.insert(NestedLootTable.lootTableReference(Books.TREASURE_TALE).setWeight(1).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_BEACH))))));
 				}
 				if (BuiltInLootTables.ANCIENT_CITY.equals(id)) {
 					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
@@ -1269,104 +1270,104 @@ public class LaLLootTables {
 			}
 
 			if (LaLLootTables.END_RUINS.equals(id)) {
-				table.editPool(item -> item == Items.BEETROOT, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(6), true);
+				table.editPool(item -> item == Items.BEETROOT, LootEntry.replace(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).setWeight(6)));
 			}
 
 			if (!isEnderscapeLoaded) {
 				if (BuiltInLootTables.END_CITY_TREASURE.equals(id)) {
-					table.editPool(item -> item == Items.BEETROOT_SEEDS, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1), false);
+					table.editPool(item -> item == Items.BEETROOT_SEEDS, LootEntry.insert(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1)));
 				}
 				if (BuiltInLootTables.STRONGHOLD_CORRIDOR.equals(id)) {
-					table.editPool(item -> item == Items.GOLDEN_APPLE, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
+					table.editPool(item -> item == Items.GOLDEN_APPLE, LootEntry.insert(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3)));
 				}
 				if (BuiltInLootTables.STRONGHOLD_CROSSING.equals(id)) {
-					table.editPool(item -> item == Items.APPLE, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
+					table.editPool(item -> item == Items.APPLE, LootEntry.insert(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3)));
 				}
 			}
 			if (LaLLootTables.END_REMAINS.equals(id)) {
-				table.editPool(item -> true, LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(LaLItems.ENCHANTED_BEETROOT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3)));
 			}
 
 			if (BuiltInLootTables.FISHING_JUNK.equals(id)) {
 				if (LaLConfig.get().loot.hook) {
-					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.HOOK).apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.0F, 0.9F))).setWeight(2), false);
+					table.editPool(item -> item == Items.LILY_PAD, LootEntry.insert(LootItem.lootTableItem(LaLItems.HOOK).apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.0F, 0.9F))).setWeight(2)));
 				}
 				if (LaLConfig.get().loot.metal_chunk) {
-					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.METAL_CHUNK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).setWeight(10), false);
+					table.editPool(item -> item == Items.LILY_PAD, LootEntry.insert(LootItem.lootTableItem(LaLItems.METAL_CHUNK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).setWeight(10)));
 				}
 				if (LaLConfig.get().loot.wooden_buckets) {
-					table.editPool(item -> item == Items.LILY_PAD, LootItem.lootTableItem(LaLItems.WOODEN_BUCKET).setWeight(10), false);
+					table.editPool(item -> item == Items.LILY_PAD, LootEntry.insert(LootItem.lootTableItem(LaLItems.WOODEN_BUCKET).setWeight(10)));
 				}
 			}
 
 			if (LaLConfig.get().loot.wooden_buckets) {
 				if (BuiltInLootTables.SHIPWRECK_SUPPLY.equals(id)) {
-					table.editPool(item -> item == Items.PAPER, LootItem.lootTableItem(LaLItems.WOODEN_BUCKET).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
+					table.editPool(item -> item == Items.PAPER, LootEntry.insert(LootItem.lootTableItem(LaLItems.WOODEN_BUCKET).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3)));
 				}
 				if (RUINS_ARCHAEOLOGY.equals(id)) {
-					table.editPool(item -> item == Items.BUCKET, LootItem.lootTableItem(LaLItems.WOODEN_BUCKET), true);
+					table.editPool(item -> item == Items.BUCKET, LootEntry.replace(LootItem.lootTableItem(LaLItems.WOODEN_BUCKET)));
 				}
 			}
 
 			if (LaLConfig.get().loot.hook) {
 				if (BuiltInLootTables.FISHING_TREASURE.equals(id)) {
-					table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(LaLItems.HOOK).apply(EnchantRandomlyFunction.randomApplicableEnchantment(registries)).setWeight(1), false);
+					table.editPool(item -> item == Items.FISHING_ROD, LootEntry.insert(LootItem.lootTableItem(LaLItems.HOOK).apply(EnchantRandomlyFunction.randomApplicableEnchantment(registries)).setWeight(1)));
 				}
 			}
 
 			if (BuiltInLootTables.UNDERWATER_RUIN_BIG.equals(id)) {
-				table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(LaLItems.HOOK).apply(EnchantRandomlyFunction.randomApplicableEnchantment(registries)).setWeight(3), false);
+				table.editPool(item -> item == Items.FISHING_ROD, LootEntry.insert(LootItem.lootTableItem(LaLItems.HOOK).apply(EnchantRandomlyFunction.randomApplicableEnchantment(registries)).setWeight(3)));
 			}
 			if (BuiltInLootTables.UNDERWATER_RUIN_SMALL.equals(id)) {
-				table.editPool(item -> item == Items.FISHING_ROD, LootItem.lootTableItem(LaLItems.HOOK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3), false);
+				table.editPool(item -> item == Items.FISHING_ROD, LootEntry.insert(LootItem.lootTableItem(LaLItems.HOOK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(3)));
 			}
 
 			if (LaLConfig.get().loot.new_music_discs) {
 				if (BuiltInLootTables.SIMPLE_DUNGEON.equals(id)) {
-					table.editPool(item -> item == Items.GOLDEN_APPLE, LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10), false);
+					table.editPool(item -> item == Items.GOLDEN_APPLE, LootEntry.insert(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10)));
 				}
 				if (LaLLootTables.DUNGEON_CHEST_ARID.equals(id)) {
-					table.editPool(item -> item == Items.GOLDEN_APPLE, LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10), false);
+					table.editPool(item -> item == Items.GOLDEN_APPLE, LootEntry.insert(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10)));
 				}
 				if (LaLLootTables.DUNGEON_CHEST_FROZEN.equals(id)) {
-					table.editPool(item -> item == Items.GOLDEN_APPLE, LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10), false);
+					table.editPool(item -> item == Items.GOLDEN_APPLE, LootEntry.insert(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10)));
 				}
 				if (LaLLootTables.DUNGEON_CHEST_SIMPLE.equals(id) || LaLLootTables.DUNGEON_CHEST_VERDANT.equals(id)) {
-					table.editPool(item -> item == Items.MUSIC_DISC_13, LootItem.lootTableItem(LaLItems.MUSIC_DISC_CASTLES).setWeight(10), true);
-					table.editPool(item -> item == Items.GOLDEN_APPLE, LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10), false);
+					table.editPool(item -> item == Items.MUSIC_DISC_13, LootEntry.replace(LootItem.lootTableItem(LaLItems.MUSIC_DISC_CASTLES).setWeight(10)));
+					table.editPool(item -> item == Items.GOLDEN_APPLE, LootEntry.insert(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10)));
 				}
 				if (LaLLootTables.DUNGEON_CHEST_SIMPLE.equals(id)) {
-					table.editPool(item -> item == Items.MUSIC_DISC_13, LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10), false);
+					table.editPool(item -> item == Items.MUSIC_DISC_13, LootEntry.insert(LootItem.lootTableItem(LaLItems.DISC_FRAGMENT_FAR_LANDS).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(10)));
 				}
 			}
 
 			if (BuiltInLootTables.TRAIL_RUINS_ARCHAEOLOGY_RARE.equals(id) || LaLLootTables.OBELISK_ARCHAEOLOGY.equals(id)) {
 				if (LaLConfig.get().accessories.ring_of_construction) {
-					table.editPool(item -> true, LootItem.lootTableItem(LaLItems.RING_OF_CONSTRUCTION).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1), false);
+					table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(LaLItems.RING_OF_CONSTRUCTION).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1)));
 				}
 				if (LaLConfig.get().loot.knife) {
-					table.editPool(item -> true, LootItem.lootTableItem(LaLItems.KNIFE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1), false);
+					table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(LaLItems.KNIFE).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 1.0F))).setWeight(1)));
 				}
 			}
 
 			// MODIFIED VANILLA LOOT
 
 			if (LaLConfig.get().loot.improved_loot && BuiltInLootTables.FISHING_JUNK.equals(id)) {
-				table.editPool(item -> true, LootItem.lootTableItem(Items.BAMBOO).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_JUNGLE)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.COCOA_BEANS).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_JUNGLE)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.KELP).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_OCEAN)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.RED_MUSHROOM).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.MUSHROOM_FIELDS)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.BROWN_MUSHROOM).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.MUSHROOM_FIELDS)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.IRON_NUGGET).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_MOUNTAIN)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.PINK_PETALS).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.CHERRY_GROVE)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.SWEET_BERRIES).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_TAIGA)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.DEAD_BUSH).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath("c", "is_desert")))))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.DEAD_BUSH).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_BADLANDS)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.SCULK_VEIN).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.DEEP_DARK)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.POINTED_DRIPSTONE).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.DRIPSTONE_CAVES)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.GLOW_BERRIES).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.LUSH_CAVES)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.PUMPKIN_SEEDS).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.DARK_FOREST)))), false);
-				table.editPool(item -> true, LootItem.lootTableItem(Items.PALE_HANGING_MOSS).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.PALE_GARDEN)))), false);
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.BAMBOO).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_JUNGLE))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.COCOA_BEANS).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_JUNGLE))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.KELP).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_OCEAN))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.RED_MUSHROOM).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.MUSHROOM_FIELDS))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.BROWN_MUSHROOM).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.MUSHROOM_FIELDS))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.IRON_NUGGET).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_MOUNTAIN))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.PINK_PETALS).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.CHERRY_GROVE))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.SWEET_BERRIES).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_TAIGA))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.DEAD_BUSH).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath("c", "is_desert"))))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.DEAD_BUSH).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiomes(biomeLookup.getOrThrow(BiomeTags.IS_BADLANDS))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.SCULK_VEIN).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.DEEP_DARK))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.POINTED_DRIPSTONE).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.DRIPSTONE_CAVES))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.GLOW_BERRIES).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.LUSH_CAVES))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.PUMPKIN_SEEDS).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.DARK_FOREST))))));
+				table.editPool(item -> true, LootEntry.insert(LootItem.lootTableItem(Items.PALE_HANGING_MOSS).setWeight(10).when(LocationCheck.checkLocation(LocationPredicate.Builder.inBiome(biomeLookup.getOrThrow(Biomes.PALE_GARDEN))))));
 			}
 
 			// GEMS
@@ -1387,7 +1388,7 @@ public class LaLLootTables {
 					table.addPool(pool);
 				}
 				if (BuiltInLootTables.FISHING_TREASURE.equals(id)) {
-					table.editPool(item -> true, LootItem.lootTableItem(LaLItems.PRISMARINE_GEM).setWeight(1), true);
+					table.editPool(item -> true, LootEntry.replace(LootItem.lootTableItem(LaLItems.PRISMARINE_GEM).setWeight(1)));
 				}
 				if (UNDERGROUND_CABIN.equals(id) || DEEP_CABIN.equals(id)) {
 					pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))

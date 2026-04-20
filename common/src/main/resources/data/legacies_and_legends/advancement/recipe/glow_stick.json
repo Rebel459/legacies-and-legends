@@ -6,7 +6,8 @@
         "items": [
           {
             "items": [
-              "#legacies_and_legends:crafts_glow_stick",
+              "minecraft:glow_ink_sac",
+              "minecraft:glow_berries",
               "legacies_and_legends:glow_stick"
             ]
           }
