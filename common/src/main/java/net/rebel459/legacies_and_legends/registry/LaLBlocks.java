@@ -1,9 +1,7 @@
 package net.rebel459.legacies_and_legends.registry;
 
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.DamageResistant;

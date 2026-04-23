@@ -1,11 +1,14 @@
 package net.rebel459.legacies_and_legends.registry;
 
-import net.rebel459.legacies_and_legends.LegaciesAndLegends;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.rebel459.legacies_and_legends.LegaciesAndLegends;
 import net.rebel459.unified.platform.UnifiedHelpers;
+import net.rebel459.unified.platform.UnifiedPlatform;
+import net.rebel459.unified.util.LoaderType;
 
 public class LaLCreativeInventorySorting {
 
@@ -102,6 +105,30 @@ public class LaLCreativeInventorySorting {
 		UnifiedHelpers.CREATIVE_ENTRIES.insertBefore(CreativeModeTabs.BUILDING_BLOCKS, Blocks.NETHERRACK, LaLBlocks.METEORITE, LaLBlocks.METEORITE_BRICKS, LaLBlocks.METEORITE_BRICK_STAIRS, LaLBlocks.METEORITE_BRICK_SLAB, LaLBlocks.METEORITE_BRICK_WALL, LaLBlocks.CHISELED_METEORITE_BRICKS);
 		UnifiedHelpers.CREATIVE_ENTRIES.insertBefore(CreativeModeTabs.INGREDIENTS, Items.NETHER_BRICK, LaLItems.METEORITE_BRICK);
 
-		UnifiedHelpers.CREATIVE_ENTRIES.insertBefore(CreativeModeTabs.INGREDIENTS, Items.ENCHANTED_BOOK, LaLItems.SAPPHIRE_GEM, LaLItems.SLIME_GEM, LaLItems.ICE_GEM, LaLItems.PRISMARINE_GEM, LaLItems.BREEZE_GEM, LaLItems.RUBY_GEM, LaLItems.METEORITE_GEM, LaLItems.OBSIDIAN_GEM, LaLItems.NEBULITE_GEM, LaLItems.TIMELOST_GEM);
+		addGems(
+				LaLItems.SAPPHIRE_GEM,
+				LaLItems.SLIME_GEM,
+				LaLItems.ICE_GEM,
+				LaLItems.PRISMARINE_GEM,
+				LaLItems.BREEZE_GEM,
+				LaLItems.RUBY_GEM,
+				LaLItems.METEORITE_GEM,
+				LaLItems.OBSIDIAN_GEM,
+				LaLItems.NEBULITE_GEM,
+				LaLItems.TIMELOST_GEM
+		);
+	}
+
+	public static void addGems(ItemLike... gems) {
+		if (UnifiedPlatform.get().getLoader() == LoaderType.NEOFORGE) UnifiedHelpers.CREATIVE_ENTRIES.insertAfter(
+				CreativeModeTabs.INGREDIENTS,
+				Items.OMINOUS_TRIAL_KEY,
+				gems
+		);
+		else UnifiedHelpers.CREATIVE_ENTRIES.insertBefore(
+				CreativeModeTabs.INGREDIENTS,
+				Items.ENCHANTED_BOOK,
+				gems
+		);
 	}
 }

@@ -88,7 +88,7 @@ public class JewelingMenu extends AbstractContainerMenu {
             }
         });
 
-        addPlayerInventory(inventory);
+        this.addStandardInventorySlots(inventory, 8, 84);
         this.snapshotCurrentState();
     }
 
@@ -289,17 +289,5 @@ public class JewelingMenu extends AbstractContainerMenu {
         this.lastPrimary = ItemStack.EMPTY;
         this.lastSecondary = ItemStack.EMPTY;
         super.removed(player);
-    }
-
-    private void addPlayerInventory(Inventory inventory) {
-        for (int row = 0; row < 3; row++) {
-            for (int column = 0; column < 9; column++) {
-                this.addSlot(new Slot(inventory, column + row * 9 + 9, 8 + column * 18, 84 + row * 18));
-            }
-        }
-
-        for (int hotbarSlot = 0; hotbarSlot < 9; hotbarSlot++) {
-            this.addSlot(new Slot(inventory, hotbarSlot, 8 + hotbarSlot * 18, 142));
-        }
     }
 }
