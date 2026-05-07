@@ -15,7 +15,7 @@ import java.util.Collection;
 public abstract class EffectsInInventoryMixin {
 
     @WrapOperation(method = "extractRenderState", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/EffectsInInventory;extractEffects(Lnet/minecraft/client/gui/GuiGraphicsExtractor;Ljava/util/Collection;IIIII)V"))
-    private void renderAccessoryBackground(EffectsInInventory effectsInInventory, GuiGraphicsExtractor graphics, Collection<MobEffectInstance> activeEffects, int x0, int yStep, int mouseX, int mouseY, int maxWidth, Operation<Void> original) {
+    private void hideEffects(EffectsInInventory effectsInInventory, GuiGraphicsExtractor graphics, Collection<MobEffectInstance> activeEffects, int x0, int yStep, int mouseX, int mouseY, int maxWidth, Operation<Void> original) {
         activeEffects.removeIf(effect -> (effect.is(LaLMobEffects.LOW_GRAVITY) || effect.is(LaLMobEffects.PROJECTILE_PASSTHROUGH)) && !effect.showIcon() && !effect.isVisible());
         original.call(effectsInInventory, graphics, activeEffects, x0, yStep, mouseX, mouseY, maxWidth);
     }

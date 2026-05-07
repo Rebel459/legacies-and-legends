@@ -8,7 +8,7 @@ import net.rebel459.unified.platform.UnifiedRegistries;
 
 public class LaLMapDecorationTypes {
 
-	public static UnifiedRegistries.DeferredRegistry DECORATIONS = UnifiedRegistries.DeferredRegistry.create(LaLConstants.MOD_ID, BuiltInRegistries.MAP_DECORATION_TYPE);
+	public static UnifiedRegistries.DeferredRegistry<MapDecorationType> DECORATIONS = UnifiedRegistries.DeferredRegistry.create(LaLConstants.MOD_ID, BuiltInRegistries.MAP_DECORATION_TYPE);
 
 	public static final Holder<MapDecorationType> SIMPLE_DUNGEON = register(
 			"simple_dungeon",
@@ -56,6 +56,6 @@ public class LaLMapDecorationTypes {
 	public static void init() {}
 
 	private static Holder<MapDecorationType> register(String string, boolean showOnItemFrame, int mapColor, boolean trackCount, boolean explorationMapElement) {
-		return DECORATIONS.registerHolder(string, () -> new MapDecorationType(LaLConstants.id(string), showOnItemFrame, mapColor, explorationMapElement, trackCount));
+		return DECORATIONS.registerForHolder(string, () -> new MapDecorationType(LaLConstants.id(string), showOnItemFrame, mapColor, explorationMapElement, trackCount));
 	}
 }

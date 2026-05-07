@@ -16,7 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.rebel459.unified.tag.UnifiedItemTags;
-import net.rebel459.unified.util.SuppliedItem;
+import net.rebel459.unified.util.registry.SuppliedItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;

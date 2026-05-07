@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.rebel459.item_tooltips.config.ITConfig;
 import net.rebel459.item_tooltips.util.ScreenHelper;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
-import net.rebel459.unified.util.SuppliedItem;
+import net.rebel459.unified.util.registry.SuppliedItem;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Unique;
 

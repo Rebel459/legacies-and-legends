@@ -18,7 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.rebel459.legacies_and_legends.entity.GlowStickProjectile;
 import net.rebel459.legacies_and_legends.registry.LaLBlocks;
-import net.rebel459.unified.util.SuppliedBlock;
+import net.rebel459.unified.util.registry.SuppliedBlock;
 
 import java.util.function.Supplier;
 

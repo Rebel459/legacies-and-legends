@@ -22,7 +22,7 @@ public class LegaciesAndLegends {
 	public static boolean isVariantsAndVenturesLoaded = false;
 	public static boolean isTrailierTalesLoaded = false;
     public static boolean isEnchantsAndExpeditionsLoaded() {
-        return UnifiedPlatform.get().isModLoaded("enchants_and_expeditions");
+        return UnifiedPlatform.isModLoaded("enchants_and_expeditions");
     }
     public static boolean isEndRebornLoaded = false;
 	public static boolean isEnderscapeLoaded = false;
@@ -58,7 +58,7 @@ public class LegaciesAndLegends {
 
     public static void loadResources() {
 
-        isCombatRebornLoaded = UnifiedPlatform.get().isModLoaded("combat_reborn");
+        isCombatRebornLoaded = UnifiedPlatform.isModLoaded("combat_reborn");
 
         if (LaLConfig.get().structures.dungeon_overhaul) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("dungeon_overhaul"), PackType.REQUIRED_DATA);
@@ -93,38 +93,38 @@ public class LegaciesAndLegends {
         if (LaLConfig.get().misc.no_creeper_discs) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("no_creeper_discs"), PackType.REQUIRED_DATA);
         }
-        if (UnifiedPlatform.get().isModLoaded("end_reborn")) {
+        if (UnifiedPlatform.isModLoaded("end_reborn")) {
             isEndRebornLoaded = true;
         }
-        if (UnifiedPlatform.get().isModLoaded("progression_reborn")) {
+        if (UnifiedPlatform.isModLoaded("progression_reborn")) {
             isProgressionRebornLoaded = true;
         }
-        if (UnifiedPlatform.get().isModLoaded("farmersdelight") && LaLConfig.get().integrations.farmers_delight) {
+        if (UnifiedPlatform.isModLoaded("farmersdelight") && LaLConfig.get().integrations.farmers_delight) {
             isFarmersDelightLoaded = true;
             UnifiedHelpers.PACKS.add(LaLConstants.id("farmers_delight_integration"), PackType.REQUIRED_DATA);
         }
         if (LaLConfig.get().misc.wandering_trader_trades) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("wandering_trader_trades"), PackType.REQUIRED_DATA);
         }
-        if (UnifiedPlatform.get().isModLoaded("bloom") && LaLConfig.get().integrations.bloom) {
+        if (UnifiedPlatform.isModLoaded("bloom") && LaLConfig.get().integrations.bloom) {
             isBloomLoaded = true;
             UnifiedHelpers.PACKS.add(LaLConstants.id("bloom_integration"), PackType.REQUIRED_DATA);
         }
-        if (UnifiedPlatform.get().isModLoaded("wilderwild") && LaLConfig.get().integrations.wilder_wild) {
+        if (UnifiedPlatform.isModLoaded("wilderwild") && LaLConfig.get().integrations.wilder_wild) {
             isWilderWildLoaded = true;
             UnifiedHelpers.PACKS.add(LaLConstants.id("wilder_wild_integration"), PackType.REQUIRED_DATA);
         }
-        if (UnifiedPlatform.get().isModLoaded("trailiertales") && LaLConfig.get().integrations.trailier_tales) {
+        if (UnifiedPlatform.isModLoaded("trailiertales") && LaLConfig.get().integrations.trailier_tales) {
             isTrailierTalesLoaded = true;
             UnifiedHelpers.PACKS.add(LaLConstants.id("trailier_tales_integration"), PackType.REQUIRED_DATA);
         }
-        if (UnifiedPlatform.get().isModLoaded("variantsandventures") && LaLConfig.get().integrations.variants_and_ventures) {
+        if (UnifiedPlatform.isModLoaded("variantsandventures") && LaLConfig.get().integrations.variants_and_ventures) {
             isVariantsAndVenturesLoaded = true;
             if (LaLConfig.get().structures.dungeon_overhaul) {
                 UnifiedHelpers.PACKS.add(LaLConstants.id("variants_and_ventures_integration"), PackType.REQUIRED_DATA);
             }
         }
-        if (UnifiedPlatform.get().isModLoaded("enderscape") && LaLConfig.get().integrations.enderscape) {
+        if (UnifiedPlatform.isModLoaded("enderscape") && LaLConfig.get().integrations.enderscape) {
             isEnderscapeLoaded = true;
             UnifiedHelpers.PACKS.add(LaLConstants.id("enderscape_integration"), PackType.REQUIRED_DATA);
             if (LaLConfig.get().magic.jeweling) {

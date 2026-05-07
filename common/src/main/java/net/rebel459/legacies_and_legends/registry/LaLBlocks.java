@@ -18,7 +18,7 @@ import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
 import net.rebel459.legacies_and_legends.sound.LaLBlockSounds;
 import net.rebel459.unified.platform.UnifiedHelpers;
 import net.rebel459.unified.platform.UnifiedRegistries;
-import net.rebel459.unified.util.SuppliedBlock;
+import net.rebel459.unified.util.registry.SuppliedBlock;
 
 import java.util.List;
 

@@ -33,7 +33,7 @@ public final class LegaciesAndLegendsClient {
         if (!LaLConfig.get().music.end_portal_music) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("no_end_portal_music"), PackType.REQUIRED_RESOURCES);
         }
-        if (UnifiedPlatform.get().isModLoaded("farmersdelight") && LaLConfig.get().integrations.farmers_delight) {
+        if (UnifiedPlatform.isModLoaded("farmersdelight") && LaLConfig.get().integrations.farmers_delight) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("farmers_delight_integration"), PackType.REQUIRED_RESOURCES);
         }
         if (LaLConfig.get().misc.improved_turtle_shell) {

@@ -120,7 +120,7 @@ public class LaLCreativeInventorySorting {
 	}
 
 	public static void addGems(ItemLike... gems) {
-		if (UnifiedPlatform.get().getLoader() == LoaderType.NEOFORGE) UnifiedHelpers.CREATIVE_ENTRIES.insertAfter(
+		if (UnifiedPlatform.getLoader() == LoaderType.NEOFORGE) UnifiedHelpers.CREATIVE_ENTRIES.insertAfter(
 				CreativeModeTabs.INGREDIENTS,
 				Items.OMINOUS_TRIAL_KEY,
 				gems

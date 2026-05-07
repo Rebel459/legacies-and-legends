@@ -11,7 +11,7 @@ import net.rebel459.unified.platform.UnifiedPlatform;
 
 public class FriendsAndFoesTotemUtil {
     public static void playActivateAnimation(Entity entity, ParticleType<?> particleType) {
-        if (UnifiedPlatform.get().isServerSide()) return;
+        if (UnifiedPlatform.isServerSide()) return;
         Minecraft minecraftClient = Minecraft.getInstance();
         minecraftClient.particleEngine.createTrackingEmitter(entity, (ParticleOptions)particleType, 30);
         ClientLevel clientWorld = minecraftClient.level;
@@ -21,7 +21,7 @@ public class FriendsAndFoesTotemUtil {
     }
 
     public static void playActivateAnimationOnly(ItemStack itemStack) {
-        if (UnifiedPlatform.get().isServerSide()) return;
+        if (UnifiedPlatform.isServerSide()) return;
 
         Minecraft minecraftClient = Minecraft.getInstance();
 

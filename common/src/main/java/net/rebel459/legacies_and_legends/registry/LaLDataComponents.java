@@ -18,6 +18,7 @@ import net.rebel459.legacies_and_legends.tag.LaLItemTags;
 import net.rebel459.legacies_and_legends.util.Gem;
 import net.rebel459.unified.platform.UnifiedEvents;
 import net.rebel459.unified.platform.UnifiedRegistries;
+import net.rebel459.unified.util.registry.Supplied;
 
 import java.util.function.Supplier;
 
@@ -54,18 +55,18 @@ public class LaLDataComponents {
 
     public static UnifiedRegistries.DataComponentTypes COMPONENTS = UnifiedRegistries.DataComponentTypes.create(LaLConstants.MOD_ID);
 
-    public static final Supplier<DataComponentType<String>> LORE_BOOK = COMPONENTS.register(
+    public static final Supplied<DataComponentType<String>> LORE_BOOK = COMPONENTS.register(
             "lore_book", builder -> builder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8)
     );
 
-    public static final Supplier<DataComponentType<Integer>> VARIABLE_DURABILITY = COMPONENTS.register(
+    public static final Supplied<DataComponentType<Integer>> VARIABLE_DURABILITY = COMPONENTS.register(
             "variable_durability", builder -> builder.persistent(ExtraCodecs.POSITIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
     );
 
-    public static final Supplier<DataComponentType<Gem>> GEM = COMPONENTS.register(
+    public static final Supplied<DataComponentType<Gem>> GEM = COMPONENTS.register(
             "gem", builder -> builder.persistent(Gem.CODEC).networkSynchronized(Gem.STREAM_CODEC)
     );
-    public static final Supplier<DataComponentType<Gem.Slots>> WAND_SLOTS = COMPONENTS.register(
+    public static final Supplied<DataComponentType<Gem.Slots>> WAND_SLOTS = COMPONENTS.register(
             "wand_slots", builder -> builder.persistent(Gem.Slots.CODEC).networkSynchronized(Gem.Slots.STREAM_CODEC)
     );
 }

@@ -7,7 +7,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -27,7 +26,7 @@ import net.rebel459.legacies_and_legends.tag.LaLItemTags;
 import net.rebel459.legacies_and_legends.util.Gem;
 import net.rebel459.unified.platform.UnifiedRegistries;
 import net.rebel459.unified.registry.UnifiedDataComponents;
-import net.rebel459.unified.util.SuppliedItem;
+import net.rebel459.unified.util.registry.SuppliedItem;
 
 import java.util.List;
 

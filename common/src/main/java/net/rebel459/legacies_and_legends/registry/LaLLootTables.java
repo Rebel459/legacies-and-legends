@@ -163,7 +163,7 @@ public class LaLLootTables {
 			LootPool.Builder pool;
 			HolderLookup.RegistryLookup<Biome> biomeLookup = registries.lookup(Registries.BIOME).get();
 
-			boolean isEnderscapeLoaded = UnifiedPlatform.get().isModLoaded("enderscape") && LaLConfig.get().integrations.enderscape;
+			boolean isEnderscapeLoaded = UnifiedPlatform.isModLoaded("enderscape") && LaLConfig.get().integrations.enderscape;
 
 			// IMPROVED LOOT
 

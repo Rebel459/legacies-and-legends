@@ -18,9 +18,9 @@ public final class LaLMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public void onLoad(String mixinPackage) {
-        hasEnchantsAndExpeditions = UnifiedPlatform.get().isModLoaded("enchants_and_expeditions");
-        hasCombatReborn = UnifiedPlatform.get().isModLoaded("combat_reborn");
-        hasFriendsAndFoes = UnifiedPlatform.get().isModLoaded("friendsandfoes");
+        hasEnchantsAndExpeditions = UnifiedPlatform.isModLoaded("enchants_and_expeditions");
+        hasCombatReborn = UnifiedPlatform.isModLoaded("combat_reborn");
+        hasFriendsAndFoes = UnifiedPlatform.isModLoaded("friendsandfoes");
     }
 
     @Override

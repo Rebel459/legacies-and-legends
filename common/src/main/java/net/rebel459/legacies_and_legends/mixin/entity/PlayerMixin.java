@@ -393,7 +393,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
 
     @Unique
     private static void playTotemAnimation(ItemStack itemStack, Entity entity) {
-        if (UnifiedPlatform.get().isServerSide()) return;
+        if (UnifiedPlatform.isServerSide()) return;
         Minecraft minecraftClient = Minecraft.getInstance();
         minecraftClient.particleEngine.createTrackingEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
 

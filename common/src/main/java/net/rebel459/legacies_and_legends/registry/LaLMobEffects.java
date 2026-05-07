@@ -15,13 +15,13 @@ import net.rebel459.unified.platform.UnifiedRegistries;
 
 public class LaLMobEffects {
 
-    public static UnifiedRegistries.DeferredRegistry EFFECTS = UnifiedRegistries.DeferredRegistry.create(LaLConstants.MOD_ID, BuiltInRegistries.MOB_EFFECT);
+    public static UnifiedRegistries.DeferredRegistry<MobEffect> EFFECTS = UnifiedRegistries.DeferredRegistry.create(LaLConstants.MOD_ID, BuiltInRegistries.MOB_EFFECT);
 
-    public static final Holder<MobEffect> FREEZING = EFFECTS.registerHolder(
+    public static final Holder<MobEffect> FREEZING = EFFECTS.registerForHolder(
             "freezing",
             () -> new MobEffect(MobEffectCategory.HARMFUL, 7720931) {}
     );
-    public static final Holder<MobEffect> INSTABILITY = EFFECTS.registerHolder(
+    public static final Holder<MobEffect> INSTABILITY = EFFECTS.registerForHolder(
             "instability", () -> (
                     new MobEffect(MobEffectCategory.NEUTRAL, 7901340) {}
                             .addAttributeModifier(Attributes.MAX_ABSORPTION, Identifier.withDefaultNamespace("effect.absorption"), 2.0, AttributeModifier.Operation.ADD_VALUE)
@@ -30,17 +30,17 @@ public class LaLMobEffects {
                             .addAttributeModifier(Attributes.SAFE_FALL_DISTANCE, LaLConstants.id("effect.safe_fall_distance"), 2, AttributeModifier.Operation.ADD_VALUE)
             )
     );
-    public static final Holder<MobEffect> WARPING = EFFECTS.registerHolder(
+    public static final Holder<MobEffect> WARPING = EFFECTS.registerForHolder(
             "warping",
             () -> new MobEffect(MobEffectCategory.NEUTRAL, 9337599) {}
     );
-    public static final Holder<MobEffect> LOW_GRAVITY = EFFECTS.registerHolder(
+    public static final Holder<MobEffect> LOW_GRAVITY = EFFECTS.registerForHolder(
             "low_gravity", () -> (
                     new MobEffect(MobEffectCategory.BENEFICIAL, 0) {}
                             .addAttributeModifier(Attributes.GRAVITY, LaLConstants.id("effect.gravity"), -0.8, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
             )
     );
-    public static final Holder<MobEffect> PROJECTILE_PASSTHROUGH = EFFECTS.registerHolder(
+    public static final Holder<MobEffect> PROJECTILE_PASSTHROUGH = EFFECTS.registerForHolder(
             "projectile_passthrough", () -> (
                     new MobEffect(MobEffectCategory.BENEFICIAL, 0) {}
             )

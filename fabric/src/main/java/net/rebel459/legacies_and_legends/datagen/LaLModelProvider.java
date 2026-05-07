@@ -9,7 +9,7 @@ import net.rebel459.legacies_and_legends.registry.*;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
-import net.rebel459.unified.util.SuppliedItem;
+import net.rebel459.unified.util.registry.SuppliedItem;
 import org.jetbrains.annotations.NotNull;
 
 public final class LaLModelProvider extends FabricModelProvider {
