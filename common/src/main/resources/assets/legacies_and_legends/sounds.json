@@ -1,9 +1,4 @@
 {
-  "misc.threshold": {
-    "sounds": [
-      "legacy:music/misc/threshold_end_portal"
-    ]
-  },
   "accessory.break": {
     "sounds": [
       "random/break"
@@ -571,6 +566,15 @@
       }
     ]
   },
+  "music.common": {
+    "sounds": [
+      {
+        "name": "legacy:music.classic",
+        "type": "event",
+        "weight": 12
+      }
+    ]
+  },
   "music.the_end.main_island": {
     "sounds": [
       {
@@ -588,10 +592,6 @@
         "weight": 3
       },
       {
-        "name": "legacy:music/overworld/mosaic",
-        "stream": true
-      },
-      {
         "name": "legacy:music/overworld/814",
         "stream": true
       },
@@ -604,21 +604,18 @@
         "stream": true
       },
       {
+        "name": "legacy:music/overworld/ravine",
+        "stream": true
+      },
+      {
+        "name": "legacy:music.classic",
+        "type": "event",
+        "weight": 12
+      },
+      {
         "name": "music/game/bromeliad",
         "stream": true,
         "volume": 0.4
-      },
-      {
-        "name": "music/game/minecraft",
-        "stream": true
-      },
-      {
-        "name": "music/game/clark",
-        "stream": true
-      },
-      {
-        "name": "music/game/sweden",
-        "stream": true
       },
       {
         "name": "music/game/comforting_memories",
@@ -631,50 +628,14 @@
         "volume": 0.4
       },
       {
-        "name": "music/game/subwoofer_lullaby",
-        "stream": true
-      },
-      {
-        "name": "music/game/living_mice",
-        "stream": true
-      },
-      {
-        "name": "music/game/haggstrom",
-        "stream": true
-      },
-      {
-        "name": "music/game/danny",
-        "stream": true
-      },
-      {
         "name": "music/game/left_to_bloom",
         "stream": true,
         "volume": 0.4
       },
       {
-        "name": "music/game/key",
-        "stream": true
-      },
-      {
-        "name": "music/game/oxygene",
-        "stream": true
-      },
-      {
         "name": "music/game/one_more_day",
         "stream": true,
         "volume": 0.4
-      },
-      {
-        "name": "music/game/dry_hands",
-        "stream": true
-      },
-      {
-        "name": "music/game/wet_hands",
-        "stream": true
-      },
-      {
-        "name": "music/game/mice_on_venus",
-        "stream": true
       },
       {
         "name": "music/game/swamp/aerie",
@@ -688,6 +649,16 @@
       },
       {
         "name": "music/game/swamp/labyrinthine",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/memories",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/shores",
         "stream": true,
         "volume": 0.4
       }
@@ -715,6 +686,11 @@
       {
         "name": "legacy:music/overworld/shrub",
         "stream": true
+      },
+      {
+        "name": "legacy:music.classic",
+        "type": "event",
+        "weight": 12
       },
       {
         "name": "music/game/lilypad",
@@ -767,52 +743,19 @@
         "volume": 0.8
       },
       {
-        "name": "music/game/minecraft",
-        "stream": true
+        "name": "music/game/ebb",
+        "stream": true,
+        "volume": 0.4
       },
       {
-        "name": "music/game/clark",
-        "stream": true
+        "name": "music/game/shores",
+        "stream": true,
+        "volume": 0.4
       },
       {
-        "name": "music/game/sweden",
-        "stream": true
-      },
-      {
-        "name": "music/game/subwoofer_lullaby",
-        "stream": true
-      },
-      {
-        "name": "music/game/living_mice",
-        "stream": true
-      },
-      {
-        "name": "music/game/haggstrom",
-        "stream": true
-      },
-      {
-        "name": "music/game/danny",
-        "stream": true
-      },
-      {
-        "name": "music/game/key",
-        "stream": true
-      },
-      {
-        "name": "music/game/oxygene",
-        "stream": true
-      },
-      {
-        "name": "music/game/dry_hands",
-        "stream": true
-      },
-      {
-        "name": "music/game/wet_hands",
-        "stream": true
-      },
-      {
-        "name": "music/game/mice_on_venus",
-        "stream": true
+        "name": "music/game/nightly",
+        "stream": true,
+        "volume": 0.4
       }
     ]
   },
@@ -831,6 +774,11 @@
         "stream": true
       },
       {
+        "name": "legacy:music.classic",
+        "type": "event",
+        "weight": 12
+      },
+      {
         "name": "music/game/fireflies",
         "stream": true,
         "volume": 0.4,
@@ -847,18 +795,6 @@
         "volume": 0.4
       },
       {
-        "name": "music/game/clark",
-        "stream": true
-      },
-      {
-        "name": "music/game/danny",
-        "stream": true
-      },
-      {
-        "name": "music/game/dry_hands",
-        "stream": true
-      },
-      {
         "name": "music/game/featherfall",
         "stream": true,
         "volume": 0.4
@@ -869,12 +805,9 @@
         "volume": 0.4
       },
       {
-        "name": "music/game/haggstrom",
-        "stream": true
-      },
-      {
-        "name": "music/game/key",
-        "stream": true
+        "name": "music/game/home",
+        "stream": true,
+        "volume": 0.4
       },
       {
         "name": "music/game/komorebi",
@@ -887,25 +820,9 @@
         "volume": 0.4
       },
       {
-        "name": "music/game/living_mice",
-        "stream": true
-      },
-      {
-        "name": "music/game/mice_on_venus",
-        "stream": true
-      },
-      {
-        "name": "music/game/minecraft",
-        "stream": true
-      },
-      {
         "name": "music/game/one_more_day",
         "stream": true,
         "volume": 0.4
-      },
-      {
-        "name": "music/game/oxygene",
-        "stream": true
       },
       {
         "name": "music/game/puzzlebox",
@@ -913,21 +830,9 @@
         "volume": 0.4
       },
       {
-        "name": "music/game/subwoofer_lullaby",
-        "stream": true
-      },
-      {
-        "name": "music/game/sweden",
-        "stream": true
-      },
-      {
         "name": "music/game/watcher",
         "stream": true,
         "volume": 0.4
-      },
-      {
-        "name": "music/game/wet_hands",
-        "stream": true
       },
       {
         "name": "music/game/yakusoku",

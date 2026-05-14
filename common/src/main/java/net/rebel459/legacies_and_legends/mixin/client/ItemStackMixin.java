@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-@Mixin(ItemStack.class)
+@Mixin(value = ItemStack.class, priority = 500)
 public abstract class ItemStackMixin {
 
     @Inject(at = @At("TAIL"), method = "addDetailsToTooltip")

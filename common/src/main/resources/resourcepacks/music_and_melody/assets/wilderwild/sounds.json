@@ -5,7 +5,7 @@
       {
         "name": "music.overworld.forest",
         "type": "event",
-        "weight": 28
+        "weight": 31
       },
       {
         "name": "wilderwild:music/ludocrypt/serene_sonder",
@@ -27,7 +27,7 @@
       {
         "name": "music.overworld.flower_forest",
         "type": "event",
-        "weight": 14
+        "weight": 22
       },
       {
         "name": "wilderwild:music/ludocrypt/horizon_afoot",
@@ -43,7 +43,7 @@
       {
         "name": "music.overworld.lush_caves",
         "type": "event",
-        "weight": 18
+        "weight": 19
       },
       {
         "name": "wilderwild:music/pictochats/amber",
@@ -83,7 +83,7 @@
       {
         "name": "music.overworld.cherry_grove",
         "type": "event",
-        "weight": 12
+        "weight": 15
       },
       {
         "name": "wilderwild:music/pictochats/amber",
@@ -113,13 +113,12 @@
       {
         "name": "music.overworld.jungle",
         "type": "event",
-        "weight": 13
+        "weight": 15
       },
       {
         "name": "wilderwild:music/pictochats/dahlia",
         "stream": true,
-        "volume": 0.8,
-        "weight": 2
+        "volume": 0.8
       }
     ]
   },
@@ -129,13 +128,12 @@
       {
         "name": "music.overworld.sparse_jungle",
         "type": "event",
-        "weight": 13
+        "weight": 15
       },
       {
         "name": "wilderwild:music/pictochats/dahlia",
         "stream": true,
-        "volume": 0.8,
-        "weight": 2
+        "volume": 0.8
       }
     ]
   },
@@ -145,13 +143,12 @@
       {
         "name": "music.overworld.bamboo_jungle",
         "type": "event",
-        "weight": 13
+        "weight": 15
       },
       {
         "name": "wilderwild:music/pictochats/dahlia",
         "stream": true,
-        "volume": 0.8,
-        "weight": 2
+        "volume": 0.8
       }
     ]
   },
@@ -204,12 +201,13 @@
       {
         "name": "music.game",
         "type": "event",
-        "weight": 32
+        "weight": 49
       },
       {
         "name": "wilderwild:music/pictochats/anemone",
         "stream": true,
-        "volume": 0.7
+        "volume": 0.7,
+        "weight": 5
       },
       {
         "name": "wilderwild:music/pictochats/espial",
@@ -225,13 +223,13 @@
       {
         "name": "music.game",
         "type": "event",
-        "weight": 32
+        "weight": 49
       },
       {
         "name": "wilderwild:music/pictochats/espial",
         "stream": true,
         "volume": 0.7,
-        "weight": 2
+        "weight": 3
       },
       {
         "name": "wilderwild:music/zhen/frozen_blocks",
@@ -246,18 +244,19 @@
       {
         "name": "music.game",
         "type": "event",
-        "weight": 32
+        "weight": 49
       },
       {
         "name": "wilderwild:music/pictochats/anemone",
         "stream": true,
         "volume": 0.7,
-        "weight": 2
+        "weight": 5
       },
       {
         "name": "wilderwild:music/pictochats/espial",
         "stream": true,
-        "volume": 0.7
+        "volume": 0.7,
+        "weight": 2
       }
     ]
   },
@@ -285,6 +284,11 @@
         "volume": 0.4
       },
       {
+        "name": "music/game/shores",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
         "name": "wilderwild:music/ludocrypt/dove",
         "stream": true,
         "volume": 0.8,
@@ -293,7 +297,8 @@
       {
         "name": "wilderwild:music/pictochats/espial",
         "stream": true,
-        "volume": 0.8
+        "volume": 0.8,
+        "weight": 2
       },
       {
         "name": "wilderwild:music/zhen/pressure",
@@ -339,6 +344,11 @@
         "stream": true
       },
       {
+        "name": "music/game/home",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
         "name": "wilderwild:music/pictochats/dahlia",
         "stream": true,
         "volume": 0.8,
@@ -354,6 +364,11 @@
   "music.overworld.frozen_caves": {
     "replace": true,
     "sounds": [
+      {
+        "name": "music/game/ebb",
+        "stream": true,
+        "volume": 0.4
+      },
       {
         "name": "music/game/os_piano",
         "stream": true,
@@ -396,6 +411,11 @@
         "stream": true
       },
       {
+        "name": "music/game/nightly",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
         "name": "wilderwild:music/pictochats/molt",
         "stream": true,
         "weight": 3
@@ -435,6 +455,11 @@
         "stream": true
       },
       {
+        "name": "music/game/ebb",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
         "name": "music/game/echo_in_the_wind",
         "stream": true,
         "volume": 0.4
@@ -468,6 +493,11 @@
         "stream": true
       },
       {
+        "name": "music/game/memories",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
         "name": "music/game/subwoofer_lullaby",
         "stream": true
       },
@@ -484,14 +514,13 @@
       {
         "name": "wilderwild:music/ludocrypt/serene_sonder",
         "stream": true,
-        "volume": 0.8,
-        "weight": 2
+        "volume": 0.8
       },
       {
         "name": "wilderwild:music/pictochats/amber",
         "stream": true,
         "volume": 0.7,
-        "weight": 5
+        "weight": 3
       }
     ]
   },

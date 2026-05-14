@@ -267,6 +267,14 @@ public class LaLConfig implements ConfigData {
 		@ConfigEntry.Category("config")
 		@ConfigEntry.Gui.Tooltip
 		public boolean music_and_melody = true;
+
+		@ConfigEntry.Category("config")
+		@ConfigEntry.Gui.Tooltip
+		public boolean common_music = false;
+		@ConfigEntry.Category("config")
+		@ConfigEntry.Gui.Tooltip
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+		public int common_music_chance = 50;
 	}
 
 	public static class MiscConfig {

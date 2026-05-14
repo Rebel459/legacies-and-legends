@@ -40,6 +40,8 @@
     "client.InventoryScreenMixin",
     "client.ItemStackMixin",
     "client.LightmapRenderStateExtractorMixin",
-    "client.MinecraftMixin"
+    "client.MinecraftMixin",
+    "client.MusicManagerMixin",
+    "client.SoundManagerPreparationsMixin"
   ]
 }

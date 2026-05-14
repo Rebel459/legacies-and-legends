@@ -66,6 +66,8 @@ public class LaLSounds {
 
 	public static final Supplied<SoundEvent> SHATTER = SOUNDS.register("enchantment.shatter");
 
+	public static final Supplied<SoundEvent> COMMON_MUSIC = SOUNDS.register("music.common");
+
 	public static final Holder<SoundEvent> SNOWY_MUSIC = SOUNDS.registerForHolder("music.overworld.snowy");
 	public static final Holder<SoundEvent> SAVANNA_MUSIC = SOUNDS.registerForHolder("music.overworld.savanna");
 	public static final Holder<SoundEvent> DARK_FOREST_MUSIC = SOUNDS.registerForHolder("music.overworld.dark_forest");

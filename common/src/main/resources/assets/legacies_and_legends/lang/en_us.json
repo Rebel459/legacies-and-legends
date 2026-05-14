@@ -395,6 +395,10 @@
   "text.autoconfig.legacies_and_legends.option.music.end_portal_music.@Tooltip": "Whether lighting an End Portal should play Threshold by Soul_.",
   "text.autoconfig.legacies_and_legends.option.music.music_and_melody": "Music and Melody",
   "text.autoconfig.legacies_and_legends.option.music.music_and_melody.@Tooltip": "Enables Legacies and Legends' expansion to the vanilla soundtrack.",
+  "text.autoconfig.legacies_and_legends.option.music.common_music": "Common Music",
+  "text.autoconfig.legacies_and_legends.option.music.common_music.@Tooltip": "Whether a pool of common Overworld music (contains classic C418 tracks by default) should be mixed with all pools which previously contained any common music entries.",
+  "text.autoconfig.legacies_and_legends.option.music.common_music_chance": "Common Music Chance",
+  "text.autoconfig.legacies_and_legends.option.music.common_music_chance.@Tooltip": "The % chance of the common music pool being selected in favour of a music pool which would normally contain music from the common pool",
 
   "text.autoconfig.legacies_and_legends.option.misc": "Miscellaneous",
   "text.autoconfig.legacies_and_legends.option.misc.stackable_saddles": "Stackable Saddles",
