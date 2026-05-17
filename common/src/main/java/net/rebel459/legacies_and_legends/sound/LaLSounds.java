@@ -64,5 +64,7 @@ public class LaLSounds {
 
 	public static final Supplied<SoundEvent> JEWEL = SOUNDS.register("block.jeweling_table.jewel");
 
+	public static final Supplied<SoundEvent> SHATTER = SOUNDS.register("enchantment.shatter");
+
 	public static void init() {}
 }
