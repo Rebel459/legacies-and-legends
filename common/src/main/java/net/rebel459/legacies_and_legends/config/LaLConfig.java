@@ -48,9 +48,6 @@ public class LaLConfig implements ConfigData {
 	public EnchantmentConfig enchantments = new EnchantmentConfig();
 
 	@CollapsibleObject
-	public MusicConfig music = new MusicConfig();
-
-	@CollapsibleObject
 	public MiscConfig misc = new MiscConfig();
 
 	@CollapsibleObject
@@ -231,50 +228,6 @@ public class LaLConfig implements ConfigData {
 		public boolean rejuvenate = true;
 		@ConfigEntry.Category("config")
 		public boolean decay = true;
-	}
-
-	public static class MusicConfig {
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean snowy_music = true;
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean savanna_music = true;
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean dark_forest_music = true;
-
-        @ConfigEntry.Category("config")
-        @ConfigEntry.Gui.Tooltip
-        public int structure_music_min = 300;
-        @ConfigEntry.Category("config")
-        @ConfigEntry.Gui.Tooltip
-        public int structure_music_max = 600;
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean stronghold_music = true;
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean ancient_city_music = true;
-
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean main_end_island_music = true;
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean end_portal_music = true;
-
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean music_and_melody = true;
-
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		public boolean common_music = false;
-		@ConfigEntry.Category("config")
-		@ConfigEntry.Gui.Tooltip
-		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-		public int common_music_chance = 50;
 	}
 
 	public static class MiscConfig {

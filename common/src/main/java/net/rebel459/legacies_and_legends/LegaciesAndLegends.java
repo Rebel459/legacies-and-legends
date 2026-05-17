@@ -6,7 +6,6 @@ import net.rebel459.legacies_and_legends.event.PlayerEvents;
 import net.rebel459.legacies_and_legends.event.ServerEvents;
 import net.rebel459.legacies_and_legends.registry.*;
 import net.rebel459.legacies_and_legends.sound.LaLJukeboxSongs;
-import net.rebel459.legacies_and_legends.sound.LaLMusic;
 import net.rebel459.legacies_and_legends.sound.LaLSounds;
 import net.rebel459.legacies_and_legends.worldgen.LaLFeatures;
 import net.rebel459.unified.platform.UnifiedHelpers;
@@ -51,7 +50,6 @@ public class LegaciesAndLegends {
     public static void init() {
         LaLCreativeInventorySorting.init();
         LaLLootTables.init();
-        LaLMusic.init();
         ServerEvents.init();
         PlayerEvents.init();
     }

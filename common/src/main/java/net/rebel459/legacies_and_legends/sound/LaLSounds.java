@@ -64,17 +64,5 @@ public class LaLSounds {
 
 	public static final Supplied<SoundEvent> JEWEL = SOUNDS.register("block.jeweling_table.jewel");
 
-	public static final Supplied<SoundEvent> SHATTER = SOUNDS.register("enchantment.shatter");
-
-	public static final Supplied<SoundEvent> COMMON_MUSIC = SOUNDS.register("music.common");
-
-	public static final Holder<SoundEvent> SNOWY_MUSIC = SOUNDS.registerForHolder("music.overworld.snowy");
-	public static final Holder<SoundEvent> SAVANNA_MUSIC = SOUNDS.registerForHolder("music.overworld.savanna");
-	public static final Holder<SoundEvent> DARK_FOREST_MUSIC = SOUNDS.registerForHolder("music.overworld.dark_forest");
-	public static final Holder<SoundEvent> MAIN_END_ISLAND_MUSIC = SOUNDS.registerForHolder("music.the_end.main_island");
-
-	public static final Holder<SoundEvent> STRONGHOLD_MUSIC = SOUNDS.registerForHolder("music.structure.stronghold");
-	public static final Holder<SoundEvent> ANCIENT_CITY_MUSIC = SOUNDS.registerForHolder("music.structure.ancient_city");
-
 	public static void init() {}
 }

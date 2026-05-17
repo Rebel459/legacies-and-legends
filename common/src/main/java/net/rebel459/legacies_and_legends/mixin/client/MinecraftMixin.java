@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
+
     @Shadow private int rightClickDelay;
 
     @Shadow @Nullable public LocalPlayer player;

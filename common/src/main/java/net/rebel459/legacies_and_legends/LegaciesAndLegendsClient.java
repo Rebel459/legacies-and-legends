@@ -27,12 +27,6 @@ public final class LegaciesAndLegendsClient {
         UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.TRAVELLING, true);
         UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.WANDERER, true);
 
-        if (LaLConfig.get().music.music_and_melody) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("music_and_melody"), PackType.REQUIRED_RESOURCES);
-        }
-        if (!LaLConfig.get().music.end_portal_music) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_end_portal_music"), PackType.REQUIRED_RESOURCES);
-        }
         if (UnifiedPlatform.isModLoaded("farmersdelight") && LaLConfig.get().integrations.farmers_delight) {
             UnifiedHelpers.PACKS.add(LaLConstants.id("farmers_delight_integration"), PackType.REQUIRED_RESOURCES);
         }
