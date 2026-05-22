@@ -1,0 +1,17 @@
+{
+  "name": {
+    "translate": "album.legacies_and_legends.legacies_and_legends"
+  },
+  "icon": "legacies_and_legends:icon.png",
+  "discs": [
+    "113",
+    "castles",
+    "far_lands",
+    "gravel",
+    "infinite_spooky_amethyst",
+    "shulker",
+    "svall",
+    "taswell",
+    "tundra"
+  ]
+}

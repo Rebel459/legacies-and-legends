@@ -11,7 +11,7 @@
     "sources": "https://github.com/Rebel459/legacies-and-legends"
   },
   "license": "${license}",
-  "icon": "assets/icon.png",
+  "icon": "assets/legacies_and_legends/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [

@@ -8,7 +8,7 @@ modId="${mod_id}"
 version="${mod_version}-neoforge"
 displayName="${mod_name}"
 displayURL="https://github.com/Rebel459/legacies-and-legends"
-logoFile="assets/icon.png"
+logoFile="assets/legacies_and_legends/icon.png"
 authors="${mod_author}"
 description='''
 ${mod_description}
