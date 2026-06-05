@@ -38,13 +38,13 @@ public final class LaLModelProvider extends FabricModelProvider {
 
 	public void createJewelingTable(@NotNull BlockModelGenerators generator) {
 		TextureMapping mapping = new TextureMapping()
-				.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_back")) // particle
-				.put(TextureSlot.DOWN, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_bottom")) // bottom
-				.put(TextureSlot.UP, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_top")) // top
-				.put(TextureSlot.NORTH, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_front")) // front
-				.put(TextureSlot.SOUTH, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_back")) // back
-				.put(TextureSlot.EAST, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_left")) // left
-				.put(TextureSlot.WEST, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_right")); // right
+				.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_back"))
+				.put(TextureSlot.DOWN, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_bottom"))
+				.put(TextureSlot.UP, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_top"))
+				.put(TextureSlot.NORTH, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_front"))
+				.put(TextureSlot.SOUTH, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_back"))
+				.put(TextureSlot.EAST, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_left"))
+				.put(TextureSlot.WEST, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_right"));
 		generator.blockStateOutput
 				.accept(BlockModelGenerators.createSimpleBlock(LaLBlocks.JEWELING_TABLE.get(), BlockModelGenerators.plainVariant(ModelTemplates.CUBE.create(LaLBlocks.JEWELING_TABLE.get(), mapping, generator.modelOutput))));
 	}

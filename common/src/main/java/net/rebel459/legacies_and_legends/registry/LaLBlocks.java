@@ -111,11 +111,11 @@ public class LaLBlocks {
             Block::new,
             () -> BlockBehaviour.Properties.ofFullCopy(METEORITE.get())
     );
-    public static final SuppliedBlock METEORITE_BRICK_SLAB = BLOCKS.register("meteorite_brick_wall",
+    public static final SuppliedBlock METEORITE_BRICK_SLAB = BLOCKS.register("meteorite_brick_slab",
             SlabBlock::new,
             () -> BlockBehaviour.Properties.ofFullCopy(METEORITE_BRICKS.get())
     );
-    public static final SuppliedBlock METEORITE_BRICK_WALL = BLOCKS.register("meteorite_brick_slab",
+    public static final SuppliedBlock METEORITE_BRICK_WALL = BLOCKS.register("meteorite_brick_wall",
             WallBlock::new,
             () -> BlockBehaviour.Properties.ofFullCopy(METEORITE_BRICKS.get())
     );
