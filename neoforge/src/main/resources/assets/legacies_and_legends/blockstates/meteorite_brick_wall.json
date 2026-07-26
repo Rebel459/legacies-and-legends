@@ -1,13 +1,90 @@
 {
-  "variants": {
-    "type=bottom": {
-      "model": "legacies_and_legends:block/meteorite_brick_wall"
+  "multipart": [
+    {
+      "apply": {
+        "model": "legacies_and_legends:block/meteorite_brick_wall_post"
+      },
+      "when": {
+        "up": "true"
+      }
     },
-    "type=double": {
-      "model": "legacies_and_legends:block/meteorite_bricks"
+    {
+      "apply": {
+        "model": "legacies_and_legends:block/meteorite_brick_wall_side",
+        "uvlock": true
+      },
+      "when": {
+        "north": "low"
+      }
     },
-    "type=top": {
-      "model": "legacies_and_legends:block/meteorite_brick_wall_top"
+    {
+      "apply": {
+        "model": "legacies_and_legends:block/meteorite_brick_wall_side",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "legacies_and_legends:block/meteorite_brick_wall_side",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "south": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "legacies_and_legends:block/meteorite_brick_wall_side",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "west": "low"
+      }
+    },
+    {
+      "apply": {
+        "model": "legacies_and_legends:block/meteorite_brick_wall_side_tall",
+        "uvlock": true
+      },
+      "when": {
+        "north": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "legacies_and_legends:block/meteorite_brick_wall_side_tall",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "east": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "legacies_and_legends:block/meteorite_brick_wall_side_tall",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "south": "tall"
+      }
+    },
+    {
+      "apply": {
+        "model": "legacies_and_legends:block/meteorite_brick_wall_side_tall",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "west": "tall"
+      }
     }
-  }
+  ]
 }
