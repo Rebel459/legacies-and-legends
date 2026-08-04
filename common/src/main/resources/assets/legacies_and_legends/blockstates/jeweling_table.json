@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "legacies_and_legends:block/jeweling_table"
+    },
+    "facing=east": {
+      "model": "legacies_and_legends:block/jeweling_table",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "legacies_and_legends:block/jeweling_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "legacies_and_legends:block/jeweling_table",
+      "y": 270
+    }
+  }
+}

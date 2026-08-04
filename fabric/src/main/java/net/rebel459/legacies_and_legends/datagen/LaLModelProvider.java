@@ -33,20 +33,6 @@ public final class LaLModelProvider extends FabricModelProvider {
 		generator.createTrivialCube(LaLBlocks.CONCENTRATED_METEORITE.get());
 		generator.family(LaLBlocks.METEORITE_BRICKS.get()).generateFor(FAMILY_METEORITE_BRICKS);
 		generator.createTrivialCube(LaLBlocks.CHISELED_METEORITE_BRICKS.get());
-		createJewelingTable(generator);
-	}
-
-	public void createJewelingTable(@NotNull BlockModelGenerators generator) {
-		TextureMapping mapping = new TextureMapping()
-				.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_back"))
-				.put(TextureSlot.DOWN, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_bottom"))
-				.put(TextureSlot.UP, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_top"))
-				.put(TextureSlot.NORTH, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_front"))
-				.put(TextureSlot.SOUTH, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_back"))
-				.put(TextureSlot.EAST, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_left"))
-				.put(TextureSlot.WEST, TextureMapping.getBlockTexture(LaLBlocks.JEWELING_TABLE.get(), "_right"));
-		generator.blockStateOutput
-				.accept(BlockModelGenerators.createSimpleBlock(LaLBlocks.JEWELING_TABLE.get(), BlockModelGenerators.plainVariant(ModelTemplates.CUBE.create(LaLBlocks.JEWELING_TABLE.get(), mapping, generator.modelOutput))));
 	}
 
 	@Override

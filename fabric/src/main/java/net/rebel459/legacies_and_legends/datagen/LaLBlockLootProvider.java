@@ -26,5 +26,6 @@ public final class LaLBlockLootProvider extends FabricBlockLootSubProvider {
 		this.dropSelf(LaLBlocks.METEORITE_BRICK_STAIRS.get());
 		this.dropSelf(LaLBlocks.METEORITE_BRICK_SLAB.get());
 		this.dropSelf(LaLBlocks.CHISELED_METEORITE_BRICKS.get());
+		this.dropSelf(LaLBlocks.JEWELING_TABLE.get());
 	}
 }

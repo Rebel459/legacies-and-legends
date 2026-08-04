@@ -2,6 +2,7 @@ package net.rebel459.legacies_and_legends.client;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.AnvilScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -25,7 +26,8 @@ public class JewelingScreen extends AbstractContainerScreen<JewelingMenu> {
 
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
+        super.extractBackground(graphics, mouseX, mouseY, partialTick);
         graphics.blit(RenderPipelines.GUI_TEXTURED, MENU_TEXTURE, this.leftPos, this.topPos, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 256);
         if (!this.menu.slots.getFirst().hasItem()) graphics.blitSprite(RenderPipelines.GUI_TEXTURED, WAND_SLOT, this.leftPos + 34, this.topPos + 47, 16, 16);
-    };
+    }
 }
