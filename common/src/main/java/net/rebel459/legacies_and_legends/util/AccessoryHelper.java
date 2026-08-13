@@ -260,6 +260,10 @@ public class AccessoryHelper {
     }
 
     public static void onUnequip(Player player, ItemStack stack, Mutable mutable) {
+        if (!mutable.temporaryModifiers.isEmpty()) {
+            player.getAttributes().removeAttributeModifiers(mutable.temporaryModifiers);
+            mutable.temporaryModifiers.clear();
+        }
         if (stack.is(LaLItems.RING_OF_EVASION.get())) {
             player.removeEffect(MobEffects.INVISIBILITY);
             mutable.hasInfiniteInvisibility = false;
