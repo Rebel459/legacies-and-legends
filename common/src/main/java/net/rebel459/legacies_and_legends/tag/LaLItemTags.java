@@ -66,6 +66,8 @@ public class LaLItemTags {
     public static final TagKey<Item> VARIABLE_REPAIRABILITY = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("enchants_and_expeditions", "variable_repairability"));
     public static final TagKey<Item> VOID_IMMUNE = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("end_reborn", "void_immune"));
 
+    public static final TagKey<Item> QUIVER = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("combat_reborn", "quiver"));
+
     @NotNull
     private static TagKey<Item> bind(@NotNull String path) {
         return TagKey.create(Registries.ITEM, LaLConstants.id(path));

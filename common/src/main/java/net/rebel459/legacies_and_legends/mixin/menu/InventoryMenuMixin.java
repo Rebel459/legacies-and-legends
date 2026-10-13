@@ -3,15 +3,14 @@ package net.rebel459.legacies_and_legends.mixin.menu;
 import net.rebel459.legacies_and_legends.tag.LaLItemTags;
 import net.rebel459.legacies_and_legends.util.AccessorySlotInterface;
 import net.rebel459.legacies_and_legends.util.AccessorySlot;
+import net.rebel459.legacies_and_legends.util.AccessoryInterface;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import org.jspecify.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,7 +37,7 @@ public abstract class InventoryMenuMixin extends AbstractContainerMenu implement
 
     @Override
     public void setAccessory(ItemStack stack) {
-        this.accessoryContainer.setItem(0, stack.copy());
+        this.accessoryContainer.setItem(0, stack);
     }
 
     @Inject(
@@ -47,6 +46,8 @@ public abstract class InventoryMenuMixin extends AbstractContainerMenu implement
     )
     private void addAccessorySlot(Inventory playerInventory, boolean active, Player player, CallbackInfo ci) {
         InventoryMenu menu = InventoryMenu.class.cast(this);
+
+        this.accessoryContainer.setItem(0, ((AccessoryInterface) player).getAccessoryStack());
 
         int x = 77;
         int y = 44;

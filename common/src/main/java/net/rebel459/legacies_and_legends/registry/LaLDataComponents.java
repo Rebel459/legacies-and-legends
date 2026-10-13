@@ -16,9 +16,9 @@ import net.rebel459.legacies_and_legends.config.LaLConfig;
 import net.rebel459.legacies_and_legends.item.VerdantSwordItem;
 import net.rebel459.legacies_and_legends.tag.LaLItemTags;
 import net.rebel459.legacies_and_legends.util.Gem;
-import net.rebel459.unified.platform.UnifiedEvents;
-import net.rebel459.unified.platform.UnifiedRegistries;
-import net.rebel459.unified.util.registry.Supplied;
+import net.rebel459.unified.api.core.Supplied;
+import net.rebel459.unified.api.core.UnifiedEvents;
+import net.rebel459.unified.api.core.UnifiedRegistries;
 
 import java.util.function.Supplier;
 

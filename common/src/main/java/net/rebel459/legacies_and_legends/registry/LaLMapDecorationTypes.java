@@ -4,7 +4,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.saveddata.maps.MapDecorationType;
 import net.rebel459.legacies_and_legends.LaLConstants;
-import net.rebel459.unified.platform.UnifiedRegistries;
+import net.rebel459.unified.api.core.UnifiedRegistries;
 
 public class LaLMapDecorationTypes {
 
@@ -56,6 +56,6 @@ public class LaLMapDecorationTypes {
 	public static void init() {}
 
 	private static Holder<MapDecorationType> register(String string, boolean showOnItemFrame, int mapColor, boolean trackCount, boolean explorationMapElement) {
-		return DECORATIONS.registerForHolder(string, () -> new MapDecorationType(LaLConstants.id(string), showOnItemFrame, mapColor, explorationMapElement, trackCount));
+		return DECORATIONS.register(string, () -> new MapDecorationType(LaLConstants.id(string), showOnItemFrame, mapColor, explorationMapElement, trackCount)).holder();
 	}
 }

@@ -8,9 +8,8 @@ import net.rebel459.legacies_and_legends.registry.*;
 import net.rebel459.legacies_and_legends.sound.LaLJukeboxSongs;
 import net.rebel459.legacies_and_legends.sound.LaLSounds;
 import net.rebel459.legacies_and_legends.worldgen.LaLFeatures;
-import net.rebel459.unified.platform.UnifiedHelpers;
-import net.rebel459.unified.platform.UnifiedPlatform;
-import net.rebel459.unified.util.PackType;
+import net.rebel459.unified.api.core.UnifiedHelpers;
+import net.rebel459.unified.api.core.UnifiedPlatform;
 
 public class LegaciesAndLegends {
 
@@ -59,37 +58,37 @@ public class LegaciesAndLegends {
         isCombatRebornLoaded = UnifiedPlatform.isModLoaded("combat_reborn");
 
         if (LaLConfig.get().structures.dungeon_overhaul) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("dungeon_overhaul"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("dungeon_overhaul"));
         }
         if (LaLConfig.get().structures.swamp_hut_variants) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("swamp_hut_variants"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("swamp_hut_variants"));
         }
         if (LaLConfig.get().structures.buried_treasure_rework) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("buried_treasure_rework"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("buried_treasure_rework"));
         }
         if (!LaLConfig.get().structures.new_structures) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_new_structures"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("no_new_structures"));
         }
         if (!LaLConfig.get().artifacts.travelling_strides) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_travelling_strides"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("no_travelling_strides"));
         }
         if (!LaLConfig.get().magic.sapphire) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_sapphire"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("no_sapphire"));
         }
         if (!LaLConfig.get().magic.wands) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_wands"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("no_wands"));
         }
         if (!LaLConfig.get().magic.jeweling) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_jeweling"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("no_jeweling"));
         }
         if (!LaLConfig.get().magic.meteors) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_meteors"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("no_meteors"));
         }
         if (!LaLConfig.get().loot.glow_stick) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_glow_sticks"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("no_glow_sticks"));
         }
         if (LaLConfig.get().misc.no_creeper_discs) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("no_creeper_discs"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("no_creeper_discs"));
         }
         if (UnifiedPlatform.isModLoaded("end_reborn")) {
             isEndRebornLoaded = true;
@@ -99,34 +98,34 @@ public class LegaciesAndLegends {
         }
         if (UnifiedPlatform.isModLoaded("farmersdelight") && LaLConfig.get().integrations.farmers_delight) {
             isFarmersDelightLoaded = true;
-            UnifiedHelpers.PACKS.add(LaLConstants.id("farmers_delight_integration"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("farmers_delight_integration"));
         }
         if (LaLConfig.get().misc.wandering_trader_trades) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("wandering_trader_trades"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("wandering_trader_trades"));
         }
         if (UnifiedPlatform.isModLoaded("bloom") && LaLConfig.get().integrations.bloom) {
             isBloomLoaded = true;
-            UnifiedHelpers.PACKS.add(LaLConstants.id("bloom_integration"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("bloom_integration"));
         }
         if (UnifiedPlatform.isModLoaded("wilderwild") && LaLConfig.get().integrations.wilder_wild) {
             isWilderWildLoaded = true;
-            UnifiedHelpers.PACKS.add(LaLConstants.id("wilder_wild_integration"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("wilder_wild_integration"));
         }
         if (UnifiedPlatform.isModLoaded("trailiertales") && LaLConfig.get().integrations.trailier_tales) {
             isTrailierTalesLoaded = true;
-            UnifiedHelpers.PACKS.add(LaLConstants.id("trailier_tales_integration"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("trailier_tales_integration"));
         }
         if (UnifiedPlatform.isModLoaded("variantsandventures") && LaLConfig.get().integrations.variants_and_ventures) {
             isVariantsAndVenturesLoaded = true;
             if (LaLConfig.get().structures.dungeon_overhaul) {
-                UnifiedHelpers.PACKS.add(LaLConstants.id("variants_and_ventures_integration"), PackType.REQUIRED_DATA);
+                UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("variants_and_ventures_integration"));
             }
         }
         if (UnifiedPlatform.isModLoaded("enderscape") && LaLConfig.get().integrations.enderscape) {
             isEnderscapeLoaded = true;
-            UnifiedHelpers.PACKS.add(LaLConstants.id("enderscape_integration"), PackType.REQUIRED_DATA);
+            UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("enderscape_integration"));
             if (LaLConfig.get().magic.jeweling) {
-                UnifiedHelpers.PACKS.add(LaLConstants.id("enderscape_jeweling"), PackType.REQUIRED_DATA);
+                UnifiedHelpers.DATA_PACKS.addRequired(LaLConstants.id("enderscape_jeweling"));
             }
         }
     }

@@ -1,0 +1,42 @@
+{
+  "entries": [
+    {
+      "type": "insert_after",
+      "items": [
+        "legacies_and_legends:prospector_shovel",
+        "legacies_and_legends:molten_pickaxe",
+        "legacies_and_legends:cleaving_battleaxe",
+        "legacies_and_legends:withered_hoe"
+      ],
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:netherite_hoe"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:verdant_sword",
+      "tab": "minecraft:combat",
+      "target": "minecraft:netherite_sword"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:cleaving_battleaxe",
+      "tab": "minecraft:combat",
+      "target": "minecraft:netherite_axe"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:frosted_spear",
+      "tab": "minecraft:combat",
+      "target": "minecraft:netherite_spear"
+    }
+  ],
+  "load_requirement": {
+    "type": "unified:not",
+    "predicate": {
+      "type": "unified:mods_loaded",
+      "mods": [
+        "end_reborn"
+      ]
+    }
+  }
+}

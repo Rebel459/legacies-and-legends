@@ -3,27 +3,16 @@ package net.rebel459.legacies_and_legends.util;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.rebel459.item_tooltips.config.ITConfig;
-import net.rebel459.item_tooltips.util.ScreenHelper;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
-import net.rebel459.unified.util.registry.SuppliedItem;
 import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Unique;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Consumer;
 import java.util.function.IntFunction;
-import java.util.function.Supplier;
 
 public enum Gem implements StringRepresentable {
     EMPTY(0, "empty", "ffffff"),

@@ -24,9 +24,9 @@ import net.rebel459.legacies_and_legends.sound.LaLJukeboxSongs;
 import net.rebel459.legacies_and_legends.tag.LaLBlockTags;
 import net.rebel459.legacies_and_legends.tag.LaLItemTags;
 import net.rebel459.legacies_and_legends.util.Gem;
-import net.rebel459.unified.platform.UnifiedRegistries;
-import net.rebel459.unified.registry.UnifiedDataComponents;
-import net.rebel459.unified.util.registry.SuppliedItem;
+import net.rebel459.unified.api.core.SuppliedItem;
+import net.rebel459.unified.api.core.UnifiedRegistries;
+import net.rebel459.unified.api.registry.UnifiedDataComponents;
 
 import java.util.List;
 

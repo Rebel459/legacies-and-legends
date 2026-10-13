@@ -1,0 +1,276 @@
+{
+  "entries": [
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:music_disc_gravel",
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:music_disc_chirp"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:music_disc_svall",
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:music_disc_mall"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:music_disc_castles",
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:music_disc_strad"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:music_disc_taswell",
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:music_disc_mellohi"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:music_disc_shulker",
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:music_disc_precipice"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:music_disc_tundra",
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:music_disc_far"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:music_disc_far_lands",
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:music_disc_relic"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:music_disc_infinite_spooky_amethyst",
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:music_disc_creator_music_box"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:music_disc_113",
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:music_disc_stal"
+    },
+    {
+      "type": "insert_after",
+      "items": [
+        "legacies_and_legends:wooden_bucket",
+        "legacies_and_legends:coal_bucket",
+        "legacies_and_legends:charcoal_bucket"
+      ],
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:milk_bucket"
+    },
+    {
+      "type": "insert_before",
+      "items": [
+        "legacies_and_legends:tablet_of_recall",
+        "legacies_and_legends:tablet_of_haste",
+        "legacies_and_legends:tablet_of_revealing",
+        "legacies_and_legends:tablet_of_channeling",
+        "legacies_and_legends:tablet_of_deafening",
+        "legacies_and_legends:tablet_of_instability",
+        "legacies_and_legends:tablet_of_warping",
+        "legacies_and_legends:amulet_of_absorption",
+        "legacies_and_legends:amulet_of_deflection",
+        "legacies_and_legends:amulet_of_obsidian",
+        "legacies_and_legends:ring_of_archery",
+        "legacies_and_legends:ring_of_excavation",
+        "legacies_and_legends:ring_of_construction",
+        "legacies_and_legends:ring_of_restoration",
+        "legacies_and_legends:ring_of_striking",
+        "legacies_and_legends:ring_of_evasion",
+        "legacies_and_legends:ring_of_hunting",
+        "legacies_and_legends:necklace_of_resilience",
+        "legacies_and_legends:necklace_of_leaping",
+        "legacies_and_legends:necklace_of_purity",
+        "legacies_and_legends:necklace_of_regeneration",
+        "legacies_and_legends:necklace_of_isolation",
+        "legacies_and_legends:necklace_of_bartering",
+        "legacies_and_legends:necklace_of_protection"
+      ],
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:bucket"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:wand",
+      "tab": "minecraft:tools_and_utilities",
+      "target": "minecraft:fishing_rod"
+    },
+    {
+      "type": "insert_before",
+      "items": "legacies_and_legends:trident_shard",
+      "tab": "minecraft:ingredients",
+      "target": "minecraft:heart_of_the_sea"
+    },
+    {
+      "type": "insert_after",
+      "items": [
+        "legacies_and_legends:metal_chunk",
+        "legacies_and_legends:disc_fragment_far_lands"
+      ],
+      "tab": "minecraft:ingredients",
+      "target": "minecraft:heart_of_the_sea"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:dusk_pottery_sherd",
+      "tab": "minecraft:ingredients",
+      "target": "minecraft:danger_pottery_sherd"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:forager_pottery_sherd",
+      "tab": "minecraft:ingredients",
+      "target": "minecraft:flow_pottery_sherd"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:harvest_pottery_sherd",
+      "tab": "minecraft:ingredients",
+      "target": "minecraft:heartbreak_pottery_sherd"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:verdant_pottery_sherd",
+      "tab": "minecraft:ingredients",
+      "target": "minecraft:snort_pottery_sherd"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:sapphire",
+      "tab": "minecraft:ingredients",
+      "target": "minecraft:lapis_lazuli"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:enchanted_beetroot",
+      "tab": "minecraft:food_and_drinks",
+      "target": "minecraft:beetroot"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:enchanted_beetroot_soup",
+      "tab": "minecraft:food_and_drinks",
+      "target": "minecraft:beetroot_soup"
+    },
+    {
+      "type": "insert_before",
+      "items": "legacies_and_legends:knife",
+      "tab": "minecraft:combat",
+      "target": "minecraft:mace"
+    },
+    {
+      "type": "insert_before",
+      "items": "legacies_and_legends:hook",
+      "tab": "minecraft:combat",
+      "target": "minecraft:trident"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:boomerang",
+      "tab": "minecraft:combat",
+      "target": "minecraft:crossbow"
+    },
+    {
+      "type": "insert_after",
+      "items": [
+        "legacies_and_legends:reinforced_chestplate",
+        "legacies_and_legends:travelling_strides",
+        "legacies_and_legends:wanderer_boots"
+      ],
+      "tab": "minecraft:combat",
+      "target": "minecraft:turtle_helmet"
+    },
+    {
+      "type": "insert_after",
+      "items": [
+        "legacies_and_legends:totem_of_resurrection",
+        "legacies_and_legends:totem_of_teleportation"
+      ],
+      "tab": "minecraft:combat",
+      "target": "minecraft:totem_of_undying"
+    },
+    {
+      "type": "insert_after",
+      "items": [
+        "legacies_and_legends:sapphire_ore",
+        "legacies_and_legends:deepslate_sapphire_ore"
+      ],
+      "tab": "minecraft:natural_blocks",
+      "target": "minecraft:deepslate_lapis_ore"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:sapphire_block",
+      "tab": "minecraft:building_blocks",
+      "target": "minecraft:lapis_block"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:sapphire_lantern",
+      "tab": "minecraft:functional_blocks",
+      "target": "minecraft:lantern"
+    },
+    {
+      "type": "insert_before",
+      "items": "legacies_and_legends:glow_stick",
+      "tab": "minecraft:functional_blocks",
+      "target": "minecraft:sea_lantern"
+    },
+    {
+      "type": "insert_after",
+      "items": "legacies_and_legends:jeweling_table",
+      "tab": "minecraft:functional_blocks",
+      "target": "minecraft:smithing_table"
+    },
+    {
+      "type": "insert_before",
+      "items": [
+        "legacies_and_legends:meteorite",
+        "legacies_and_legends:concentrated_meteorite"
+      ],
+      "tab": "minecraft:natural_blocks",
+      "target": "minecraft:magma_block"
+    },
+    {
+      "type": "insert_before",
+      "items": [
+        "legacies_and_legends:meteorite",
+        "legacies_and_legends:meteorite_bricks",
+        "legacies_and_legends:meteorite_brick_stairs",
+        "legacies_and_legends:meteorite_brick_slab",
+        "legacies_and_legends:meteorite_brick_wall",
+        "legacies_and_legends:chiseled_meteorite_bricks"
+      ],
+      "tab": "minecraft:building_blocks",
+      "target": "minecraft:netherrack"
+    },
+    {
+      "type": "insert_before",
+      "items": "legacies_and_legends:meteorite_brick",
+      "tab": "minecraft:ingredients",
+      "target": "minecraft:nether_brick"
+    },
+    {
+      "type": "insert_before",
+      "items": [
+        "legacies_and_legends:slime_gem",
+        "legacies_and_legends:ice_gem",
+        "legacies_and_legends:prismarine_gem",
+        "legacies_and_legends:breeze_gem",
+        "legacies_and_legends:ruby_gem",
+        "legacies_and_legends:meteorite_gem",
+        "legacies_and_legends:obsidian_gem",
+        "legacies_and_legends:nebulite_gem",
+        "legacies_and_legends:timelost_gem"
+      ],
+      "tab": "minecraft:ingredients",
+      "target": "legacies_and_legends:sapphire_gem"
+    }
+  ]
+}

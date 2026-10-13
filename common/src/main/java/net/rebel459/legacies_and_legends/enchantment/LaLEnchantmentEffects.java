@@ -5,7 +5,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.item.enchantment.effects.EnchantmentLocationBasedEffect;
 import net.rebel459.legacies_and_legends.LaLConstants;
-import net.rebel459.unified.platform.UnifiedRegistries;
+import net.rebel459.unified.api.core.UnifiedRegistries;
 
 public class LaLEnchantmentEffects {
 

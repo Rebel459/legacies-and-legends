@@ -12,8 +12,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rebel459.legacies_and_legends.registry.LaLMobEffects;
 import net.rebel459.legacies_and_legends.util.Gem;
-import net.rebel459.unified.platform.UnifiedEvents;
-import net.rebel459.unified.util.EventType;
+import net.rebel459.unified.api.core.UnifiedEvents;
+import net.rebel459.unified.api.event.EventTiming;
 
 import java.util.*;
 
@@ -39,7 +39,7 @@ public class ServerEvents {
     }
 
     public static void init() {
-        UnifiedEvents.Server.onLevelTick(EventType.PRE, level -> {
+        UnifiedEvents.Server.onLevelTick(EventTiming.PRE, level -> {
             Set<BlockPos> savedPlatforms = SAVED_PLATFORMS.get(level.dimension());
             if (savedPlatforms == null || savedPlatforms.isEmpty()) return;
             Set<BlockPos> retainedPlatforms = new HashSet<>();
@@ -65,7 +65,7 @@ public class ServerEvents {
             }
             if (!retainedPlatforms.isEmpty()) SAVED_PLATFORMS.put(level.dimension(), retainedPlatforms);
         });
-        UnifiedEvents.Server.onTick(EventType.PRE, server -> {
+        UnifiedEvents.Server.onTick(EventTiming.PRE, server -> {
             Iterator<PendingBlockChange> iterator = PENDING_BLOCK_CHANGES.values().iterator();
             while (iterator.hasNext()) {
                 PendingBlockChange change = iterator.next();
@@ -80,7 +80,7 @@ public class ServerEvents {
                 }
             }
         });
-        UnifiedEvents.Server.onTick(EventType.POST, server -> {
+        UnifiedEvents.Server.onTick(EventTiming.POST, server -> {
             Iterator<PendingPlayerChange> iterator = PENDING_PLAYER_CHANGES.values().iterator();
             while (iterator.hasNext()) {
                 PendingPlayerChange change = iterator.next();

@@ -7,7 +7,7 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
-import net.rebel459.unified.platform.UnifiedPlatform;
+import net.rebel459.unified.api.core.UnifiedPlatform;
 
 public class FriendsAndFoesTotemUtil {
     public static void playActivateAnimation(Entity entity, ParticleType<?> particleType) {

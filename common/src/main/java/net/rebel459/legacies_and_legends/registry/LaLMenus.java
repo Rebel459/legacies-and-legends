@@ -5,8 +5,8 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.menu.JewelingMenu;
-import net.rebel459.unified.platform.UnifiedRegistries;
-import net.rebel459.unified.util.registry.Supplied;
+import net.rebel459.unified.api.core.Supplied;
+import net.rebel459.unified.api.core.UnifiedRegistries;
 
 import java.util.function.Supplier;
 

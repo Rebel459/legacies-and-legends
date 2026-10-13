@@ -2,6 +2,7 @@ package net.rebel459.legacies_and_legends.mixin.integration.combat_reborn;
 
 import net.rebel459.combat_reborn.util.QuiverHelper;
 import net.rebel459.legacies_and_legends.registry.LaLItems;
+import net.rebel459.legacies_and_legends.tag.LaLItemTags;
 import net.rebel459.legacies_and_legends.util.AccessoryHelper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -32,5 +33,15 @@ public abstract class QuiverHelperMixin {
         if (!AccessoryHelper.isSlotFilled(player)) return;
         ItemStack stack = AccessoryHelper.getAccessory(player);
         if (stack.is(LaLItems.RING_OF_ARCHERY.get())) AccessoryHelper.damageAccessory(player, stack);
+    }
+
+    @Inject(at = @At("TAIL"), method = "getQuiver", cancellable = true)
+    private static void quiverAccessory(Player player, CallbackInfoReturnable<ItemStack> cir) {
+        if (cir.getReturnValue() == null) {
+            ItemStack stack = AccessoryHelper.getAccessory(player);
+            if (stack.is(LaLItemTags.QUIVER)) {
+                cir.setReturnValue(stack);
+            }
+        }
     }
 }

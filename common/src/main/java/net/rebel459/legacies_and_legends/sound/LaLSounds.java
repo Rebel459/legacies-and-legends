@@ -1,32 +1,26 @@
 package net.rebel459.legacies_and_legends.sound;
 
-import net.rebel459.legacies_and_legends.LaLConstants;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
-import net.rebel459.unified.platform.UnifiedRegistries;
-import net.rebel459.unified.util.registry.Supplied;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Supplier;
+import net.rebel459.legacies_and_legends.LaLConstants;
+import net.rebel459.unified.api.core.Supplied;
+import net.rebel459.unified.api.core.UnifiedRegistries;
 
 public class LaLSounds {
 	
 	public static UnifiedRegistries.SoundEvents SOUNDS = UnifiedRegistries.SoundEvents.create(LaLConstants.MOD_ID);
 	
-	public static final Holder<SoundEvent> MUSIC_DISC_SVALL = SOUNDS.registerForHolder("music_disc.svall");
-	public static final Holder<SoundEvent> MUSIC_DISC_TASWELL = SOUNDS.registerForHolder("music_disc.taswell");
-	public static final Holder<SoundEvent> MUSIC_DISC_SHULKER = SOUNDS.registerForHolder("music_disc.shulker");
-	public static final Holder<SoundEvent> MUSIC_DISC_TUNDRA = SOUNDS.registerForHolder("music_disc.tundra");
-	public static final Holder<SoundEvent> MUSIC_DISC_FAR_LANDS = SOUNDS.registerForHolder("music_disc.far_lands");
-	public static final Holder<SoundEvent> MUSIC_DISC_INFINITE_SPOOKY_AMETHYST = SOUNDS.registerForHolder("music_disc.infinite_spooky_amethyst");
-	public static final Holder<SoundEvent> MUSIC_DISC_113 = SOUNDS.registerForHolder("music_disc.113");
-	public static final Holder<SoundEvent> MUSIC_DISC_GRAVEL = SOUNDS.registerForHolder("music_disc.gravel");
+	public static final Holder<SoundEvent> MUSIC_DISC_SVALL = SOUNDS.register("music_disc.svall").holder();
+	public static final Holder<SoundEvent> MUSIC_DISC_TASWELL = SOUNDS.register("music_disc.taswell").holder();
+	public static final Holder<SoundEvent> MUSIC_DISC_SHULKER = SOUNDS.register("music_disc.shulker").holder();
+	public static final Holder<SoundEvent> MUSIC_DISC_TUNDRA = SOUNDS.register("music_disc.tundra").holder();
+	public static final Holder<SoundEvent> MUSIC_DISC_FAR_LANDS = SOUNDS.register("music_disc.far_lands").holder();
+	public static final Holder<SoundEvent> MUSIC_DISC_INFINITE_SPOOKY_AMETHYST = SOUNDS.register("music_disc.infinite_spooky_amethyst").holder();
+	public static final Holder<SoundEvent> MUSIC_DISC_113 = SOUNDS.register("music_disc.113").holder();
+	public static final Holder<SoundEvent> MUSIC_DISC_GRAVEL = SOUNDS.register("music_disc.gravel").holder();
 
-	public static final Holder<SoundEvent> TABLET_USE = SOUNDS.registerForHolder("tablet.use");
-	public static final Holder<SoundEvent> TABLET_BREAK = SOUNDS.registerForHolder("tablet.break");
+	public static final Holder<SoundEvent> TABLET_USE = SOUNDS.register("tablet.use").holder();
+	public static final Holder<SoundEvent> TABLET_BREAK = SOUNDS.register("tablet.break").holder();
 	public static final Supplied<SoundEvent> TABLET_TELEPORT = SOUNDS.register("tablet.teleport");
 
 	public static final Supplied<SoundEvent> BOOMERANG_THROW = SOUNDS.register("boomerang.throw");

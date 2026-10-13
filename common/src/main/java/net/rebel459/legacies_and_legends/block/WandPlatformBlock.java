@@ -118,7 +118,7 @@ public class WandPlatformBlock extends TransparentSlabBlock {
     }
 
     public static boolean hasMaterial(BlockState state, Gem gem) {
-        return state.getValue(PRIMARY_MATERIAL) == gem || state.getValue(SECONDARY_MATERIAL) == gem;
+        return state.hasProperty(PRIMARY_MATERIAL) && state.hasProperty(SECONDARY_MATERIAL) && (state.getValue(PRIMARY_MATERIAL) == gem || state.getValue(SECONDARY_MATERIAL) == gem);
     }
 
     public static boolean supportsBubbleColumn(BlockState state) {

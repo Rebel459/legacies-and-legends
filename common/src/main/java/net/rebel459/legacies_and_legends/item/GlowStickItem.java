@@ -11,16 +11,11 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.rebel459.legacies_and_legends.entity.GlowStickProjectile;
-import net.rebel459.legacies_and_legends.registry.LaLBlocks;
-import net.rebel459.unified.util.registry.SuppliedBlock;
-
-import java.util.function.Supplier;
 
 public class GlowStickItem extends BlockItem implements ProjectileItem {
     public static final float PROJECTILE_SHOOT_POWER = 1F;

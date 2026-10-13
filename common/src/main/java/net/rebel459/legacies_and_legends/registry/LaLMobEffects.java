@@ -11,17 +11,18 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.rebel459.unified.platform.UnifiedRegistries;
+import net.rebel459.unified.api.core.UnifiedRegistries;
 
 public class LaLMobEffects {
 
     public static UnifiedRegistries.DeferredRegistry<MobEffect> EFFECTS = UnifiedRegistries.DeferredRegistry.create(LaLConstants.MOD_ID, BuiltInRegistries.MOB_EFFECT);
 
-    public static final Holder<MobEffect> FREEZING = EFFECTS.registerForHolder(
+    public static final Holder<MobEffect> FREEZING = EFFECTS.register(
             "freezing",
-            () -> new MobEffect(MobEffectCategory.HARMFUL, 7720931) {}
-    );
-    public static final Holder<MobEffect> INSTABILITY = EFFECTS.registerForHolder(
+            () -> new MobEffect(MobEffectCategory.HARMFUL, 7720931)
+    ).holder();
+
+    public static final Holder<MobEffect> INSTABILITY = EFFECTS.register(
             "instability", () -> (
                     new MobEffect(MobEffectCategory.NEUTRAL, 7901340) {}
                             .addAttributeModifier(Attributes.MAX_ABSORPTION, Identifier.withDefaultNamespace("effect.absorption"), 2.0, AttributeModifier.Operation.ADD_VALUE)
@@ -29,22 +30,25 @@ public class LaLMobEffects {
                             .addAttributeModifier(Attributes.GRAVITY, LaLConstants.id("effect.gravity"), -0.04, AttributeModifier.Operation.ADD_VALUE)
                             .addAttributeModifier(Attributes.SAFE_FALL_DISTANCE, LaLConstants.id("effect.safe_fall_distance"), 2, AttributeModifier.Operation.ADD_VALUE)
             )
-    );
-    public static final Holder<MobEffect> WARPING = EFFECTS.registerForHolder(
+    ).holder();
+
+    public static final Holder<MobEffect> WARPING = EFFECTS.register(
             "warping",
-            () -> new MobEffect(MobEffectCategory.NEUTRAL, 9337599) {}
-    );
-    public static final Holder<MobEffect> LOW_GRAVITY = EFFECTS.registerForHolder(
+            () -> new MobEffect(MobEffectCategory.NEUTRAL, 9337599)
+    ).holder();
+
+    public static final Holder<MobEffect> LOW_GRAVITY = EFFECTS.register(
             "low_gravity", () -> (
                     new MobEffect(MobEffectCategory.BENEFICIAL, 0) {}
                             .addAttributeModifier(Attributes.GRAVITY, LaLConstants.id("effect.gravity"), -0.8, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
             )
-    );
-    public static final Holder<MobEffect> PROJECTILE_PASSTHROUGH = EFFECTS.registerForHolder(
+    ).holder();
+
+    public static final Holder<MobEffect> PROJECTILE_PASSTHROUGH = EFFECTS.register(
             "projectile_passthrough", () -> (
-                    new MobEffect(MobEffectCategory.BENEFICIAL, 0) {}
+                    new MobEffect(MobEffectCategory.BENEFICIAL, 0)
             )
-    );
+    ).holder();
 
     public static void applyFreezing(ServerLevel level, LivingEntity attacked, LivingEntity attacker, int duration) {
         attacked.addEffect(new MobEffectInstance(LaLMobEffects.FREEZING, duration));

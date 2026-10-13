@@ -16,9 +16,9 @@ import net.rebel459.legacies_and_legends.block.GlowStickBlock;
 import net.rebel459.legacies_and_legends.block.JewelingTableBlock;
 import net.rebel459.legacies_and_legends.block.WandPlatformBlock;
 import net.rebel459.legacies_and_legends.sound.LaLBlockSounds;
-import net.rebel459.unified.platform.UnifiedHelpers;
-import net.rebel459.unified.platform.UnifiedRegistries;
-import net.rebel459.unified.util.registry.SuppliedBlock;
+import net.rebel459.unified.api.core.SuppliedBlock;
+import net.rebel459.unified.api.core.UnifiedEvents;
+import net.rebel459.unified.api.core.UnifiedRegistries;
 
 import java.util.List;
 
@@ -129,10 +129,14 @@ public class LaLBlocks {
     );
 
     public static void init() {
-        for (SuppliedBlock block : List.of(METEORITE, CONCENTRATED_METEORITE, METEORITE_BRICKS, METEORITE_BRICK_SLAB, METEORITE_BRICK_WALL, METEORITE_BRICK_STAIRS)) {
-            UnifiedHelpers.DATA_COMPONENTS.addWithProvider(block, DataComponents.DAMAGE_RESISTANT, (provider) -> new DamageResistant(provider.getOrThrow(DamageTypeTags.IS_FIRE)));
-            UnifiedHelpers.DATA_COMPONENTS.addWithProvider(block, DataComponents.DAMAGE_RESISTANT, (provider) -> new DamageResistant(provider.getOrThrow(DamageTypeTags.IS_EXPLOSION)));
-            UnifiedHelpers.DATA_COMPONENTS.add(block, DataComponents.RARITY, Rarity.UNCOMMON);
-        }
+        UnifiedEvents.DefaultDataComponents.modify((item, builder, provider) -> {
+            for (SuppliedBlock block : List.of(METEORITE, CONCENTRATED_METEORITE, METEORITE_BRICKS, METEORITE_BRICK_SLAB, METEORITE_BRICK_WALL, METEORITE_BRICK_STAIRS)) {
+                if (block.asItem() == item) {
+                    builder.set(DataComponents.DAMAGE_RESISTANT, new DamageResistant(provider.getOrThrow(DamageTypeTags.IS_FIRE)));
+                    builder.set(DataComponents.DAMAGE_RESISTANT, new DamageResistant(provider.getOrThrow(DamageTypeTags.IS_EXPLOSION)));
+                    builder.set(DataComponents.RARITY, Rarity.UNCOMMON);
+                }
+            }
+        });
     }
 }

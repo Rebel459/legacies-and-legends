@@ -19,6 +19,7 @@
     "entity.LivingEntityMixin",
     "entity.PiglinAiMixin",
     "entity.PlayerMixin",
+    "entity.ServerPlayerMixin",
     "entity.ProjectileMixin",
     "entity.ThrowableProjectileMixin",
     "entity.WanderingTraderMixin",

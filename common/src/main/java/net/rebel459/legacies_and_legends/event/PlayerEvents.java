@@ -7,7 +7,7 @@ import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.rebel459.legacies_and_legends.util.AccessoryHelper;
 import net.rebel459.legacies_and_legends.util.PlatformInterface;
-import net.rebel459.unified.platform.UnifiedEvents;
+import net.rebel459.unified.api.core.UnifiedEvents;
 
 public class PlayerEvents {
 

@@ -6,7 +6,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.rebel459.legacies_and_legends.LaLConstants;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
-import net.rebel459.unified.platform.UnifiedHelpers;
+import net.rebel459.unified.api.core.UnifiedEvents;
 
 import static net.minecraft.core.registries.Registries.PLACED_FEATURE;
 
@@ -17,9 +17,11 @@ public class LaLFeatures {
 
     public static void init() {
         if (LaLConfig.get().magic.sapphire) {
-            UnifiedHelpers.BIOME_MODIFICATIONS.register(BiomeTags.IS_OVERWORLD, context -> {
-                context.getFeatures().addFeature(SAPPHIRE_ORE, GenerationStep.Decoration.UNDERGROUND_ORES);
-                context.getFeatures().addFeature(SAPPHIRE_ORE_DEEP, GenerationStep.Decoration.UNDERGROUND_ORES);
+            UnifiedEvents.Biomes.modify((biome, context) -> {
+                if (biome.is(BiomeTags.IS_OVERWORLD)) {
+                    context.getFeatures().addFeature(SAPPHIRE_ORE, GenerationStep.Decoration.UNDERGROUND_ORES);
+                    context.getFeatures().addFeature(SAPPHIRE_ORE_DEEP, GenerationStep.Decoration.UNDERGROUND_ORES);
+                }
             });
         }
     }

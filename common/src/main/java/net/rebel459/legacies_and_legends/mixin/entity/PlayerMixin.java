@@ -1,29 +1,13 @@
 package net.rebel459.legacies_and_legends.mixin.entity;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
 import com.mojang.serialization.Codec;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.food.FoodData;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.state.BlockState;
-import net.rebel459.legacies_and_legends.LaLConstants;
-import net.rebel459.legacies_and_legends.event.ServerEvents;
-import net.rebel459.legacies_and_legends.item.WandItem;
-import net.rebel459.legacies_and_legends.util.PlatformInterface;
-import net.rebel459.legacies_and_legends.registry.LaLBlocks;
-import net.rebel459.legacies_and_legends.registry.LaLItems;
-import net.rebel459.legacies_and_legends.sound.LaLSounds;
-import net.rebel459.legacies_and_legends.tag.LaLItemTags;
-import net.rebel459.legacies_and_legends.util.AccessoryHelper;
-import net.rebel459.legacies_and_legends.util.AccessoryInterface;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -35,20 +19,31 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import net.rebel459.unified.platform.UnifiedPlatform;
+import net.rebel459.legacies_and_legends.LaLConstants;
+import net.rebel459.legacies_and_legends.event.ServerEvents;
+import net.rebel459.legacies_and_legends.item.WandItem;
+import net.rebel459.legacies_and_legends.registry.LaLBlocks;
+import net.rebel459.legacies_and_legends.registry.LaLItems;
+import net.rebel459.legacies_and_legends.sound.LaLSounds;
+import net.rebel459.legacies_and_legends.tag.LaLItemTags;
+import net.rebel459.legacies_and_legends.util.AccessoryHelper;
+import net.rebel459.legacies_and_legends.util.AccessoryInterface;
+import net.rebel459.legacies_and_legends.util.PlatformInterface;
+import net.rebel459.unified.api.core.UnifiedPlatform;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -58,7 +53,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin implements PlatformInterface, AccessoryInterface {
@@ -70,6 +68,9 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Unique
     private AccessoryHelper.Mutable mutable;
 
+    @Unique
+    private ItemStack accessoryStack = ItemStack.EMPTY;
+
     @Override
     public AccessoryHelper.Mutable getAccessoryData() {
         if (this.mutable == null) this.mutable = new AccessoryHelper.Mutable();
@@ -79,6 +80,16 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     @Override
     public void setAccessoryData(AccessoryHelper.Mutable mutable) {
         this.mutable = mutable;
+    }
+
+    @Override
+    public ItemStack getAccessoryStack() {
+        return this.accessoryStack;
+    }
+
+    @Override
+    public void setAccessoryStack(ItemStack stack) {
+        this.accessoryStack = stack;
     }
 
     @Shadow public abstract Inventory getInventory();
@@ -247,10 +258,10 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     private static void handleTotemOfResurrection(Level level, Player player, ItemStack stack) {
         player.setHealth(1.0F);
         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 600));
-        playTotemAnimation(LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance(), player);
+        playTotemAnimation(LaLItems.TOTEM_OF_RESURRECTION.defaultItemStack(), player);
         player.awardStat(Stats.ITEM_USED.get(LaLItems.TOTEM_OF_RESURRECTION.get()));
         if (player instanceof ServerPlayer serverPlayer) {
-            CriteriaTriggers.USED_TOTEM.trigger(serverPlayer, LaLItems.TOTEM_OF_RESURRECTION.getDefaultInstance());
+            CriteriaTriggers.USED_TOTEM.trigger(serverPlayer, LaLItems.TOTEM_OF_RESURRECTION.defaultItemStack());
             player.teleport(serverPlayer.findRespawnPositionAndUseSpawnBlock(false, TeleportTransition.DO_NOTHING));
             level.playSound(null, player.blockPosition(), LaLSounds.TABLET_TELEPORT.get(), SoundSource.PLAYERS, 0.6F, 1F);
         }
@@ -268,7 +279,7 @@ public abstract class PlayerMixin implements PlatformInterface, AccessoryInterfa
     public void destroyPlatformOnDrop(ItemStack itemStack, boolean includeThrowerName, CallbackInfoReturnable<ItemEntity> cir) {
         if (this.lastPlatformPos.isEmpty()) return;
         if (!itemStack.is(LaLItems.WAND.get())) return;
-        if (this.getInventory().contains(LaLItems.WAND.getDefaultInstance())) return;
+        if (this.getInventory().contains(LaLItems.WAND.defaultItemStack())) return;
 
         destroyPlatform();
     }

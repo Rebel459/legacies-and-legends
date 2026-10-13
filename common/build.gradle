@@ -23,13 +23,13 @@ dependencies {
     compileOnly("maven.modrinth:unified-api:$unified_version-fabric")
     compileOnly("maven.modrinth:item-tooltips:$tooltips_version-fabric")
     compileOnly("maven.modrinth:trim-patcher:$patcher_version-fabric")
-    compileOnly("maven.modrinth:lithostitched:$lithostitched_fabric_version-fabric-$minecraft_version")
+    compileOnly("maven.modrinth:lithostitched:$lithostitched_version-fabric-$lithostitched_version_suffix")
 
     compileOnly("maven.modrinth:combat-reborn:$combat_version-fabric")
     compileOnly("maven.modrinth:rei:$rei_version")
     compileOnly("maven.modrinth:architectury-api:$architectury_version")
     compileOnly("maven.modrinth:friends-and-foes:$friendsandfoes_version")
-    compileOnly("com.teamresourceful.resourcefullib:resourcefullib-fabric-1.21.11:$resourceful_version")
+    compileOnly("com.teamresourceful.resourcefullib:resourcefullib-fabric-$resourceful_version_prefix:$resourceful_version")
     compileOnly("dev.isxander:yet-another-config-lib:$yacl_version")
     compileOnly("net.fabricmc:fabric-language-kotlin:$kotlin_version")
 }

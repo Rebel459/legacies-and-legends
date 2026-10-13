@@ -192,13 +192,15 @@ public class AccessoryHelper {
     }
 
     public static ItemStack getActualAccessory(Player player) {
-        AccessorySlotInterface accessorySlot = (AccessorySlotInterface) player.inventoryMenu;
-        return accessorySlot.getAccessory();
+        return ((AccessoryInterface) player).getAccessoryStack();
     }
 
     public static void setAccessory(Player player, ItemStack stack) {
-        AccessorySlotInterface accessorySlot = (AccessorySlotInterface) player.inventoryMenu;
-        accessorySlot.setAccessory(stack);
+        ItemStack storedStack = stack.isEmpty() ? ItemStack.EMPTY : stack.copy();
+        ((AccessoryInterface) player).setAccessoryStack(storedStack);
+        if (player.inventoryMenu instanceof AccessorySlotInterface accessorySlot) {
+            accessorySlot.setAccessory(storedStack);
+        }
     }
 
     public static void clearAccessory(Player player) {
@@ -206,7 +208,7 @@ public class AccessoryHelper {
     }
 
     public static boolean isSlotFilled(Player player) {
-        return getActualAccessory(player) != ItemStack.EMPTY;
+        return !getActualAccessory(player).isEmpty();
     }
 
     public static int getAmuletRepairFrequency(ItemStack stack) {

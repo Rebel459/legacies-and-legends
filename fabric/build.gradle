@@ -15,7 +15,7 @@ dependencies {
     }
     api("maven.modrinth:unified-api:$unified_version-fabric")
     implementation("maven.modrinth:item-tooltips:$tooltips_version-fabric")
-    implementation("maven.modrinth:lithostitched:$lithostitched_fabric_version-fabric-$minecraft_version")
+    implementation("maven.modrinth:lithostitched:$lithostitched_version-fabric-$lithostitched_version_suffix")
     implementation("maven.modrinth:trim-patcher:$patcher_version-fabric")
 }
 

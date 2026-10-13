@@ -7,10 +7,8 @@ import net.rebel459.legacies_and_legends.client.LaLMenuScreens;
 import net.rebel459.legacies_and_legends.client.LaLModelLayers;
 import net.rebel459.legacies_and_legends.config.LaLConfig;
 import net.rebel459.legacies_and_legends.registry.LaLEquipmentAssets;
-import net.rebel459.unified.platform.UnifiedHelpers;
-import net.rebel459.unified.platform.UnifiedPlatform;
-import net.rebel459.unified.platform.client.UnifiedClientHelpers;
-import net.rebel459.unified.util.PackType;
+import net.rebel459.unified.api.client.core.UnifiedClientHelpers;
+import net.rebel459.unified.api.core.UnifiedPlatform;
 
 public final class LegaciesAndLegendsClient {
 
@@ -23,15 +21,15 @@ public final class LegaciesAndLegendsClient {
     public static void init() {
         LaLMenuScreens.init();
 
-        UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.REINFORCED, true);
-        UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.TRAVELLING, true);
-        UnifiedClientHelpers.LEGACY_BABY_ARMOR.add(LaLEquipmentAssets.WANDERER, true);
+        UnifiedClientHelpers.SIMPLE_BABY_ARMOR.add(LaLEquipmentAssets.REINFORCED);
+        UnifiedClientHelpers.SIMPLE_BABY_ARMOR.add(LaLEquipmentAssets.TRAVELLING);
+        UnifiedClientHelpers.SIMPLE_BABY_ARMOR.add(LaLEquipmentAssets.WANDERER);
 
         if (UnifiedPlatform.isModLoaded("farmersdelight") && LaLConfig.get().integrations.farmers_delight) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("farmers_delight_integration"), PackType.REQUIRED_RESOURCES);
+            UnifiedClientHelpers.RESOURCE_PACKS.addRequired(LaLConstants.id("farmers_delight_integration"));
         }
         if (LaLConfig.get().misc.improved_turtle_shell) {
-            UnifiedHelpers.PACKS.add(LaLConstants.id("improved_turtle_shell"), PackType.REQUIRED_RESOURCES);
+            UnifiedClientHelpers.RESOURCE_PACKS.addRequired(LaLConstants.id("improved_turtle_shell"));
         }
     }
 }

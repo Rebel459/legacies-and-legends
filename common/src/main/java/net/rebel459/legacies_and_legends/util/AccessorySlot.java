@@ -42,6 +42,15 @@ public class AccessorySlot extends Slot {
             accessory.setAccessoryData(mutable);
         }
         super.set(itemStack);
+        accessory.setAccessoryStack(itemStack.isEmpty() ? ItemStack.EMPTY : itemStack);
+    }
+
+    @Override
+    public ItemStack remove(int amount) {
+        ItemStack removed = super.remove(amount);
+        ItemStack remaining = this.container.getItem(0);
+        ((AccessoryInterface) this.player).setAccessoryStack(remaining.isEmpty() ? ItemStack.EMPTY : remaining);
+        return removed;
     }
 
     @Override

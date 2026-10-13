@@ -56,7 +56,7 @@ public abstract class ItemStackMixin {
         if (this.is(item -> item.is(LaLItemTags.TABLETS))) {
             if (new Random().nextInt(5) >= 1) {
                 this.applyComponents(DataComponentMap.builder()
-                        .set(DataComponents.USE_REMAINDER, new UseRemainder(LaLItems.TABLET.getTemplate()))
+                        .set(DataComponents.USE_REMAINDER, new UseRemainder(LaLItems.TABLET.defaultTemplate()))
                         .build()
                 );
             }
@@ -80,7 +80,7 @@ public abstract class ItemStackMixin {
         ItemStack stack = player.getItemInHand(hand);
         if (stack.is(LaLItemTags.ACCESSORIES) && LaLConfig.get().accessories.slot.use_equip && cir.getReturnValue() != InteractionResult.SUCCESS) {
             ItemStack oldAccessory = AccessoryHelper.getActualAccessory(player);
-            if (!oldAccessory.isEmpty() && (stack.is(LaLItemTags.TOTEMS) || stack.is(LaLItemTags.AMULETS))) return;
+            if (!oldAccessory.isEmpty() && (stack.is(LaLItemTags.TOTEMS) || stack.is(LaLItemTags.AMULETS) || stack.is(LaLItemTags.QUIVER))) return;
             ItemStack newAccessory = stack.copyAndClear();
             AccessoryHelper.setAccessory(player, newAccessory);
             AccessoryHelper.onEquip(player, newAccessory);
